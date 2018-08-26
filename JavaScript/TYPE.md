@@ -22,12 +22,24 @@ var myNumber3 = Infinity;
 var myNumber4 = "abc" * "def";//NaN
 var myNumber5 = NaN;
 var myNumber6 = 0.1 + 0.2;
-console.log(typeof (myNumber3));//Number
-console.log(typeof (myNumber4));//NaN
-console.log(typeof (myNumber6));//0.30000000000000004
+console.log(typeof myNumber3);//Number
+console.log(typeof myNumber4);//NaN
+console.log(typeof myNumber6);//0.30000000000000004
 ```
 
-- Boolean
-- Null
-- Undefined
+- Boolean       
+```JavaScript
+var bool = true;
+console.log(typeof(bool)); //boolean
+```     
+- Null      
+```JavaScript
+var a = null;
+console.log(typeof a); //object 
+```     
+- Undefined      
+```JavaScript
+var a;
+console.log(typeof a); //undefined 
+```     
 - Object
