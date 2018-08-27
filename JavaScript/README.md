@@ -145,4 +145,4 @@ A specification for JavaScript. JavaScript will be executed by a distinct engine
 [TYPE.md]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/TYPE.md>
 
 
-[1]: https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/screenshot_forEach.png
+[1]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/JavaScript/screenshot_forEach.png
