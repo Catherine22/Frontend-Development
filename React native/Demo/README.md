@@ -40,10 +40,10 @@ react-native init YOUR_APP_NAME
 
 ### Flexbox
 ![img][1]   
-[code](https://github.com/Catherine22/Front-end-warm-up/React-native/Demo/App.js)
+[code](https://github.com/Catherine22/Front-end-warm-up/React%20native/Demo/App.js)
 
 
 
 
 
-[1]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React-native/Demo/screenshots/flexbox.png
+[1]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/Demo/screenshots/flexbox.png
