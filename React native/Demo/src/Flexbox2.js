@@ -10,8 +10,10 @@ const instructions = Platform.select({
   android: 'Android',
 });
 
-type Props = {};
-export default class Flexbox2 extends Component<Props> { 
+export default class Flexbox2 extends Component {
+  constructor(props) {
+    super(props);
+  }
   // return pratical components
   render() {
     return (
