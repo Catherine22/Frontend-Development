@@ -18,6 +18,10 @@ const componentsHeight = 45;
 export default class LoginView extends Component {
   constructor(props) {
     super(props);
+    // console.log(this.props.pageId);
+    this.state = {
+      loginCount: 0,
+    }
   }
 
   // return pratical components
@@ -27,8 +31,8 @@ export default class LoginView extends Component {
     <TextInput style={styles.input} placeholder={'phone number'} keyboardType={'phone-pad'} clearButtonMode={'while-editing'} /*multiline={true}*//>
     <TextInput style={styles.input} placeholder={'password'} keyboardType={'default'} secureTextEntry={true}/>
     
-    <TouchableOpacity style={styles.loginButton}>
-    <Text style={styles.loginText}>登陆</Text>
+    <TouchableOpacity style={styles.loginButton} onPress={this.updateEvent}>
+    <Text style={styles.loginText}>登录</Text>
     </TouchableOpacity>
 
     <Text style={styles.helpText}>无法登录</Text>
@@ -38,13 +42,20 @@ export default class LoginView extends Component {
     </TouchableOpacity>
 
     <View style={styles.thirdPartyLogin}>
-        <Text style={styles.otherText}>其他登陆方式</Text>
+        <Text style={styles.otherText}>其他登录方式</Text>
         <Image style={styles.smallIcon} source={require('Demo/img/wechat.png')}></Image>
         <Image style={styles.smallIcon} source={require('Demo/img/qq.png')}></Image>
     </View>
     </View>);
   }
+
+  updateEvent = () => {
+    this.setState({
+      loginCount: this.state.loginCount+1,
+    });
+  }
 }
+
 
 
 const styles = StyleSheet.create({
@@ -63,7 +74,6 @@ const styles = StyleSheet.create({
   },
 
   loginButton: {
-    activeOpacity: 0.5,
     margin: margin,
     backgroundColor: '#8cb357',
     width: componentsWidth,
@@ -74,7 +84,6 @@ const styles = StyleSheet.create({
   },
 
   signinButton: {
-      activeOpacity: 0.5,
       margin: margin,
       borderWidth: 1,
       borderColor: '#8cb357',

@@ -2,6 +2,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, Image, TextInput, View} from 'react-native';
 import LoginView from './src/LoginView'
+import ImageWall from './src/ImageWall'
+
 
 var Dimen = require('Dimensions');
 var {width} = Dimen.get('window');
@@ -20,8 +22,13 @@ export default class App extends Component {
 
   render() {
     return (
-      <LoginView/>
+      <LoginView pageId='LOGIN'></LoginView>
+      // <ImageWall></ImageWall>
     );
+  }
+
+  componentDidMount() {
+    //Do some I/O here
   }
 }
 

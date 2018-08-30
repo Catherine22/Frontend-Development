@@ -1,11 +1,6 @@
 // import libraries from Demo/node_modules/react and .../react-native
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-
-const instructions = Platform.select({
-  ios: 'iOS',
-  android: 'Android',
-});
+import {StyleSheet, Text, View} from 'react-native';
 
 export default class Flexbox1 extends Component {
   constructor(props) {
