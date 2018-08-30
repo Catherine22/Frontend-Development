@@ -1,17 +1,17 @@
 // import libraries from Demo/node_modules/react and .../react-native
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet, 
   Text, 
   Image, 
   TextInput, 
   TouchableOpacity,
-  View} from 'react-native';
+  View } from 'react-native';
 
 var Dimen = require('Dimensions');
-var {width} = Dimen.get('window');
-const margin = 10;
-const componentsWidth = width - margin * 2;
+const { windowWidth } = Dimen.get('window');
+const componentMargin = 10;
+const componentsWidth = windowWidth - (componentMargin * 2);
 const componentsHeight = 45;
 
 
@@ -21,15 +21,21 @@ export default class LoginView extends Component {
     // console.log(this.props.pageId);
     this.state = {
       loginCount: 0,
-    }
+    };
+  }
+
+  updateEvent = () => {
+    this.setState({
+      loginCount: this.state.loginCount + 1,
+    });
   }
 
   // return pratical components
   render() {
     return (<View style={styles.container}>
-    <Image style={styles.icon} source={require('Demo/img/buffalo.png')}></Image>
+    <Image style={styles.icon} source={require('Demo/img/buffalo.png')} />
     <TextInput style={styles.input} placeholder={'phone number'} keyboardType={'phone-pad'} clearButtonMode={'while-editing'} /*multiline={true}*//>
-    <TextInput style={styles.input} placeholder={'password'} keyboardType={'default'} secureTextEntry={true}/>
+    <TextInput style={styles.input} placeholder={'password'} keyboardType={'default'} secureTextEntry={true} />
     
     <TouchableOpacity style={styles.loginButton} onPress={this.updateEvent}>
     <Text style={styles.loginText}>登录</Text>
@@ -43,38 +49,31 @@ export default class LoginView extends Component {
 
     <View style={styles.thirdPartyLogin}>
         <Text style={styles.otherText}>其他登录方式</Text>
-        <Image style={styles.smallIcon} source={require('Demo/img/wechat.png')}></Image>
-        <Image style={styles.smallIcon} source={require('Demo/img/qq.png')}></Image>
+        <Image style={styles.smallIcon} source={require('Demo/img/wechat.png')} />
+        <Image style={styles.smallIcon} source={require('Demo/img/qq.png')} />
     </View>
     </View>);
   }
-
-  updateEvent = () => {
-    this.setState({
-      loginCount: this.state.loginCount+1,
-    });
-  }
 }
-
 
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#f2f2f2',
-    flex:1, 
+    flex: 1, 
   }, 
   
   input: {
     borderWidth: 1,
     backgroundColor: 'white',
     borderColor: '#f2f2f2',
-    width: width,
+    width: windowWidth,
     height: componentsHeight,
     textAlign: 'center',
   },
 
   loginButton: {
-    margin: margin,
+    margin: componentMargin,
     backgroundColor: '#8cb357',
     width: componentsWidth,
     height: componentsHeight,
@@ -84,7 +83,7 @@ const styles = StyleSheet.create({
   },
 
   signinButton: {
-      margin: margin,
+      margin: componentMargin,
       borderWidth: 1,
       borderColor: '#8cb357',
       width: componentsWidth,
@@ -106,15 +105,15 @@ const styles = StyleSheet.create({
 
   helpText: {
     color: '#666666',
-    marginLeft: margin,
-    marginRight: margin,
+    marginLeft: componentMargin,
+    marginRight: componentMargin,
     fontSize: 12,
   },
 
   otherText: {
       color: '#666666',
-      marginLeft: margin,
-      marginRight: margin,
+      marginLeft: componentMargin,
+      marginRight: componentMargin,
       fontSize: 12,
   }, 
 
@@ -138,7 +137,6 @@ const styles = StyleSheet.create({
   thirdPartyLogin: {
     flexDirection: 'row', 
     alignItems: 'center',
-    
     position: 'absolute',
     bottom: 20,
   }
