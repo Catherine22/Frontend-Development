@@ -1,6 +1,12 @@
 // import libraries from Demo/node_modules/react and .../react-native
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, Image, TextInput, View} from 'react-native';
+import {
+  StyleSheet, 
+  Text, 
+  Image, 
+  TextInput, 
+  TouchableOpacity,
+  View} from 'react-native';
 
 var Dimen = require('Dimensions');
 var {width} = Dimen.get('window');
@@ -20,23 +26,21 @@ export default class LoginView extends Component {
     <Image style={styles.icon} source={require('Demo/img/buffalo.png')}></Image>
     <TextInput style={styles.input} placeholder={'phone number'} keyboardType={'phone-pad'} clearButtonMode={'while-editing'} /*multiline={true}*//>
     <TextInput style={styles.input} placeholder={'password'} keyboardType={'default'} secureTextEntry={true}/>
-    <View style={styles.loginButton}>
-    <Text style={styles.loginText}>登陆</Text>
-    </View>
-    <Text style={styles.otherText}>无法登录</Text>
-
-    <View style={styles.signinButton}>
-    <Text style={styles.signinText}>新用户</Text>
-    </View>
-
-    <View>
-        <Text style={styles.otherText}>其他登陆方式</Text>
     
-    <View style={{flexDirection: 'row'}}>
+    <TouchableOpacity style={styles.loginButton}>
+    <Text style={styles.loginText}>登陆</Text>
+    </TouchableOpacity>
+
+    <Text style={styles.helpText}>无法登录</Text>
+    
+    <TouchableOpacity style={styles.signinButton}>
+    <Text style={styles.signinText}>新用户</Text>
+    </TouchableOpacity>
+
+    <View style={styles.thirdPartyLogin}>
+        <Text style={styles.otherText}>其他登陆方式</Text>
         <Image style={styles.smallIcon} source={require('Demo/img/wechat.png')}></Image>
         <Image style={styles.smallIcon} source={require('Demo/img/qq.png')}></Image>
-    </View>
-
     </View>
     </View>);
   }
@@ -55,18 +59,22 @@ const styles = StyleSheet.create({
     borderColor: '#f2f2f2',
     width: width,
     height: componentsHeight,
+    textAlign: 'center',
   },
 
   loginButton: {
+    activeOpacity: 0.5,
     margin: margin,
     backgroundColor: '#8cb357',
     width: componentsWidth,
     height: componentsHeight,
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 10,
   },
 
   signinButton: {
+      activeOpacity: 0.5,
       margin: margin,
       borderWidth: 1,
       borderColor: '#8cb357',
@@ -74,6 +82,7 @@ const styles = StyleSheet.create({
       height: componentsHeight,
       justifyContent: 'center',
       alignItems: 'center',
+      borderRadius: 8,
   },
 
   loginText: {
@@ -86,9 +95,15 @@ const styles = StyleSheet.create({
       fontSize: 16,
   },
 
+  helpText: {
+    color: '#666666',
+    marginLeft: margin,
+    marginRight: margin,
+    fontSize: 12,
+  },
+
   otherText: {
       color: '#666666',
-      marginTop: 40,
       marginLeft: margin,
       marginRight: margin,
       fontSize: 12,
@@ -100,12 +115,23 @@ const styles = StyleSheet.create({
       marginBottom: 60,
       width: 80,
       height: 80,
+      borderRadius: 40,
+      borderWidth: 1,
+      borderColor: 'white',
   },
 
   smallIcon: {
       margin: 5,
       width: 40,
       height: 40,
+  }, 
+
+  thirdPartyLogin: {
+    flexDirection: 'row', 
+    alignItems: 'center',
+    
+    position: 'absolute',
+    bottom: 20,
   }
 });
 
