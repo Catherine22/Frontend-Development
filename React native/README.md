@@ -1,6 +1,7 @@
 # React Native
 
 ## Installation
+0. Update OS and Xcode to the latest version
 1. Homebrew     
 2. node.js (higher than 4.0), npm is inclueded.     
 3. watchman     
