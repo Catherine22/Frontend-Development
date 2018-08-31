@@ -21,4 +21,13 @@ under ios folder,
 pod install
 ```
 
+
+functional component vs class-based component
+
+http://wiki.jikexueyuan.com/project/balsamiq-mockups-doc/
+
+```
+npm install --save axios
+```
+
 https://www.udemy.com/the-complete-react-native-and-redux-course/
