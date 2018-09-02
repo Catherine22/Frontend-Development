@@ -39,6 +39,50 @@ There are six data types in JavaScript:
 
 Go to [TYPE.js] to see more.
 
+### Opertor, 运算符或操作符
+
+Go to [Operator.js] to see more.
+
+### Flow control and looping,  流程控制
+          
+```JavaScript
+var cars = ["BMW", "Volvo", "Saab", "Ford"];
+var i = 0;
+// while
+while(cars[i]){
+    console.log(cars[i++]);
+}
+
+// for
+i = 0;
+for(;cars[i];){
+    console.log(cars[i++]);
+}
+```
+Find out prime numbers from 1 to 100
+```JavaScript
+var i = 2;
+var count = 0;
+while (i <= 100) {
+    if (isPrimeNumber(i)) {
+        console.log(i + ' is a prime number');
+        count++;
+    }
+    i++;
+}
+
+function isPrimeNumber(number) {
+    for (var i = 2; i <= Math.sqrt(number); i++) {
+        if (number % i === 0)
+            return false;
+    }
+    return true;
+}
+
+console.log(count + ' prime numbers were found');
+```
+
+
 ## ECMAScrip
 A specification for JavaScript. JavaScript will be executed by a distinct engine of individual browser. V8 engine of Chrome for example, showing high performance while running JavaScript.     
 
@@ -62,7 +106,8 @@ A specification for JavaScript. JavaScript will be executed by a distinct engine
 
 [Introduction]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Introduction.html>
 
-[TYPE.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/TYPE.js>
+[Type.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Type.js>
+[Operator.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Operator.js>
 
 
 [1]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/JavaScript/screenshot_forEach.png
