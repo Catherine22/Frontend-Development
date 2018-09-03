@@ -37,7 +37,7 @@ There are six data types in JavaScript:
         - This means the editor has declared a variable, but he/she did not define a value for that variable.           
 - Object        
 
-Go to [TYPE.js] to see more.
+Go to [Type.js] to see more.
 
 ### Opertor, 运算符或操作符
 
@@ -81,6 +81,8 @@ function isPrimeNumber(number) {
 
 console.log(count + ' prime numbers were found');
 ```
+
+### Object
 
 
 ## ECMAScrip

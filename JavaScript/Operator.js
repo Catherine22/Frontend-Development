@@ -74,12 +74,12 @@ result = 10;
 console.log(!result);
 
 console.log("\n&&");
-false && console.log('false && me');
-true && console.log('true && me');
+false && console.log('false && me'); // not showing
+true && console.log('true && me'); //showing
 
 console.log("\n||");
-false || console.log('false || me');
-true || console.log('true || me');
+false || console.log('false || me'); // showing
+true || console.log('true || me'); // not showing
 
 //Biwise operators
 console.log("\nAND");
