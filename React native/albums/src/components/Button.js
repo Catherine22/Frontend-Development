@@ -2,13 +2,14 @@ import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 
 // Declare onPress as props so that the parent (AlbumDetail) is able to handle onPress event
-const Button = ({ onPress }) => {
+const Button = ({ onPress, children }) => {
     const { buttonStyle, textStyle } = styles;
     return (
+        // The last onPress is the props
         <TouchableOpacity style={buttonStyle} onPress={onPress}>
-            <Text style={textStyle}>click me!</Text>
+            <Text style={textStyle}>{children}</Text>
         </TouchableOpacity>
-    );
+    ); 
 };
 
 const styles = {
