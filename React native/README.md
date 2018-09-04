@@ -12,7 +12,7 @@
 ```
 npm install -g eslint
 ```
-
+ 
 Go to your react native project,            
 ```
 npm install --save-dev eslint-config-rallycoding
