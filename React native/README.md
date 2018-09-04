@@ -45,6 +45,24 @@ pod install
 JSX is an extension to the JavaScript language that is used to write react components.      
 Using [Babel](https://babeljs.io/en/repl.html) to put some JSX on the left hand side (What we write), then it will turn into JavaScript on the right hand side. (What would be executed on the devices).        
 
+After cloning a project from git/svn, you might need: 
+
+1. Install npm resources, go to project/
+```npm install```
+
+2. (Optional) Install CocoaPods, go to project/ios/
+```pod install```
+
+3. Install eslint, go to project/
+```npm install --save-dev eslint-config-rallycoding```
+
+and create .eslintrc file
+```
+{
+"extends": "rallyCoding"
+}
+```
+
 ### Android
 - Add ANDROID_HOME to .bash_profile   
 - ```adb reverse tcp:8081 tcp:8081```
