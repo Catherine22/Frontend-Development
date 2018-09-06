@@ -24,12 +24,12 @@ const styles = {
         marginRight: 5
     },
     textStyle: {
-        alignSelf: 'center',
-        color: '#007aff',
+        alignSelf: 'center', 
         fontSize: 16,
         fontWeight: '600',
         paddingTop: 10,
         paddingBottom: 10,
+        color: '#007aff'
     }
 };
 
