@@ -280,6 +280,63 @@ state = { email: '' };
 }
 ```
 
+# The third party SDKs
+
+## Firebase
+
+[LoginForm.js]
+
+# Redux
+
+[2] [3]
+How Redux works, the following code can run on [JS playgrounds]          
+```JavaScript
+// A reducer is some amount of the state
+const reducer = (state = [], action) => {
+  if (action.type === 'split_string') {
+    return action.payload.split('');
+  } else if (action.type === 'add_characters') {
+    
+    /* "...state" means making a new array indicated by these outside brackets，
+     * taking all the elements in the current state array, tossing them in here.
+     * and also tossing action.payload in as the last entry as well.
+     * More importantly, it creates a entirely new array
+     */
+    return [...state, action.payload];
+  }
+  
+  return state;
+}
+
+const store = Redux.createStore(reducer);
+store.getState();
+
+/* An action is a plain JavaScripy object
+ * This type property is always a String, 
+ * the purpose of this type property is to tell our reducer to command a specific operation
+ */
+const action = {
+  type: 'split_string',
+  payload: 'asdf'
+};
+
+store.dispatch(action);
+store.getState();
+
+const action2 = {
+  type: 'add_characters',
+  payload: 'g'
+};
+
+store.dispatch(action2);
+store.getState();
+```
+
+1. Install two libraries       
+```npm install --save redux react-redux```      
+
+2. Build a boilerplate      
+
 
 
 # Reference
@@ -290,6 +347,10 @@ state = { email: '' };
 [Button.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/albums/src/components/Button.js>
 [AlbumList.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/albums/src/components/AlbumList.js>
 [AlbumDetail.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/albums/src/components/AlbumDetail.js>
+[LoginForm.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/auth/src/components/LoginForm.js>
+[JS playgrounds]:<https://stephengrider.github.io/JSPlaygrounds/>
 [1]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/components.png
 [2]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/textInput.png
+[3]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/redux1.png
+[4]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/redux2.png
 
