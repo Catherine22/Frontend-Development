@@ -2,5 +2,5 @@
 
 - Html + CSS        
 - Javascript        
-- ECMAScript        
+- JSX            
 - React-native

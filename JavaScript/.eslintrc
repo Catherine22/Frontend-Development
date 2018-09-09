@@ -1,6 +1,6 @@
 {
-    "extends": "eslint:recommended",
+    "extends": ["eslint:recommended", "google"],
     "rules": {
-        "no-console": ["error", { "allow": ["log", "warn", "error"] }]
+        // Additional, per-project rules...
     }
 }

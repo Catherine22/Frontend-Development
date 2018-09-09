@@ -39,8 +39,8 @@ console.log("0xff = " + 0xff); // 255
 
 // octal
 console.log("octal - starting from 0");
-console.log("010 = " + 010); // 8
-console.log("077 = " + 077); // 63
+console.log("010 = " + 0o10); // 8
+console.log("077 = " + 0o77); // 63
 
 // binary, only browsers such as Chrome and firefox support
 console.log("binary - starting from 0b");
