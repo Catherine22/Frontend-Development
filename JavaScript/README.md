@@ -19,7 +19,7 @@ alert(id);
 ```
 
 ### Identifier, 标识符      
-An JS identifier might contants numbers, alphebets, underscores and currency symbols ($). But starting with a number is illegal.        
+An JS identifier might constants numbers, alphabets, underscores and currency symbols ($). But starting with a number is illegal.        
 ```JavaScript
 var $123_a = 0;
 ```
@@ -39,7 +39,7 @@ There are six data types in JavaScript:
 
 Go to [Type.js] to see more.
 
-### Opertor, 运算符或操作符
+### Operator, 运算符或操作符
 
 Go to [Operator.js] to see more.
 

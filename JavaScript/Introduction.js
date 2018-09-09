@@ -1,1 +1,1 @@
-alert("Hi, I am from an individual JS file")
+alert('Hi, I am from an individual JS file');
