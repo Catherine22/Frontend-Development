@@ -344,7 +344,9 @@ We have two seperate reducers - a **Library Reducer** is going to turn a list of
 2. After we create the Store, we pass it to the Provider as a prop. The Provider is a react component that aims to communication between react and redux.       
 3. The App component is rendered to the screen, which in term renders LibraryList component.        
 4. The instance that the LibraryList component is about to render or about to appear on the screen. The Connect function which we just added in boots up, and it says, the component I am wrapping is about to render.      
-5. The Connect function reaches its backup to the Provider, try to get access to the state. The Provider gives up its state that is contained in the Store, and then the connect tag pumps down into LibraryList and show up as props after fills it through mapStateToProps
+5. The Connect function reaches its backup to the Provider, try to get access to the state. The Provider gives up its state that is contained in the Store, and then the connect tag pumps down into LibraryList and show up as props after fills it through mapStateToProps    
+
+See more here:
 
 # Reference
 [The complete react native and redux course](https://www.udemy.com/the-complete-react-native-and-redux-course/)

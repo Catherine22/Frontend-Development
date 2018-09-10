@@ -21,7 +21,6 @@ class LibraryList extends Component {
     }
 
     render() {
-        console.log('LibraryList', this.props.dataToShow);
         return (
             <ListView
                 dataSource={this.dataSource}
