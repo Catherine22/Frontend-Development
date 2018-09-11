@@ -288,7 +288,7 @@ state = { email: '' };
 
 # Redux
 
-[2] [3]
+![screenshot][3] ![screenshot][4]
 How Redux works, the following code can run on [JS playgrounds]          
 ```JavaScript
 // A reducer is some amount of the state
@@ -339,12 +339,17 @@ store.getState();
 
 We have two seperate reducers - a **Library Reducer** is going to turn a list of libraries to show to the user, and the **Selection Reducer**, which is going to keep track of the currently selected libraries.
 
-[5]     
+![screenshot][5]     
 1. When the app first boots up, redux creates a new Store with ```createStore(reducers)``` called, using the Libraries Reducer. The instance of Store created, it runs Libraries Reducer one time. So we get a piece of state called libraries which is an array containing a list of objects. When the Reducer runs, it returns libraries objects. Each object represents one library that we wanna show on the screen.       
 2. After we create the Store, we pass it to the Provider as a prop. The Provider is a react component that aims to communication between react and redux.       
 3. The App component is rendered to the screen, which in term renders LibraryList component.        
 4. The instance that the LibraryList component is about to render or about to appear on the screen. The Connect function which we just added in boots up, and it says, the component I am wrapping is about to render.      
-5. The Connect function reaches its backup to the Provider, try to get access to the state. The Provider gives up its state that is contained in the Store, and then the connect tag pumps down into LibraryList and show up as props after fills it through mapStateToProps
+5. The Connect function reaches its backup to the Provider, try to get access to the state. The Provider gives up its state that is contained in the Store, and then the connect tag pumps down into LibraryList and show up as props after fills it through mapStateToProps    
+
+When User touch a item on ListView:
+![screenshot][6]    
+
+See more here:
 
 # Reference
 [The complete react native and redux course](https://www.udemy.com/the-complete-react-native-and-redux-course/)
@@ -361,4 +366,5 @@ We have two seperate reducers - a **Library Reducer** is going to turn a list of
 [3]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/redux1.png
 [4]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/redux2.png
 [5]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/redux3.png
+[6]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/redux4.png
 
