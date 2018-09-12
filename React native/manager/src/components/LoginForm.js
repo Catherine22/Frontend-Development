@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardSection, Input, Button } from './common';
-import {Text} from "react-native";
-import { emailChanged } from '../actions';
+import { Text } from "react-native";
+import { emailChanged, passwordChanged } from '../actions';
 
 class LoginForm extends Component {
     onEmailChange(text) {
         this.props.emailChanged(text);
+    }
+
+    onPasswordChange(text) {
+        this.props.passwordChanged(text);
     }
 
     render() {
@@ -17,6 +21,7 @@ class LoginForm extends Component {
                         label='Email'
                         placeholder='user@gmail.com'
                         onChangeText={this.onEmailChange.bind(this)}
+                        value={this.props.email}
                     />
                 </CardSection>
 
@@ -25,6 +30,8 @@ class LoginForm extends Component {
                         secureTextEntry
                         label='Password'
                         placeholder='password'
+                        onChangeText={this.onPasswordChange.bind(this)}
+                        value={this.props.password}
                     />
                 </CardSection>
 
@@ -48,7 +55,14 @@ const styles = {
         color: 'red'
     }
 };
+const mapStateToProps = state => {
+    const { auth } = state;
+    return {
+        email: auth.email,
+        password: auth.password
+    };
+};
 
 //We now have access to a prop inside of our component called this.props.emailChanged
-export default connect(null, { emailChanged })(LoginForm);
+export default connect(mapStateToProps, { emailChanged, passwordChanged })(LoginForm);
 
