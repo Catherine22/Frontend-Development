@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import firebase from 'firebase';
 import reducers from './reducers';
+import LoginForm from './components/LoginForm';
 
 class App extends Component {
 
@@ -33,7 +34,7 @@ class App extends Component {
         // Post reducers to where the createStore called
         return (
             <Provider store={createStore(reducers)}>
-                <View />
+                <LoginForm />
             </Provider>
         );
     }
