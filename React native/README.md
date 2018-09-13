@@ -1,7 +1,7 @@
 # Installation
 0. Update OS and Xcode to the latest version
 1. Homebrew     
-2. node.js (higher than 4.0), npm is inclueded.     
+2. node.js (higher than 4.0), npm is included.     
 3. watchman     
 4. flow     
 5. react native (```npm install -g react-native-cli```)     
@@ -68,7 +68,7 @@ and create .eslintrc file
 
 ## Run another project
 Find react-native version in package.json file.     
-```JSON
+```json
 "dependencies": {
     "react": "16.4.1",
     "react-native": "^0.43.4"
@@ -86,7 +86,7 @@ npm install --save react-native@0.43.4
 
 ## Functional component 
 
-```JSX
+```typescript jsx
 // Import libraries for making a component
 import React from 'react';
 import { View } from 'react-native';
@@ -105,7 +105,7 @@ export default Header;
 
 ## Class-based component
 
-```JSX
+```typescript jsx
 // Import React.Component
 import React, { Component } from 'react';
 import { View } from 'react-native';
@@ -129,7 +129,7 @@ export default AlbumList;
 npm install --save axios
 ```
 
-```JSX
+```typescript jsx
 // Do I/O here
 componentWillMount() {
     // When we need to update what a component shows, call 'this.setState()', do not do 'this.state'
@@ -143,7 +143,7 @@ componentWillMount() {
 ## State and props
 
 Initialize and update state when fetched data from rallycoding
-```JSX
+```typescript jsx
 // Import React.Component
 import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
@@ -183,7 +183,7 @@ export default AlbumList;
 ```
 
 The response retrieved via axios would be like
-```JSON
+```json
 [
   {
     "title": "Taylor Swift",
@@ -203,7 +203,7 @@ The response retrieved via axios would be like
 ```
 
 The child gets the props from the parent
-```JSX
+```typescript jsx
 import React from 'react';
 import { Text, View, Image, Linking } from 'react-native';
 
@@ -212,8 +212,10 @@ const AlbumDetail = ({ album }) => {
     const { title, artist, thumbnail_image, image, url } = album;
    
     return (
-        <Text>{title}</Text>
-        <Text>{artist}</Text>
+        <View>
+            <Text>{title}</Text>
+            <Text>{artist}</Text>
+        </View>
     );
 };
 
@@ -226,7 +228,7 @@ export default AlbumDetail;
 ## Clicking event
 
 Create a Button component
-```JSX
+```typescript jsx
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 
@@ -245,7 +247,7 @@ export default Button;
 ```
 
 Have the parent (AlbumDetail) to deal with onPress event
-```JSX
+```typescript jsx
 import React from 'react';
 import { Text, View, Image, Linking } from 'react-native';
 import Button from './Button';
@@ -266,7 +268,7 @@ export default AlbumDetail;
 TextInput is not responsible for knowing what its value is. It has no idea what its value is.   
 ![screenshot][2]  
 
-```JSX
+```typescript jsx
 state = { email: '' };
     render() {
         return (
@@ -335,9 +337,10 @@ store.getState();
 - Install two libraries       
 ```npm install --save redux react-redux```      
 
-- Build a boilerplate      
 
-We have two seperate reducers - a **Library Reducer** is going to turn a list of libraries to show to the user, and the **Selection Reducer**, which is going to keep track of the currently selected libraries.
+## Redux + ListView
+
+In tech_stack app, we have two separate reducers - a **Library Reducer** is going to turn a list of libraries to show to the user, and the **Selection Reducer**, which is going to keep track of the currently selected libraries.
 
 ![screenshot][5]     
 1. When the app first boots up, redux creates a new Store with ```createStore(reducers)``` called, using the Libraries Reducer. The instance of Store created, it runs Libraries Reducer one time. So we get a piece of state called libraries which is an array containing a list of objects. When the Reducer runs, it returns libraries objects. Each object represents one library that we wanna show on the screen.       
@@ -349,7 +352,167 @@ We have two seperate reducers - a **Library Reducer** is going to turn a list of
 When User touch a item on ListView:
 ![screenshot][6]    
 
-See more here:
+See more here: [auth]
+
+## Redux + TextInput
+
+In manager app, here is the sample code
+![screenshot][7]  
+
+
+src/App.js      
+```typescript jsx
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from './reducers';
+import LoginForm from './components/LoginForm';
+
+class App extends Component {
+
+    render() {
+        // Post reducers to where the createStore called
+        return (
+            <Provider store={createStore(reducers)}>
+                <LoginForm />
+            </Provider>
+        );
+    }
+}
+
+export default App;
+```
+
+src/reducers/index.js       
+```typescript jsx
+import { combineReducers } from 'redux';
+import AuthReducer from './AuthReducer';
+
+export default combineReducers({
+   auth: AuthReducer
+});
+```
+
+src/reducers/AuthReducer.js     
+```typescript jsx
+import { EMAIL_CHANGED } from '../actions/types';
+
+const INITIAL_STATE = { email: '' };
+
+export default (state = INITIAL_STATE, action) => {
+    switch (action.type) {
+        case EMAIL_CHANGED:
+            /* The whole purpose here is to store the current value of the TextInput,
+             * and we gonna catch that right here.
+             *
+             * ...state: Make a new object, take all of the existing properties
+             * and throw them into that object. Then define the property email,
+             * give it value of action.payload and toss it on top of whatever properties
+             * are run in state object.
+             *
+             * So if the state already has an email property, it will be overwritten by
+             * the value (action.payload) we are trying to adding on the top of here
+             */
+            return { ...state, email: action.payload };
+        default:
+            return state;
+    }
+};
+
+```
+
+src/actions/types.js        
+```typescript jsx
+export const EMAIL_CHANGED = 'email_changed';
+```
+
+src/actions/index.js        
+```typescript jsx
+export const emailChanged = (text) => {
+    return {
+        type: 'email_changed',
+        payload: text
+    };
+};
+```
+
+src/components/LoginForm.js     
+```typescript jsx
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { TextInput } from 'react-native';
+import { emailChanged } from '../actions';
+
+class LoginForm extends Component {
+    onEmailChange(text) {
+        this.props.emailChanged(text);
+    }
+
+    render() {
+        return (
+            <TextInput>
+                label='Email'
+                placeholder='user@gmail.com'
+                onChangeText={this.onEmailChange.bind(this)}
+                value={this.props.email}
+            </TextInput>
+        );
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        email: state.auth.email
+    };
+};
+
+//We now have access to a prop inside of our component called this.props.emailChanged
+export default connect(mapStateToProps, { emailChanged })(LoginForm);
+
+```
+See more here: [manager]
+
+# Navigator
+
+Using [react-native-router-flux]
+```
+npm install --save react-native-router-flux
+```
+
+In app.js       
+```typescript jsx
+import Router from './Router';
+render() {
+        return (
+            <Router />
+        );
+    }
+```
+
+create a component Router.js      
+```typescript jsx
+import React from 'react';
+import { Scene, Router, Stack } from 'react-native-router-flux';
+import Page1 from './components/Page1';
+import Page2 from './components/Page2';
+
+const RouterComponent = () => {
+  return (
+    <Router /*sceneStyle={{ backgroundColor: '#FFFFFF' }}*/>
+      <Stack key='root'>
+          <Scene key='page1' component={Page1} title='1' initial />
+          <Scene key='page2' component={Page2} title='2' />
+      </Stack>
+    </Router>
+  );
+};
+
+export default RouterComponent;
+```
+Jump to page2       
+```typescript jsx
+Actions.page2(); // your Scene key
+```
 
 # Reference
 [The complete react native and redux course](https://www.udemy.com/the-complete-react-native-and-redux-course/)
@@ -360,11 +523,15 @@ See more here:
 [AlbumList.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/albums/src/components/AlbumList.js>
 [AlbumDetail.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/albums/src/components/AlbumDetail.js>
 [LoginForm.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/auth/src/components/LoginForm.js>
+[auth]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/auth>
+[manager]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/manager>
 [JS playgrounds]:<https://stephengrider.github.io/JSPlaygrounds/>
+[react-native-router-flux]:<https://github.com/aksonov/react-native-router-flux>
 [1]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/components.png
 [2]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/textInput.png
 [3]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/redux1.png
 [4]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/redux2.png
 [5]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/redux3.png
 [6]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/redux4.png
+[7]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/redux5.png
 
