@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardSection, Input, Button, Spinner } from './common';
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 
 class LoginForm extends Component {
@@ -31,32 +31,34 @@ class LoginForm extends Component {
 
     render() {
         return (
-            <Card>
-                <CardSection>
-                    <Input
-                        label='Email'
-                        placeholder='user@gmail.com'
-                        onChangeText={this.onEmailChange.bind(this)}
-                        value={this.props.email}
-                    />
-                </CardSection>
+            <View>
+                <Card>
+                    <CardSection>
+                        <Input
+                            label='Email'
+                            placeholder='user@gmail.com'
+                            onChangeText={this.onEmailChange.bind(this)}
+                            value={this.props.email}
+                        />
+                    </CardSection>
 
-                <CardSection>
-                    <Input
-                        secureTextEntry
-                        label='Password'
-                        placeholder='password'
-                        onChangeText={this.onPasswordChange.bind(this)}
-                        value={this.props.password}
-                    />
-                </CardSection>
+                    <CardSection>
+                        <Input
+                            secureTextEntry
+                            label='Password'
+                            placeholder='password'
+                            onChangeText={this.onPasswordChange.bind(this)}
+                            value={this.props.password}
+                        />
+                    </CardSection>
 
-                <Text style={styles.errorTextStyle}>{this.props.error.message}</Text>
+                    <Text style={styles.errorTextStyle}>{this.props.error.message}</Text>
 
-                <CardSection>
-                    {this.renderButton()}
-                </CardSection>
-            </Card>
+                    <CardSection>
+                        {this.renderButton()}
+                    </CardSection>
+                </Card>
+            </View>
         );
     }
 }

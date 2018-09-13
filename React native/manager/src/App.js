@@ -7,13 +7,12 @@
  */
 
 import React, { Component } from 'react';
-import { View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import firebase from 'firebase';
 import reducers from './reducers';
-import LoginForm from './components/LoginForm';
+import Router from './Router';
 
 class App extends Component {
 
@@ -36,7 +35,7 @@ class App extends Component {
         // Post reducers to where the createStore called
         return (
             <Provider store={store}>
-                <LoginForm />
+                <Router />
             </Provider>
         );
     }
