@@ -53,8 +53,11 @@ class LoginForm extends Component {
                 </CardSection>
 
                 <Text style={styles.errorTextStyle}>{this.props.error.message}</Text>
+                
+                <CardSection>
+                    {this.renderButton()}
+                </CardSection>
 
-                {this.renderButton()}
             </Card>
         );
     }

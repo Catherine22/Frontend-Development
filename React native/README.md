@@ -472,6 +472,47 @@ export default connect(mapStateToProps, { emailChanged })(LoginForm);
 ```
 See more here: [manager]
 
+# Navigator
+
+Using [react-native-router-flux]
+```
+npm install --save react-native-router-flux
+```
+
+In app.js       
+```typescript jsx
+import Router from './Router';
+render() {
+        return (
+            <Router />
+        );
+    }
+```
+
+create a component Router.js      
+```typescript jsx
+import React from 'react';
+import { Scene, Router, Stack } from 'react-native-router-flux';
+import Page1 from './components/Page1';
+import Page2 from './components/Page2';
+
+const RouterComponent = () => {
+  return (
+    <Router /*sceneStyle={{ backgroundColor: '#FFFFFF' }}*/>
+      <Stack key='root'>
+          <Scene key='page1' component={Page1} title='1' initial />
+          <Scene key='page2' component={Page2} title='2' />
+      </Stack>
+    </Router>
+  );
+};
+
+export default RouterComponent;
+```
+Jump to page2       
+```typescript jsx
+Actions.page2(); // your Scene key
+```
 
 # Reference
 [The complete react native and redux course](https://www.udemy.com/the-complete-react-native-and-redux-course/)
@@ -485,6 +526,7 @@ See more here: [manager]
 [auth]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/auth>
 [manager]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/manager>
 [JS playgrounds]:<https://stephengrider.github.io/JSPlaygrounds/>
+[react-native-router-flux]:<https://github.com/aksonov/react-native-router-flux>
 [1]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/components.png
 [2]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/textInput.png
 [3]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/redux1.png
