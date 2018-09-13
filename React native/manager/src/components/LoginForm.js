@@ -4,6 +4,7 @@ import { Card, CardSection, Input, Button, Spinner } from './common';
 import { Text } from "react-native";
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 
+
 class LoginForm extends Component {
     onEmailChange(text) {
         this.props.emailChanged(text);
@@ -53,9 +54,7 @@ class LoginForm extends Component {
 
                 <Text style={styles.errorTextStyle}>{this.props.error.message}</Text>
 
-                <CardSection>
-                    {this.renderButton()}
-                </CardSection>
+                {this.renderButton()}
             </Card>
         );
     }
