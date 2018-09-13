@@ -212,8 +212,10 @@ const AlbumDetail = ({ album }) => {
     const { title, artist, thumbnail_image, image, url } = album;
    
     return (
-        <Text>{title}</Text>
-        <Text>{artist}</Text>
+        <View>
+            <Text>{title}</Text>
+            <Text>{artist}</Text>
+        </View>
     );
 };
 
@@ -335,7 +337,8 @@ store.getState();
 - Install two libraries       
 ```npm install --save redux react-redux```      
 
-- Build a boilerplate      
+
+## Redux + ListView
 
 In tech_stack app, we have two separate reducers - a **Library Reducer** is going to turn a list of libraries to show to the user, and the **Selection Reducer**, which is going to keep track of the currently selected libraries.
 
@@ -349,8 +352,9 @@ In tech_stack app, we have two separate reducers - a **Library Reducer** is goin
 When User touch a item on ListView:
 ![screenshot][6]    
 
-ListView + Redux: [auth]
+See more here: [auth]
 
+## Redux + TextInput
 
 In manager app, here is the sample code
 ![screenshot][7]  
@@ -466,7 +470,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, { emailChanged })(LoginForm);
 
 ```
-
 See more here: [manager]
 
 
