@@ -9,18 +9,18 @@ JavaScript = ECMAScript + DOM + BOM
 
 ### literal， 字面量
 literals are allowed to be used directly. For example:      
-```JavaScript
+```javascript
 alert(152013257012304);
 ```
 We do not use literals very often, variables are commonly used, like        
-```JavaScript
+```javascript
 var id = 152013257012304;
 alert(id);
 ```
 
 ### Identifier, 标识符      
 An JS identifier might constants numbers, alphabets, underscores and currency symbols ($). But starting with a number is illegal.        
-```JavaScript
+```javascript
 var $123_a = 0;
 ```
 
@@ -45,7 +45,7 @@ Go to [Operator.js] to see more.
 
 ### Flow control and looping,  流程控制
           
-```JavaScript
+```javascript
 var cars = ["BMW", "Volvo", "Saab", "Ford"];
 var i = 0;
 // while
@@ -60,7 +60,7 @@ for(;cars[i];){
 }
 ```
 Find out prime numbers from 1 to 100
-```JavaScript
+```javascript
 var i = 2;
 var count = 0;
 while (i <= 100) {
@@ -84,6 +84,88 @@ console.log(count + ' prime numbers were found');
 
 ### Object
 
+Object combines and associates multiple types (String, Number, Boolean and Object)
+        
+Three different kinds of Object:        
+1. 内建对象     
+    a. ES standard      
+    b. Math, String, Number, Function, Object...        
+2. 宿主对象
+    a. Object offered by the runtime environment (browser). E.g. BOM, DOM       
+3. 自定义对象
+    
+E.g. Create an object with name and age properties.
+```javascript
+var person = new Object();
+person.name = 'Scout';
+person.age = 18;
+```
+or  
+```javascript
+var person = new Object();
+person['name'] = 'Scout';
+person['age'] = 18;
+```
+or
+```javascript
+var person = {
+    name: 'Scout', 
+    age: 18
+};
+```
+
+
+**Memory**      
+stack vs heap
+
+In JS, basic types are saved to stack
+```javascript
+var a = 123;
+var b = a;
+a++;
+```
+
+In stack:     
+
+| variable | value |
+|----------|-------|
+|          |       |
+| b        | 123   |
+| a        | 124   |
+
+
+Object is saved to heap     
+
+```javascript
+var obj = {name: 'Scout'};
+var refer = obj;
+refer['name'] = 'Jean';
+// obj.name becomes 'Jean'
+```
+
+We have space for the value of obj with an unique address.        
+Heap        
+
+| address | value          |
+|---------|----------------|
+|         |                |
+|         |                |
+| 0x001   | name = 'Scout' |
+        
+In stack, the value refers to addresses.    
+Stack       
+
+| variable | value |
+|----------|-------|
+| refer    | 0x001 |
+| obj      | 0x001 |
+
+obj and refer have the same value (the address in heap)     
+```javascript
+console.log(obj==refer); // true
+```
+
+When we use 'new' to create an object, the computer will automatically offer new space to the object in heap.
 
 ## ECMAScrip
 A specification for JavaScript. JavaScript will be executed by a distinct engine of individual browser. V8 engine of Chrome for example, showing high performance while running JavaScript.     
