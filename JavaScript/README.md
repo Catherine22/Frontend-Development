@@ -167,6 +167,119 @@ console.log(obj==refer); // true
 
 When we use 'new' to create an object, the computer will automatically offer new space to the object in heap.
 
+### Function
+Function encapsulates and runs code is a kind of object.        
+```javascript
+var func = new Function(
+    // put code here with quotes
+    'return \'我是构造函数\';'
+);
+func.hello = '你好';
+func['bye'] = '回见';
+
+console.log(func()); // 我是构造函数
+console.log(func.hello); // 你好
+console.log(func['bye']); // 回见
+
+```
+
+Technically, the above code is correct, but we don't use that very often. Instead, we do:       
+```javascript
+function sum(num1, num2) {
+  return num1 + num2;
+}
+```
+or
+
+```javascript
+// Anonymous function
+var sum = function(num1, num2) {
+  return num1 + num2;
+};
+```
+
+- Input objects as arguments
+```javascript
+function package(container) {
+  return 'height:' + container.height + ' width:' + container.width + ' length:' + container.length;
+}
+
+var box = {height: 3, width: 9, length: 7};
+package(box);
+```
+
+- Call a function with a function as an argument
+```javascript
+function hello(name) {
+  console.log('hello, ' + name);
+}
+
+function func(f, arg) {
+  return f(arg);
+}
+
+func(hello, 'Radley'); // hello, Radley
+```
+or
+
+```javascript
+function callFuncByFunc(func) {
+  return func();
+}
+callFuncByFunc(function() {
+  console.log('hello, Radley');
+}); // hello, Radley
+```
+
+>**func vs func()**      
+>func(): Call the function func()      
+>func: the func() object`
+
+```javascript
+function sayHello() {
+  console.log('Hi, there!');
+}
+function fun(a) {
+  console.log(a);
+}
+
+fun(sayHello()); // undefined
+fun(sayHello); // ƒ sayHello() { console.log('Hi, there!'); }
+```
+
+- Call a function which returns a function        
+```javascript
+function rmbToUsd(money) {
+  return money * 0.15;
+}
+
+function rmbToPound(money) {
+  return money * 0.11;
+}
+
+function rmb(money) {
+  return money;
+}
+
+// Return a function
+function currency(nationality) {
+  if (nationality === 'US') {
+    return rmbToUsd;
+  } else if (nationality === 'UK') {
+    return rmbToPound;
+  } else {
+    return rmb;
+  }
+}
+
+var allowance = 100;
+var usd = currency('US')(allowance);
+var pound = currency('UK')(allowance);
+var rmb = rmb(allowance);
+console.log(rmb + ' rmb is equal to ' + usd + ' usd or ' + pound + ' pound'); // 100 rmb is equal to 15 usd or 11 pound
+```
+
+
 ## ECMAScrip
 A specification for JavaScript. JavaScript will be executed by a distinct engine of individual browser. V8 engine of Chrome for example, showing high performance while running JavaScript.     
 
