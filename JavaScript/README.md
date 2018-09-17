@@ -90,7 +90,7 @@ Three different kinds of Object:
 1. 内建对象     
     a. ES standard      
     b. Math, String, Number, Function, Object...        
-2. 宿主对象
+2. 宿主对象     
     a. Object offered by the runtime environment (browser). E.g. BOM, DOM       
 3. 自定义对象
     
