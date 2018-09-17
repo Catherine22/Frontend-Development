@@ -31,6 +31,33 @@
 - 先听后发、边发边听      
 比如A发一个电流信号出去，其实后面的BCD都可以收到，BCD一旦知道有人在发信号，就先退避等待。若两个主机已经产生碰撞，发送阻断信号给其他主机，按时间轮流占用线路。
 
+## 网络通信协议        
+1. OSI 规范性的框架、标准      
+
+| 应用层 | 为应用程序提供网站服务 | （软件工程师）提供人机交互的界面 |
+|------------|------------------------------|------------------------------------------------------------------|
+| 表示层 | 数据格式化、加解密 | （软件工程师）编译 |
+| 会话层 | 建立、维护、管理会话 | （软件工程师） |
+| 传输层 | 建立、维护、管理端到端连接 | （网络工程师）把不同的应用根据端口来区分 |
+| 网络层 | IP寻址和路由选择 | （网络工程师）提供IP地址，网络层的协议例如：TCP/IP、IPX/SPX、SNA |
+| 数据链路层 | 控制物理层与网络层之间的通信 | （网络工程师）把数据包变成0和1 |
+| 物理层 | 比特流传输 | （网络工程师）把0和1变成高低电压穿出去 |
+
+2. TCP/IP 基本上全部都是用此协议        
+把OSI的前三层（应用、表示、会话）合并以及后两层（数据链路层和物理层）合并。
+3. IPX/SPX      
+4. SNA      
+
+
+### 局域网
+1. IEEE 802        
+2. 以太网       
+
+### 广域网
+1. 帧中继       
+2. PPP      
+3. HDLC
+
 
 
 [1]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/enterprise_network.png
@@ -38,3 +65,4 @@
 [3]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/twisted-pair_cables.png
 [4]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/fiber_optic_cable.png
 [5]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/v.24_35_cable.png
+[6]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/frame.png
