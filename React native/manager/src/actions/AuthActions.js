@@ -45,7 +45,7 @@ export const loginUser = ({ email, password }) => {
 
 const loginUserSuccess = (dispatch, user) => {
     dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
-    Actions.main();
+    Actions.main(); //  <Scene key='main'>
 };
 
 const loginUserFail = (dispatch, error) => {
