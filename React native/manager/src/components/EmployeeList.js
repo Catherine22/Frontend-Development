@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, ListView } from 'react-native';
+import { ListView } from 'react-native';
+import ListItem from './ListItem';
 import { connect } from 'react-redux';
 import _ from 'lodash'; // == import lodash from 'lodash'
 import { employeesFetch } from '../actions/EmployeeActions';
@@ -26,22 +27,26 @@ class EmployeeList extends Component {
         this.dataSource = ds.cloneWithRows(employees);
     }
 
+    renderRow(employee) {
+        return <ListItem employee={employee} />;
+    }
+
     render() {
-        console.log('EmployeeList', this.props);
         return (
-            <View>
-                <Text>
-                    {/*{this.props}*/}
-                </Text>
-            </View>
+            <ListView
+                enableEmptySections
+                dataSource={this.dataSource}
+                renderRow={this.renderRow}
+            />
         );
     }
 }
 
 const mapStateToProps = state => {
     const employees = _.map(state.employees, (val, uid) => {
-        return { ...state, uid };
+        return { ...val, uid };
     });
+
     return { employees };
 };
 

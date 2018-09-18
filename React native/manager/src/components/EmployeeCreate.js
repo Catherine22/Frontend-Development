@@ -6,7 +6,7 @@ import { employeeUpdate, employeeCreate } from '../actions/EmployeeActions';
 
 class EmployeeCreate extends Component {
 
-    regist() {
+    register() {
         const { name, phone, shift } = this.props;
         // In JS, '' || 'Monday' will be 'Monday'
         this.props.employeeCreate({ name, phone, shift: shift || 'Monday' });
@@ -53,7 +53,7 @@ class EmployeeCreate extends Component {
                 </CardSection>
 
                 <CardSection>
-                    <Button onPress={this.regist.bind(this)}>CREATE</Button>
+                    <Button onPress={this.register.bind(this)}>CREATE</Button>
                 </CardSection>
             </Card>
         );
@@ -67,8 +67,8 @@ const styles = {
     }
 };
 
-const mapStateToProps = ({ employee }) => {
-    const { name, phone, shift } = employee;
+const mapStateToProps = ({ employeeForm }) => {
+    const { name, phone, shift } = employeeForm;
     return { name, phone, shift };
 };
 
