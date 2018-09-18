@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 import {
     EMPLOYEE_UPDATE,
     EMPLOYEE_CREATE
@@ -13,11 +14,19 @@ export const employeeUpdate = ({ prop, value }) => {
 
 export const employeeCreate = ({ phone, name, shift }) => {
     const { currentUser } = firebase.auth();
-    // ES6 coding style
-    firebase.database().ref(`users/${currentUser.uid}/employees`);
+    console.log('currentUser', currentUser);
+    console.log(`phone:${phone} name:${name} shift:${shift}`);
 
-    return {
-        type: EMPLOYEE_CREATE,
-        payload: { phone, name, shift }
+    return (dispatch) => {
+        // ES6 coding style `${}`
+        firebase.database().ref(`users/${currentUser.uid}/employees`)
+            .push({ name, phone, shift })
+            .then(() => {
+                dispatch({ type: EMPLOYEE_CREATE });
+                Actions.pop();
+            });
     };
 };
+
+
+// Go to https://console.firebase.google.com/project/manager-9c412/database/manager-9c412/data to check what we just create

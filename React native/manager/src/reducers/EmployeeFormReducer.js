@@ -1,5 +1,6 @@
 import {
-    EMPLOYEE_UPDATE
+    EMPLOYEE_UPDATE,
+    EMPLOYEE_CREATE
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -16,6 +17,8 @@ export default (state = INITIAL_STATE, action) => {
             // if we call a action creator with a prop of 'name', the whole segment '[action.payload.prop]' will turn into 'name',
             // like action.payload === { prop: 'name', value: 'jane' }
             return { ...state, [action.payload.prop]: action.payload.value };
+        case EMPLOYEE_CREATE: // reset
+            return INITIAL_STATE;
         default:
             return state;
     }
