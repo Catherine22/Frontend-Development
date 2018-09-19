@@ -6,6 +6,7 @@ import { employeeUpdate } from '../actions/EmployeeActions';
 
 class EmployeeForm extends Component {
     render() {
+        console.log('EmployeeForm', this.props);
         return (
             <View>
                 <CardSection>
