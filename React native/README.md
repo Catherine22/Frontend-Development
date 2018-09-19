@@ -27,6 +27,8 @@ Install the plugin linter for atom or ESLint for Visual Studio Code to access es
 7.  (optional) Inatall cocoapods you might need
 ```
 gem install cocoapods
+pod setup
+pod update
 ```
 
 under myProject/src/ios or myProject/ios folder,       
