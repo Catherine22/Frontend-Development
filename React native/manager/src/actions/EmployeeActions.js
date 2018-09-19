@@ -4,7 +4,8 @@ import {
     EMPLOYEE_UPDATE,
     EMPLOYEE_CREATE,
     EMPLOYEES_FETCH_SUCCESS,
-    EMPLOYEE_SAVE_SUCCESS
+    EMPLOYEE_SAVE_SUCCESS,
+    CACHE_SWIPE
 } from './types';
 
 
@@ -56,5 +57,12 @@ export const employeeSave = ({ name, phone, shift, uid }) => {
                 Actions.pop();
             });
     };
+};
+
+export const cacheSwipe = () => {
+    return ({
+        type: CACHE_SWIPE,
+        payload: INITIAL_STATE
+    });
 };
 
