@@ -163,6 +163,19 @@ Stack
 obj and refer have the same value (the address in heap)     
 ```javascript
 console.log(obj==refer); // true
+
+**Enum**
+var obj = {
+  name: 'Charlotte',
+  age: 19,
+  showName: function() {
+    console.log(obj.name);
+  },
+};
+
+for (var key in obj) {
+  console.log(`key: ${key}, value: ${obj[key]}`); // name age showName
+}
 ```
 
 When we use 'new' to create an object, the computer will automatically offer new space to the object in heap.
@@ -231,9 +244,30 @@ callFuncByFunc(function() {
 }); // hello, Radley
 ```
 
+- Nested functions      
+Call functions inside a function
+```javascript
+function funcParent() {
+  function funcChild() {
+    console.log('child');
+  }
+  console.log('parent');
+  return funcChild();
+}
+funcParent(); // parent child
+```
+
+- Run instant functions     
+There is no variable to refer to this function, which means this function can only be run once.
+```javascript
+(function print() {
+  console.log('I am instant function');
+}()); // I am instant function
+```
+
 >**func vs func()**      
 >func(): Call the function func()      
->func: the func() object`
+>func: the func() object`  
 
 ```javascript
 function sayHello() {
@@ -279,10 +313,37 @@ var rmb = rmb(allowance);
 console.log(rmb + ' rmb is equal to ' + usd + ' usd or ' + pound + ' pound'); // 100 rmb is equal to 15 usd or 11 pound
 ```
 
+- 对象的方法，Set a function as a value in an object        
+```javascript
+var obj = {};
+obj.name = 'Charlotte';
+obj.age = 19;
+// 对象的方法
+obj.showName = function() {
+  console.log(obj.name);
+};
+obj.showName();
+```
 
 ## ECMAScrip
 A specification for JavaScript. JavaScript will be executed by a distinct engine of individual browser. V8 engine of Chrome for example, showing high performance while running JavaScript.     
 
+### ESLint
+```
+npm install eslint --save-dev
+```
+```
+npm install --save-dev eslint-config-google
+```
+.eslintrc
+```
+{
+    "extends": ["eslint:recommended", "google"],
+    "rules": {
+        // Additional, per-project rules...
+    }
+}
+```
 
 ## DOM
 

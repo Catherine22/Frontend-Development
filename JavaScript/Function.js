@@ -10,6 +10,22 @@ function func(f, arg) {
 func(hello, 'Radley');
 
 
+// Nested functions
+function funcParent() {
+  function funcChild() {
+    console.log('child');
+  }
+  console.log('parent');
+  return funcChild();
+}
+funcParent();
+
+// Run instant functions
+(function print() {
+  console.log('I am instant function');
+}());
+
+
 // Call a function which returns a function
 function rmbToUsd(money) {
   return money * 0.15;
@@ -37,5 +53,15 @@ function currency(nationality) {
 var allowance = 100;
 var usd = currency('US')(allowance);
 var pound = currency('UK')(allowance);
-var rmb = rmb(allowance);
-console.log(rmb + ' rmb is equal to ' + usd + ' usd or ' + pound + ' pound');
+var myMoney = rmb(allowance);
+console.log(myMoney + ' rmb is equal to ' + usd + ' usd or ' + pound + ' pound');
+
+// Set a function as a value in an object
+var obj = {
+  name: 'Charlotte',
+  age: 19,
+  showName: function() {
+    console.log(obj.name);
+  },
+};
+obj.showName();
