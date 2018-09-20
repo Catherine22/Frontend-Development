@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { Scene, Router, Stack, Actions } from 'react-native-router-flux';
-import { connect } from 'react-redux';
 import LoginForm from './components/LoginForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
-import { cacheSwipe } from './actions/EmployeeActions';
 
 class RouterComponent extends Component {
   render() {
@@ -24,7 +22,6 @@ class RouterComponent extends Component {
                           rightTitle='Add'
                           onRight={() => {
                               // TODO swipe data here
-                              this.props.cacheSwipe();
                               Actions.employeeCreate();
                           }}
                       />
@@ -33,7 +30,7 @@ class RouterComponent extends Component {
                           component={EmployeeCreate}
                           title='Employee Create'
                           // onExit={() => {
-                          //     this.props.cacheSwipe();
+                          //     console.log('back');
                           // }}
                       />
                       <Scene
@@ -42,7 +39,6 @@ class RouterComponent extends Component {
                           title='Edit Employee'
                           // onExit={() => {
                           //     console.log('back');
-                          //     this.props.cacheSwipe();
                           // }}
                       />
                   </Scene>
@@ -51,10 +47,4 @@ class RouterComponent extends Component {
       );
   }
 }
-
-const mapStateToProps = ({ employee }) => {
-    const { name, phone, shift } = employee;
-    return { name, phone, shift };
-};
-
-export default connect(null, { cacheSwipe })(RouterComponent);
+export default RouterComponent;

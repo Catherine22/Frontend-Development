@@ -11,6 +11,7 @@
     "lodash": "^4.17.11",
     "react": "16.4.1",
     "react-native": "0.56.1",
+    "react-native-communications": "^2.2.1",
     "react-native-router-flux": "^4.0.1",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
