@@ -53,8 +53,8 @@ function currency(nationality) {
 var allowance = 100;
 var usd = currency('US')(allowance);
 var pound = currency('UK')(allowance);
-var myMoney = rmb(allowance);
-console.log(myMoney + ' rmb is equal to ' + usd + ' usd or ' + pound + ' pound');
+var cash = rmb(allowance);
+console.log(cash + ' rmb is equal to ' + usd + ' usd or ' + pound + ' pound');
 
 // Set a function as a value in an object
 var obj = {

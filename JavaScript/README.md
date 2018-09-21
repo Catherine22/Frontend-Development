@@ -309,8 +309,8 @@ function currency(nationality) {
 var allowance = 100;
 var usd = currency('US')(allowance);
 var pound = currency('UK')(allowance);
-var rmb = rmb(allowance);
-console.log(rmb + ' rmb is equal to ' + usd + ' usd or ' + pound + ' pound'); // 100 rmb is equal to 15 usd or 11 pound
+var cash = rmb(allowance);
+console.log(cash + ' rmb is equal to ' + usd + ' usd or ' + pound + ' pound'); // 100 rmb is equal to 15 usd or 11 pound
 ```
 
 - 对象的方法，Set a function as a value in an object        
@@ -323,6 +323,24 @@ obj.showName = function() {
   console.log(obj.name);
 };
 obj.showName();
+```
+
+### 构造函数，Constructor
+Technically, Constructor is a function used to create objects, Constructor usually starts with a capital letter.        
+Use ```new``` to call a constructor.        
+```javascript
+function Employee(name, id) {
+  this.name = name;
+  this.id = id;
+
+  this.showname = function showName() {
+    console.log(this.name);
+  }
+}
+
+var julianne = new Employee('Julianne', 1);
+console.log(julianne); // Employee {name: "Julianne", id: 1, showname: ƒ}
+julianne.showname(); // Julianne
 ```
 
 ## ECMAScrip
