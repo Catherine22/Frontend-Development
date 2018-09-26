@@ -333,15 +333,78 @@ function Employee(name, id) {
   this.name = name;
   this.id = id;
 
-  this.showname = function showName() {
+  this.showname = function() {
     console.log(this.name);
-  }
+  };
 }
 
 var julianne = new Employee('Julianne', 1);
 console.log(julianne); // Employee {name: "Julianne", id: 1, showname: ƒ}
 julianne.showname(); // Julianne
 ```
+
+However, if we initialize the Employee 1,000 times, which means we will create 1,000 showname functions. We can make all the objects share the same function
+```javascript
+function Employee(name, id) {
+  this.name = name;
+  this.id = id;
+  this.showname = printName;
+}
+
+function printName() {
+  console.log(this.name);
+}
+
+var julianne = new Employee('Julianne', 1);
+console.log(julianne); // Employee {name: "Julianne", id: 1, showname: ƒ}
+julianne.showname(); // Julianne
+```
+
+The above solution is still not perfect, it occupies global space and it would lead to potential bug. So the best way to solve this issue is to use **prototype**
+
+### Prototype
+Set a function in the prototype of Employee, every new Employee object can use the function we just create.
+```javascript
+function Employee(name, id) {
+  this.name = name;
+  this.id = id;
+}
+
+Employee.prototype.TAG = 'Employee';
+Employee.prototype.showName = function() {
+  console.log(this.name);
+};
+
+let julianne = new Employee('Julianne', 1);
+console.log(julianne); // Employee {name: "Julianne", id: 1, showname: ƒ}
+console.log(julianne.TAG); // Employee
+julianne.showName(); // Julianne
+```
+
+### Override functions
+```javascript
+console.log(julianne.toString()); // [object Object]
+
+// override
+julianne.toString = function() {
+  return 'Hi, I am Julianne';
+};
+console.log(julianne.toString()); // Hi, I am Julianne
+```
+
+### Override parent's functions
+```javascript
+console.log(julianne.toString()); // [object Object]
+
+// override
+julianne.toString = function() {
+  return 'Hi, I am Julianne';
+};
+console.log(julianne.toString()); // I am a happy employee
+```
+
+## Garbage Collection 
+Browsers automatically deal with 
 
 ## ECMAScrip
 A specification for JavaScript. JavaScript will be executed by a distinct engine of individual browser. V8 engine of Chrome for example, showing high performance while running JavaScript.     

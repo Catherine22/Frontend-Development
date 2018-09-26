@@ -50,10 +50,10 @@ function currency(nationality) {
   }
 }
 
-var allowance = 100;
-var usd = currency('US')(allowance);
-var pound = currency('UK')(allowance);
-var cash = rmb(allowance);
+let allowance = 100;
+let usd = currency('US')(allowance);
+let pound = currency('UK')(allowance);
+let cash = rmb(allowance);
 console.log(cash + ' rmb is equal to ' + usd + ' usd or ' + pound + ' pound');
 
 // Set a function as a value in an object
@@ -65,3 +65,28 @@ var obj = {
   },
 };
 obj.showName();
+
+// Prototype
+function Employee(name, id) {
+  this.name = name;
+  this.id = id;
+}
+
+Employee.prototype.TAG = 'Employee';
+Employee.prototype.showName = function() {
+  console.log(this.name);
+};
+
+let julianne = new Employee('Julianne', 1);
+console.log(julianne); // Employee {name: "Julianne", id: 1, showname: ƒ}
+console.log(julianne.TAG); // Employee
+julianne.showName(); // Julianne
+
+
+// Override
+console.log(julianne.toString());
+Employee.prototype.toString = function() {
+  return 'I am a happy employee';
+};
+console.log(julianne.toString());
+
