@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+      //Date
+      let DaysEnum = {0: 'Sun', 1: 'Mon', 2: "Tue", 3: 'Wed', 4: 'Thu', 5: 'Fri', 6: 'Sat'}
+      let today = new Date();
+      console.log(today);
+      console.log(`Today is ${today.getMonth()+1}/${today.getDate()} ${DaysEnum[today.getDay()]} ${today.getFullYear()}`);
+
+      // How many ms past since 1970/1/1 00:00:00
+      let timestamp = Date.now();
+      console.log(`timestamp: ${timestamp}`);
+
+      let firstDay = new Date('1/1/1970 08:00:00'); // +8 China timezone
+      console.log(firstDay.getTime());
+
+      let christmas = new Date('12/25/2018 00:00:00');
+      console.log(christmas);
+
+      // Test code performance
+      let start = Date.now();
+      for(let i=0; i<100; i++){
+        // console.log(i);
+      }
+      let end = Date.now();
+      console.log(`It took ${end - start} ms`);
+
+
+      //Math
+        console.log(Math.PI);
+        console.log(Math.abs(-1));
+        console.log(`ceil 0.1 = ${Math.ceil(0.1)}`);
+      console.log(`floor 3.9 = ${Math.floor(3.9)}`);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

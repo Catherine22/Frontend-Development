@@ -164,7 +164,6 @@ obj and refer have the same value (the address in heap)
 ```javascript
 console.log(obj==refer); // true
 
-**Enum**
 var obj = {
   name: 'Charlotte',
   age: 19,
@@ -209,6 +208,15 @@ or
 var sum = function(num1, num2) {
   return num1 + num2;
 };
+```
+We can retrieve all of the arguments by ```arguments```
+```javascript
+function testArgument(a, b, c) {
+  console.log(`We now have ${arguments.length} arguments: [${arguments[0]}, ${arguments[1]}, ${arguments[2]}]`);
+  console.log(arguments.callee === testArgument);
+}
+
+testArgument('a1', 'a2', 'a3');
 ```
 
 - Input objects as arguments
@@ -403,12 +411,35 @@ julianne.toString = function() {
 console.log(julianne.toString()); // I am a happy employee
 ```
 
+### Apply and call functions
+We have 3 ways to run a function: ```func()```, ```func.call()``` and ```func.apply()```. When it comes to ```call()``` and ```apply()```, the first argument we input is used to assign to ```this```.     
+1. No argument      
+```javascript
+var carWorld = {
+  car: 'trunk',
+  showCar: function() {
+    console.log(this.car);
+  },
+};
+carWorld.showCar(); // trunk
+carWorld.showCar.call({car: 'Sport car'}); // Sport car
+carWorld.showCar.apply({car: 'Motorhome'}); // Motorhome
+```
+2. Call a function with arguments       
+```javascript
+function showCar(color) {
+  console.log(`${this.car}, color=${color}`);
+}
+
+showCar('black'); // undefined, color=black
+showCar.call({car: 'Sport car'}, 'red'); // Sport car, color=red
+showCar.apply({car: 'Motorhome'}, ['white']); // Motorhome, color=white
+```
+
 ## Garbage Collection 
 Browsers automatically deal with rubbish (which are basically objects do not be refer by a specific key in the stack) in the heap, there are different solution depends on the browser.
 
-## Collection
-- Array     
-
+## Array
 It can be anything type you need to store in an array          
 ```javascript
 var obj = {name: 'Ana'};

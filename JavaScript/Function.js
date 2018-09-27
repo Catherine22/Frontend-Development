@@ -90,3 +90,22 @@ Employee.prototype.toString = function() {
 };
 console.log(julianne.toString());
 
+
+// call and apply functions
+function showCar(color) {
+  console.log(`${this.car}, color=${color}`);
+}
+
+showCar('black');
+showCar.call({car: 'Sport car'}, 'red');
+showCar.apply({car: 'Motorhome'}, ['white']);
+
+let carWorld = {
+  car: 'trunk',
+  showCar: function(color) {
+    console.log(`${this.car}, color=${color}`);
+  },
+};
+carWorld.showCar('black');
+carWorld.showCar.call({car: 'Sport car'}, 'red');
+carWorld.showCar.apply({car: 'Motorhome'}, ['white']);
