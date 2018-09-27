@@ -404,7 +404,139 @@ console.log(julianne.toString()); // I am a happy employee
 ```
 
 ## Garbage Collection 
-Browsers automatically deal with 
+Browsers automatically deal with rubbish (which are basically objects do not be refer by a specific key in the stack) in the heap, there are different solution depends on the browser.
+
+## Collection
+- Array     
+
+It can be anything type you need to store in an array          
+```javascript
+var obj = {name: 'Ana'};
+var func = function() {
+  console.log('I am a function');
+};
+var arr = ['a', 1, undefined, true, null, func, obj];
+console.log(arr);
+// call functions
+arr[5](); // I am a function
+```
+
+Initialize an array of size 10      
+```javascript
+var arr = new Array(10);
+```
+
+- Add a value to the end of an array
+```javascript
+var arr = [1, 2, 3];
+var newLength = arr.push(4); // 4
+console.log(arr); // [1, 2, 3, 4]
+```
+
+- Add a value from the top of an array
+```javascript
+var arr = [1, 2, 3];
+var newLength = arr.unshift(0); // 4
+console.log(arr); // [0, 1, 2, 3]
+```
+
+- Remove the last member of an array
+```javascript
+var arr = [1, 2, 3];
+var removedMember = arr.pop(); // 3
+console.log(arr); // [1, 2]
+```
+
+- Remove the first member of an array
+```javascript
+var arr = [1, 2, 3];
+var removedMember = arr.shift(); // 1
+console.log(arr); // [2, 3]
+```
+
+### forEach (IE 8 or order version does not work)
+```javascript
+var arr = ['Joanne', 'Irene', 'Catherine'];
+
+arr.forEach(function(value, index, array) {
+  console.log(`value:${value}, index:${index}, array:[${array}]`);
+});
+
+// value:Joanne, index:0, array:Joanne,Irene,Catherine
+// value:Irene, index:1, array:Joanne,Irene,Catherine
+// value:Catherine, index:2, array:Joanne,Irene,Catherine
+```
+
+### slice
+Return a range of elements in an array
+```javascript
+var arr = ['a', 'b', 'c', 'd', 'e'];
+var subArr1 = arr.slice(0, 3); // [a, b, c]
+var subArr2 = arr.slice(0, -2); // [a, b, c]
+```
+
+### splice
+1. Delete a range of elements in an array      
+splice(from, **element numbers**)
+```javascript
+var arr = ['a', 'b', 'c', 'd', 'e'];
+var subArr1 = arr.splice(1, 3);
+console.log("removed: "+ subArr1); // removed: [b, c, d]
+console.log(arr); // [a, e]
+```
+
+2. Update elements      
+```javascript
+var arr = ['a', 'b', '*', '*', 'e'];
+var anonymousArr = arr.splice(2, 2, 'c', 'd');
+console.log(arr); // ["a", "b", "c", "d", "e"]
+console.log(anonymousArr); // ["*", "*"]
+```
+
+### concat
+Merge 2 arrays      
+```javascript
+var arr1 = [1, 2, 3];
+var arr2 = [4, 5, 6];
+var newArr = arr1.concat(arr2, 7, 8); // [1, 2, 3, 4, 5, 6, 7, 8]
+```
+
+### join
+Convert an array to String      
+
+```javascript
+var arr1 = [1, 2, 3];
+console.log(arr1.join()); // 1,2,3
+console.log(arr1.join('blank')); // 1-2-3
+```
+
+### Reverse
+```javascript
+arr = [1, 2, 3, 4, 5];
+console.log(arr.reverse()); // [5, 4, 3, 2, 1]
+console.log(arr); // [5, 4, 3, 2, 1]
+```
+
+### Sort
+Sort by unicode     
+In ```function(a, b)```, a is the top member whereas b is the last member.      
+> ```return```:     
+more than 0: the two elements will exchange        
+0: the two elements are the same        
+< 0: the two elements won't exchange       
+
+```javascript
+var randoms = [9, 2, 4, 7, 10];
+randoms.sort(function(a, b) {
+  return a-b;
+});
+console.log(randoms); // [2, 4, 7, 9, 10]
+
+randoms.sort(function(a, b) {
+  return b-a;
+});
+console.log(randoms); // [10, 9, 7, 4, 2]
+```
 
 ## ECMAScrip
 A specification for JavaScript. JavaScript will be executed by a distinct engine of individual browser. V8 engine of Chrome for example, showing high performance while running JavaScript.     
