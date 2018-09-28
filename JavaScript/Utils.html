@@ -5,6 +5,7 @@
     <title>Title</title>
     <script>
       //Date
+      console.log('--------Date--------');
       let DaysEnum = {0: 'Sun', 1: 'Mon', 2: "Tue", 3: 'Wed', 4: 'Thu', 5: 'Fri', 6: 'Sat'}
       let today = new Date();
       console.log(today);
@@ -30,10 +31,30 @@
 
 
       //Math
-        console.log(Math.PI);
-        console.log(Math.abs(-1));
-        console.log(`ceil 0.1 = ${Math.ceil(0.1)}`);
+      console.log('\n--------Math--------');
+      console.log(Math.PI);
+      console.log(`abs -99 = ${Math.abs(-99)}`);
+      console.log(`ceil 0.1 = ${Math.ceil(0.1)}`);
       console.log(`floor 3.9 = ${Math.floor(3.9)}`);
+      console.log(`round 4.4 = ${Math.round(4.4)}, round 4.5 = ${Math.round(4.5)}`);
+      console.log(`random(0-1): ${Math.random()}`);
+      console.log(`random(0-100): ${Math.round(Math.random() * 100)}`);
+      console.log(`random(17-20): ${Math.round(Math.random() * (20 - 17)) + 17}`);
+      console.log(`2^10 = ${Math.pow(2, 10)}`);
+
+      //String
+      console.log('\n--------String--------');
+      var str = 'abcdefghijklabcdefghijkl';
+      console.log(`length: ${str.length}`);
+      console.log(`char at 4: ${str[4]}`);
+      console.log(`a unicode: ${str.charCodeAt(0)}`);
+      // 中文按照康熙字典排序
+      console.log(`unicode 20025: ${String.fromCharCode(20025)}`);
+      console.log(`unicode U+03DF: ${String.fromCharCode(0x03DF)}`);
+      console.log(`indexOf 'g': ${str.indexOf('g')}`);
+      console.log(`lastIndexOf 'g': ${str.lastIndexOf('g')}`);
+      console.log(`slice: ${str.slice(1, -1)}`);
+
     </script>
 </head>
 <body>
