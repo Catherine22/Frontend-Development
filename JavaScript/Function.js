@@ -7,7 +7,7 @@ function func(f, arg) {
   return f(arg);
 }
 
-func(hello, 'Radley');
+func(hello, 'Rally');
 
 
 // Nested functions

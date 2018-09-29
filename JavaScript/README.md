@@ -239,7 +239,7 @@ function func(f, arg) {
   return f(arg);
 }
 
-func(hello, 'Radley'); // hello, Radley
+func(hello, 'Rally'); // hello, Rally
 ```
 or
 
@@ -248,8 +248,8 @@ function callFuncByFunc(func) {
   return func();
 }
 callFuncByFunc(function() {
-  console.log('hello, Radley');
-}); // hello, Radley
+  console.log('hello, Rally');
+}); // hello, Rally
 ```
 
 - Nested functions      
