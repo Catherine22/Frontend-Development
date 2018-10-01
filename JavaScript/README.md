@@ -714,7 +714,24 @@ checkArray(randomString, reg);
 ```/S```: no blanks      
 ```/bVOCABULARY/b```: check whether or not a vocabulary exists      
 ```/bVOCABULARY/b```: check if a vocabulary does not exist
-### Check phone numbers
+
+E.g. ```trim()```       
+```javascript
+message = '    ad  min     ';
+reg = /\s/g;
+console.log(`${message}: ${message.replace(reg, '')}`);
+//    ad  min     : admin
+```
+
+E.g. Trim the beginning and the end the String      
+```javascript
+message = '    David Lin     ';
+reg = /^\s* | \s*$/g;
+console.log(`${message}: ${message.replace(reg, '')}`);
+//     David Lin     : David Lim
+```
+
+### Verify phone numbers
 1. 11 digits        
 2. Start by 1       
 3. the second digit must be 3-9      
@@ -722,10 +739,10 @@ checkArray(randomString, reg);
 randomString = ['135-1234-1234', 'A135-1234-1234A', '135 1234 1234', '1-35-1234-1-2-3-4', '19200001234', '110-1234-1234',
         '03200001234', '135-1234-12345', '1350000123'];
 reg = /^1[3-9][0-9]{9}$/;
-const results = {};
+let results = {};
 for (let i=0; i<randomString.length; i++) {
   // remove blanks and '_'
-  let res = randomString[i].replace(/[- ]/g, '');
+  let res = randomString[i].replace(/[-\s]/g, '');
   results[randomString[i]] = reg.test(res);
 }
 console.log(results);
@@ -741,6 +758,13 @@ console.log(results);
 19200001234: true
 A135-1234-1234A: false}
 */
+```
+
+### Verify email addresses
+[letters, numbers and/or _] + (optional). + [letters, numbers and/or _] + @ + [letters and/or numbers] + . + [2-5 letters and/or numbers] + (optional). + [2-5 letters and/or numbers]
+
+```javascript
+
 ```
 
 ## ECMAScrip
