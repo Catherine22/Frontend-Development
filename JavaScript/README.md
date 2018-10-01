@@ -569,6 +569,180 @@ randoms.sort(function(a, b) {
 console.log(randoms); // [10, 9, 7, 4, 2]
 ```
 
+## Regular expression, 正则表达式
+```javascript
+const reg = new RegExp('YOUR_RULE', 'MODE')
+```
+or
+```javascript
+const reg = /YOUR_RULE/MODE;
+```
+>MODE:       
+i: Ignore case      
+g: Global mode      
+
+```javascript
+function checkArray(array, reg) {
+        const results = {};
+        for (let i=0; i<array.length; i++) {
+          results[array[i]] = reg.test(array[i]);
+        }
+        console.log(results);
+      }
+```
+
+E.g. Include 'abc' and ignore case
+```javascript
+const messyABC = ['_.AbC__', 'a_b9c', 'abc', ''];
+let reg = /abc/i;
+checkArray(messyABC, reg);
+// {_.AbC__: true, a_b9c: false, abc: true, "": false}
+```
+
+E.g. Include 'a', 'b' and 'c' and ignore case
+```javascript
+reg = /a|b|c/i;
+checkArray(messyABC, reg);
+// {_.AbC__: true, a_b9c: true, abc: true, "": false}
+```
+> ```/a|b|c/i``` can be replace by ```/[abc]/i``` or ```/[a-c]/i```       
+
+E.g. Capital Letters are included
+```javascript
+let randomString = ['_.^$)?<}', 'E123098', 'cdef', '', '02804792'];
+reg = /[A-Z]/;
+checkArray(randomString, reg);
+// {_.^$)?<}: false, E123098: true, cdef: false, "": false, 02804792: false}
+```
+> ```/[A-z]/``` is the same as ```/[a-z]/i```     
+> ```/[0-9]``` : Numbers are included
+
+E.g 'abc', 'adc' or 'aec' are included
+```javascript
+randomString = ['abcdef', 'cda', 'AEC', 'a_e_c', 'aec02804792aec'];
+reg = /a[bde]c/; // /abc|adc|aec/
+checkArray(randomString, reg);
+// {abcdef: true, cda: false, AEC: false, a_e_c: false, aec02804792aec: true}
+```
+> In this case, you could use either ```/a[bde]c/``` or ```/abc|adc|aec/```     
+
+E.g. String starts from 'a'
+```javascript
+reg = /^a/;
+checkArray(randomString, reg);
+// {abcdef: true, cda: false, AEC: false, a_e_c: true, aec02804792aec: true}
+```
+
+E.g. String starts from 'aec'
+```javascript
+reg = /(aec)$/i;
+checkArray(randomString, reg);
+// {abcdef: false, cda: false, AEC: true, a_e_c: false, aec02804792aec: true}
+```
+Cp.
+```javascript
+reg = /^(aec)$/i;
+checkArray(randomString, reg);
+// {abcdef: false, cda: false, AEC: true, a_e_c: false, aec02804792aec: false}
+```
+
+E.g. Split String by letters
+```javascript
+let message = '1z2bX3L4p5y6f7';
+console.log(message.split(/[A-z]/));
+// ["1", "2", "", "3", "4", "5", "6", "7"]
+```
+
+E.g. Search THE FIRST 'abc', 'adc' or 'aec' from String
+```javascript
+message = 'a$bcdef cda a_e_c 0280aec4792';
+console.log(message.search(/a[bde]c/)); 
+// 22
+```
+
+E.g. Replace THE FIRST 'abc', 'adc' or 'aec' from String
+```javascript
+message = '(abc)qwepoim(aec)acpo(adc)';
+console.log(message.replace(/a[bde]c/, '@_@'))
+// (@_@)qwepoim(aec)acpo(adc)
+```
+
+> Replace ALL by MODE=```g```       
+```javascript
+message = '(abc)qwepoim(aec)acpo(adc)';
+console.log(message.replace(/a[bde]c/g, '@_@'))
+// (@_@)qwepoim(@_@)acpo(@_@)
+```
+
+E.g. Include 'aaaa' (4 consecutive 'a')
+```javascript
+randomString = ['aaa', 'aaaa', 'ababababab', 'aaaaaaaa'];
+reg = /a{4}/;
+checkArray(randomString, reg);
+// {aaa: false, aaaa: true, ababababab: false, aaaaaaaa: true}
+```
+> Check for 5 consecutive 'ab', we use ```\(ab){5}\```      
+> Check for 'a' + at least 2 and at most 3 consecutive 'bcd' + 'e'     
+```javascript
+randomString = ['abcde', 'abcdbcdbcde', 'abcdbcdbcdbcdbcde', 'bcd', 'abcd'];
+reg = /a(bcd){2,3}e/;
+checkArray(randomString, reg);
+// {abcde: false, abcdbcdbcde: true, abcdbcdbcdbcdbcde: false, bcd: false, abcd: false}
+```
+
+> Now we have:        
+```element{n, }```: at least n elements     
+```element{n, m}```: at least n and at most m elements      
+```element+```: equal to ```element{1, }```     
+```element*```: equal to ```element{0, }```     
+```javascript
+randomString = ['ABC', 'ABCABC', 'AABBCC', 'DEF'];
+reg = /(abc)+/i;
+checkArray(randomString, reg);
+// {ABC: true, ABCABC: true, AABBCC: false, DEF: false}
+
+reg = /(abc)*/i;
+checkArray(randomString, reg);
+// {ABC: true, ABCABC: true, AABBCC: true, DEF: true}
+```
+> Special statements
+```/w```: ```[A-z0-9_]```, including letters, numbers or '_'        
+```/W```: ```[^A-z0-9_]```, no letters, numbers and '_'          
+```/d```: ```[0-9_]```, numbers only        
+```/D```: ```[^0-9_]```, no numbers      
+```/s```: blanks only        
+```/S```: no blanks      
+```/bVOCABULARY/b```: check whether or not a vocabulary exists      
+```/bVOCABULARY/b```: check if a vocabulary does not exist
+### Check phone numbers
+1. 11 digits        
+2. Start by 1       
+3. the second digit must be 3-9      
+```javascript
+randomString = ['135-1234-1234', 'A135-1234-1234A', '135 1234 1234', '1-35-1234-1-2-3-4', '19200001234', '110-1234-1234',
+        '03200001234', '135-1234-12345', '1350000123'];
+reg = /^1[3-9][0-9]{9}$/;
+const results = {};
+for (let i=0; i<randomString.length; i++) {
+  // remove blanks and '_'
+  let res = randomString[i].replace(/[- ]/g, '');
+  results[randomString[i]] = reg.test(res);
+}
+console.log(results);
+
+/*
+{1-35-1234-1-2-3-4: true
+110-1234-1234: false
+135 1234 1234: true
+135-1234-1234: true
+135-1234-12345: false
+1350000123: false
+03200001234: false
+19200001234: true
+A135-1234-1234A: false}
+*/
+```
+
 ## ECMAScrip
 A specification for JavaScript. JavaScript will be executed by a distinct engine of individual browser. V8 engine of Chrome for example, showing high performance while running JavaScript.     
 

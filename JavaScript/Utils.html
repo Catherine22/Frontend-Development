@@ -42,9 +42,10 @@
       console.log(`random(17-20): ${Math.round(Math.random() * (20 - 17)) + 17}`);
       console.log(`2^10 = ${Math.pow(2, 10)}`);
 
+
       //String
       console.log('\n--------String--------');
-      var str = 'abcdefghijklabcdefghijkl';
+      const str = 'abcdefghijklabcdefghijkl';
       console.log(`length: ${str.length}`);
       console.log(`char at 4: ${str[4]}`);
       console.log(`a unicode: ${str.charCodeAt(0)}`);
@@ -55,6 +56,116 @@
       console.log(`lastIndexOf 'g': ${str.lastIndexOf('g')}`);
       console.log(`slice: ${str.slice(1, -1)}`);
 
+
+      // Regular expression
+      console.log('\n--------Regular expression--------');
+      const messyABC = ['_.AbC__', 'a_b9c', 'abc', ''];
+      function checkArray(array, reg) {
+        const results = {};
+        for (let i=0; i<array.length; i++) {
+          results[array[i]] = reg.test(array[i]);
+        }
+        console.log(results);
+      }
+
+      let reg = /abc/i;
+      checkArray(messyABC, reg);
+
+      reg = /a|b|c/i; // or /[abc]/i or /[a-c]/i
+      checkArray(messyABC, reg);
+
+      let randomString = ['_.^$)?<}', 'E123098', 'cdef', '', '02804792'];
+      reg = /[A-Z]/;
+      checkArray(randomString, reg);
+
+      randomString = ['abcdef', 'cda', 'AEC', 'a_e_c', 'aec02804792aec'];
+      reg = /a[bde]c/; // /abc|adc|aec/
+      checkArray(randomString, reg);
+
+      reg = /^a/;
+      checkArray(randomString, reg);
+
+      reg = /(aec)$/i;
+      checkArray(randomString, reg);
+
+      reg = /[^aec]/i;
+      checkArray(randomString, reg);
+
+      let message = '1z2bX3L4p5y6f7';
+      console.log(message.split(/[A-z]/));
+
+      message = 'a$bcdef cda a_e_c 0280aec4792';
+      console.log(message.search(/a[bde]c/));
+
+      message = '(abc)qwepoim(aec)acpo(adc)';
+      console.log(message.replace(/a[bde]c/, '@_@'));
+      console.log(message.replace(/a[bde]c/g, '@_@'));
+
+      randomString = ['aaa', 'aaaa', 'ababababab', 'aaaaaaaa'];
+      reg = /a{4}/;
+      checkArray(randomString, reg);
+
+      reg = /(ab){4}/;
+      checkArray(randomString, reg);
+
+      randomString = ['abcde', 'abcdbcdbcde', 'abcdbcdbcdbcdbcde', 'bcd', 'abcd'];
+      reg = /a(bcd){2,3}e/;
+      checkArray(randomString, reg);
+
+      randomString = ['ABC', 'ABCABC', 'AABBCC', 'DEF'];
+      reg = /(abc)+/i;
+      checkArray(randomString, reg);
+
+      reg = /(abc)*/i;
+      checkArray(randomString, reg);
+
+      message = '1209asvnp\\os';
+      reg = /\./;
+      console.log(`${message}: ${reg.test(message)}`);
+
+      reg = /\\/;
+      console.log(`${message}: ${reg.test(message)}`);
+
+      message = 'ABCD_1234';
+      reg = /\w/; // /[A-z0-9_]/
+      console.log(`${message}: ${reg.test(message)}`);
+
+      reg = /\W/; // /[^A-z0-9_]/
+      console.log(`${message}: ${reg.test(message)}`);
+
+      message = '12039847560';
+      reg = /\d/; // /[0-9]/
+      console.log(`${message}: ${reg.test(message)}`);
+
+      reg = /\D/; // /[^0-9]/
+      console.log(`${message}: ${reg.test(message)}`);
+
+      message = '   ';
+      reg = /\s/;
+      console.log(`${message}: ${reg.test(message)}`);
+
+      reg = /\S/;
+      console.log(`${message}: ${reg.test(message)}`);
+
+      message = 'I work for Yahooo!';
+      reg = /\bYahoo\b/;
+      console.log(`${message}: ${reg.test(message)}`);
+
+      message = 'I work for Yahoo oh!';
+      reg = /\BYahoo\B/;
+      console.log(`${message}: ${reg.test(message)}`);
+
+      // Phone number
+      randomString = ['135-1234-1234', 'A135-1234-1234A', '135 1234 1234', '1-35-1234-1-2-3-4', '19200001234', '110-1234-1234',
+        '03200001234', '135-1234-12345', '1350000123'];
+      reg = /^1[3-9][0-9]{9}$/;
+      const results = {};
+      for (let i=0; i<randomString.length; i++) {
+        // remove blanks and '_'
+        let res = randomString[i].replace(/[- ]/g, '');
+        results[randomString[i]] = reg.test(res);
+      }
+      console.log(results);
     </script>
 </head>
 <body>
