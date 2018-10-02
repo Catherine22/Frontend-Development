@@ -538,7 +538,7 @@ Convert an array to String
 ```javascript
 var arr1 = [1, 2, 3];
 console.log(arr1.join()); // 1,2,3
-console.log(arr1.join('blank')); // 1-2-3
+console.log(arr1.join('-')); // 1-2-3
 ```
 
 ### Reverse
@@ -570,6 +570,7 @@ console.log(randoms); // [10, 9, 7, 4, 2]
 ```
 
 ## Regular expression, 正则表达式
+NO BLANKS       
 ```javascript
 const reg = new RegExp('YOUR_RULE', 'MODE')
 ```
@@ -761,10 +762,28 @@ A135-1234-1234A: false}
 ```
 
 ### Verify email addresses
-[letters, numbers and/or _] + (optional). + [letters, numbers and/or _] + @ + [letters and/or numbers] + . + [2-5 letters and/or numbers] + (optional). + [2-5 letters and/or numbers]
+[letters, numbers and/or _] + (optional) [. + letters, numbers and/or _] + @ + [letters and/or numbers] + . + [2-5 letters] + (optional)[. + 2-5 letters]
 
 ```javascript
+randomString = [
+  'test@test.com', 'a.b_@gmail.com', 'david.lim@gmail.com', 
+  'test@test_1.com', 'testgmail.com', 'test@gmail', 'test@@test.com', 'test@test.a', 'test@abcdfghjklertyui.com.abc.qwert.12345', 
+  'test@ddd.abcdef', 'test@abc.com.dddddd', 'test!@gmail.com', 'test..c@gmail.com', 'test@abc.123', 'david.lim@gmail.comorgm'];
 
+reg = /\w{3,}(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
+const validString = [];
+for (let i=0; i<randomString.length; i++) {
+  if (reg.test(randomString[i]))
+    validString.push(randomString[i]);
+}
+console.log(`Valid email:\n[${validString.join(",\n")}]`);
+
+/*
+Valid email:
+[test@test.com,
+david.lim@gmail.com,
+test@test_1.com]
+*/
 ```
 
 ## ECMAScrip

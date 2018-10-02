@@ -176,12 +176,18 @@
       console.log(results);
 
       // Email address
-        randomString = ['test@test.com', 'test@test_1.com', 'testgmail.com', 'test@gmail', 'test@@test.com', 'test@test.a',
-        'test@abc.123', 'test@abcdfghjklertyui.com.abc.qwert.1234', 'test@ddd.abcdef', 'test@abc.com.dddddd', 'a.b_@gmail.com',
-        'test!@gmail.com', 'test..c@gmail.com', 'david.lim@gmail.com', 'david.lim@gmail.comorg'];
+        randomString = [
+          'test@test.com', 'a.b_@gmail.com', 'david.lim@gmail.com',
+          'test@test_1.com', 'testgmail.com', 'test@gmail', 'test@@test.com', 'test@test.a', 'test@abcdfghjklertyui.com.abc.qwert.12345',
+          'test@ddd.abcdef', 'test@abc.com.dddddd', 'test!@gmail.com', 'test..c@gmail.com', 'test@abc.123', 'david.lim@gmail.comorgm'];
 
-        reg = /^\w*[\.]\w*@\w*/;
-        checkArray(randomString, reg);
+        reg = /\w{3,}(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
+        const validString = [];
+        for (let i=0; i<randomString.length; i++) {
+          if (reg.test(randomString[i]))
+            validString.push(randomString[i]);
+        }
+        console.log(`Valid email:\n[${validString.join(",\n")}]`);
 
     </script>
 </head>
