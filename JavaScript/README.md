@@ -806,8 +806,11 @@ npm install --save-dev eslint-config-google
 }
 ```
 
-## DOM
-
+## DOM, Document Object Model
+- Document: a html page
+- Object: everything in the page
+- Model: display the relation between objects
+![screenshot][2]  
 
 ## BOM
 
@@ -820,13 +823,11 @@ npm install --save-dev eslint-config-google
 
 
 [尚硅谷JavaScript视频]:<https://www.bilibili.com/video/av21589800/?p=1&spm_id_from=333.788.multi_page.1>
-
 [HelloWorld]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/HelloWorld.html>
-
 [Introduction]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Introduction.html>
-
 [Type.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Type.js>
 [Operator.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Operator.js>
 
 
 [1]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/JavaScript/screenshot_forEach.png
+[2]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/JavaScript/screenshot_domTree.png
