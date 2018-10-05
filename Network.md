@@ -47,20 +47,26 @@
 2. TCP/IP 基本上全部都是用此协议        
 把OSI的前三层（应用、表示、会话）合并以及后两层（数据链路层和物理层）合并。
 
-| TCP/IP四层 | 数据类型 | 注释 |
-|------------|-----------------------------------------------------|------------------|
-| 应用层 | message或称PDU（协议数据单元） |  |
-| 传输层 | 传输层的header + message，此时成为segment（数据段） |  |
-| 网络层 | 其他定位信息如原IP + segment，成为packet（数据包） |  |
-| 网络接口层 | frame（数据帧），往后变成bit，也就是高低电压了 | ![screenshot][6] |
+| TCP/IP四层 | 数据类型 | 
+|------------|-----------------------------------------------------|
+| 应用层 | message或称PDU（协议数据单元） |
+| 传输层 | 传输层的header + message，此时成为segment（数据段） |
+| 网络层 | 其他定位信息如原IP + segment，成为packet（数据包） |
+| 网络接口层 | frame（数据帧），往后变成bit，也就是高低电压了 |
 
 3. IPX/SPX      
 4. SNA      
 
-
 ### 局域网
-1. IEEE 802        
-2. 以太网       
+
+| 以太网II  | ![screenshot][6] | 64≤数据帧长度≤1518 (byte)，一旦<64byte，表示数据遗失  |
+|-----------|------------------|---|
+| IEEE802.3 | ![screenshot][7] |   |
+
+>
+D.MAC: Destination MAC      
+S.MAC: Source MAC       
+一旦length/type的值≤1500(0x05DC)，肯定是IEEE802.3，若≥1536(0x0600)则为以太网2
 
 ### 广域网
 1. 帧中继       
@@ -74,4 +80,7 @@
 [3]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/twisted-pair_cables.png
 [4]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/fiber_optic_cable.png
 [5]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/v.24_35_cable.png
-[6]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/frame.png
+[6]:
+https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Ethernet2.png
+[7]:
+https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/IEEE802.3.png
