@@ -40,11 +40,9 @@ There are six data types in JavaScript:
 Go to [Type.js] to see more.
 
 ### Operator, 运算符或操作符
-
 Go to [Operator.js] to see more.
 
-### Flow control and looping,  流程控制
-          
+### Flow control and looping,  流程控制  
 ```javascript
 var cars = ["BMW", "Volvo", "Saab", "Ford"];
 var i = 0;
@@ -83,7 +81,6 @@ console.log(count + ' prime numbers were found');
 ```
 
 ### Object
-
 Object combines and associates multiple types (String, Number, Boolean and Object)
         
 Three different kinds of Object:        
@@ -209,7 +206,8 @@ var sum = function(num1, num2) {
   return num1 + num2;
 };
 ```
-We can retrieve all of the arguments by ```arguments```
+We can retrieve all of the arguments by ```arguments```     
+```callee```: refer to the current function
 ```javascript
 function testArgument(a, b, c) {
   console.log(`We now have ${arguments.length} arguments: [${arguments[0]}, ${arguments[1]}, ${arguments[2]}]`);
@@ -217,6 +215,18 @@ function testArgument(a, b, c) {
 }
 
 testArgument('a1', 'a2', 'a3');
+// We now have 3 arguments: [a1, a2, a3]
+// true
+```
+```arguments``` is an array includes all the arguments of a function, it still exists even if the function is called without arguments.
+```javascript
+function func() {
+  console.log(`We have ${arguments.length} arguments`);
+  console.log(`Arguments:[${arguments[0]}, ${arguments[1]}]`);
+}
+func('Hello', 123);
+// We have 2 arguments
+// Arguments:[Hello, 123]
 ```
 
 - Input objects as arguments
@@ -435,6 +445,7 @@ showCar('black'); // undefined, color=black
 showCar.call({car: 'Sport car'}, 'red'); // Sport car, color=red
 showCar.apply({car: 'Motorhome'}, ['white']); // Motorhome, color=white
 ```
+[Function.js]
 
 ## Garbage Collection 
 Browsers automatically deal with rubbish (which are basically objects do not be refer by a specific key in the stack) in the heap, there are different solution depends on the browser.
@@ -568,6 +579,7 @@ randoms.sort(function(a, b) {
 });
 console.log(randoms); // [10, 9, 7, 4, 2]
 ```
+[Array.js]
 
 ## Regular expression, 正则表达式
 NO BLANKS       
@@ -785,6 +797,7 @@ david.lim@gmail.com,
 test@test_1.com]
 */
 ```
+[Utils.html]
 
 ## ECMAScrip
 A specification for JavaScript. JavaScript will be executed by a distinct engine of individual browser. V8 engine of Chrome for example, showing high performance while running JavaScript.     
@@ -806,11 +819,69 @@ npm install --save-dev eslint-config-google
 }
 ```
 
+# 宿主对象
 ## DOM, Document Object Model
 - Document: a html page
 - Object: everything in the page
 - Model: display the relation between objects
 ![screenshot][2]  
+
+### Node
+```html
+<p id="pid">This is a paragraph</p>
+```
+In HTML, we have 4 type of nodes:       
+1. Document: The whole HTML file       
+2. Element: ```<p/>```     
+3. Attribute: ```id="pid"```       
+4. Text: ```This is a paragraph```
+
+In HTML, code will be loaded from the top. For example, 
+```html
+<head>
+    <script type="text/javascript">
+        // Get the <button/>
+        let btn = document.getElementById('btn');
+        btn.onclick = function() {
+            alert('讨厌，你点我干嘛');
+        };
+    </script>
+    <button id="btn">我是一个按钮</button>
+</head>
+```
+The ```onclick``` will be malfunction, to fix this issue, I can either switch their positions
+```html
+<head>
+    <button id="btn">我是一个按钮</button>
+    <script type="text/javascript">
+        // Get the <button/>
+        let btn = document.getElementById('btn');
+        btn.onclick = function() {
+            alert('讨厌，你点我干嘛');
+        };
+    </script>
+</head>
+```
+Or load javascript when the page loaded.
+```javascript
+<head>
+    <script type="text/javascript">
+        // Html loaded
+        window.onload = function() {
+            console.log('Page Loaded');
+            // Get the <button/>
+            let btn = document.getElementById('btn');
+            btn.onclick = function() {
+                alert('讨厌，你点我干嘛');
+            };
+        };
+    </script>
+    <button id="btn">我是一个按钮</button>
+</head>
+```
+However, the ```window.onload``` can be place on the top or bottom of the script. It will be better if we drag the ```window.onload``` on the bottom, because loading code without executing immediately are not supposed to be happen before loading views.
+
+[DOM.html]
 
 ## BOM
 
@@ -827,7 +898,10 @@ npm install --save-dev eslint-config-google
 [Introduction]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Introduction.html>
 [Type.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Type.js>
 [Operator.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Operator.js>
-
+[Function.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Function.js>
+[Array.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Array.js>
+[Utils.html]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Utils.html>
+[DOM.html]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/DOM.html>
 
 [1]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/JavaScript/screenshot_forEach.png
 [2]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/JavaScript/screenshot_domTree.png
