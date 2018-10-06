@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <button id="btn">我是一个按钮</button>
+    <script type="text/javascript">
+        // Get the <button/>
+        let btn = document.getElementById('btn');
+        btn.innerHTML = "I'm Button";
+        btn.onclick = function() {
+            alert('讨厌，你点我干嘛');
+        };
+        btn.onmousemove = function() {
+            console.log('离我远一点');
+        };
+
+        // Html loaded
+        window.onload = function() {
+            console.log('Page Loaded');
+
+            // Get the document
+            console.log(document);
+        };
+    </script>
+</head>
+
+<body>
+</body>
+</html>

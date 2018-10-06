@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    //Date
+    console.log('--------Date--------');
+    let DaysEnum = { 0: 'Sun', 1: 'Mon', 2: "Tue", 3: 'Wed', 4: 'Thu', 5: 'Fri', 6: 'Sat' }
+    let today = new Date();
+    console.log(today);
+    console.log(`Today is ${today.getMonth() + 1}/${today.getDate()} ${DaysEnum[today.getDay()]} ${today.getFullYear()}`);
+
+    // How many ms past since 1970/1/1 00:00:00
+    let timestamp = Date.now();
+    console.log(`timestamp: ${timestamp}`);
+
+    let firstDay = new Date('1/1/1970 08:00:00'); // +8 China timezone
+    console.log(firstDay.getTime());
+
+    let christmas = new Date('12/25/2018 00:00:00');
+    console.log(christmas);
+
+    // Test code performance
+    let start = Date.now();
+    for (let i = 0; i < 100; i++) {
+      // console.log(i);
+    }
+    let end = Date.now();
+    console.log(`It took ${end - start} ms`);
+
+
+    //Math
+    console.log('\n--------Math--------');
+    console.log(Math.PI);
+    console.log(`abs -99 = ${Math.abs(-99)}`);
+    console.log(`ceil 0.1 = ${Math.ceil(0.1)}`);
+    console.log(`floor 3.9 = ${Math.floor(3.9)}`);
+    console.log(`round 4.4 = ${Math.round(4.4)}, round 4.5 = ${Math.round(4.5)}`);
+    console.log(`random(0-1): ${Math.random()}`);
+    console.log(`random(0-100): ${Math.round(Math.random() * 100)}`);
+    console.log(`random(17-20): ${Math.round(Math.random() * (20 - 17)) + 17}`);
+    console.log(`2^10 = ${Math.pow(2, 10)}`);
+
+
+    //String
+    console.log('\n--------String--------');
+    const str = 'abcdefghijklabcdefghijkl';
+    console.log(`length: ${str.length}`);
+    console.log(`char at 4: ${str[4]}`);
+    console.log(`a unicode: ${str.charCodeAt(0)}`);
+    // 中文按照康熙字典排序
+    console.log(`unicode 20025: ${String.fromCharCode(20025)}`);
+    console.log(`unicode U+03DF: ${String.fromCharCode(0x03DF)}`);
+    console.log(`indexOf 'g': ${str.indexOf('g')}`);
+    console.log(`lastIndexOf 'g': ${str.lastIndexOf('g')}`);
+    console.log(`slice: ${str.slice(1, -1)}`);
+
+
+    // Regular expression
+    console.log('\n--------Regular expression--------');
+    const messyABC = ['_.AbC__', 'a_b9c', 'abc', ''];
+    function checkArray(array, reg) {
+      const results = {};
+      for (let i = 0; i < array.length; i++) {
+        results[array[i]] = reg.test(array[i]);
+      }
+      console.log(results);
+    }
+
+    let reg = /abc/i;
+    checkArray(messyABC, reg);
+
+    reg = /a|b|c/i; // or /[abc]/i or /[a-c]/i
+    checkArray(messyABC, reg);
+
+    let randomString = ['_.^$)?<}', 'E123098', 'cdef', '', '02804792'];
+    reg = /[A-Z]/;
+    checkArray(randomString, reg);
+
+    randomString = ['abcdef', 'cda', 'AEC', 'a_e_c', 'aec02804792aec'];
+    reg = /a[bde]c/; // /abc|adc|aec/
+    checkArray(randomString, reg);
+
+    reg = /^a/;
+    checkArray(randomString, reg);
+
+    reg = /(aec)$/i;
+    checkArray(randomString, reg);
+
+    reg = /[^aec]/i;
+    checkArray(randomString, reg);
+
+    let message = '1z2bX3L4p5y6f7';
+    console.log(message.split(/[A-z]/));
+
+    message = 'a$bcdef cda a_e_c 0280aec4792';
+    console.log(message.search(/a[bde]c/));
+
+    message = '(abc)qwepoim(aec)acpo(adc)';
+    console.log(message.replace(/a[bde]c/, '@_@'));
+    console.log(message.replace(/a[bde]c/g, '@_@'));
+
+    randomString = ['aaa', 'aaaa', 'ababababab', 'aaaaaaaa'];
+    reg = /a{4}/;
+    checkArray(randomString, reg);
+
+    reg = /(ab){4}/;
+    checkArray(randomString, reg);
+
+    randomString = ['abcde', 'abcdbcdbcde', 'abcdbcdbcdbcdbcde', 'bcd', 'abcd'];
+    reg = /a(bcd){2,3}e/;
+    checkArray(randomString, reg);
+
+    randomString = ['ABC', 'ABCABC', 'AABBCC', 'DEF'];
+    reg = /(abc)+/i;
+    checkArray(randomString, reg);
+
+    reg = /(abc)*/i;
+    checkArray(randomString, reg);
+
+    message = '1209asvnp\\os';
+    reg = /\./;
+    console.log(`${message}: ${reg.test(message)}`);
+
+    reg = /\\/;
+    console.log(`${message}: ${reg.test(message)}`);
+
+    message = 'ABCD_1234';
+    reg = /\w/; // /[A-z0-9_]/
+    console.log(`${message}: ${reg.test(message)}`);
+
+    reg = /\W/; // /[^A-z0-9_]/
+    console.log(`${message}: ${reg.test(message)}`);
+
+    message = '12039847560';
+    reg = /\d/; // /[0-9]/
+    console.log(`${message}: ${reg.test(message)}`);
+
+    reg = /\D/; // /[^0-9]/
+    console.log(`${message}: ${reg.test(message)}`);
+
+    message = '   ';
+    reg = /\s/;
+    console.log(`${message}: ${reg.test(message)}`);
+
+    reg = /\S/;
+    console.log(`${message}: ${reg.test(message)}`);
+
+    message = 'I work for Yahooo!';
+    reg = /\bYahoo\b/;
+    console.log(`${message}: ${reg.test(message)}`);
+
+    message = 'I work for Yahoo oh!';
+    reg = /\BYahoo\B/;
+    console.log(`${message}: ${reg.test(message)}`);
+
+    message = '    ad  min     ';
+    reg = /\s/g;
+    console.log(`${message}: ${message.replace(reg, '')}`);
+
+    message = '    David Lim     ';
+    reg = /^\s* | \s*$/g;
+    console.log(`${message}: ${message.replace(reg, '')}`);
+
+    // Phone number
+    randomString = ['135-1234-1234', 'A135-1234-1234A', '135 1234 1234', '1-35-1234-1-2-3-4', '19200001234', '110-1234-1234',
+      '03200001234', '135-1234-12345', '1350000123'];
+    reg = /^1[3-9][0-9]{9}$/;
+    let results = {};
+    for (let i = 0; i < randomString.length; i++) {
+      // remove blanks and '_'
+      let res = randomString[i].replace(/[-\s]/g, '');
+      results[randomString[i]] = reg.test(res);
+    }
+    console.log(results);
+
+    // Email address
+    randomString = [
+      'test@test.com', 'a.b_@gmail.com', 'david.lim@gmail.com',
+      'test@test_1.com', 'testgmail.com', 'test@gmail', 'test@@test.com', 'test@test.a', 'test@abcdfghjklertyui.com.abc.qwert.12345',
+      'test@ddd.abcdef', 'test@abc.com.dddddd', 'test!@gmail.com', 'test..c@gmail.com', 'test@abc.123', 'david.lim@gmail.comorgm'];
+
+    reg = /\w{3,}(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
+    const validString = [];
+    for (let i = 0; i < randomString.length; i++) {
+      if (reg.test(randomString[i]))
+        validString.push(randomString[i]);
+    }
+    console.log(`Valid email:\n[${validString.join(",\n")}]`);
+
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
