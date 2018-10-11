@@ -16,6 +16,7 @@ import ForegroundService from './src/components/android_native/ForegroundService
 
 
 const SERVICE_LISTENER = 'service_listener';
+const JOB_LISTENER = 'job_listener';
 const loadingManagerEmitter = new NativeEventEmitter(ReactNativeLoading);
 
 class App extends Component {
@@ -27,6 +28,10 @@ class App extends Component {
             timer: 0
         };
         loadingManagerEmitter.addListener(SERVICE_LISTENER, (sec) => {
+            this.setState({ timer: this.state.timer += sec });
+        });
+        
+        loadingManagerEmitter.addListener(JOB_LISTENER, (sec) => {
             this.setState({ timer: this.state.timer += sec });
         });
     }
@@ -41,7 +46,7 @@ class App extends Component {
     }
 
     onStartJobScheduler() {
-        JobScheduler.start();
+        JobScheduler.start(JOB_LISTENER);
     }
 
     onStopJobScheduler() {

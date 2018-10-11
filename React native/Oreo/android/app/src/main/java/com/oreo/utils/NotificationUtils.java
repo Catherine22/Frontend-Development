@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
+import android.widget.RemoteViews;
 
 import com.oreo.R;
 
@@ -45,6 +46,7 @@ public class NotificationUtils extends ContextWrapper {
         androidChannel.setLightColor(Color.GREEN);
         // Sets whether notifications posted to this channel appear on the lockscreen or not
         androidChannel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        androidChannel.setShowBadge(true);
         getNotificationManager().createNotificationChannel(androidChannel);
     }
 
@@ -75,7 +77,6 @@ public class NotificationUtils extends ContextWrapper {
                     .setTicker("Firebase Cloud Messaging")
                     .setSmallIcon(R.mipmap.ic_stat_ic_notification)
                     .setAutoCancel(true)
-                    // for notification click action, also required on Gingerbread and below
                     .setContentIntent(pi);
             getNotificationManager().notify(notificationId, builder.build());
         } else {
@@ -85,7 +86,6 @@ public class NotificationUtils extends ContextWrapper {
                     .setTicker("Firebase Cloud Messaging")
                     .setSmallIcon(R.mipmap.ic_stat_ic_notification)
                     .setAutoCancel(true)
-                    // for notification click action, also required on Gingerbread and below
                     .setContentIntent(pi);
             getNotificationManager().notify(notificationId, builder.build());
         }
@@ -102,14 +102,18 @@ public class NotificationUtils extends ContextWrapper {
         PendingIntent pi = PendingIntent.getActivity(this, 0, resultIntent, PendingIntent
                 .FLAG_UPDATE_CURRENT);
 
+        RemoteViews contentView = new RemoteViews(getPackageName(),R.layout.notification_view);
+        contentView.setImageViewResource(R.id.iv_icon, R.mipmap.ic_stat_ic_notification);
+        contentView.setTextViewText(R.id.tv_title, "Foreground Service Title");
+
         return new Notification.Builder(getApplicationContext(), channelInfo.CHANNEL_ID)
                 .setContentTitle("Foreground Service Title")
                 .setContentText("Foreground Service content")
                 .setTicker("Foreground Service Ticker")
                 .setSmallIcon(R.mipmap.ic_stat_ic_notification)
                 .setAutoCancel(true)
-                // for notification click action, also required on Gingerbread and below
                 .setContentIntent(pi)
+//                .setCustomContentView(contentView)
                 .build();
     }
 }

@@ -51,6 +51,7 @@ public class MainActivity extends ReactActivity {
                 Log.d(TAG, "Key: " + key + " Value: " + value);
             }
         }
+
     }
 
     @Override
