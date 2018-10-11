@@ -8,7 +8,7 @@ public class NotificationChannelsGroup {
 
     public static SparseArray<ChannelInfo> CHANNELS = new SparseArray<>();
     static {
-        CHANNELS.put(FIREBASE, new ChannelInfo(FIREBASE + "", "FIREBASE"));
-        CHANNELS.put(FOREGROUND_SERVICE, new ChannelInfo(FOREGROUND_SERVICE + "", "FOREGROUND_SERVICE"));
+        CHANNELS.put(FIREBASE, new ChannelInfo(FIREBASE + "", "FIREBASE_CHANNEL"));
+        CHANNELS.put(FOREGROUND_SERVICE, new ChannelInfo(FOREGROUND_SERVICE + "", "FOREGROUND_SERVICE_CHANNEL"));
     }
 }

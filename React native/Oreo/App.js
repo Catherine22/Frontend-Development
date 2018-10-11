@@ -30,7 +30,7 @@ class App extends Component {
         loadingManagerEmitter.addListener(SERVICE_LISTENER, (sec) => {
             this.setState({ timer: this.state.timer += sec });
         });
-        
+
         loadingManagerEmitter.addListener(JOB_LISTENER, (sec) => {
             this.setState({ timer: this.state.timer += sec });
         });
