@@ -35,7 +35,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String body = remoteMessage.getNotification().getBody();
         NotificationUtils notificationUtils;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            notificationUtils = new NotificationUtils(this, NotificationChannelsGroup.CHANNELS.get(NotificationChannelsGroup.FOREGROUND_SERVICE));
+            notificationUtils = new NotificationUtils(this, NotificationChannelsGroup.CHANNELS.get(NotificationChannelsGroup.FIREBASE));
         } else {
             notificationUtils = new NotificationUtils(this);
         }

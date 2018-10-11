@@ -10,7 +10,7 @@
 ```
 npm install -g eslint
 ```
- 
+
 Go to your react native project,            
 ```
 npm install --save-dev eslint-config-rallycoding
@@ -45,7 +45,7 @@ pod install
 JSX is an extension to the JavaScript language that is used to write react components.      
 Using [Babel](https://babeljs.io/en/repl.html) to put some JSX on the left hand side (What we write), then it will turn into JavaScript on the right hand side. (What would be executed on the devices).        
 
-After cloning a project from git/svn, you might need: 
+After cloning a project from git/svn, you might need:
 
 1. Install npm resources, go to project/
 ```npm install```
@@ -86,18 +86,18 @@ npm install --save react-native@0.43.4
 
 ![screenshot][1]     
 
-## Functional component 
+## Functional component
 
-```typescript jsx
+```JavaScript
 // Import libraries for making a component
 import React from 'react';
 import { View } from 'react-native';
 
 // Make a component
-const Header = () => { 
+const Header = () => {
     return (
         <View />
-    ); 
+    );
 };
 
 // Make the component available to other parts of the application
@@ -107,7 +107,7 @@ export default Header;
 
 ## Class-based component
 
-```typescript jsx
+```JavaScript
 // Import React.Component
 import React, { Component } from 'react';
 import { View } from 'react-native';
@@ -131,7 +131,7 @@ export default AlbumList;
 npm install --save axios
 ```
 
-```typescript jsx
+```JavaScript
 // Do I/O here
 componentWillMount() {
     // When we need to update what a component shows, call 'this.setState()', do not do 'this.state'
@@ -145,7 +145,7 @@ componentWillMount() {
 ## State and props
 
 Initialize and update state when fetched data from rallycoding
-```typescript jsx
+```JavaScript
 // Import React.Component
 import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
@@ -154,7 +154,7 @@ import AlbumDetail from './AlbumDetail';
 
 class AlbumList extends Component {
     // Get initial state
-    // Any functional component we create, like Header, does not have access to state 
+    // Any functional component we create, like Header, does not have access to state
     state = { albums: [] };
 
     // Do I/O here
@@ -167,7 +167,7 @@ class AlbumList extends Component {
 
     renderAlbums() {
         // Send the props (album) to AlbumDetail
-        return this.state.albums.map(album => 
+        return this.state.albums.map(album =>
         <AlbumDetail key={album.title} album={album} />
         );
     }
@@ -205,14 +205,14 @@ The response retrieved via axios would be like
 ```
 
 The child gets the props from the parent
-```typescript jsx
+```JavaScript
 import React from 'react';
 import { Text, View, Image, Linking } from 'react-native';
 
 const AlbumDetail = ({ album }) => {
     // Get title, artist and thumbnail_image from album
     const { title, artist, thumbnail_image, image, url } = album;
-   
+
     return (
         <View>
             <Text>{title}</Text>
@@ -230,7 +230,7 @@ export default AlbumDetail;
 ## Clicking event
 
 Create a Button component
-```typescript jsx
+```JavaScript
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 
@@ -242,14 +242,14 @@ const Button = ({ onPress, children }) => {
         <TouchableOpacity style={buttonStyle} onPress={onPress}>
             <Text style={textStyle}>{children}</Text>
         </TouchableOpacity>
-    ); 
+    );
 };
 
 export default Button;
 ```
 
 Have the parent (AlbumDetail) to deal with onPress event
-```typescript jsx
+```JavaScript
 import React from 'react';
 import { Text, View, Image, Linking } from 'react-native';
 import Button from './Button';
@@ -270,11 +270,11 @@ export default AlbumDetail;
 TextInput is not responsible for knowing what its value is. It has no idea what its value is.   
 ![screenshot][2]  
 
-```typescript jsx
+```JavaScript
 state = { email: '' };
     render() {
         return (
-          <TextInput 
+          <TextInput
           autoCorrect={false}
           value={this.state.email}
           onChangeText={text => this.setState({ email: text }}
@@ -300,7 +300,7 @@ const reducer = (state = [], action) => {
   if (action.type === 'split_string') {
     return action.payload.split('');
   } else if (action.type === 'add_characters') {
-    
+
     /* "...state" means making a new array indicated by these outside brackets，
      * taking all the elements in the current state array, tossing them in here.
      * and also tossing action.payload in as the last entry as well.
@@ -308,7 +308,7 @@ const reducer = (state = [], action) => {
      */
     return [...state, action.payload];
   }
-  
+
   return state;
 }
 
@@ -316,7 +316,7 @@ const store = Redux.createStore(reducer);
 store.getState();
 
 /* An action is a plain JavaScripy object
- * This type property is always a String, 
+ * This type property is always a String,
  * the purpose of this type property is to tell our reducer to command a specific operation
  */
 const action = {
@@ -363,7 +363,7 @@ In manager app, here is the sample code
 
 
 src/App.js      
-```typescript jsx
+```JavaScript
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -386,7 +386,7 @@ export default App;
 ```
 
 src/reducers/index.js       
-```typescript jsx
+```JavaScript
 import { combineReducers } from 'redux';
 import AuthReducer from './AuthReducer';
 
@@ -396,7 +396,7 @@ export default combineReducers({
 ```
 
 src/reducers/AuthReducer.js     
-```typescript jsx
+```JavaScript
 import { EMAIL_CHANGED } from '../actions/types';
 
 const INITIAL_STATE = { email: '' };
@@ -424,12 +424,12 @@ export default (state = INITIAL_STATE, action) => {
 ```
 
 src/actions/types.js        
-```typescript jsx
+```JavaScript
 export const EMAIL_CHANGED = 'email_changed';
 ```
 
 src/actions/index.js        
-```typescript jsx
+```JavaScript
 export const emailChanged = (text) => {
     return {
         type: 'email_changed',
@@ -439,7 +439,7 @@ export const emailChanged = (text) => {
 ```
 
 src/components/LoginForm.js     
-```typescript jsx
+```JavaScript
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TextInput } from 'react-native';
@@ -482,7 +482,7 @@ npm install --save react-native-router-flux
 ```
 
 In app.js       
-```typescript jsx
+```JavaScript
 import Router from './Router';
 render() {
         return (
@@ -492,7 +492,7 @@ render() {
 ```
 
 create a component Router.js      
-```typescript jsx
+```JavaScript
 import React from 'react';
 import { Scene, Router, Stack } from 'react-native-router-flux';
 import Page1 from './components/Page1';
@@ -512,9 +512,30 @@ const RouterComponent = () => {
 export default RouterComponent;
 ```
 Jump to page2       
-```typescript jsx
+```JavaScript
 Actions.page2(); // your Scene key
 ```
+
+# New features on Android Oreo
+Go to my [Oreo] project to see more.
+
+## Firebase Cloud Messaging + Notification Channel
+
+[FirebaseMessagingService]    
+[NotificationUtils]   
+[NotificationChannelsGroup]   
+[ChannelInfo]
+
+## JobScheduler
+
+Start and stop JobScheduler by React Native:    
+[JobSchedulerModule]
+[MyJobService]
+
+## Foreground Service
+Start and stop Foreground Service by React Native:    
+[ForegroundServiceModule]   
+[MyForegroundService]
 
 # Reference
 [The complete react native and redux course](https://www.udemy.com/the-complete-react-native-and-redux-course/)
@@ -528,7 +549,17 @@ Actions.page2(); // your Scene key
 [auth]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/auth>
 [manager]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/manager>
 [JS playgrounds]:<https://stephengrider.github.io/JSPlaygrounds/>
+[Oreo]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/Oreo>
+[NotificationUtils]:<https://github.com/Catherine22/Front-end-warm-up/blob/master/React%20native/Oreo/android/app/src/main/java/com/oreo/utils/NotificationUtils.java>
 [react-native-router-flux]:<https://github.com/aksonov/react-native-router-flux>
+[FirebaseMessagingService]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/Oreo/android/app/src/main/java/com/oreo/firebase>
+[ChannelInfo]:<https://github.com/Catherine22/Front-end-warm-up/blob/master/React%20native/Oreo/android/app/src/main/java/com/oreo/utils/ChannelInfo.java>
+[NotificationChannelsGroup]:<https://github.com/Catherine22/Front-end-warm-up/blob/master/React%20native/Oreo/android/app/src/main/java/com/oreo/utils/NotificationChannelsGroup.java>
+[JobSchedulerModule]:<https://github.com/Catherine22/Front-end-warm-up/blob/master/React%20native/Oreo/android/app/src/main/java/com/oreo/react_native_modules/JobSchedulerModule.java>
+[MyJobService]:<https://github.com/Catherine22/Front-end-warm-up/blob/master/React%20native/Oreo/android/app/src/main/java/com/oreo/jobs/MyJobService.java>
+[ForegroundServiceModule]:<https://github.com/Catherine22/Front-end-warm-up/blob/master/React%20native/Oreo/android/app/src/main/java/com/oreo/react_native_modules/ForegroundServiceModule.java>  
+[MyForegroundService]:<https://github.com/Catherine22/Front-end-warm-up/blob/master/React%20native/Oreo/android/app/src/main/java/com/oreo/foreground_services/MyForegroundService.java>
+
 [1]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/components.png
 [2]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/textInput.png
 [3]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/redux1.png
@@ -536,4 +567,3 @@ Actions.page2(); // your Scene key
 [5]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/redux3.png
 [6]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/redux4.png
 [7]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/React%20native/screenshots/redux5.png
-
