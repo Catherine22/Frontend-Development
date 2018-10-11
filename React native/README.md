@@ -517,7 +517,7 @@ Actions.page2(); // your Scene key
 ```
 
 # New features on Android Oreo
-Go to my [Oreo] project to see more.
+Go to my [Oreo] project and see more.
 
 ## Firebase Cloud Messaging + Notification Channel
 
@@ -529,7 +529,7 @@ Go to my [Oreo] project to see more.
 ## JobScheduler
 
 Start and stop JobScheduler by React Native:    
-[JobSchedulerModule]
+[JobSchedulerModule]    
 [MyJobService]
 
 ## Foreground Service
