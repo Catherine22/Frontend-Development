@@ -1,5 +1,8 @@
 # 互联网
-互联网是由链路（LAN或WAN）和交换机所组成，最著名的互联网为Internet。
+互联网是由链路（LAN或WAN）和交换机所组成，最著名的互联网为Internet。   
+
+Internet有各式各样的标准，一份Internet draft经由Internet管理机构建议，作为RFC（Request for Command）文档发布。   
+
 
 ## 交换
 ---
@@ -29,7 +32,7 @@
 大结构或大公司直接变成一个本地ISP，直接从线路提供者租用高速WAN并接入地区的ISP。
 
 案例：企业网络架构
-![screenshot](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/enterprise_network.png) 
+![screenshot](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/enterprise_network.png)
 
 ## 局域网（local area network，LAN）
 ---
@@ -65,16 +68,16 @@ S.MAC: 自己的MAC地址
 ---
 定义接收者、发送者与中间设备通信的规范，一旦通信变得复杂，我们需要把任务划分到不同的阶层，每一层定义不同的协议。
 
-### TCP/IP, 􏱓Transmission Control Protocol/Internet Protocol
+# TCP/IP, 􏱓Transmission Control Protocol/Internet Protocol
 基本上全部都是用此协议。        
-把OSI的前三层（应用、表示、会话）合并以及后两层（数据链路层和物理层）合并。
+把OSI的前三层（应用、表示、会话）合并。
 
-| TCP/IP五层 | 数据类型 | 行为 | 
-|------------|-------------------------------------------|-----|
-| 应用层 | message或称PDU（协议数据单元） | 两进程之间的通信 |
-| 传输层 | 传输层的header + message，此时成为segment（数据段） | 在此有两个协议——TCP、UDP和SCTP *注1 |
-| 网络层 | 其他定位信息如原IP + segment，成为packet（数据包） | 单播、多播的路由协议、因特网协议与其他辅助协议 *注2 |
-| 数据链路层 | frame（数据帧） | 没有被定义协议，可支援所有标准或私有的协议。路由器与链路说明 *注3 |
+| TCP/IP五层 | 数据类型 | 行为 | 地址 |
+|------------|-------------------------------------------|-----|-----|
+| 应用层 | message或称PDU（协议数据单元） | 两进程之间的通信，例如HTTP、FTP、DNS和SNMP | abc.com 或 xxx@mail.com |
+| 传输层 | 传输层的header + message，此时成为segment（数据段） | 在此有几个协议——TCP、UDP和SCTP *注1 | 端口号， 用来区别同一时间运行的几个应用程序 |
+| 网络层 | 其他定位信息如原IP + segment，成为packet（数据包） | 单播、多播的路由协议、因特网协议与其他辅助协议 *注2 | 全局地址，遍布整个Internet |
+| 数据链路层 | frame（数据帧） | 没有被定义协议，可支援所有标准或私有的协议。路由器与链路说明 *注3 | MAC address |
 | 硬件设备 | bit，也就是高低电压或光信号 | 传输介质为电缆或大气，将bit转换为信号包含多种协议。 |
 
 E.g. 两台主机之间的通信，由三个LAN组成的小型互联网，每个LAN有个链路层交换机，三个LAN都连接到一个路由器。       
@@ -86,7 +89,10 @@ E.g. 两台主机之间的通信，由三个LAN组成的小型互联网，每个
 
 应用、传输、网络层的任务是end-to-end，任务范围是Internet。     
 数据链路和物理层是hop-to-hop，任务范围是链路。     
-也就是高三层的数据单元（packet）不应该被链路层交换机或路由器改变。在低两层，主机创建的packet仅仅被路由器改变，链路层交换机不加以干涉。
+也就是高三层的数据单元（packet）不应该被链路层交换机或路由器改变。在低两层，主机创建的packet仅仅被路由器改变，链路层交换机不加以干涉。   
+
+## Multiplexing，多路复用；Demultiplexing，多路分解
+由于TCP/IP允许同一层使用多种协议，需要一个头部字段来识别被封装的packet是属于那个协议。好比在传输层，TCP和UDP可收到多个应用层的message；而在网络层，则可收到TCP或UDP的segment，以及ICMP、IGMP等协议。   
 
 >注1     
 >**TCP协议**        
@@ -134,8 +140,10 @@ Packet从源主机到目的主机中可能含有多个链路集，路由器选�
 >**链路**        
 可以是具有链路层交换机的有线LAN、无线LAN、有线WAN或无线WAN。
 
-## OSI 
-规范性的框架、标准      
+## 应用层
+
+# OSI
+由ISO定义的框架、标准。      
 
 | OSI七层 | 定义 | 解释 |
 |------------|------------------------------|------------------------------------------------------------------|
@@ -146,9 +154,6 @@ Packet从源主机到目的主机中可能含有多个链路集，路由器选�
 | 网络层 | IP寻址和路由选择 | （网络工程师）提供IP地址，网络层的协议例如：TCP/IP、IPX/SPX、SNA |
 | 数据链路层 | 控制物理层与网络层之间的通信 | （网络工程师）把数据包变成0和1 |
 | 物理层 | 比特流传输 | （网络工程师）把0和1变成高低电压穿出去 |
-
-3. IPX/SPX      
-4. SNA      
 
 ## 传输介质
 ---
@@ -177,6 +182,10 @@ Packet从源主机到目的主机中可能含有多个链路集，路由器选�
 - 冲突避免      
 - 先听后发、边发边听      
 比如A发一个电流信号出去，其实后面的BCD都可以收到，BCD一旦知道有人在发信号，就先退避等待。若两个主机已经产生碰撞，发送阻断信号给其他主机，按时间轮流占用线路。
+
+# 常用网络管理工具
+- 具有GUI如WireShark、Ping Plotter    
+- traceroute、nslookup、dig、ipconfig和ifconfig
 
 # 参考来源
 计算机网络 自顶向下方法
