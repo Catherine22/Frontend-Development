@@ -1,5 +1,5 @@
-# 互联网
-互联网是由链路（LAN或WAN）和交换机所组成，最著名的互联网为Internet。   
+# The Internet
+互联网是由链路（LAN或WAN）和交换机所组成，最著名的互联网为Internet。  
 
 Internet有各式各样的标准，一份Internet draft经由Internet管理机构建议，作为RFC（Request for Command）文档发布。   
 
@@ -68,7 +68,7 @@ S.MAC: 自己的MAC地址
 ---
 定义接收者、发送者与中间设备通信的规范，一旦通信变得复杂，我们需要把任务划分到不同的阶层，每一层定义不同的协议。
 
-# TCP/IP, 􏱓Transmission Control Protocol/Internet Protocol
+# TCP/IP, Transmission Control Protocol/Internet Protocol
 基本上全部都是用此协议。        
 把OSI的前三层（应用、表示、会话）合并。
 
@@ -93,6 +93,8 @@ E.g. 两台主机之间的通信，由三个LAN组成的小型互联网，每个
 
 ## Multiplexing，多路复用；Demultiplexing，多路分解
 由于TCP/IP允许同一层使用多种协议，需要一个头部字段来识别被封装的packet是属于那个协议。好比在传输层，TCP和UDP可收到多个应用层的message；而在网络层，则可收到TCP或UDP的segment，以及ICMP、IGMP等协议。   
+
+![Multiplexing](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/multiplexing.png)
 
 >注1     
 >**TCP协议**        
@@ -155,40 +157,35 @@ Packet从源主机到目的主机中可能含有多个链路集，路由器选�
 | 数据链路层 | 控制物理层与网络层之间的通信 | （网络工程师）把数据包变成0和1 |
 | 物理层 | 比特流传输 | （网络工程师）把0和1变成高低电压穿出去 |
 
-## 传输介质
----
-两个终端，只要通过一条能承载数据传输的物理介质连接，就能构成一个简单的网络      
-- 同轴电缆      
-![screenshot](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/coaxial_cable.png)        
-- 双绞线        
-![screenshot](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/twisted-pair_cables.png)        
-- 光纤      
-![screenshot](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/fiber_optic_cable.png)        
-- 串口电缆      
-![screenshot](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/v.24_35_cable.png)        
-
-比如企业网络中部署千兆以太网时，可以用双绞线或光纤。
-
-### 冲突域
-几台终端连上相同介质（同一条线路、hub等），同时发送数据包，电流信号叠加，也就是数据包发生碰撞（冲突），此时两个数据包就会丢失。       
-
-### 双工模式
-支持数据双向传输。         
-1. 全双工：收发之间不发生冲突
-2. 半双工：一部分线路收，一部分发。为解决收发之间产生的冲突，采**CSMA/CD**技术   
-
-### CSMA/CD
-- 冲突检测      
-- 冲突避免      
-- 先听后发、边发边听      
-比如A发一个电流信号出去，其实后面的BCD都可以收到，BCD一旦知道有人在发信号，就先退避等待。若两个主机已经产生碰撞，发送阻断信号给其他主机，按时间轮流占用线路。
-
 # 常用网络管理工具
-- 具有GUI如WireShark、Ping Plotter    
+- 具有GUI如Wireshark、Ping Plotter、Omnipeek    
 - traceroute、nslookup、dig、ipconfig和ifconfig
 
+# Packet Sniffing   
+利用Packet Sniffing（数据包嗅探）捕捉并分析送出或接受的packet。    
+![Packet Sniffing 1](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/packet_sniffing_1.png)    
+![Packet Sniffing 2](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/packet_sniffing_2.png)
+
+## Wireshark
+一个免费、开源的网络数据包分析软件。操作说明如下：   
+
+### 捕获接口配置
+1. 安装Wireshark后开启，点击Capture options，选择Input   
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark1.png)   
+
+2. 取消不必要的接口，激活混杂模式    
+> **Promiscuous Mode（混杂模式）**    
+接收所有经过网卡的数据包，包括不是发给本机的包。一般模式只接收发给本机的包，包括广播包，其他一律丢弃。    
+**捕获过滤器**：    
+捕获指定包
+
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark2.png)  
+
+3. 点击Start开始捕获包，可搭配Stop停止并储存。或是让Wireshark自动保存，此时需切换到Output。
+
 # 参考来源
-计算机网络 自顶向下方法
+计算机网络 自顶向下方法    
+[Wireshark 教程](https://www.bilibili.com/video/av26766650?from=search&seid=14999154455192681297)
 
 [Ethernet2.png]:
 https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Ethernet2.png
