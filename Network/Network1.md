@@ -181,7 +181,22 @@ Packet从源主机到目的主机中可能含有多个链路集，路由器选�
 
 ![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark2.png)  
 
-3. 点击Start开始捕获包，可搭配Stop停止并储存。或是让Wireshark自动保存，此时需切换到Output。
+3. 点击Start开始捕获包，可搭配Stop停止并储存。或是让Wireshark自动保存，此时需切换到Output。在Options则可选择是否解析网络名称（因消耗不少资源，不推荐）或Port等。
+
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark3.png)  
+
+### Preference 配置
+- 加入新的栏位，例如想要查看ttl    
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark4.png)  
+或者直接找出ttl值，右键添加至栏位    
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark5.png)  
+
+- 设置默认接口，点选左边Capture，右边Default Interface设置    
+- 过滤器   
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark6.png)   
+之后会在右上角出现自定义过滤器   
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark7.png)   
+- 
 
 # 参考来源
 计算机网络 自顶向下方法    
