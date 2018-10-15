@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        // js object to JSON
+        const personObj = {name: 'Kobe'};
+        const person = JSON.stringify(personObj);
+        console.log(typeof person);
+
+        // JSON to js object
+        const obj = JSON.parse(person);
+        console.log(typeof obj);
+
+        // Object.create(prototype, [descriptors])
+        const person1 = {username: 'Bob', age: 20};
+        const person2 = Object.create(person1, {
+            sex: {
+                value: 'M',
+                writable: true,
+                enumerable: true
+            },
+            title: {
+                value: 'chef',
+                writable: true,
+                configurable: false
+            }
+        });
+        console.log('person1', person1);
+        console.log('person2', person2);
+        person2.sex = 'F';
+        delete person2.sex; // not allowed
+        console.log('person2 updated', person2);
+
+        // Enum properties
+        for (const i in person2) {
+            console.log(i);
+            // title is not available due to enumerable = false
+        }
+
+        // Object
+        const person3 = {firstName: 'Conan', lastName: 'Bryan'};
+        const person4 = Object.defineProperties(person3, {
+            fullName: {
+                get: function () {
+                    return `${this.firstName} ${this.lastName}`;
+                },
+                set: function (data) {
+                    const name = data.split(' ');
+                    this.firstName = name[0];
+                    this.lastName = name[1];
+                }
+            }
+        });
+        const person5 = {
+            firstName: 'Conan',
+            lastName: 'Bryan',
+            get fullName () {
+                return `${this.firstName} ${this.lastName}`;
+            },
+            set fullName (data) {
+                const name = data.split(' ');
+                this.firstName = name[0];
+                this.lastName = name[1];
+            }
+        };
+
+        console.log(person4.fullName);
+        person4.fullName = "Conan O'Bryan";
+        console.log(person4.fullName);
+
+        console.log(person5.fullName);
+        person5.fullName = "Conan O'Bryan";
+        console.log(person5.fullName);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
