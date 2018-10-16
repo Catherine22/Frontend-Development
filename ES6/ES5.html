@@ -6,23 +6,23 @@
     <script type="text/javascript">
         'use strict';
         // 1
-        const name = 'Kobe';
+        let name = 'Kobe';
 
         // 2
         function Person(name, age){
             this.name = name;
             this.age = age;
         }
-        const person = new Person('Kobe', 39);
+        let person = new Person('Kobe', 39);
         console.log(person);
 
         // 3
-        const str = 'NBA';
+        let str = 'NBA';
         eval('var str = "CBA"; alert(str)');
         console.log(str);
 
         // 4
-        const obj = {
+        let obj = {
             name: 'Kobe',
             name: 'Wade'
         };
