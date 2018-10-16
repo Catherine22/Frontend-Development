@@ -69,7 +69,7 @@ for (let i in person2) {
 let person3 = {firstName: 'Conan', lastName: 'Bryan'};
 let person4 = Object.defineProperties(person3, {
     fullName: {
-        get: function () {
+        get: function() {
             return `${this.firstName} ${this.lastName}`;
             },
         set: function(data) {
@@ -197,7 +197,7 @@ We have a ```getX()``` for example,
 ```JavaScript
 let module = {
     x: 81,
-    getX: function () {
+    getX: function() {
         console.log('this', this);
         return this.x;
     }
@@ -307,11 +307,63 @@ for(let i=0; i<buttons.length; i++){
 ```
 
 > ```let```
-```let``` provides local scope （作用域） to execute a block of code.    
-In the for-loop case, for each i we just define with ```let``` owns a block scope
+> ```let``` provides local scope （作用域） to execute a block of code.    
+> In the for-loop case, for each i we just define with ```let``` owns a block scope
 
-```const```
 We use const to define a constant like ```const E = 2.71828183```.
 
+### 7. Destructing
+Let's say we have an object
+```JavaScript
+let conan = {username: "Conan O'brian", age: 55, gender: 'M'};
+```
+
+Or an array, and we want to pick up some of the elements.
+```JavaScript
+let colours = ['red', 'yellow', 'white', 'blue'];
+let [, y, , b] = colours;
+console.log(y, b); // yellow, blue
+```
+
+### 8. Merge String and variables to String
+```JavaScript
+var age = 10;
+console.log(`I am ${age}`);
+```
+### 9. Object Function
+In the past, we define functions of an object by key word ```myfunc: function() {}```. By contrast, we can simply define a function by ```myfunc() {}``` in ES6.
+```JavaScript
+let myPhone = {
+  colour: 'white',
+  typeOfPhone: 'iPhone',
+
+  // ES5 style
+  getColour: function() {
+      return this.colour;
+  },
+
+  // ES6 style
+  getType() {
+      return this.typeOfPhone;
+  }
+};
+console.log(myPhone.getColour()); // white
+console.log(myPhone.getType());  // iPhone
+```
+
+### 10. Arrow Function
+```JavaScript
+// No arguments
+let arrowFunc1 = () => console.log('I am an arrow function');
+// Single argument
+let arrowFunc2 = data => console.log(data);
+// Multiple arguments
+let arrowFunc3 = (data1, data2) => console.log(data1, data2);
+// Multiple lines
+let getCircumference = (radius) => {
+  const PI = 3.14;
+  return 2 * radius * PI;
+};
+```
 
 [ES6 example](https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6/ES6.html)

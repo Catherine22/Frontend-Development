@@ -50,10 +50,10 @@
         let person3 = {firstName: 'Conan', lastName: 'Bryan'};
         let person4 = Object.defineProperties(person3, {
             fullName: {
-                get: function () {
+                get () {
                     return `${this.firstName} ${this.lastName}`;
                 },
-                set: function (data) {
+                set (data) {
                     let name = data.split(' ');
                     this.firstName = name[0];
                     this.lastName = name[1];
@@ -103,11 +103,11 @@
         let myCar = {
             typeOfCar: 'Sedan',
             colour: 'Black',
-            spec: function () {
+            spec () {
                 console.log(this);
                 // console.log(`typeOfCar: ${this.typeOfCar}, colour: ${this.colour}`);
             },
-            update: function (typeOfCar, colour) {
+            update (typeOfCar, colour) {
                 this.typeOfCar = typeOfCar;
                 this.colour = colour;
                 console.log(this);
@@ -127,7 +127,7 @@
 
         let module = {
             x: 81,
-            getX: function () {
+            getX () {
                 console.log('this', this);
                 return this.x;
             }
@@ -157,6 +157,44 @@
 
         let flower = new LateBloomer();
         flower.bloom();
+
+        // Destruction
+        let conan = {username: "Conan O'brian", age: 55, gender: 'M'};
+        console.log(`username: ${conan.username}`);
+
+        let {username, age} = conan;
+        console.log(`username: ${username}, age: ${age}`);
+
+        let colours = ['red', 'yellow', 'white', 'blue'];
+        let [, y, , b] = colours;
+        console.log(y, b);
+
+        // Object Function
+        let myPhone = {
+            colour: 'white',
+            typeOfPhone: 'iPhone',
+            getColour: function() {
+                return this.colour;
+            },
+            getType() {
+                return this.typeOfPhone;
+            }
+        };
+        console.log(myPhone.getColour());
+        console.log(myPhone.getType());
+
+        // Arrow Function
+        let arrowFunc1 = () => console.log('I am an arrow function');
+        let arrowFunc2 = data => console.log(data);
+        let arrowFunc3 = (data1, data2) => console.log(data1, data2);
+        let getCircumference = (radius) => {
+            const PI = 3.14;
+            return 2 * radius * PI;
+        };
+        arrowFunc1();
+        arrowFunc2('YO');
+        arrowFunc3('Hi,', 'there!');
+        console.log(getCircumference(5));
     </script>
 </head>
 <body>
