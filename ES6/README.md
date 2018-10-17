@@ -366,4 +366,120 @@ let getCircumference = (radius) => {
 };
 ```
 
+Callback functions
+```JavaScript
+let btn1 = document.getElementById('btn1');
+btn1.onclick = function() {
+    alert("Click btn1");
+};
+```
+With arrow functions, we write
+```JavaScript
+let btn2 = document.getElementById('btn2');
+btn2.onclick = () => {
+    alert("Click btn2");
+};
+```
+> **this**
+In arrow functions, ```this``` refers to the object encapsulates this arrow function whereas no object wraps the arrow function, then the ```this``` of the arrow function refers to ```window```.
+
+```JavaScript
+var name = '???';
+
+let cat = {
+  name: 'Cat',
+  showName1: () => {
+    console.log(this, this.name);
+  },
+  showName2 : function() {
+    console.log(this, this.name);
+  }
+};
+cat.showName1(); // Window {postMessage: ƒ, blur: ƒ, …} "???"
+cat.showName2(); // {name: "Cat", showName1: ƒ, showName2: ƒ} "Cat"
+
+function showName1(name) {
+    console.log(this, name);
+}
+showName2 = (name) => {
+    console.log(this, name);
+};
+showName1('Dog'); // Window {postMessage: ƒ, blur: ƒ, …} "Dog"
+showName2('Dog'); // Window {postMessage: ƒ, blur: ƒ, …} "Dog"
+```
+
 [ES6 example](https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6/ES6.html)
+
+### ...
+1. Merge Array
+```JavaScript
+let a1 = [1, true, 's'];
+let a2 = ['p', 'q', ...a1]; // ["p", "q", 1, true, "s"]
+
+a1 = [2, 3, 4, 5];
+a2 = [1, ...a1, 6]; // [1, 2, 3, 4, 5, 6]
+```
+
+2. Clone objects
+```JavaScript
+let a1 = [1, true, 's'];
+let a3 = a1;
+a3.push('######');
+
+// a1: [1, true, "s", "######"]
+// a3: [1, true, "s", "######"]
+```
+
+To avoid to be manipulated by new reference a3, we use ```...``` as a key word to copy an independent object
+```JavaScript
+let a1 = [1, true, 's'];
+let a3 = [...a1];
+a3.push('######');
+
+// a1: [1, true, "s"]
+// a3: [1, true, "s", "######"]
+```
+### Default Arguments
+```JavaScript
+// default gender = 'M'
+function showPersonalInfo(name, gender = 'M') {
+}
+```
+
+### Promise
+To avoid Callback Hell    
+Three states of Promise:    
+- pending: initialising   
+- fullfilled: success   
+- rejected: fail
+
+```JavaScript
+new Promise((resolve, reject) => {
+  console.log('pending...');
+
+  // Do async tasks here, e.g. I/O operations
+  setTimeout(() => {
+      let randomResult = Math.floor(Math.random() * 2);
+      if (randomResult === 1) {
+          resolve({code: 200, info: 'Success'}); // success, the state will become fulfilled
+      } else {
+          reject({code: 404, info: 'Not found'}); // fail, the state will become rejected
+      }
+  }, 2000)
+}).then((message) => {
+    // fulfilled
+    console.log(`${message.code}: ${message.info}`);
+}, (message) => {
+    // rejected
+    console.log(`${message.code}: ${message.info}`);
+});
+console.log('After promise');
+
+// pending...
+// After promise
+// 200: Success
+```
+
+
+# Reference
+[尚硅谷前端HTML5视频 ECMAScript视频](https://www.bilibili.com/video/av27143015/?p=1)

@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <button>Button1</button>
+    <button id="btn1">Button1</button>
     <br>
-    <button>Button2</button>
+    <button id="btn2">Button2</button>
     <br>
-    <button>Button3</button>
+    <button id="btn3">Button3</button>
     <br>
 
     <script>
@@ -50,10 +50,10 @@
         let person3 = {firstName: 'Conan', lastName: 'Bryan'};
         let person4 = Object.defineProperties(person3, {
             fullName: {
-                get () {
+                get() {
                     return `${this.firstName} ${this.lastName}`;
                 },
-                set (data) {
+                set(data) {
                     let name = data.split(' ');
                     this.firstName = name[0];
                     this.lastName = name[1];
@@ -103,11 +103,11 @@
         let myCar = {
             typeOfCar: 'Sedan',
             colour: 'Black',
-            spec () {
+            spec() {
                 console.log(this);
                 // console.log(`typeOfCar: ${this.typeOfCar}, colour: ${this.colour}`);
             },
-            update (typeOfCar, colour) {
+            update(typeOfCar, colour) {
                 this.typeOfCar = typeOfCar;
                 this.colour = colour;
                 console.log(this);
@@ -127,7 +127,7 @@
 
         let module = {
             x: 81,
-            getX () {
+            getX() {
                 console.log('this', this);
                 return this.x;
             }
@@ -173,7 +173,7 @@
         let myPhone = {
             colour: 'white',
             typeOfPhone: 'iPhone',
-            getColour: function() {
+            getColour: function () {
                 return this.colour;
             },
             getType() {
@@ -195,6 +195,79 @@
         arrowFunc2('YO');
         arrowFunc3('Hi,', 'there!');
         console.log(getCircumference(5));
+
+        let btn1 = document.getElementById('btn1');
+        let btn2 = document.getElementById('btn2');
+        btn1.onclick = function () {
+            alert("Click btn1");
+        };
+        btn2.onclick = () => {
+            alert("Click btn2");
+        };
+
+        var name = '???';
+        let cat = {
+            name: 'Cat',
+            showName1: () => {
+                console.log(this, this.name);
+            },
+            showName2: function () {
+                console.log(this, this.name);
+            }
+        };
+
+        cat.showName1();
+        cat.showName2();
+
+        function showName1(name) {
+            console.log(this, name);
+        }
+
+        showName2 = (name) => {
+            console.log(this, name);
+        };
+        showName1('Dog');
+        showName2('Dog');
+
+        // ...
+        let a1 = [1, true, 's'];
+        let a2 = ['p', 'q', ...a1];
+        console.log(a2);
+        a1 = [2, 3, 4, 5];
+        a2 = [1, ...a1, 6];
+        console.log(a2);
+
+        let a3 = a1;
+        a3.push('######');
+        console.log(a1, a3);
+
+        a1 = [1, true, 's'];
+        a3 = [...a1];
+        a3.push('######');
+        console.log(a1, a3);
+
+        // Promise
+        new Promise((resolve, reject) => {
+            console.log('pending...');
+
+            // Do async tasks here, e.g. I/O operations
+            setTimeout(() => {
+                let randomResult = Math.floor(Math.random() * 2);
+                if (randomResult === 1) {
+                    resolve({code: 200, info: 'Success'}); // success, the state will become fulfilled
+                } else {
+                    reject({code: 404, info: 'Not found'}); // fail, the state will become rejected
+                }
+            }, 2000)
+        }).then((message) => {
+            // fulfilled
+            console.log(`${message.code}: ${message.info}`);
+        }, (message) => {
+            // rejected
+            console.log(`${message.code}: ${message.info}`);
+        });
+        console.log('After promise');
+
     </script>
 </head>
 <body>
