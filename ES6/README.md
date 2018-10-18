@@ -451,35 +451,96 @@ To avoid Callback Hell
 Three states of Promise:    
 - pending: initialising   
 - fullfilled: success   
-- rejected: fail
+- rejected: fail    
 
+
+E.g. Retrieve cities from https://agile-island-78787.herokuapp.com/openAPI/cities
 ```JavaScript
-new Promise((resolve, reject) => {
-  console.log('pending...');
+function getCities() {
+  return new Promise((resolve, reject) => {
+      console.log('pending...');
 
-  // Do async tasks here, e.g. I/O operations
-  setTimeout(() => {
-      let randomResult = Math.floor(Math.random() * 2);
-      if (randomResult === 1) {
-          resolve({code: 200, info: 'Success'}); // success, the state will become fulfilled
-      } else {
-          reject({code: 404, info: 'Not found'}); // fail, the state will become rejected
-      }
-  }, 2000)
-}).then((message) => {
-    // fulfilled
-    console.log(`${message.code}: ${message.info}`);
-}, (message) => {
-    // rejected
-    console.log(`${message.code}: ${message.info}`);
+      let xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function () {
+          if (xmlHttp.readyState === XMLHttpRequest.DONE) {
+              if (xmlHttp.status === 200) {
+                  // success
+                  resolve({data: xmlHttp.responseText});
+              } else {
+                  // fail to retrieve data
+                  reject({data: xmlHttp.status})
+              }
+          }
+      };
+
+      xmlHttp.open('GET', 'https://agile-island-78787.herokuapp.com/openAPI/cities');
+      xmlHttp.send();
+      console.log('request sent');
+  });
+}
+
+getCities().then((response) => {
+  console.log('fulfilled');
+  alert(response.data);
+}, (response) => {
+  console.log('rejected');
+  alert(`Error code: ${response.data}`);
 });
-console.log('After promise');
 
 // pending...
-// After promise
-// 200: Success
+// request sent
+// fulfilled or rejected
+// Show a response pop-up
 ```
 
+E.g. Get London id by cities API and get weather conditions with the id by weather API
+```JavaScript
+function connect(url) {
+  // GET https://agile-island-78787.herokuapp.com/openAPI/cities
+  // GET https://agile-island-78787.herokuapp.com/openAPI/weather?id=1851632
+  return new Promise((resolve, reject) => {
+      console.log('pending...');
+
+      let xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function () {
+          if (xmlHttp.readyState === XMLHttpRequest.DONE) {
+              if (xmlHttp.status === 200) {
+                  // success
+                  resolve({data: xmlHttp.responseText});
+              } else {
+                  // fail to retrieve data
+                  reject({data: xmlHttp.status})
+              }
+          }
+      };
+
+      xmlHttp.open('GET', url);
+      xmlHttp.send();
+  });
+}
+
+connect('https://agile-island-78787.herokuapp.com/openAPI/cities').then((response) => {
+    console.log('fulfilled');
+    let cities = JSON.parse(response.data);
+    cities.forEach(function (value, index) {
+        console.log(value);
+        if (value.city === 'London') {
+            connect(`https://agile-island-78787.herokuapp.com/openAPI/weather?id=${value.id}`)
+                .then((response) => {
+                    console.log('fulfilled');
+                    alert(response.data);
+                }, (response) => {
+                    console.log('rejected');
+                    alert(`Error code: ${response.data}`);
+                });
+        }
+    });
+    console.log(response.data);
+}, (response) => {
+    console.log('rejected');
+    alert(`Error code: ${response.data}`);
+});
+```
 
 # Reference
 [尚硅谷前端HTML5视频 ECMAScript视频](https://www.bilibili.com/video/av27143015/?p=1)

@@ -247,27 +247,74 @@
         console.log(a1, a3);
 
         // Promise
-        new Promise((resolve, reject) => {
-            console.log('pending...');
+        // new Promise((resolve, reject) => {
+        //     console.log('pending...');
+        //
+        //     // Do async tasks here, e.g. I/O operations
+        //     setTimeout(() => {
+        //         let randomResult = Math.floor(Math.random() * 2);
+        //         if (randomResult === 1) {
+        //             resolve({code: 200, info: 'Success'}); // success, the state will become fulfilled
+        //         } else {
+        //             reject({code: 404, info: 'Not found'}); // fail, the state will become rejected
+        //         }
+        //     }, 2000)
+        // }).then((message) => {
+        //     // fulfilled
+        //     console.log(`${message.code}: ${message.info}`);
+        // }, (message) => {
+        //     // rejected
+        //     console.log(`${message.code}: ${message.info}`);
+        // });
+        // console.log('After promise');
 
-            // Do async tasks here, e.g. I/O operations
-            setTimeout(() => {
-                let randomResult = Math.floor(Math.random() * 2);
-                if (randomResult === 1) {
-                    resolve({code: 200, info: 'Success'}); // success, the state will become fulfilled
-                } else {
-                    reject({code: 404, info: 'Not found'}); // fail, the state will become rejected
+
+        function connect(url) {
+            // GET https://agile-island-78787.herokuapp.com/openAPI/cities
+            // GET https://agile-island-78787.herokuapp.com/openAPI/weather?id=1851632
+            return new Promise((resolve, reject) => {
+                console.log('pending...');
+
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState === XMLHttpRequest.DONE) {
+                        if (xmlHttp.status === 200) {
+                            // success
+                            resolve({data: xmlHttp.responseText});
+                        } else {
+                            // fail to retrieve data
+                            reject({data: xmlHttp.status})
+                        }
+                    }
+                };
+
+                xmlHttp.open('GET', url);
+                xmlHttp.send();
+            });
+        }
+
+        connect('https://agile-island-78787.herokuapp.com/openAPI/cities').then((response) => {
+            console.log('fulfilled');
+            let cities = JSON.parse(response.data);
+            cities.forEach(function (value, index) {
+                console.log(value);
+                if (value.city === 'London') {
+                    connect(`https://agile-island-78787.herokuapp.com/openAPI/weather?id=${value.id}`)
+                        .then((response) => {
+                            console.log('fulfilled');
+                            alert(response.data);
+                        }, (response) => {
+                            console.log('rejected');
+                            alert(`Error code: ${response.data}`);
+                        });
                 }
-            }, 2000)
-        }).then((message) => {
-            // fulfilled
-            console.log(`${message.code}: ${message.info}`);
-        }, (message) => {
-            // rejected
-            console.log(`${message.code}: ${message.info}`);
+            });
+            console.log(response.data);
+        }, (response) => {
+            console.log('rejected');
+            alert(`Error code: ${response.data}`);
         });
-        console.log('After promise');
-
+        
     </script>
 </head>
 <body>
