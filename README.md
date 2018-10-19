@@ -1,4 +1,4 @@
-# Front-end-warm-up
+# Table of Contents
 ## JavaScript
 ### [JS Programming Language](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript)
 
