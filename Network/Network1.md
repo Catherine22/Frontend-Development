@@ -131,9 +131,9 @@ Internet Group Management Protocol，IGMP
 Dynamic Host Configuration Protocol，DHCP       
 帮助IP获取一台主机的网络层地址。        
 >
->**APR**     
+>**ARP**     
 地址解析协议，Address Resolution Protocol，ARP      
-帮助IP寻找一台主机或路由器链路层地址。      
+帮助IP寻找一台主机或路由器链路层地址（MAC Address）。      
 
 >注3     
 >**路由器**      
@@ -158,7 +158,7 @@ Packet从源主机到目的主机中可能含有多个链路集，路由器选�
 | 物理层 | 比特流传输 | （网络工程师）把0和1变成高低电压穿出去 |
 
 # 常用网络管理工具
-- 具有GUI如Wireshark、Ping Plotter、Omnipeek    
+- 具有GUI如Wireshark、Ping Plotter、OmniPeek    
 - traceroute、nslookup、dig、ipconfig和ifconfig
 
 # Packet Sniffing   
@@ -196,11 +196,47 @@ Packet从源主机到目的主机中可能含有多个链路集，路由器选�
 ![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark6.png)   
 之后会在右上角出现自定义过滤器   
 ![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark7.png)   
-- 
+
+### 常用Protocol设置
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark8.png)
+- IPv4    
+  - 不用传统的TOS位的解析，改用DiffServ栏位
+  - 不让Wireshark对IPv4的碎片做重组    
+  - GeoLocation需另外添加数据库才能看到相应的信息
+
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark9.png)
+- TCP   
+  - 不要用相对序列号，用真实的
+
+### 查找、标记和导出数据包
+用指令查询，首先点击查找按钮，调整过滤方式再输入条件，三个范例如下：    
+
+1. 查找目的或来源ip地址为74.125.10.153的包    
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark10.png)    
+
+2. 寻找ARP请求的广播    
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark11.png)    
+
+3. 以字符串搜寻   
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark12.png)  
+
+标记（鼠标右键，选择Mark/Unmark Packet）   
+导出特定分组（暂停，上方File栏位，选择Export Specific Packets，在Packet Range中选择Marked Packets Only）
+
+### 设置GeoLocation
+- Preferences中选择Protocol，让IPv4允许GeoLocation   
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark13.png)  
+
+- 下载MaxMind的地理信息数据库，注意Wireshark支援的数据库类型是[.mmdb](https://dev.maxmind.com/zh-hans/geoip/geoip2/geolite2/)还是[.dat](https://dev.maxmind.com/zh-hans/geoip/legacy/geolite/)    
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark14.png)    
+
+- 下载完所有.mmdb或.dat文件后放入同一个目录底下，Preferences中选择Name Resolution，MaxMind栏位选择Edit，添加刚才创建的目录   
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark15.png)    
+
 
 # 参考来源
 计算机网络 自顶向下方法    
-[Wireshark 教程](https://www.bilibili.com/video/av26766650?from=search&seid=14999154455192681297)
+[教主技术进化论 2018 第10期 Wireshark使用技巧](https://www.youtube.com/watch?v=5QkcjgWAAxU)
 
 [Ethernet2.png]:
 https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Ethernet2.png
