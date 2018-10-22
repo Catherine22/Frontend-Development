@@ -233,6 +233,15 @@ Packet从源主机到目的主机中可能含有多个链路集，路由器选�
 - 下载完所有.mmdb或.dat文件后放入同一个目录底下，Preferences中选择Name Resolution，MaxMind栏位选择Edit，添加刚才创建的目录   
 ![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark15.png)    
 
+- 在Ethernet II中看到地理信息   
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark16.png)  
+
+### 时间设置
+View - Time Display Format，选择适合的时间显示，比如绝对时间或相对时间（Seconds Since Beginning of Capture）。
+
+### 数据包捕获   
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark17.png)  
+54:25
 
 # 参考来源
 计算机网络 自顶向下方法    
