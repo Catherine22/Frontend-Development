@@ -263,8 +263,9 @@ const mount = (component, wrapper) => {
 let wrapper = document.querySelector('.wrapper');
 mount(new LikeButton(), wrapper);
 ```
-## [Lesson 5](http://huziketang.mangojuice.top/books/react/lesson5)
 
+## [Lesson 5](http://huziketang.mangojuice.top/books/react/lesson5)
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson5/src/App.js)
 My first React app, follow [the docs](https://reactjs.org/docs/create-a-new-react-app.html)     
 ```
 $npx create-react-app APP_NAME
@@ -274,6 +275,138 @@ $npx create-react-app APP_NAME
 $cd APP_NAME
 $npm start
 ```
+
+You might need to run ```$npm install``` or ```$yarn install``` to download node_modules if you clone code from GitHub
+
+## [Lesson 6](http://huziketang.mangojuice.top/books/react/lesson6)
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson6/src/App.js)
+Learn JSX and ```ReactDOM.render```
+
+Exercise:
+```javascript
+class App extends Component {
+    renderContent(text) {
+        return (
+            <h1>{text}</h1>
+        );
+    }
+
+    render() {
+        return (
+            <header>
+                {this.renderContent('I am h1')}
+            </header>
+        );
+    }
+}
+```
+
+## [Lesson 7](http://huziketang.mangojuice.top/books/react/lesson7)
+JSX example     
+```javascript
+class App extends Component {
+    renderLink() {
+        return (
+            <a
+                className="App-link"
+                href="https://reactjs.org"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Learn React
+            </a>
+        );
+    }
+
+    render() {
+        let word = 'JS property';
+        let showLink = true;
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <img src={logo} className="App-logo" alt="logo"/>
+                    <p>
+                        I am a {word}
+                    </p>
+                    <p>
+                        I am a {
+                        function () {
+                            return 'JS function';
+                        }()
+                    }
+                    </p>
+                    {showLink ? this.renderLink() : null}
+                </header>
+            </div>
+        );
+    }
+}
+```
+
+Exercise1:
+```javascript
+class App extends Component {
+
+    getNotificationsCount() {
+        return Math.floor(Math.random() * 4); // 0~3
+    }
+
+    render() {
+        let notifications = this.getNotificationsCount();
+        return (
+            <div>
+                {notifications > 0 ?
+                    <span>有{notifications}条未读消息</span> :
+                    <span>没有未读消息</span>
+                }
+            </div>
+        );
+    }
+}
+```
+Or
+```javascript
+class App extends Component {
+
+    getNotificationsCount() {
+        return Math.floor(Math.random() * 4); // 0~3
+    }
+
+    renderNotificationText(notifications) {
+            if (notifications > 0) {
+                return (<span>有{notifications}条未读消息</span>);
+            } else {
+                return (<span>没有未读消息</span>);
+            }
+        }
+        
+    render() {
+        let notifications = this.getNotificationsCount();
+        return (
+            <div>
+                {this.renderNotificationText(notifications)}
+            </div>
+        );
+    }
+}
+```
+
+Exercise2:
+```javascript
+class App extends Component {
+    render() {
+        const title = <h1 className='title'>ScriptOJ</h1>;
+        const page = <div className='content'>{title}</div>;
+        return (
+            <div>
+                {page}
+            </div>
+        );
+    }
+}
+```
+
+## [Lesson 8](http://huziketang.mangojuice.top/books/react/lesson8)
 
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
