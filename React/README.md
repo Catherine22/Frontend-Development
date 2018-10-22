@@ -188,6 +188,7 @@ Update views automatically while the state changes
 </script>
 ```
 
+## [Lesson 4](http://huziketang.mangojuice.top/books/react/lesson4)
 Define a component class to keep those functions and properties     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson4_1.html)
 ```javascript
@@ -262,5 +263,17 @@ const mount = (component, wrapper) => {
 let wrapper = document.querySelector('.wrapper');
 mount(new LikeButton(), wrapper);
 ```
+## [Lesson 5](http://huziketang.mangojuice.top/books/react/lesson5)
+
+My first React app, follow [the docs](https://reactjs.org/docs/create-a-new-react-app.html)     
+```
+$npx create-react-app APP_NAME
+```
+
+```
+$cd APP_NAME
+$npm start
+```
+
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
