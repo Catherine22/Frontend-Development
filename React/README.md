@@ -266,7 +266,7 @@ mount(new LikeButton(), wrapper);
 
 ## [Lesson 5](http://huziketang.mangojuice.top/books/react/lesson5)
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson5/src/App.js)
-My first React app, follow [the docs](https://reactjs.org/docs/create-a-new-react-app.html)     
+My first React app, follow the [docs](https://reactjs.org/docs/create-a-new-react-app.html)     
 ```
 $npx create-react-app APP_NAME
 ```
@@ -278,8 +278,8 @@ $npm start
 
 You might need to run ```$npm install``` or ```$yarn install``` to download node_modules if you clone code from GitHub
 
-## [Lesson 6](http://huziketang.mangojuice.top/books/react/lesson6)
-[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson6/src/App.js)
+## [Lesson 6](http://huziketang.mangojuice.top/books/react/lesson6)     
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson6/src/App.js)       
 Learn JSX and ```ReactDOM.render```
 
 Exercise:
@@ -301,7 +301,8 @@ class App extends Component {
 }
 ```
 
-## [Lesson 7](http://huziketang.mangojuice.top/books/react/lesson7)
+## [Lesson 7](http://huziketang.mangojuice.top/books/react/lesson7)     
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson7/src/App.js)       
 JSX example     
 ```javascript
 class App extends Component {
@@ -406,7 +407,74 @@ class App extends Component {
 }
 ```
 
-## [Lesson 8](http://huziketang.mangojuice.top/books/react/lesson8)
+## [Lesson 8](http://huziketang.mangojuice.top/books/react/lesson8)     
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson8/src/App.js)       
+
+Exercise        
+```javascript
+class App extends Component {
+    render() {
+        return (
+            <House/>
+        );
+    }
+}
+
+class House extends Component {
+    render() {
+        return (
+            <header>
+                <h1>House</h1>
+                <Room owner='Thomas'>Room</Room>
+                <Room owner='Richard'>Room</Room>
+                <Bathroom/>
+                <Man/>
+                <Dog/>
+            </header>
+        );
+    }
+}
+
+class Room extends Component {
+    render() {
+        return (
+            <div>
+                <h2>{this.props.owner ? `${this.props.owner}'s` : ''} Room</h2>
+            </div>
+        );
+    }
+}
+
+class Bathroom extends Component {
+    render() {
+        return (
+            <div>
+                <h2>Bathroom</h2>
+            </div>
+        );
+    }
+}
+
+class Man extends Component {
+    render() {
+        return (
+            <div>
+                <h3>Man</h3>
+            </div>
+        );
+    }
+}
+
+class Dog extends Component {
+    render() {
+        return (
+            <div>
+                <h3>Dog</h3>
+            </div>
+        );
+    }
+}
+```
 
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
