@@ -278,7 +278,7 @@ $npm start
 
 You might need to run ```$npm install``` or ```$yarn install``` to download node_modules if you clone code from GitHub
 
-## [Lesson 6](http://huziketang.mangojuice.top/books/react/lesson6)     
+## [Lesson 6](http://huziketang.mangojuice.top/books/react/lesson6) JSX     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson6/src/App.js)       
 Learn JSX and ```ReactDOM.render```     
 
@@ -286,7 +286,7 @@ Learn JSX and ```ReactDOM.render```
 在页面上增加一个 id 为 root 的 <div> 元素。然后请你完成一个 renderContent 函数，这个函数会把传入的任意字符串都包装到一个 <h1> 元素中并且渲染到页面上。     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson6/src/Exercise.js)   
 
-## [Lesson 7](http://huziketang.mangojuice.top/books/react/lesson7)     
+## [Lesson 7](http://huziketang.mangojuice.top/books/react/lesson7) JSX     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson7/src/App.js)   
 
 [Exercise1](http://scriptoj.mangojuice.top/problems/2)        
@@ -304,7 +304,7 @@ Learn JSX and ```ReactDOM.render```
 第二个变量 page 为一个具有类名为 content 的 <div> 元素，将之前定义的 title 变量插入其中作为它的内容。       
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson7/src/Exercise2.js)   
 
-## [Lesson 8](http://huziketang.mangojuice.top/books/react/lesson8)     
+## [Lesson 8](http://huziketang.mangojuice.top/books/react/lesson8) ```onClick```     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson8/src/App.js)       
 
 [Exercise](http://scriptoj.mangojuice.top/problems/4)        
@@ -322,7 +322,7 @@ Learn JSX and ```ReactDOM.render```
 完成 ```Dog``` 组件，当用户点击的时候会执行自身的 ```bark``` 和 ```run``` 方法。       
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson9/src/Exercise.js)       
 
-## [Lesson 10](http://huziketang.mangojuice.top/books/react/lesson10)     
+## [Lesson 10](http://huziketang.mangojuice.top/books/react/lesson10) ```state``` and ```setState```     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson10/src/LikeButton.js)       
 
 When we call ```setState```, the state won't be changed instantly. E.g. We bind a ```_onLikeButtonPressed``` function to a button,      
@@ -388,6 +388,58 @@ _onLikeButtonPressed() {
 有一只狗，不允许别人摸它，一旦摸它就会叫，然后就跑了；这只狗跑一段时间（20~50ms）以后就会停下来，也不叫了。       
 完成 ```Dog``` 组件，当用户点击的时候会执行自身的 ```bark``` 和 ```run``` 方法。给这个 ```Dog``` 组件加上状态 ```isRunning``` 和 ```isBarking```，在进行相应的动作的时候设置为 ```true```，停下来的时候设置为 ```false```。        
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson10/src/Exercise.js)   
+
+## [Lesson 11](http://huziketang.mangojuice.top/books/react/lesson11) ```props```     
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson11/src/LikeButton.js)   
+
+2 ways to set default props     
+```javascript
+render() {
+    const wordings = this.props.wordings || {
+        likeText: 'Like??',
+        cancelText: 'Cancel??'
+    };
+    
+    return (
+        <button className='like-btn' onClick={this._onButtonPressed.bind(this)}>
+            <span className='like-text'>{
+                this.state.isLike ? wordings.cancelText : wordings.likeText
+            }</span>
+            <span>👍</span>
+        </button>
+    );
+}
+```
+
+```javascript
+static defaultProps = {
+    wordings: {
+        likeText: 'Like??',
+        cancelText: 'Cancel??'
+    }
+};
+
+render() {
+    const {wordings} = this.props;
+    return (
+        <button className='like-btn' onClick={this._onButtonPressed.bind(this)}>
+            <span className='like-text'>{
+                this.state.isLike ? wordings.cancelText : wordings.likeText
+            }</span>
+            <span>👍</span>
+        </button>
+    );
+}
+```
+[Exercise](http://scriptoj.mangojuice.top/problems/7)       
+完成两个组件，电脑 ```Computer``` 和显示器 ```Screen```。     
+电脑有个 ```status``` 状态表示电脑现在是开还是关的，```status``` 为 ```on``` 为开，```status``` 为 ```off``` 为关，默认状态为 ```off```。电脑有个按钮，点击可以自由切换电脑的开关状态。     
+显示器接受一个名为 ```showContent``` 的 ```props```，显示器会把它内容显示出来。如果不传入 ```showContent```，显示器显示 “无内容”。       
+电脑包含显示器，当电脑状态为开的时候显示器显示“显示器亮了”，否则显示“显示器关了”。     
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson11/src/Exercise.js)   
+
+## [Lesson 12](http://huziketang.mangojuice.top/books/react/lesson12) Stateless Component       
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson12/src/App.js)   
 
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
