@@ -282,7 +282,9 @@ You might need to run ```$npm install``` or ```$yarn install``` to download node
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson6/src/App.js)       
 Learn JSX and ```ReactDOM.render```
 
-Exercise:
+[Exercise](http://scriptoj.mangojuice.top/problems/1)     
+在页面上增加一个 id 为 root 的 <div> 元素。然后请你完成一个 renderContent 函数，这个函数会把传入的任意字符串都包装到一个 <h1> 元素中并且渲染到页面上。      
+
 ```javascript
 class App extends Component {
     renderContent(text) {
@@ -302,49 +304,15 @@ class App extends Component {
 ```
 
 ## [Lesson 7](http://huziketang.mangojuice.top/books/react/lesson7)     
-[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson7/src/App.js)       
-JSX example     
-```javascript
-class App extends Component {
-    renderLink() {
-        return (
-            <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Learn React
-            </a>
-        );
-    }
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson7/src/App.js)   
 
-    render() {
-        let word = 'JS property';
-        let showLink = true;
-        return (
-            <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <p>
-                        I am a {word}
-                    </p>
-                    <p>
-                        I am a {
-                        function () {
-                            return 'JS function';
-                        }()
-                    }
-                    </p>
-                    {showLink ? this.renderLink() : null}
-                </header>
-            </div>
-        );
-    }
-}
-```
+[Exercise1](http://scriptoj.mangojuice.top/problems/2)        
 
-Exercise1:
+使用 React.js 构建一个未读消息组件 ```Notification```。        
+通过 ```getNotificationsCount()``` 来获取未读消息的数量 ，如果有未读消息 ```N``` 条，而且 ```N > 0```，那么 ```Notification``` 组件渲染显示：     
+```<span>有(N)条未读消息</span>```        
+否则显示：       
+```<span>没有未读消息</span>```
 ```javascript
 class App extends Component {
 
@@ -392,7 +360,11 @@ class App extends Component {
 }
 ```
 
-Exercise2:
+[Exercise2](http://scriptoj.mangojuice.top/problems/3)        
+用 JSX 完成两个变量的定义：        
+第一个变量 title 为一个具有类名为 title 的 <h1> 元素，其内容为 ScriptOJ；     
+第二个变量 page 为一个具有类名为 content 的 <div> 元素，将之前定义的 title 变量插入其中作为它的内容。       
+
 ```javascript
 class App extends Component {
     render() {
@@ -410,7 +382,11 @@ class App extends Component {
 ## [Lesson 8](http://huziketang.mangojuice.top/books/react/lesson8)     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson8/src/App.js)       
 
-Exercise        
+[Exercise](http://scriptoj.mangojuice.top/problems/4)        
+一个房子里面有一个房间和一个洗手间，房间里面有一个人和两条狗。     
+请你完成组件：```House```，```Room```，```Bathroom```，```Man```，```Dog```，它们的最外层都用 ```div``` 标签包裹起来，类名分别为：```house```，```room```，```bathroom```，```man```，```dog```。     
+组件的实现应该具有上述的嵌套关系。       
+
 ```javascript
 class App extends Component {
     render() {
@@ -475,6 +451,38 @@ class Dog extends Component {
     }
 }
 ```
+
+## [Lesson 9](http://huziketang.mangojuice.top/books/react/lesson9)     
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson9/src/App.js)       
+
+[Exercise](http://scriptoj.mangojuice.top/problems/5)   
+有一只狗，不允许别人摸它，一旦摸它就会叫，然后就跑了。     
+完成 ```Dog``` 组件，当用户点击的时候会执行自身的 ```bark``` 和 ```run``` 方法。       
+
+```javascript
+class Dog extends Component {
+
+    bark () {
+        console.log('bark');
+    }
+
+    run () {
+        console.log('run');
+    }
+
+    render () {
+        return (
+            <div>
+                <h1 onClick={()=>{
+                    this.bark();
+                    this.run();}}>
+                    DOG
+                </h1>
+            </div>);
+    }
+}
+```
+
 
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
