@@ -264,8 +264,8 @@ let wrapper = document.querySelector('.wrapper');
 mount(new LikeButton(), wrapper);
 ```
 
-## [Lesson 5](http://huziketang.mangojuice.top/books/react/lesson5)
-[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson5/src/App.js)
+## [Lesson 5](http://huziketang.mangojuice.top/books/react/lesson5)     
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson5/src/App.js)       
 My first React app, follow the [docs](https://reactjs.org/docs/create-a-new-react-app.html)     
 ```
 $npx create-react-app APP_NAME
@@ -280,28 +280,11 @@ You might need to run ```$npm install``` or ```$yarn install``` to download node
 
 ## [Lesson 6](http://huziketang.mangojuice.top/books/react/lesson6)     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson6/src/App.js)       
-Learn JSX and ```ReactDOM.render```
+Learn JSX and ```ReactDOM.render```     
 
 [Exercise](http://scriptoj.mangojuice.top/problems/1)     
-在页面上增加一个 id 为 root 的 <div> 元素。然后请你完成一个 renderContent 函数，这个函数会把传入的任意字符串都包装到一个 <h1> 元素中并且渲染到页面上。      
-
-```javascript
-class App extends Component {
-    renderContent(text) {
-        return (
-            <h1>{text}</h1>
-        );
-    }
-
-    render() {
-        return (
-            <header>
-                {this.renderContent('I am h1')}
-            </header>
-        );
-    }
-}
-```
+在页面上增加一个 id 为 root 的 <div> 元素。然后请你完成一个 renderContent 函数，这个函数会把传入的任意字符串都包装到一个 <h1> 元素中并且渲染到页面上。     
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson6/src/Exercise.js)   
 
 ## [Lesson 7](http://huziketang.mangojuice.top/books/react/lesson7)     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson7/src/App.js)   
@@ -312,72 +295,14 @@ class App extends Component {
 通过 ```getNotificationsCount()``` 来获取未读消息的数量 ，如果有未读消息 ```N``` 条，而且 ```N > 0```，那么 ```Notification``` 组件渲染显示：     
 ```<span>有(N)条未读消息</span>```        
 否则显示：       
-```<span>没有未读消息</span>```
-```javascript
-class App extends Component {
-
-    getNotificationsCount() {
-        return Math.floor(Math.random() * 4); // 0~3
-    }
-
-    render() {
-        let notifications = this.getNotificationsCount();
-        return (
-            <div>
-                {notifications > 0 ?
-                    <span>有{notifications}条未读消息</span> :
-                    <span>没有未读消息</span>
-                }
-            </div>
-        );
-    }
-}
-```
-Or
-```javascript
-class App extends Component {
-
-    getNotificationsCount() {
-        return Math.floor(Math.random() * 4); // 0~3
-    }
-
-    renderNotificationText(notifications) {
-            if (notifications > 0) {
-                return (<span>有{notifications}条未读消息</span>);
-            } else {
-                return (<span>没有未读消息</span>);
-            }
-        }
-        
-    render() {
-        let notifications = this.getNotificationsCount();
-        return (
-            <div>
-                {this.renderNotificationText(notifications)}
-            </div>
-        );
-    }
-}
-```
+```<span>没有未读消息</span>```       
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson7/src/Exercise1.js)     
 
 [Exercise2](http://scriptoj.mangojuice.top/problems/3)        
 用 JSX 完成两个变量的定义：        
 第一个变量 title 为一个具有类名为 title 的 <h1> 元素，其内容为 ScriptOJ；     
 第二个变量 page 为一个具有类名为 content 的 <div> 元素，将之前定义的 title 变量插入其中作为它的内容。       
-
-```javascript
-class App extends Component {
-    render() {
-        const title = <h1 className='title'>ScriptOJ</h1>;
-        const page = <div className='content'>{title}</div>;
-        return (
-            <div>
-                {page}
-            </div>
-        );
-    }
-}
-```
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson7/src/Exercise2.js)   
 
 ## [Lesson 8](http://huziketang.mangojuice.top/books/react/lesson8)     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson8/src/App.js)       
@@ -386,71 +311,8 @@ class App extends Component {
 一个房子里面有一个房间和一个洗手间，房间里面有一个人和两条狗。     
 请你完成组件：```House```，```Room```，```Bathroom```，```Man```，```Dog```，它们的最外层都用 ```div``` 标签包裹起来，类名分别为：```house```，```room```，```bathroom```，```man```，```dog```。     
 组件的实现应该具有上述的嵌套关系。       
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson8/src/Exercise.js)    
 
-```javascript
-class App extends Component {
-    render() {
-        return (
-            <House/>
-        );
-    }
-}
-
-class House extends Component {
-    render() {
-        return (
-            <header>
-                <h1>House</h1>
-                <Room owner='Thomas'>Room</Room>
-                <Room owner='Richard'>Room</Room>
-                <Bathroom/>
-                <Man/>
-                <Dog/>
-            </header>
-        );
-    }
-}
-
-class Room extends Component {
-    render() {
-        return (
-            <div>
-                <h2>{this.props.owner ? `${this.props.owner}'s` : ''} Room</h2>
-            </div>
-        );
-    }
-}
-
-class Bathroom extends Component {
-    render() {
-        return (
-            <div>
-                <h2>Bathroom</h2>
-            </div>
-        );
-    }
-}
-
-class Man extends Component {
-    render() {
-        return (
-            <div>
-                <h3>Man</h3>
-            </div>
-        );
-    }
-}
-
-class Dog extends Component {
-    render() {
-        return (
-            <div>
-                <h3>Dog</h3>
-            </div>
-        );
-    }
-}
-```
 
 ## [Lesson 9](http://huziketang.mangojuice.top/books/react/lesson9)     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson9/src/App.js)       
@@ -458,31 +320,74 @@ class Dog extends Component {
 [Exercise](http://scriptoj.mangojuice.top/problems/5)   
 有一只狗，不允许别人摸它，一旦摸它就会叫，然后就跑了。     
 完成 ```Dog``` 组件，当用户点击的时候会执行自身的 ```bark``` 和 ```run``` 方法。       
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson9/src/Exercise.js)       
 
+## [Lesson 10](http://huziketang.mangojuice.top/books/react/lesson10)     
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson10/src/LikeButton.js)       
+
+When we call ```setState```, the state won't be changed instantly. E.g. We bind a ```_onLikeButtonPressed``` function to a button,      
+Initialise the state        
 ```javascript
-class Dog extends Component {
-
-    bark () {
-        console.log('bark');
-    }
-
-    run () {
-        console.log('run');
-    }
-
-    render () {
-        return (
-            <div>
-                <h1 onClick={()=>{
-                    this.bark();
-                    this.run();}}>
-                    DOG
-                </h1>
-            </div>);
-    }
+this.state = {
+    'isLike': false
+}
+```      
+```javascript
+_onLikeButtonPressed() {
+    console.log('step1 like:', this.state.isLike);
+    this.setState({isLike: !this.state.isLike});
+    console.log('step2 count:', this.state.isLike);
 }
 ```
 
+When the button is clicked, the ```state``` should have been updated, we expected that it will print different results on step1 and step2. (step1 isLike: false step2 isLike: true)       
+However, we will get log:     
+```
+step1 isLike: false
+step2 isLike: false
+```
+
+In fact, the ```state``` won't update itself immediately.       
+
+### last state
+React Native will keep the last state even if ```state``` isn't updated yet.        
+In order to get the previous state, here is an example. We bind a ```_onLikeButtonPressed``` function to a button,      
+Initialise the state             
+```javascript
+this.state = {
+    'count': 0
+}
+```
+```javascript
+_onLikeButtonPressed() {
+    console.log('count:', this.state.count);
+    this.setState({count: this.state.count + 1});
+    this.setState({count: this.state.count + 1});
+}
+```
+We expect that count will be increased like 0, 2, 4... , but it prints logs that        
+```javascript
+count: 0
+count: 1
+count: 2
+```
+
+Because the latest ```state``` hasn't been saved yet, to get the latest ```state```, we use arrow functions to retrieve it      
+```javascript
+_onLikeButtonPressed() {
+    console.log('count:', this.state.count);
+    this.setState({count: this.state.count + 1});
+    this.setState((prevState) => {
+        return {count: prevState.count + 1};
+    });
+}
+```
+**It's noticeable that even though we have called ```setState``` a couple of times, the ```render()``` method will be called once.**    
+
+[Exercise](http://scriptoj.mangojuice.top/problems/6)   
+有一只狗，不允许别人摸它，一旦摸它就会叫，然后就跑了；这只狗跑一段时间（20~50ms）以后就会停下来，也不叫了。       
+完成 ```Dog``` 组件，当用户点击的时候会执行自身的 ```bark``` 和 ```run``` 方法。给这个 ```Dog``` 组件加上状态 ```isRunning``` 和 ```isBarking```，在进行相应的动作的时候设置为 ```true```，停下来的时候设置为 ```false```。        
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson10/src/Exercise.js)   
 
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
