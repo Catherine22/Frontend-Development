@@ -5,7 +5,7 @@ JavaScript = ECMAScript + DOM + BOM
 ## Get started
 - Upper case and lower case are different
 - ***Every statement must end with ```;```.*** Browsers automatically create ```;``` while the developer does not use ```;```. However, that impacts the performance. The worst of all, browsers sometimes add ```;``` incorrectly.
-- Blanks and empty lines are ignored. 
+- Blanks and empty lines are ignored.
 
 ### literal， 字面量
 literals are allowed to be used directly. For example:      
@@ -24,7 +24,7 @@ An JS identifier might constants numbers, alphabets, underscores and currency sy
 var $123_a = 0;
 ```
 
-### Type, 数据类型      
+### Type, 数据类型<a name="Type"></a>      
 There are six data types in JavaScript:     
 - String        
 - Number        
@@ -82,7 +82,7 @@ console.log(count + ' prime numbers were found');
 
 ### Object
 Object combines and associates multiple types (String, Number, Boolean and Object)
-        
+
 Three different kinds of Object:        
 1. 内建对象     
     a. ES standard      
@@ -90,7 +90,7 @@ Three different kinds of Object:
 2. 宿主对象     
     a. Object offered by the runtime environment (browser). E.g. BOM, DOM       
 3. 自定义对象
-    
+
 E.g. Create an object with name and age properties.
 ```javascript
 var person = new Object();
@@ -106,7 +106,7 @@ person['age'] = 18;
 or
 ```javascript
 var person = {
-    name: 'Scout', 
+    name: 'Scout',
     age: 18
 };
 ```
@@ -148,7 +148,7 @@ Heap
 |         |                |
 |         |                |
 | 0x001   | name = 'Scout' |
-        
+
 In stack, the value refers to addresses.    
 Stack       
 
@@ -447,7 +447,7 @@ showCar.apply({car: 'Motorhome'}, ['white']); // Motorhome, color=white
 ```
 [Function.js]
 
-## Garbage Collection 
+## Garbage Collection
 Browsers automatically deal with rubbish (which are basically objects do not be refer by a specific key in the stack) in the heap, there are different solution depends on the browser.
 
 ## Array
@@ -669,7 +669,7 @@ console.log(message.split(/[A-z]/));
 E.g. Search THE FIRST 'abc', 'adc' or 'aec' from String
 ```javascript
 message = 'a$bcdef cda a_e_c 0280aec4792';
-console.log(message.search(/a[bde]c/)); 
+console.log(message.search(/a[bde]c/));
 // 22
 ```
 
@@ -778,8 +778,8 @@ A135-1234-1234A: false}
 
 ```javascript
 randomString = [
-  'test@test.com', 'a.b_@gmail.com', 'david.lim@gmail.com', 
-  'test@test_1.com', 'testgmail.com', 'test@gmail', 'test@@test.com', 'test@test.a', 'test@abcdfghjklertyui.com.abc.qwert.12345', 
+  'test@test.com', 'a.b_@gmail.com', 'david.lim@gmail.com',
+  'test@test_1.com', 'testgmail.com', 'test@gmail', 'test@@test.com', 'test@test.a', 'test@abcdfghjklertyui.com.abc.qwert.12345',
   'test@ddd.abcdef', 'test@abc.com.dddddd', 'test!@gmail.com', 'test..c@gmail.com', 'test@abc.123', 'david.lim@gmail.comorgm'];
 
 reg = /\w{3,}(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
@@ -836,7 +836,7 @@ In HTML, we have 4 type of nodes:
 3. Attribute: ```id="pid"```       
 4. Text: ```This is a paragraph```
 
-In HTML, code will be loaded from the top. For example, 
+In HTML, code will be loaded from the top. For example,
 ```html
 <head>
     <script type="text/javascript">
