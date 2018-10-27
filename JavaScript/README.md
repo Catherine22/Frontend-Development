@@ -1,15 +1,31 @@
 # JavaScript
 
 JavaScript = ECMAScript + DOM + BOM     
-[Literal](#Literal)   
-[Constructor](#Constructor)
 
 ## Get started
 - Upper case and lower case are different
 - ***Every statement must end with ```;```.*** Browsers automatically create ```;``` while the developer does not use ```;```. However, that impacts the performance. The worst of all, browsers sometimes add ```;``` incorrectly.
 - Blanks and empty lines are ignored.
 
-### Literal， 字面量 <span id="Literal" />
+## Navigator
+- Get started
+  - [Literal， 字面量](#Literal)   
+  - [Identifier, 标识符](#Identifier)   
+  - [Type, 数据类型](#Type)   
+  - [Operator, 运算符或操作符](#Operator)   
+  - [Flow control and looping,  流程控制](#Flow)    
+  - [Object](#Object)   
+  - [Function](#Function)   
+  - [Constructor, 构造函数](#Constructor)   
+  - [Prototype](#Prototype)   
+- [GC, Garbage Collection](#GC)   
+- [Array](#Array)   
+- [Regular expression, 正则表达式](#正则表达式)   
+- [ECMAScrip](#ECMAScrip)   
+- [宿主对象](#宿主对象)   
+- [Reference](#Reference)   
+
+### Literal
 literals are allowed to be used directly. For example:      
 ```javascript
 alert(152013257012304);
@@ -20,13 +36,13 @@ var id = 152013257012304;
 alert(id);
 ```
 
-### Identifier, 标识符      
+### Identifier      
 An JS identifier might constants numbers, alphabets, underscores and currency symbols ($). But starting with a number is illegal.        
 ```javascript
 var $123_a = 0;
 ```
 
-### Type, 数据类型<a name="Type"></a>      
+### Type      
 There are six data types in JavaScript:     
 - String        
 - Number        
@@ -41,10 +57,10 @@ There are six data types in JavaScript:
 
 Go to [Type.js] to see more.
 
-### Operator, 运算符或操作符
+### Operator
 Go to [Operator.js] to see more.
 
-### Flow control and looping,  流程控制  
+### Flow  
 ```javascript
 var cars = ["BMW", "Volvo", "Saab", "Ford"];
 var i = 0;
@@ -345,7 +361,7 @@ obj.showName = function() {
 obj.showName();
 ```
 
-### 构造函数，Constructor <span id="Constructor" />
+### Constructor
 Technically, Constructor is a function used to create objects, Constructor usually starts with a capital letter.        
 Use ```new``` to call a constructor.        
 ```javascript
@@ -449,7 +465,7 @@ showCar.apply({car: 'Motorhome'}, ['white']); // Motorhome, color=white
 ```
 [Function.js]
 
-## Garbage Collection
+## GC
 Browsers automatically deal with rubbish (which are basically objects do not be refer by a specific key in the stack) in the heap, there are different solution depends on the browser.
 
 ## Array
@@ -583,7 +599,7 @@ console.log(randoms); // [10, 9, 7, 4, 2]
 ```
 [Array.js]
 
-## Regular expression, 正则表达式
+## 正则表达式
 NO BLANKS       
 ```javascript
 const reg = new RegExp('YOUR_RULE', 'MODE')
@@ -803,6 +819,7 @@ test@test_1.com]
 
 ## ECMAScrip
 A specification for JavaScript. JavaScript will be executed by a distinct engine of individual browser. V8 engine of Chrome for example, showing high performance while running JavaScript.     
+GO to [ES6  example](https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6) to learn more.
 
 ### ESLint
 ```
@@ -891,7 +908,7 @@ However, the ```window.onload``` can be place on the top or bottom of the script
 ## Tips
 - Try to package JS code outside html files so that the JS code is able to be reused or cached by browsers. See [Introduction]
 
-## Cast
+## Reference
 [尚硅谷JavaScript视频]
 
 
