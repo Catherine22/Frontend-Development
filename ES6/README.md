@@ -4,7 +4,28 @@ ES6, ECMAScript 2015: First released in 2015
 ES7, ECMAScript 2016: First released in 2016    
 ES8, ECMAScript 2016: First released in 2017
 
-## ES5 Review
+## Navigator
+- [ES5 Review](#ES5_Review)       
+    - [Strict Mode](#Strict_Mode)       
+- [ES6 Review](#ES6_Review)        
+  - [1. JSON](#JSON)   
+  - [2. Create Objects](#Create_objects)   
+  - [3. Object Properties](#Object_Properties)   
+  - [4. Array](#Array)   
+  - [5. ```bind()```, ```call()``` and ```apply()```](#bind_call_and_apply)    
+  - [6. ```var```, ```let``` and ```const```](#var_let_and_const)   
+  - [7. Destructing](#Destructing)   
+  - [8. Merge_String_and_variables_to_String](#Merge_String_and_variables_to_String)   
+  - [9. Object Function](#Object_Function)   
+  - [10. Arrow Function](#Arrow_Function)   
+  - [11. ...](#Triple_dots)   
+  - [12. Default Arguments](#Default_Arguments)   
+  - [13. Promise](#Promise)   
+  - [14. Symbol](#Symbol)        
+- [Reference](#Reference)   
+
+
+## ES5_Review
 1. Define variables by ```var```    
 2. Define function letructor by ```new```
 3. ```eval```   
@@ -12,17 +33,20 @@ ES8, ECMAScript 2016: First released in 2017
 
 [ES5 example](https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6/ES5.html)
 
-### Strict Mode
+### Strict_Mode
 ```JavaScript
 'use strict';
 ```
 
-## ES6 Review
-### 1. JSON   
+## ES6_Review
+### JSON   
 - Convert JSON to JS objects via ```var JS_OBJECT = JSON.parse(JSON_STRING)```    
 - Convert JS objects to JSON via ```var JSON_STRING = JSON.stringify(JS_OBJECT)```    
 
-### 2. Object.create(prototype, [descriptors])    
+### Create_Objects    
+```JavaScript
+Object.create(prototype, [descriptors])
+```
 - ```value```: the value of the property   
 - ```writable```: (false) whether or not the value can be modified    
 - ```configurable```: (false) whether or not the value can be removed     
@@ -64,7 +88,10 @@ for (let i in person2) {
 }
 ```
 
-### 3. Object.defineProperties(object, [descriptors])
+### Object_Properties
+```JavaScript
+Object.defineProperties(object, [descriptors])
+```
 ```JavaScript
 let person3 = {firstName: 'Conan', lastName: 'Bryan'};
 let person4 = Object.defineProperties(person3, {
@@ -104,7 +131,7 @@ person5.fullName = "Conan O'Bryan";
 console.log(person5.fullName); // firstName = Conan, lastName = 'O'Bryan'
 ```
 
-### 4. Array
+### Array
 ```JavaScript
 let arr = ['A', 'B', 'C', 'D', 'A', 'B', 'C', 'D'];
 ```
@@ -144,7 +171,7 @@ let newArr = arr.map(function(value, index){
 // newArr = ["A", "C", "A", "C"]
 ```
 
-### 5. bind(), call() and apply()
+### bind_call_and_apply
 **call() vs apply()**
 We have 3 ways to run a function: ```func()```, ```func.call()``` and ```func.apply()```. When it comes to ```call()``` and ```apply()```, the first argument we input is used to assign to ```this```.         
 For example.        
@@ -242,7 +269,7 @@ let flower = new LateBloomer();
 flower.bloom();
 ```
 
-### 6. ```var```, ```let``` and ```const```
+### var_let_and_const
 Example 1,
 ```JavaScript
 console.log(aVar); // undefined
@@ -312,7 +339,7 @@ for(let i=0; i<buttons.length; i++){
 
 We use const to define a constant like ```const E = 2.71828183```.
 
-### 7. Destructing
+### Destructing
 Let's say we have an object
 ```JavaScript
 let conan = {username: "Conan O'brian", age: 55, gender: 'M'};
@@ -325,12 +352,12 @@ let [, y, , b] = colours;
 console.log(y, b); // yellow, blue
 ```
 
-### 8. Merge String and variables to String
+### Merge_String_and_variables_to_String
 ```JavaScript
 var age = 10;
 console.log(`I am ${age}`);
 ```
-### 9. Object Function
+### Object_Function
 In the past, we define functions of an object by key word ```myfunc: function() {}```. By contrast, we can simply define a function by ```myfunc() {}``` in ES6.
 ```JavaScript
 let myPhone = {
@@ -351,7 +378,7 @@ console.log(myPhone.getColour()); // white
 console.log(myPhone.getType());  // iPhone
 ```
 
-### 10. Arrow Function
+### Arrow_Function
 ```JavaScript
 // No arguments
 let arrowFunc1 = () => console.log('I am an arrow function');
@@ -410,7 +437,7 @@ showName2('Dog'); // Window {postMessage: ƒ, blur: ƒ, …} "Dog"
 
 [ES6 example](https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6/ES6.html)
 
-### ...
+### Triple_dots
 1. Merge Array
 ```JavaScript
 let a1 = [1, true, 's'];
@@ -439,7 +466,7 @@ a3.push('######');
 // a1: [1, true, "s"]
 // a3: [1, true, "s", "######"]
 ```
-### Default Arguments
+### Default_Arguments
 ```JavaScript
 // default gender = 'M'
 function showPersonalInfo(name, gender = 'M') {
@@ -541,6 +568,8 @@ connect('https://agile-island-78787.herokuapp.com/openAPI/cities').then((respons
     alert(`Error code: ${response.data}`);
 });
 ```
+
+### Symbol
 
 # Reference
 [尚硅谷前端HTML5视频 ECMAScript视频](https://www.bilibili.com/video/av27143015/?p=1)

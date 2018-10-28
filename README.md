@@ -34,3 +34,5 @@
 - Wireshark   
 
 ### [Application Layer](https://github.com/Catherine22/Front-end-warm-up/blob/master/Network/Network2.md)
+- client-server paradigm    
+- peer-to-peer paradigm
