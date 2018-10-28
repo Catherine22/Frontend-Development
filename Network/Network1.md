@@ -350,15 +350,21 @@ not src and dst net 196.21.5.254
 Wireshark自动生成过滤条件   
 ![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark22.png)    
 
-另一个实例：   
+另一个实例，改用複製的方式获取过滤条件   
 ![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark23.png)    
-Wireshark自动生成过滤条件   
+黏贴至过滤栏位   
 ![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark24.png)    
 
 ***注意：显示过滤器和捕获过滤器的语法不同***   
 比如捕获ip为192.168.0.1用```ip host 192.168.0.1```或可省略为```host 192.168.0.1```，但在显示过滤器中则用```ip.addr == 192.168.0.1```，显示过滤器的功能更多。    
 
+***[Wireshark显示过滤器列表](https://www.wireshark.org/docs/dfref/)***
+### 其他
+#### 追踪流    
 
+查看TCP流，可以捕获明码内容    
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark25.png)    
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark26.png)    
 
 # 参考来源
 计算机网络 自顶向下方法    
