@@ -283,7 +283,7 @@ You might need to run ```$npm install``` or ```$yarn install``` to download node
 Learn JSX and ```ReactDOM.render```     
 
 [Exercise](http://scriptoj.mangojuice.top/problems/1)     
-在页面上增加一个 id 为 root 的 <div> 元素。然后请你完成一个 renderContent 函数，这个函数会把传入的任意字符串都包装到一个 <h1> 元素中并且渲染到页面上。     
+在页面上增加一个 id 为 root 的 ```<div>``` 元素。然后请你完成一个 renderContent 函数，这个函数会把传入的任意字符串都包装到一个 ```<h1>``` 元素中并且渲染到页面上。     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson6/src/Exercise.js)   
 
 ## [Lesson 7](http://huziketang.mangojuice.top/books/react/lesson7) JSX     
@@ -300,8 +300,8 @@ Learn JSX and ```ReactDOM.render```
 
 [Exercise2](http://scriptoj.mangojuice.top/problems/3)        
 用 JSX 完成两个变量的定义：        
-第一个变量 title 为一个具有类名为 title 的 <h1> 元素，其内容为 ScriptOJ；     
-第二个变量 page 为一个具有类名为 content 的 <div> 元素，将之前定义的 title 变量插入其中作为它的内容。       
+第一个变量 title 为一个具有类名为 title 的 ```<h1>``` 元素，其内容为 ScriptOJ；     
+第二个变量 page 为一个具有类名为 content 的 ```<div>``` 元素，将之前定义的 title 变量插入其中作为它的内容。       
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson7/src/Exercise2.js)   
 
 ## [Lesson 8](http://huziketang.mangojuice.top/books/react/lesson8) ```onClick```     
