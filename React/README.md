@@ -441,5 +441,92 @@ render() {
 ## [Lesson 12](http://huziketang.mangojuice.top/books/react/lesson12) Stateless Component       
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson12/src/App.js)   
 
+## [Lesson 13](http://huziketang.mangojuice.top/books/react/lesson12) ListView       
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson13/src/App.js)   
+
+Run JS inside JSX tags, we use `{}`      
+```javascript
+const name = 'Jeff';
+<div>{name}<div>
+```
+
+Put JSX inside JS code block        
+```javascript
+<header className="App-header">
+{
+    <div><h1>Line 1</h1></div>
+}
+</header>
+```
+
+Or more JSX     
+```javascript
+<header className="App-header">
+{
+    [
+        <div><h1>Line 1</h1></div>,
+        <div><h2>Line 2</h2></div>,
+        <div>Line 3</div>
+     ]
+}
+</header>
+```
+
+Let's say we have a user list
+```javascript
+const users = [
+    {username: 'Jerry', age: 21, gender: 'male'},
+    {username: 'Tomy', age: 22, gender: 'male'},
+    {username: 'Lily', age: 19, gender: 'female'},
+    {username: 'Lucy', age: 20, gender: 'female'}
+];
+```
+
+In order to show users on our view
+```javascript
+render() {
+    const userElements = [];
+    for (let user of users) {
+        userElements.push(
+            <div key={user.username}>
+                <div>{`name: ${user.username}`}</div>
+                <div>{`age: ${user.age}`}</div>
+                <div>{`sex: ${user.gender}`}</div>
+                <hr/>
+            </div>
+        );
+    }
+    return (
+        <div className="App">
+            <header className="App-header">{ userElements }</header>
+        </div>
+    );
+}
+```
+
+**This code can be optimised to be ES6 style**
+```javascript
+render() {
+    return (
+        <div className="App">
+            <header className="App-header">
+            {
+                users.map((user, index) => {
+                    return (
+                        <div key={index}>
+                            <div>{`name: ${user.username}`}</div>
+                            <div>{`age: ${user.age}`}</div>
+                            <div>{`sex: ${user.gender}`}</div>
+                            <hr/>
+                         </div>
+                    );
+                })
+            }
+            </header>
+        </div>
+    );
+}
+```
+
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
