@@ -31,8 +31,9 @@
         <!--Foreground Service-->
 
         <!--JobScheduler-->
-        <service android:name=".jobs.MyJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE" ></service>
+        <service
+            android:name=".jobs.MyJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"></service>
         <!--JobScheduler-->
 
         <!--Firebase-->

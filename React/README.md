@@ -441,7 +441,7 @@ render() {
 ## [Lesson 12](http://huziketang.mangojuice.top/books/react/lesson12) Stateless Component       
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson12/src/App.js)   
 
-## [Lesson 13](http://huziketang.mangojuice.top/books/react/lesson12) ListView       
+## [Lesson 13](http://huziketang.mangojuice.top/books/react/lesson13) ListView       
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson13/src/App.js)   
 
 Run JS inside JSX tags, we use `{}`      
@@ -527,6 +527,10 @@ render() {
     );
 }
 ```
+
+## [Lesson 14](http://huziketang.mangojuice.top/books/react/lesson14) Commands       
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson14/src/App.js)   
+
 
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)

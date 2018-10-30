@@ -1,0 +1,79 @@
+.commentInput {
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    height: auto;
+    width: 75vh;
+    display: flex;
+    flex-direction: row;
+    font-size: calc(10px + 2vmin);
+    margin: auto;
+}
+
+.inputTitle {
+    margin: 20px;
+    width: 20vh;
+    align-items: flex-end;
+    flex-direction: column;
+    display: flex;
+}
+
+.inputField {
+    margin: 20px;
+    font-size: calc(10px + 2vmin);
+    align-items: center;
+    display: table;
+}
+
+.standardText {
+    font-size: calc(10px + 2vmin);
+    text-align: center;
+}
+
+.singleLineInputField {
+    width: 40vh;
+    height: calc(10px + 2vmin);
+    align-items: flex-start;
+}
+
+.multiLinesInputField {
+    width: 40vh;
+    height: calc(10px + 20vmin);
+    align-items: flex-start;
+}
+
+.standardButton {
+    width: 10vh;
+    height: 5vh;
+    background-color: royalblue;
+    font-size: calc(6px + 2vmin);
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    float: right;
+}
+
+.commentView {
+    flex-direction: column-reverse;
+    height: auto;
+    width: 75vh;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    margin-top: 2vh;
+}
+
+.commentUser {
+    color: royalblue;
+    font-size: calc(6px + 2vmin);
+}
+
+.commentContent {
+    color: black;
+    font-size: calc(6px + 2vmin);
+}
+
+.hr {
+    color: lightgrey;
+    width: 75vh;
+    display: flex;
+}
