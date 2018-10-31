@@ -5,7 +5,7 @@ const Comment = (props) => (
     <div className="commentView">
         <hr className="hr"/>
         <div>
-            <label className="commentUser">{`${props.user}: `}</label>
+            <label className="commentUser">{`${props.username}: `}</label>
             <label className="commentContent">{props.content}</label>
         </div>
     </div>

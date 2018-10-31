@@ -3,11 +3,20 @@ import {Comment} from './';
 
 class CommentList extends Component {
 
+    static defaultProps = {
+        comments: []
+    };
+
     render() {
+        const {comments} = this.props;
         return (
             <div>
-                <Comment user="user1" content="comment1"/>
-                <Comment user="user2" content="comment2"/>
+                {
+                    comments.reverse().map((comment, index) => <Comment key={index} username={comment.username}
+                                                              content={comment.content}/>
+
+                    )
+                }
             </div>
         );
     }

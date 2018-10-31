@@ -531,6 +531,25 @@ render() {
 ## [Lesson 14](http://huziketang.mangojuice.top/books/react/lesson14) Commands       
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson14/src/App.js)   
 
+![demo](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/lesson14.png)
+
+Notice, to push elements to an array which is a value of the state, for example,        
+```javascript
+constructor(props) {
+    super(props);
+    this.state = {
+        comments: []
+    };
+}
+```
+
+Update the array by ```...```
+```javascript
+_onSubmit(comment) {
+    this.setState({comments: [...this.state.comments, comment]});
+}
+```
+
 
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)

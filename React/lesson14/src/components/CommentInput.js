@@ -16,21 +16,32 @@ class CommentInput extends Component {
         super(props);
 
         this.state = {
-            userInput: "",
-            commentInput: "";
-    }
-    }
-
-    _onSubmitPressed() {
+            username: '',
+            content: ''
+        }
     }
 
-
-    _updateUserInputValue() {
+    _onUserLabelChange(event) {
+        this.setState({
+            username: event.target.value
+        })
     }
 
-
-    _updateCommentInputValue() {
+    _onCommentLabelChange(event) {
+        this.setState({
+            content: event.target.value
+        })
     }
+
+    _onSubmit() {
+        if (this.props.onSubmit) {
+            this.props.onSubmit(this.state);
+        }
+        this.setState({
+            content: ''
+        });
+    }
+
 
     render() {
         return (
@@ -40,24 +51,24 @@ class CommentInput extends Component {
                         <label className="text">{this.props.wordings.userName}</label>
                         <label className="text">{this.props.wordings.comment}</label>
                     </div>
-                    <form className="inputField">
+                    <div className="inputField">
                         <div>
                             <label>
-                                <input type="standardText" name="userInput" className="singleLineInputField"
-                                       value={this.state.userInput}
-                                       onChange={(text) => this._updateUserInputValue(text)}/>
+                                <input type="standardText" className="singleLineInputField"
+                                       value={this.state.username}
+                                       onChange={this._onUserLabelChange.bind(this)}/>
                             </label>
                         </div>
                         <div>
                             <label>
-                                <input type="standardText" name="commentInput" className="multiLinesInputField"
-                                       value={this.state.commentInput}
-                                       onChange={(text) => this._updateCommentInputValue(text)}/>
+                                <input type="standardText" className="multiLinesInputField"
+                                       value={this.state.content}
+                                       onChange={this._onCommentLabelChange.bind(this)}/>
                             </label>
                         </div>
                         <button className="standardButton"
-                                onClick={this._onSubmitPressed.bind(this)}>{this.props.wordings.submit}</button>
-                    </form>
+                                onClick={this._onSubmit.bind(this)}>{this.props.wordings.submit}</button>
+                    </div>
                 </div>
             </div>
         );
