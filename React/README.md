@@ -431,6 +431,7 @@ render() {
     );
 }
 ```
+
 [Exercise](http://scriptoj.mangojuice.top/problems/7)       
 完成两个组件，电脑 ```Computer``` 和显示器 ```Screen```。     
 电脑有个 ```status``` 状态表示电脑现在是开还是关的，```status``` 为 ```on``` 为开，```status``` 为 ```off``` 为关，默认状态为 ```off```。电脑有个按钮，点击可以自由切换电脑的开关状态。     
@@ -550,6 +551,54 @@ _onSubmit(comment) {
 }
 ```
 
+
+## [Lesson 17](http://huziketang.mangojuice.top/books/react/lesson17) Props       
+
+### Why do we need ```props```?
+![props](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/props.png)      
+
+[Exercise](http://scriptoj.mangojuice.top/problems/9)           
+做一个百分比换算器，需要你完成三个组件：        
+```<Input />```：封装了原生的```<input />```，可以输入任意数字        
+```<PercentageShower />```：实时 显示 <Input /> 中的数字内容，但是需要把它转换成百分比，例如 <Input /> 输入的是 0.1，那么就要显示 10.00%，保留两位小数。      
+```<PercentageApp />```：组合上述两个组件。       
+
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson17/src/PercentageApp.js)            
+
+## [Lesson 18](http://huziketang.mangojuice.top/books/react/lesson18) Lifecycle     
+Go to [Babel online](https://babeljs.io/), JavaScript compiler to see what exactly JSX works.       
+
+[App.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson18/src/App.js>       
+[CountView.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson18/src/CountView.js>       
+
+In [App.js], display another component [CountView.js]
+```javascript
+render() {
+    return (
+        <div>
+            <CountView value={this.state.count}/>
+            <button onClick={this._onButtonPressed.bind(this)}>Update view</button>
+        </div>
+    );
+}
+```
+
+The lifecycle of 2 components ([App.js] and [CountView.js]) will be:        
+```
+[App Lifecycle] constructor
+[App Lifecycle] componentWillMount
+[App Lifecycle] render constructor
+[CountView Lifecycle] componentWillMount
+[CountView Lifecycle] render
+[CountView Lifecycle] componentDidMount
+[App Lifecycle] componentDidMount
+```
+
+When the button is pressed, the state will be updated, and the new lifecycle events will be:       
+```
+[App Lifecycle] render
+[CountView Lifecycle] render
+```
 
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
