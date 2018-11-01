@@ -6,22 +6,22 @@ class CountView extends Component {
     };
     constructor(props) {
         super(props);
-        console.log('CountView Lifecycle', 'constructor');
+        console.log('[CountView Lifecycle]', 'constructor');
     }
 
     componentWillMount() {
-        console.log('CountView Lifecycle', 'componentWillMount');
+        console.log('[CountView Lifecycle]', 'componentWillMount');
     }
 
     componentDidMount() {
-        console.log('CountView Lifecycle', 'componentDidMount');
+        console.log('[CountView Lifecycle]', 'componentDidMount');
     }
 
     render() {
-        console.log('CountView Lifecycle', 'render');
+        console.log('[CountView Lifecycle]', 'render');
         return (
             <div>
-                <div>{`(CountView) count: ${this.props.value}`}</div>
+                <div>{`[CountView] count: ${this.props.value}`}</div>
             </div>
         );
     }

@@ -5,20 +5,21 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            count: 0
+            count: 0,
+            isHide: false
         };
-        console.log('App Lifecycle', 'constructor');
+        console.log('[App Lifecycle]', 'constructor');
     }
 
     componentWillMount() {
-        console.log('App Lifecycle', 'componentWillMount');
+        console.log('[App Lifecycle]', 'componentWillMount');
     }
 
     componentDidMount() {
-        console.log('App Lifecycle', 'componentDidMount');
+        console.log('[App Lifecycle]', 'componentDidMount');
     }
 
-    _onButtonPressed() {
+    _onUpdateStateButtonPressed() {
         this.setState(
             {
                 count: this.state.count + 1
@@ -26,12 +27,21 @@ class App extends Component {
         );
     }
 
+    _onUpdateViewButtonPressed() {
+        this.setState(
+            {
+                isHide: !this.state.isHide
+            }
+        );
+    }
+
     render() {
-        console.log('App Lifecycle', 'render');
+        console.log('[App Lifecycle]', 'render');
         return (
             <div>
-                <CountView value={this.state.count}/>
-                <button onClick={this._onButtonPressed.bind(this)}>Update view</button>
+                {this.state.isHide ? null : <CountView value={this.state.count}/>}
+                <button onClick={this._onUpdateStateButtonPressed.bind(this)}>Update state</button>
+                <button onClick={this._onUpdateViewButtonPressed.bind(this)}>Hide/Show the view</button>
             </div>
         );
     }

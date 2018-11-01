@@ -594,11 +594,107 @@ The lifecycle of 2 components ([App.js] and [CountView.js]) will be:
 [App Lifecycle] componentDidMount
 ```
 
-When the button is pressed, the state will be updated, and the new lifecycle events will be:       
+When the "Update state" button is pressed, the state will be updated, and the new lifecycle events will be:       
 ```
 [App Lifecycle] render
 [CountView Lifecycle] render
 ```
+
+If we press "Hide/Show the view" button to hide or show a component, the new lifecycle events will be:     
+Hide the view       
+```
+[App Lifecycle] render
+```
+
+Show the view
+```
+[App Lifecycle] render
+[CountView Lifecycle] constructor
+[CountView Lifecycle] componentWillMount
+[CountView Lifecycle] render
+[CountView Lifecycle] componentDidMount
+```
+
+
+## [Lesson 19](http://huziketang.mangojuice.top/books/react/lesson19) ```componentWillMount``` and ```componentWillUnmount```     
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson19/src/App.js)   
+- ```componentWillMount```: Do tasks like component initialisation, Ajax request      
+- ```componentWillUnmount```: Clear data while releasing components
+
+[Exercise](http://scriptoj.mangojuice.top/problems/10)           
+完成 ```Post``` 组件，它可以加载、刷新文章内容。        
+已有函数 ```getPostData```，它会返回一个 ```Promise```，你可以通过它获取文章的内容。      
+```javascript
+getPostData().then((postContent) => {
+  // ...
+})
+```
+在获取数据的时候，```Post``` 组件的 ```div.post-content``` 中显示 数据加载中...，完成加载以后直接显示 ```getPostData``` 的返回结果。       
+页面有个按钮，点击可以重新加载数据。
+
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson19/src/Exercise.js)         
+
+### Update object state
+Define a price object for state:        
+```javascript
+constructor(props) {
+    super(props);
+    this.state = {
+        price: {}
+    };
+}
+```
+Update the object by coping a new object:       
+```javascript
+const price = Object.assign({}, this.state.price);
+price.high = 10000;
+price.low = 1000;
+price.last = 9999;
+
+this.setState({price: price});
+```
+
+### Children call methods from parent       
+For example, let's say we render ```Post``` component in App.js, and we'd like to call ```_handleResponse()``` in App.js while the "Refresh" button in ```Post``` is clicked.       
+***Tips: Send the ```_handleResponse()``` ```Post``` as a prop, and don't forget to bind the method to the parent class.***       
+
+In [App.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson19/src/Exercise.js)  
+```javascript
+_handleResponse(param) {
+    console.log(`I got ${param}`);
+}
+
+render() {
+    return (
+        <div>
+            <Post onResponse={this._handleResponse.bind(this)} />                
+        </div>);
+}
+```
+
+In ```pose``` class,        
+```javascript
+class Post extends Component {
+
+    static defaultProps = {
+        onResponse: null
+    };
+
+    _getPostData() {
+        if (this.props.onResponse) {
+            this.props.onResponse('Hello');
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <button onClick={this._getPostData.bind(this)}>Refresh</button>
+            </div>
+        );
+    }
+}
+```  
 
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
