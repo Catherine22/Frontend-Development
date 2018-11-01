@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
+import Picker from 'rmc-picker';
+import 'rmc-picker/assets/index.css';
 
 class Exercise extends Component {
 
     constructor(props) {
         super(props);
-        this.baseUrl = 'https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCUSD';
-        // this.currencyArray = ["AUD", "BRL", "CAD", "CNY", "EUR", "GBP", "HKD", "IDR", "ILS", "INR", "JPY", "MXN", "NOK", "NZD", "PLN", "RON", "RUB", "SEK", "SGD", "USD", "ZAR"]
-        // this.symbolArray = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹", "¥", "$", "kr", "$", "zł", "lei", "₽", "kr", "$", "$", "R"]
+        this.baseUrl = 'https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC';
+        this.currencyArray = ['AUD', 'BRL', 'CAD', 'CNY', 'EUR', 'GBP', 'HKD', 'IDR', 'ILS', 'INR', 'JPY', 'MXN', 'NOK', 'NZD', 'PLN', 'RON', 'RUB', 'SEK', 'SGD', 'USD', 'ZAR'];
+        this.symbolArray = ['$', 'R$', '$', '¥', '€', '£', '$', 'Rp', '₪', '₹', '¥', '$', 'kr', '$', 'zł', 'lei', '₽', 'kr', '$', '$', 'R'];
 
         this.state = {
+            url: `${this.baseUrl}${this.currencyArray[0]}`,
+            symbol: this.symbolArray[0],
             price: null
         }
     }
@@ -24,26 +28,41 @@ class Exercise extends Component {
             price.low = content.low;
             price.last = content.last;
 
-            this.setState({price: price});
+            this.setState(
+                {
+                    price: price,
+                    url: this.url,
+                    symbol: this.symbol
+                }
+            );
         }, (response) => {
             console.log('rejected');
             alert(`Error: ${response.status}:`);
         });
     }
 
+    _updateCurrency(index) {
+        this.url = `${this.baseUrl}${this.currencyArray[index]}`;
+        this.symbol = this.symbolArray[index];
+    }
+
     render() {
         console.log(this.state);
+        console.log('url', `${this.baseUrl}${this.currencyArray[this.state.currencyIndex]}`);
         return (
             <div>
                 <Post
-                    url={this.baseUrl}
+                    currencyArray={this.currencyArray}
+                    symbolArray={this.symbolArray}
+                    symbol={this.state.symbol}
+                    onPickerSelect={this._updateCurrency.bind(this)}
+                    url={this.state.url}
                     price={this.state.price}
                     onResponse={this._handleResponse.bind(this)}
                 />
             </div>);
     }
 }
-
 
 class Post extends Component {
 
@@ -53,14 +72,44 @@ class Post extends Component {
         content: '',
         onResponse: null,
 
-        price: null
+        price: null,
+
+        currencyArray: [],
+        symbolArray: [],
+        onPickerSelect: null,
+        symbol: null
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            state: null
+            state: null,
+            currencyPickerItems: this.fillInPickers(),
+            selectedCurrencyIndex: 0
         };
+        console.log(this.props);
+    }
+
+    _onPickerChange(value) {
+        const {currencyArray, onPickerSelect} = this.props;
+        console.log('Selected', currencyArray[value]);
+        this.setState({
+            selectedCurrencyIndex: value,
+        });
+        if (onPickerSelect) {
+            onPickerSelect(value);
+        }
+    }
+
+
+    fillInPickers() {
+        const items = [];
+        this.props.currencyArray.map((currency, i) => {
+            items.push(<Picker.Item value={i} key={i}>
+                {currency}
+            </Picker.Item>);
+        });
+        return items;
     }
 
     updateState(state) {
@@ -97,13 +146,21 @@ class Post extends Component {
     }
 
     render() {
-        const {price} = this.props;
+        const {price, symbol} = this.props;
         return (
             <div>
                 <h1>Bit coin price</h1>
-                <div>{price && price.last ? `last: ${price.last}` : ''}</div>
-                <div>{price && price.high ? `high: ${price.high}` : ''}</div>
-                <div>{price && price.low ? `low: ${price.low}` : ''}</div>
+                <div>{price && price.last ? `last: ${symbol} ${price.last}` : ''}</div>
+                <div>{price && price.high ? `high: ${symbol} ${price.high}` : ''}</div>
+                <div>{price && price.low ? `low: ${symbol} ${price.low}` : ''}</div>
+                {/**(Optional)Picker**/}
+                <div style={{background: '#f5f5f9', padding: 10, width: 400}}>
+                    <Picker selectedValue={this.state.selectedCurrencyIndex}
+                            onValueChange={this._onPickerChange.bind(this)}>
+                        {this.state.currencyPickerItems}
+                    </Picker>
+                </div>
+                {/**(Optional)Picker**/}
                 <button onClick={this._getPostData.bind(this)}>刷新</button>
             </div>
         );

@@ -621,19 +621,6 @@ Show the view
 - ```componentWillMount```: Do tasks like component initialisation, Ajax request      
 - ```componentWillUnmount```: Clear data while releasing components
 
-[Exercise](http://scriptoj.mangojuice.top/problems/10)           
-完成 ```Post``` 组件，它可以加载、刷新文章内容。        
-已有函数 ```getPostData```，它会返回一个 ```Promise```，你可以通过它获取文章的内容。      
-```javascript
-getPostData().then((postContent) => {
-  // ...
-})
-```
-在获取数据的时候，```Post``` 组件的 ```div.post-content``` 中显示 数据加载中...，完成加载以后直接显示 ```getPostData``` 的返回结果。       
-页面有个按钮，点击可以重新加载数据。
-
-[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson19/src/Exercise.js)         
-
 ### Update object state
 Define a price object for state:        
 ```javascript
@@ -653,6 +640,24 @@ price.last = 9999;
 
 this.setState({price: price});
 ```
+
+[Exercise](http://scriptoj.mangojuice.top/problems/10)           
+完成 ```Post``` 组件，它可以加载、刷新文章内容。        
+已有函数 ```getPostData```，它会返回一个 ```Promise```，你可以通过它获取文章的内容。      
+```javascript
+getPostData().then((postContent) => {
+  // ...
+})
+```
+在获取数据的时候，```Post``` 组件的 ```div.post-content``` 中显示 数据加载中...，完成加载以后直接显示 ```getPostData``` 的返回结果。       
+页面有个按钮，点击可以重新加载数据。      
+
+Fetch Bit coin prices from [bitcoinaverage.com](https://apiv2.bitcoinaverage.com/) and match the selected currency. Using the ```rmc-picker``` dependency.      
+
+![exercise](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/lesson19_1.png)     
+![exercise](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/lesson19_2.png)     
+
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson19/src/Exercise.js)         
 
 ### Children call methods from parent       
 For example, let's say we render ```Post``` component in App.js, and we'd like to call ```_handleResponse()``` in App.js while the "Refresh" button in ```Post``` is clicked.       
@@ -694,7 +699,10 @@ class Post extends Component {
         );
     }
 }
-```  
+```
+
+## [Lesson 20](http://huziketang.mangojuice.top/books/react/lesson20)            
+[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson20/src/App.js)    
 
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
