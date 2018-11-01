@@ -278,9 +278,8 @@ $npm start
 
 You might need to run ```$npm install``` or ```$yarn install``` to download node_modules if you clone code from GitHub
 
-## [Lesson 6](http://huziketang.mangojuice.top/books/react/lesson6) JSX     
+## [Lesson 6](http://huziketang.mangojuice.top/books/react/lesson6) Learn JSX and ```ReactDOM.render```          
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson6/src/App.js)       
-Learn JSX and ```ReactDOM.render```     
 
 [Exercise](http://scriptoj.mangojuice.top/problems/1)     
 在页面上增加一个 id 为 root 的 ```<div>``` 元素。然后请你完成一个 renderContent 函数，这个函数会把传入的任意字符串都包装到一个 ```<h1>``` 元素中并且渲染到页面上。     
@@ -290,7 +289,6 @@ Learn JSX and ```ReactDOM.render```
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson7/src/App.js)   
 
 [Exercise1](http://scriptoj.mangojuice.top/problems/2)        
-
 使用 React.js 构建一个未读消息组件 ```Notification```。        
 通过 ```getNotificationsCount()``` 来获取未读消息的数量 ，如果有未读消息 ```N``` 条，而且 ```N > 0```，那么 ```Notification``` 组件渲染显示：     
 ```<span>有(N)条未读消息</span>```        
@@ -562,7 +560,6 @@ _onSubmit(comment) {
 ```<Input />```：封装了原生的```<input />```，可以输入任意数字        
 ```<PercentageShower />```：实时 显示 <Input /> 中的数字内容，但是需要把它转换成百分比，例如 <Input /> 输入的是 0.1，那么就要显示 10.00%，保留两位小数。      
 ```<PercentageApp />```：组合上述两个组件。       
-
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson17/src/PercentageApp.js)            
 
 ## [Lesson 18](http://huziketang.mangojuice.top/books/react/lesson18) Lifecycle     
