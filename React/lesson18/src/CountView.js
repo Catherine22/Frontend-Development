@@ -9,6 +9,21 @@ class CountView extends Component {
         console.log('[CountView Lifecycle]', 'constructor');
     }
 
+    shouldComponentUpdate(nextProps, nextState){
+        console.log('[CountView Lifecycle]', 'shouldComponentUpdate');
+        console.log('nextProps', nextProps);
+        console.log('nextState', nextState);
+
+        // Optimise code from here!
+        // return true to call render(), false to do nothing
+        return true;
+    }
+
+    componentWillReceiveProps(nextProps){
+        console.log('[CountView Lifecycle]', 'shouldComponentUpdate');
+        console.log('nextProps', nextProps);
+    }
+
     componentWillMount() {
         console.log('[CountView Lifecycle]', 'componentWillMount');
     }

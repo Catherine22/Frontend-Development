@@ -40,8 +40,13 @@ class App extends Component {
         return (
             <div>
                 {this.state.isHide ? null : <CountView value={this.state.count}/>}
-                <button onClick={this._onUpdateStateButtonPressed.bind(this)}>Update state</button>
-                <button onClick={this._onUpdateViewButtonPressed.bind(this)}>Hide/Show the view</button>
+                <div>
+                    <button onClick={this._onUpdateStateButtonPressed.bind(this)}>Update state</button>
+                </div>
+
+                <div>
+                    <button onClick={this._onUpdateViewButtonPressed.bind(this)}>Hide/Show the view</button>
+                </div>
             </div>
         );
     }

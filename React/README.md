@@ -594,6 +594,11 @@ The lifecycle of 2 components ([App.js] and [CountView.js]) will be:
 When the "Update state" button is pressed, the state will be updated, and the new lifecycle events will be:       
 ```
 [App Lifecycle] render
+[CountView Lifecycle] shouldComponentUpdate
+nextProps {value: 1}
+[CountView Lifecycle] shouldComponentUpdate
+nextProps {value: 1}
+nextState null
 [CountView Lifecycle] render
 ```
 
@@ -612,6 +617,17 @@ Show the view
 [CountView Lifecycle] componentDidMount
 ```
 
+***Notice, you can optimise code from here!***
+```javascript
+shouldComponentUpdate(nextProps, nextState){
+    console.log('[CountView Lifecycle]', 'shouldComponentUpdate');
+    console.log('nextProps', nextProps);
+    console.log('nextState', nextState);
+
+    // return true to call render(), false to do nothing
+    return true;
+}
+```
 
 ## [Lesson 19](http://huziketang.mangojuice.top/books/react/lesson19) ```componentWillMount``` and ```componentWillUnmount```     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson19/src/App.js)   
