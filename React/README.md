@@ -1,4 +1,4 @@
-## [Lesson 2](http://huziketang.mangojuice.top/books/react/lesson2)
+## [Lesson2](http://huziketang.mangojuice.top/books/react/lesson2)
 ```html
 <script>
     // Html loaded
@@ -120,7 +120,7 @@ Update ```addEventListener```
 </script>
 ```
 
-## [Lesson 3](http://huziketang.mangojuice.top/books/react/lesson3)
+## [Lesson3](http://huziketang.mangojuice.top/books/react/lesson3)
 Update views automatically while the state changes      
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson3.html)
 ```html
@@ -188,7 +188,7 @@ Update views automatically while the state changes
 </script>
 ```
 
-## [Lesson 4](http://huziketang.mangojuice.top/books/react/lesson4)
+## [Lesson4](http://huziketang.mangojuice.top/books/react/lesson4)
 Define a component class to keep those functions and properties     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson4_1.html)
 ```javascript
@@ -264,7 +264,7 @@ let wrapper = document.querySelector('.wrapper');
 mount(new LikeButton(), wrapper);
 ```
 
-## [Lesson 5](http://huziketang.mangojuice.top/books/react/lesson5)     
+## [Lesson5](http://huziketang.mangojuice.top/books/react/lesson5)     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson5/src/App.js)       
 My first React app, follow the [docs](https://reactjs.org/docs/create-a-new-react-app.html)     
 ```
@@ -278,14 +278,14 @@ $npm start
 
 You might need to run ```$npm install``` or ```$yarn install``` to download node_modules if you clone code from GitHub
 
-## [Lesson 6](http://huziketang.mangojuice.top/books/react/lesson6) Learn JSX and ```ReactDOM.render```          
+## [Lesson6](http://huziketang.mangojuice.top/books/react/lesson6) Learn JSX and ```ReactDOM.render```          
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson6/src/App.js)       
 
 [Exercise](http://scriptoj.mangojuice.top/problems/1)     
 在页面上增加一个 id 为 root 的 ```<div>``` 元素。然后请你完成一个 renderContent 函数，这个函数会把传入的任意字符串都包装到一个 ```<h1>``` 元素中并且渲染到页面上。     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson6/src/Exercise.js)   
 
-## [Lesson 7](http://huziketang.mangojuice.top/books/react/lesson7) JSX     
+## [Lesson7](http://huziketang.mangojuice.top/books/react/lesson7) JSX     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson7/src/App.js)   
 
 [Exercise1](http://scriptoj.mangojuice.top/problems/2)        
@@ -302,7 +302,7 @@ You might need to run ```$npm install``` or ```$yarn install``` to download node
 第二个变量 page 为一个具有类名为 content 的 ```<div>``` 元素，将之前定义的 title 变量插入其中作为它的内容。       
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson7/src/Exercise2.js)   
 
-## [Lesson 8](http://huziketang.mangojuice.top/books/react/lesson8) ```onClick```     
+## [Lesson8](http://huziketang.mangojuice.top/books/react/lesson8) ```onClick```     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson8/src/App.js)       
 
 [Exercise](http://scriptoj.mangojuice.top/problems/4)        
@@ -312,7 +312,7 @@ You might need to run ```$npm install``` or ```$yarn install``` to download node
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson8/src/Exercise.js)    
 
 
-## [Lesson 9](http://huziketang.mangojuice.top/books/react/lesson9)     
+## [Lesson9](http://huziketang.mangojuice.top/books/react/lesson9)     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson9/src/App.js)       
 
 [Exercise](http://scriptoj.mangojuice.top/problems/5)   
@@ -320,7 +320,7 @@ You might need to run ```$npm install``` or ```$yarn install``` to download node
 完成 ```Dog``` 组件，当用户点击的时候会执行自身的 ```bark``` 和 ```run``` 方法。       
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson9/src/Exercise.js)       
 
-## [Lesson 10](http://huziketang.mangojuice.top/books/react/lesson10) ```state``` and ```setState```     
+## [Lesson10](http://huziketang.mangojuice.top/books/react/lesson10) ```state``` and ```setState```     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson10/src/LikeButton.js)       
 
 When we call ```setState```, the state won't be changed instantly. E.g. We bind a ```_onLikeButtonPressed``` function to a button,      
@@ -387,7 +387,7 @@ _onLikeButtonPressed() {
 完成 ```Dog``` 组件，当用户点击的时候会执行自身的 ```bark``` 和 ```run``` 方法。给这个 ```Dog``` 组件加上状态 ```isRunning``` 和 ```isBarking```，在进行相应的动作的时候设置为 ```true```，停下来的时候设置为 ```false```。        
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson10/src/Exercise.js)   
 
-## [Lesson 11](http://huziketang.mangojuice.top/books/react/lesson11) ```props```     
+## [Lesson11](http://huziketang.mangojuice.top/books/react/lesson11) ```props```     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson11/src/LikeButton.js)   
 
 2 ways to set default props     
@@ -437,10 +437,10 @@ render() {
 电脑包含显示器，当电脑状态为开的时候显示器显示“显示器亮了”，否则显示“显示器关了”。     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson11/src/Exercise.js)   
 
-## [Lesson 12](http://huziketang.mangojuice.top/books/react/lesson12) Stateless Component       
+## [Lesson12](http://huziketang.mangojuice.top/books/react/lesson12) Stateless Component       
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson12/src/App.js)   
 
-## [Lesson 13](http://huziketang.mangojuice.top/books/react/lesson13) ListView       
+## [Lesson13](http://huziketang.mangojuice.top/books/react/lesson13) ListView       
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson13/src/App.js)   
 
 Run JS inside JSX tags, we use `{}`      
@@ -527,7 +527,7 @@ render() {
 }
 ```
 
-## [Lesson 14](http://huziketang.mangojuice.top/books/react/lesson14) Commands       
+## [Lesson14](http://huziketang.mangojuice.top/books/react/lesson14) Commands       
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson14/src/App.js)   
 
 ![demo](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/lesson14.png)
@@ -549,7 +549,7 @@ _onSubmit(comment) {
 }
 ```
 
-## [Lesson 17](http://huziketang.mangojuice.top/books/react/lesson17) Props       
+## [Lesson17](http://huziketang.mangojuice.top/books/react/lesson17) Props       
 
 ### Why do we need ```props```?
 ![props](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/props.png)      
@@ -561,7 +561,7 @@ _onSubmit(comment) {
 ```<PercentageApp />```：组合上述两个组件。       
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson17/src/PercentageApp.js)            
 
-## [Lesson 18](http://huziketang.mangojuice.top/books/react/lesson18) Lifecycle     
+## [Lesson18](http://huziketang.mangojuice.top/books/react/lesson18) Lifecycle     
 Go to [Babel online](https://babeljs.io/), JavaScript compiler to see what exactly JSX works.       
 
 [App.js]:<https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson18/src/App.js>       
@@ -628,7 +628,7 @@ shouldComponentUpdate(nextProps, nextState){
 }
 ```
 
-## [Lesson 19](http://huziketang.mangojuice.top/books/react/lesson19) ```componentWillMount``` and ```componentWillUnmount```     
+## [Lesson19](http://huziketang.mangojuice.top/books/react/lesson19) ```componentWillMount``` and ```componentWillUnmount```     
 [Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson19/src/App.js)   
 - ```componentWillMount```: Do tasks like component initialisation, Ajax request      
 - ```componentWillUnmount```: Clear data while releasing components
@@ -713,7 +713,7 @@ class Post extends Component {
 }
 ```
 
-## [Lesson 21](http://huziketang.mangojuice.top/books/react/lesson21) ```this.props.children```            
+## [Lesson21](http://huziketang.mangojuice.top/books/react/lesson21) ```this.props.children```            
 To send props to the child, let's say we need a ```content``` prop     
 ```javascript
 <Card content='hello!'/>
@@ -760,7 +760,7 @@ this.props.children[3] // <input/>
 并且，点击 ```<p>``` 元素的时候，会使用 ```console.log``` 把元素的高度打印出来。       
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson21/src/Exercise.js)            
 
-## [Lesson 22](http://huziketang.mangojuice.top/books/react/lesson22) User-defined components and CSS        
+## [Lesson22](http://huziketang.mangojuice.top/books/react/lesson22) User-defined components and CSS        
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson22/src/app.js)         
 ![Card](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/lesson22.png)     
 
@@ -768,7 +768,7 @@ this.props.children[3] // <input/>
 实现一个组件 ```BlackBorderContainer```，它会把作为它的嵌套结构的 每个直接子元素 都用一个黑色边框的 ```div``` 包裹起来。       
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson22/src/Exercise.js)           
 
-## [Lesson 23](http://huziketang.mangojuice.top/books/react/lesson23) Loading HTML dynamically via ```dangerouslySetInnerHTML``` and manipulate HTML style via ```setState()```       
+## [Lesson23](http://huziketang.mangojuice.top/books/react/lesson23) Loading HTML dynamically via ```dangerouslySetInnerHTML``` and manipulate HTML style via ```setState()```       
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson23/src/app.js)         
 
 1. Insert HTML code block       
@@ -825,5 +825,10 @@ const Post = getDefaultStyledPost({ color: 'red' })
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson23/src/Exercise.js)          
 
 
+## [Lesson24](http://huziketang.mangojuice.top/books/react/lesson24) Default Type of props        
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson24/src/app.js)         
+```
+$yarn add prop-types
+```
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
