@@ -549,7 +549,6 @@ _onSubmit(comment) {
 }
 ```
 
-
 ## [Lesson 17](http://huziketang.mangojuice.top/books/react/lesson17) Props       
 
 ### Why do we need ```props```?
@@ -714,8 +713,117 @@ class Post extends Component {
 }
 ```
 
-## [Lesson 20](http://huziketang.mangojuice.top/books/react/lesson20)            
-[Code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson20/src/App.js)    
+## [Lesson 21](http://huziketang.mangojuice.top/books/react/lesson21) ```this.props.children```            
+To send props to the child, let's say we need a ```content``` prop     
+```javascript
+<Card content='hello!'/>
+
+``` 
+In ```Card``` component, retrieve the 'hello!' by      
+```javascript
+this.props.content
+```
+
+Or you can past children like       
+```javascript
+<Card>Hello!</Card>
+```
+
+In ```Card``` component, retrieve the 'hello!' by      
+```javascript
+this.props.children
+```
+
+But what if we past many elements to ```Card```, how do we access each child?       
+```javascript
+<Card>
+    <div>
+        <h2>React.js 小书</h2>
+        <div>开源、免费、专业、简单</div>
+        订阅：
+        <input/>
+    </div>
+</Card>
+```
+
+In ```Card```       
+```javascript
+this.props.children[0] // <h2/>
+this.props.children[1] // <div/>
+this.props.children[2] // 订阅：
+this.props.children[3] // <input/>
+```
+
+[Exercise](http://scriptoj.mangojuice.top/problems/11)           
+做一个百分比换算器，需要你完成三个组件：        
+完成 ```Post``` 组件，接受一个字符串的 ```content``` 作为 ```props```，```Post``` 会把它显示到自己的 ```<p>``` 元素内。        
+并且，点击 ```<p>``` 元素的时候，会使用 ```console.log``` 把元素的高度打印出来。       
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson21/src/Exercise.js)            
+
+## [Lesson 22](http://huziketang.mangojuice.top/books/react/lesson22) User-defined components and CSS        
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson22/src/app.js)         
+![Card](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/lesson22.png)     
+
+[Exercise](http://scriptoj.mangojuice.top/problems/12) Loop ```this.props.children```           
+实现一个组件 ```BlackBorderContainer```，它会把作为它的嵌套结构的 每个直接子元素 都用一个黑色边框的 ```div``` 包裹起来。       
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson22/src/Exercise.js)           
+
+## [Lesson 23](http://huziketang.mangojuice.top/books/react/lesson23) Loading HTML dynamically via ```dangerouslySetInnerHTML``` and manipulate HTML style via ```setState()```       
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson23/src/app.js)         
+
+1. Insert HTML code block       
+```javascript
+<div dangerouslySetInnerHTML={{__html: 'PUT YOUR HTML TAGS HERE'}}/>
+```
+
+2. Set CSS style        
+```javascript
+<h1 style='font-size: 12px; color: red;'>React.js 小书</h1>
+```
+
+3. Update CSS style by ```setState()```
+```javascript
+this.setState({style: '\'font-size: 12px; color: blue;\''});
+```
+
+4. Example      
+```javascript
+constructor() {
+    super();
+    this.state = {
+        style: '\'font-size: 12px; color: red;\''
+    };
+}
+
+render() {
+    return (
+        <div>
+            <div dangerouslySetInnerHTML={{__html: `<h1 style=${this.state.style}>React.js 小书</h1>`}}/>
+            <button onClick={() => {
+                this.setState({style: '\'font-size: 12px; color: blue;\''});
+                }}>BLUE
+            </button>
+        </div>
+        );
+    
+}
+```
+
+[Exercise](http://scriptoj.mangojuice.top/problems/12) Convert JSX style to CSS style                 
+完成一个函数 ```getDefaultStyledPost```，这个函数接受一个表示样式的对象作为参数，返回一个组件只有 ```<p>``` 元素的组件      
+```javascript
+const Post = getDefaultStyledPost({ color: 'red' })
+<Post /> // <p>任意内容</p>，颜色为红色
+```
+
+渲染出来的 ```<p> ```元素要具有 ```getDefaultStyledPost``` 所接受对象所表示的样式。此外，返回的 ```Post``` 组件还要能够接受一个 ```style``` 对象作为 ```props```，这个对象会和原来的样式进行合并显示：``
+```javascript
+const Post = getDefaultStyledPost({ color: 'red' })
+<Post style={{ color: 'blue', fontSize: '13px' }} />
+<Post style={{ fontSize: '12px' }} />
+````
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson23/src/Exercise.js)          
+
 
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
