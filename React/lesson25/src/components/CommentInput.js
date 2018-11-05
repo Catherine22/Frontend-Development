@@ -16,8 +16,9 @@ class CommentInput extends Component {
         super(props);
 
         this.state = {
-            username: '',
-            content: ''
+            username: (localStorage && localStorage.getItem('username')) || '',
+            content: '',
+            time: ''
         }
     }
 
@@ -41,6 +42,10 @@ class CommentInput extends Component {
         if (this.props.onSubmit) {
             this.props.onSubmit(this.state);
         }
+
+        if (localStorage)
+            localStorage.setItem('username', this.state.username);
+
         this.setState({
             content: ''
         });
@@ -66,8 +71,8 @@ class CommentInput extends Component {
                         <div>
                             <label>
                                 <input ref={(input) => {
-                                           this.commentInput = input;
-                                       }}
+                                    this.commentInput = input;
+                                }}
                                        type="standardText" className="multiLinesInputField"
                                        value={this.state.content}
                                        onChange={this._onCommentLabelChange.bind(this)}/>

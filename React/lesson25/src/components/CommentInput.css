@@ -65,6 +65,13 @@
     margin-top: 5px;
 }
 
+.timeLabel{
+    width: 10vh;
+    font-size: 2vmin;
+    color: gray;
+    float: right;
+}
+
 .commentView {
     flex-direction: column-reverse;
     height: auto;

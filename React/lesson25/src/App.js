@@ -5,12 +5,21 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            comments: []
+            comments: this.renderHistory()
         };
     }
 
+    renderHistory() {
+        if (localStorage && localStorage.getItem('comments')) {
+            // console.log('saved', JSON.parse(localStorage.getItem('comments')));
+            return JSON.parse(localStorage.getItem('comments'));
+        }
+        return [];
+    }
+
     _onSubmit(comment) {
-        this.setState({comments: [...this.state.comments, comment]});
+        comment.timestamp = Math.round((new Date()).getTime() / 1000);
+        this.setState({comments: [comment, ...this.state.comments]});
     }
 
     render() {
@@ -20,6 +29,14 @@ class App extends Component {
                 <CommentList comments={this.state.comments}/>
             </div>
         );
+    }
+
+    componentDidUpdate() {
+        if (localStorage && this.state.comments.length > 0) {
+            let commentArray = JSON.stringify(this.state.comments);
+            localStorage.setItem('comments', commentArray);
+            // console.log('saved', commentArray);
+        }
     }
 }
 

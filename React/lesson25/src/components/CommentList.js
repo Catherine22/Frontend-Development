@@ -12,9 +12,11 @@ class CommentList extends Component {
         return (
             <div>
                 {
-                    comments.reverse().map((comment, index) => <Comment key={index} username={comment.username}
-                                                              content={comment.content}/>
-
+                    comments.map((comment, index) => <Comment key={index}
+                                                              username={comment.username}
+                                                              content={comment.content}
+                                                              timestamp={comment.timestamp}
+                        />
                     )
                 }
             </div>
