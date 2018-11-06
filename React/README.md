@@ -830,5 +830,10 @@ const Post = getDefaultStyledPost({ color: 'red' })
 ```
 $yarn add prop-types
 ```
+
+## [Lesson25](http://huziketang.mangojuice.top/books/react/lesson25)        
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson25/src/app.js)        
+
+
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
