@@ -5,7 +5,7 @@ const Comment = (props) => (
     <div className="commentView">
         <hr className="hr"/>
         <div>
-            <label className="timeLabel">{`${convertTime(props.timestamp)}前`}</label>
+            <label className="timeLabel">{convertTime(props.timestamp)}</label>
         </div>
         <div>
             <label className="commentUser">{`${props.username}: `}</label>
@@ -51,8 +51,9 @@ const convertTime = timestamp => {
             time += value + unit[index];
         }
     });
+
     console.log(time);
-    return time;
+    return (time.length > 0) ? `${time}前` : '刚刚';
 };
 
 export {Comment};

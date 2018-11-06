@@ -66,10 +66,11 @@
 }
 
 .timeLabel{
-    width: 10vh;
+    width: auto;
     font-size: 2vmin;
     color: gray;
     float: right;
+    text-align: end;
 }
 
 .commentView {

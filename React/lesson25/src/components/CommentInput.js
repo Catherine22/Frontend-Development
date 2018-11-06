@@ -14,7 +14,6 @@ class CommentInput extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             username: (localStorage && localStorage.getItem('username')) || '',
             content: '',
@@ -23,7 +22,7 @@ class CommentInput extends Component {
     }
 
     componentDidMount() {
-        this.commentInput.focus();
+        this.updateInputFocus();
     }
 
     _onUserLabelChange(event) {
@@ -49,6 +48,18 @@ class CommentInput extends Component {
         this.setState({
             content: ''
         });
+        this.updateInputFocus();
+    }
+
+    updateInputFocus() {
+        if (this.state.username && this.state.username.length > 0) {
+            console.log('commentInput');
+            this.commentInput.focus();
+        }
+        else {
+            console.log('userInput');
+            this.userInput.focus();
+        }
     }
 
 
@@ -63,7 +74,10 @@ class CommentInput extends Component {
                     <div className="inputField">
                         <div>
                             <label>
-                                <input type="standardText" className="singleLineInputField"
+                                <input ref={(input) => {
+                                    this.userInput = input;
+                                }}
+                                       type="standardText" className="singleLineInputField"
                                        value={this.state.username}
                                        onChange={this._onUserLabelChange.bind(this)}/>
                             </label>
