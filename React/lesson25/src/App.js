@@ -17,6 +17,21 @@ class App extends Component {
         return [];
     }
 
+    _saveUsername(username) {
+        // console.log('_saveUsername');
+        if (localStorage)
+            localStorage.setItem('username', username);
+    }
+
+    _deleteComments(comment) {
+        // console.log('_deleteComments');
+        let newComments = [...this.state.comments];
+        newComments.splice(comment.index, 1);
+        this.setState({
+            comments: newComments
+        });
+    }
+
     _onSubmit(comment) {
         comment.timestamp = Math.round((new Date()).getTime() / 1000);
         this.setState({comments: [comment, ...this.state.comments]});
@@ -25,14 +40,20 @@ class App extends Component {
     render() {
         return (
             <div style={{margin: 10}}>
-                <CommentInput onSubmit={this._onSubmit.bind(this)}/>
-                <CommentList comments={this.state.comments}/>
+                <CommentInput
+                    username={(localStorage && localStorage.getItem('username')) || ''}
+                    onSubmit={this._onSubmit.bind(this)}
+                    saveUsername={this._saveUsername.bind(this)}/>
+                <CommentList
+                    comments={this.state.comments}
+                    onDeleteLabelPressed={this._deleteComments.bind(this)}
+                />
             </div>
         );
     }
 
     componentDidUpdate() {
-        if (localStorage && this.state.comments.length > 0) {
+        if (localStorage) {
             let commentArray = JSON.stringify(this.state.comments);
             localStorage.setItem('comments', commentArray);
             // console.log('saved', commentArray);

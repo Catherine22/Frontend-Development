@@ -73,6 +73,14 @@
     text-align: end;
 }
 
+.deleteLabel{
+    width: auto;
+    font-size: 2vmin;
+    color: royalblue;
+    float: right;
+    text-align: end;
+}
+
 .commentView {
     flex-direction: column-reverse;
     height: auto;
@@ -84,6 +92,7 @@
 }
 
 .commentUser {
+    font-style: italic;
     color: royalblue;
     font-size: calc(6px + 2vmin);
 }

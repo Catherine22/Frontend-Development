@@ -9,13 +9,14 @@ class CommentInput extends Component {
             userName: '用户名：',
             comment: '评论内容：',
             submit: '提交'
-        }
+        },
+        username: ''
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            username: (localStorage && localStorage.getItem('username')) || '',
+            username: this.props.username,
             content: '',
             time: ''
         }
@@ -42,8 +43,7 @@ class CommentInput extends Component {
             this.props.onSubmit(this.state);
         }
 
-        if (localStorage)
-            localStorage.setItem('username', this.state.username);
+        this.props.saveUsername(this.state.username);
 
         this.setState({
             content: ''

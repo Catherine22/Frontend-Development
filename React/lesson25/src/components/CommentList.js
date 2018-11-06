@@ -24,10 +24,13 @@ class CommentList extends Component {
     }
 
     _refresh() {
-        console.log('refresh');
         this.setState({
             updateFlag: !this.state.updateFlag
         })
+    }
+
+    _onDeleteLabelPressed(commentProps) {
+        this.props.onDeleteLabelPressed(commentProps);
     }
 
     render() {
@@ -36,9 +39,11 @@ class CommentList extends Component {
             <div>
                 {
                     comments.map((comment, index) => <Comment key={index}
+                                                              index={index}
                                                               username={comment.username}
                                                               content={comment.content}
                                                               timestamp={comment.timestamp}
+                                                              onDeleteLabelPressed={this._onDeleteLabelPressed.bind(this)}
                         />
                     )
                 }
