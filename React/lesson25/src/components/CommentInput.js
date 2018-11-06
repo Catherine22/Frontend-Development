@@ -22,7 +22,7 @@ class CommentInput extends Component {
     }
 
     componentDidMount() {
-        this.updateInputFocus();
+        this._updateInputFocus.bind(this);
     }
 
     _onUserLabelChange(event) {
@@ -48,16 +48,14 @@ class CommentInput extends Component {
         this.setState({
             content: ''
         });
-        this.updateInputFocus();
+        this._updateInputFocus.bind(this);
     }
 
-    updateInputFocus() {
+    _updateInputFocus() {
         if (this.state.username && this.state.username.length > 0) {
-            console.log('commentInput');
             this.commentInput.focus();
         }
         else {
-            console.log('userInput');
             this.userInput.focus();
         }
     }

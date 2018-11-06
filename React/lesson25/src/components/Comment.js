@@ -15,7 +15,7 @@ const Comment = (props) => (
 );
 
 const convertTime = timestamp => {
-    console.log(timestamp);
+    // console.log(timestamp);
     let now = Math.round((new Date()).getTime() / 1000);
     let diff = now - timestamp;
     let unit = ['秒', '分钟', '小时', '天'];
@@ -52,7 +52,7 @@ const convertTime = timestamp => {
         }
     });
 
-    console.log(time);
+    // console.log(time);
     return (time.length > 0) ? `${time}前` : '刚刚';
 };
 

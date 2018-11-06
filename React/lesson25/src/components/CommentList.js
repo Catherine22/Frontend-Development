@@ -7,6 +7,29 @@ class CommentList extends Component {
         comments: []
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            updateFlag: false
+        }
+    }
+
+    componentDidMount() {
+        // Update comments every 5 seconds
+        setInterval(this._refresh.bind(this), 5000);
+    }
+
+    componentWillUnmount() {
+        clearInterval();
+    }
+
+    _refresh() {
+        console.log('refresh');
+        this.setState({
+            updateFlag: !this.state.updateFlag
+        })
+    }
+
     render() {
         const {comments} = this.props;
         return (
