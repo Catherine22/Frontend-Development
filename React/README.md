@@ -1,3 +1,9 @@
+# React code and tips
+http://huziketang.mangojuice.top/books/react/   
+![Part 1](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/part1.png)   
+![Part 2](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/part2.png)   
+![Part 3](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/part3.png)   
+
 ## [Lesson2](http://huziketang.mangojuice.top/books/react/lesson2)
 ```html
 <script>
@@ -204,13 +210,13 @@ class Component {
             }
         }
     }
-    
+
     createDOMFromString(domString) {
         const div = document.createElement('div');
         div.innerHTML = domString;
         return div;
     };
-    
+
     // Private method starts from '_'
     _renderDOM() {
         this.element = this.createDOMFromString(this.render());
@@ -229,11 +235,11 @@ class LikeButton extends Component {
         super();
         this.state = {isLike: false};
     }
-    
+
     onClick() {
         this.setState({isLike: !this.state.isLike});
     }
-    
+
     render() {
         if (this.state.isLike) {
             return `<button class='like-btn'>
@@ -397,7 +403,7 @@ render() {
         likeText: 'Like??',
         cancelText: 'Cancel??'
     };
-    
+
     return (
         <button className='like-btn' onClick={this._onButtonPressed.bind(this)}>
             <span className='like-text'>{
@@ -718,7 +724,7 @@ To send props to the child, let's say we need a ```content``` prop
 ```javascript
 <Card content='hello!'/>
 
-``` 
+```
 In ```Card``` component, retrieve the 'hello!' by      
 ```javascript
 this.props.content
@@ -805,7 +811,7 @@ render() {
             </button>
         </div>
         );
-    
+
 }
 ```
 
@@ -826,10 +832,11 @@ const Post = getDefaultStyledPost({ color: 'red' })
 
 
 ## [Lesson24](http://huziketang.mangojuice.top/books/react/lesson24) Default Type of props        
-[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson24/src/app.js)         
 ```
 $yarn add prop-types
 ```
+
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson24/src/app.js)         
 
 ## [Lesson25](http://huziketang.mangojuice.top/books/react/lesson25)        
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson25/src/app.js)        
