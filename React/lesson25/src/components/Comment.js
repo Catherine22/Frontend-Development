@@ -1,7 +1,19 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import './CommentInput.css';
 
 class Comment extends Component {
+    static propTypes = {
+        username: PropTypes.string.isRequired,
+        content: PropTypes.any,
+        timestamp: PropTypes.number.isRequired
+    };
+    static defaultProps = {
+        username: '',
+        content: '',
+        timestamp: Math.round((new Date()).getTime() / 1000)
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -48,7 +60,6 @@ class Comment extends Component {
     }
 
     convertTime(timestamp) {
-        // console.log(timestamp);
         let now = Math.round((new Date()).getTime() / 1000);
         let diff = now - timestamp;
         let unit = ['秒', '分钟', '小时', '天'];
@@ -83,6 +94,7 @@ class Comment extends Component {
                 max -= 1;
                 time += value + unit[index];
             }
+            return value;
         });
 
         // console.log(time);

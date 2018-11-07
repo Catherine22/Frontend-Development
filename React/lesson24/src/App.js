@@ -12,7 +12,7 @@ class App extends Component {
 class Post extends Component {
     static propTypes = {
         logo: PropTypes.object,
-        content: PropTypes.string
+        content: PropTypes.string.isRequired
     };
 
     render() {

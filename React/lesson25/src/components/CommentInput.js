@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import './CommentInput.css';
 
 
 class CommentInput extends Component {
 
+    static propTypes = {
+        username: PropTypes.string.isRequired,
+        onSubmit: PropTypes.func.isRequired,
+        saveUsername: PropTypes.func.isRequired
+    };
     static defaultProps = {
         wordings: {
             userName: '用户名：',

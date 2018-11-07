@@ -12,22 +12,22 @@ class Exercise extends Component {
     }
 
     _behave() {
-        let count = 0;
+        this.count = 0;
         if (this.state.isRunning || this.state.isBarking) {
-            console.log("He's going banana!");
+            console.log('He\'s going banana!');
         } else {
             this.interval = setInterval(() => {
                 this.bark();
                 this.run();
-                count += 1;
+                this.count += 1;
 
-                if(count >= 5){
+                if(this.count >= 5){
                     clearInterval(this.interval);
                     this.setState({
                         'isRunning': false,
                         'isBarking': false
                     });
-                    count = 0;
+                    this.count = 0;
                 }
             }, 1000);
         }

@@ -836,6 +836,20 @@ const Post = getDefaultStyledPost({ color: 'red' })
 $yarn add prop-types
 ```
 
+```javascript
+import PropTypes from 'prop-types';
+import React, {Component} from 'react';
+
+class YOUR_CLASS extends Component{
+    static propTypes = {
+        logo: PropTypes.object.isRequired,
+        content: PropTypes.any,
+        phoneNum: PropTypes.number.isRequired,
+        refactor: PropTypes.func.isRequired
+    };
+}
+```
+
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson24/src/app.js)         
 
 ## [Lesson25](http://huziketang.mangojuice.top/books/react/lesson25)        
@@ -845,6 +859,16 @@ $yarn add prop-types
 
 We cannot load HTML directly by ```dangerouslySetInnerHTML``` because this will allow XSS attack, users can wrap JavaScript code with ```<script>``` to attack others.
 So, instead of using HTML tags like ```<code></code>``` to show the content, we use [entities](https://www.w3schools.com/html/html_entities.asp).       
+ 
+
+## [Lesson28](http://huziketang.mangojuice.top/books/react/lesson28) Refactor - Higher-Order Components        
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson28/src/app.js)        
+
+
+[Exercise](http://scriptoj.mangojuice.top/problems/14)      
+优化[Exercise 10](http://scriptoj.mangojuice.top/problems/10)，并使用高阶组件
+
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson28/src/Exercise.js)    
 
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
