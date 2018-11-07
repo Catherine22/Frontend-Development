@@ -841,6 +841,10 @@ $yarn add prop-types
 ## [Lesson25](http://huziketang.mangojuice.top/books/react/lesson25)        
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson25/src/app.js)        
 
+![demo](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/lesson25.png)
+
+We cannot load HTML directly by ```dangerouslySetInnerHTML``` because this will allow XSS attack, users can wrap JavaScript code with ```<script>``` to attack others.
+So, instead of using HTML tags like ```<code></code>``` to show the content, we use [entities](https://www.w3schools.com/html/html_entities.asp).       
 
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)

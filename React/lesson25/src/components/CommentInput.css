@@ -38,19 +38,22 @@
 }
 
 .singleLineInputField:focus {
-    outline:none;
+    outline: none;
 }
 
-.multiLinesInputField {
+.textAreaField {
     width: 40vh;
+    border-color: #cccccc;
     line-height: calc(10px + 2vmin);
-    display:block;
+    display: block;
     padding-bottom: 120px;
     font-size: calc(5px + 2vmin);
+    resize: none;
+    white-space: pre-line;
 }
 
-.multiLinesInputField:focus {
-    outline:none;
+.textAreaField:focus {
+    outline: none;
 }
 
 .standardButton {
@@ -65,7 +68,7 @@
     margin-top: 5px;
 }
 
-.timeLabel{
+.timeLabel {
     width: auto;
     font-size: 2vmin;
     color: gray;
@@ -73,7 +76,7 @@
     text-align: end;
 }
 
-.deleteLabel{
+.deleteLabel {
     width: auto;
     font-size: 2vmin;
     color: royalblue;
@@ -89,16 +92,19 @@
     margin-right: auto;
     display: flex;
     margin-top: 2vh;
+    resize: vertical;
 }
 
 .commentUser {
     font-style: italic;
     color: royalblue;
+    font-family: Arial;
     font-size: calc(6px + 2vmin);
 }
 
 .commentContent {
     color: black;
+    font-family: Arial;
     font-size: calc(6px + 2vmin);
 }
 

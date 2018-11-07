@@ -81,12 +81,13 @@ class CommentInput extends Component {
                         </div>
                         <div>
                             <label>
-                                <input ref={(input) => {
+                                <textarea ref={(input) => {
                                     this.commentInput = input;
                                 }}
-                                       type="standardText" className="multiLinesInputField"
-                                       value={this.state.content}
-                                       onChange={this._onCommentLabelChange.bind(this)}/>
+                                          className="textAreaField"
+                                          value={this.state.content}
+                                          onChange={this._onCommentLabelChange.bind(this)}
+                                />
                             </label>
                         </div>
                         <button className="standardButton"

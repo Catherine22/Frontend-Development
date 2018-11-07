@@ -35,8 +35,8 @@ class Comment extends Component {
                 </div>
                 <div>
                     <label className="commentUser">{`${this.props.username}: `}</label>
-                    <label className="commentContent"
-                           dangerouslySetInnerHTML={{__html: this.state.comment}}/>
+                    <pre className="commentContent"
+                         dangerouslySetInnerHTML={{__html: this.state.comment}}/>
                 </div>
                 <div style={{height: 10}}>
                     <label className="deleteLabel"
@@ -90,20 +90,13 @@ class Comment extends Component {
     }
 
     commentFilter(comments) {
-        let tag = -1;
-        let newComments = comments.split('');
-        for (let i = 0; i < newComments.length; i++) {
-            if (newComments[i] === '`') {
-                if (tag !== -1) {
-                    newComments[tag] = '<code class="codeBlock">';
-                    newComments[i] = '</code>';
-                    tag = -1;
-                } else {
-                    tag = i;
-                }
-            }
-        }
-        return newComments.join('');
+        return comments
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;')
+            .replace(/`([\S\s]+?)`/g, '<code class="codeBlock">$1</code>');
     }
 }
 
