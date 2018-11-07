@@ -6,8 +6,16 @@ class Comment extends Component {
         super(props);
         this.state = {
             showDeleteLabel: false,
-            timestamp: this._convertTime(this.props.timestamp)
+            timestamp: this.convertTime(this.props.timestamp),
+            comment: this.commentFilter(this.props.content)
         };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            timestamp: this.convertTime(nextProps.timestamp),
+            comment: this.commentFilter(nextProps.content)
+        });
     }
 
     render() {
@@ -27,19 +35,19 @@ class Comment extends Component {
                 </div>
                 <div>
                     <label className="commentUser">{`${this.props.username}: `}</label>
-                    <label className="commentContent">{this.props.content}</label>
+                    <label className="commentContent"
+                           dangerouslySetInnerHTML={{__html: this.state.comment}}/>
                 </div>
                 <div style={{height: 10}}>
                     <label className="deleteLabel"
-                            hidden={!this.state.showDeleteLabel}
-                            onClick={this.props.onDeleteLabelPressed.bind(this, this.props)}>删除
+                           hidden={!this.state.showDeleteLabel}
+                           onClick={this.props.onDeleteLabelPressed.bind(this, this.props)}>删除
                     </label>
                 </div>
             </div>);
     }
 
-    _convertTime
-    (timestamp) {
+    convertTime(timestamp) {
         // console.log(timestamp);
         let now = Math.round((new Date()).getTime() / 1000);
         let diff = now - timestamp;
@@ -79,7 +87,24 @@ class Comment extends Component {
 
         // console.log(time);
         return (time.length > 0) ? `${time}前` : '刚刚';
-    };
+    }
+
+    commentFilter(comments) {
+        let tag = -1;
+        let newComments = comments.split('');
+        for (let i = 0; i < newComments.length; i++) {
+            if (newComments[i] === '`') {
+                if (tag !== -1) {
+                    newComments[tag] = '<code class="codeBlock">';
+                    newComments[i] = '</code>';
+                    tag = -1;
+                } else {
+                    tag = i;
+                }
+            }
+        }
+        return newComments.join('');
+    }
 }
 
 export {Comment};

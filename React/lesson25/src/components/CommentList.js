@@ -38,12 +38,13 @@ class CommentList extends Component {
         return (
             <div>
                 {
-                    comments.map((comment, index) => <Comment key={index}
-                                                              index={index}
-                                                              username={comment.username}
-                                                              content={comment.content}
-                                                              timestamp={comment.timestamp}
-                                                              onDeleteLabelPressed={this._onDeleteLabelPressed.bind(this)}
+                    comments.map((comment, index) =>
+                        <Comment key={index}
+                                 index={index}
+                                 username={comment.username}
+                                 content={comment.content}
+                                 timestamp={comment.timestamp}
+                                 onDeleteLabelPressed={this._onDeleteLabelPressed.bind(this)}
                         />
                     )
                 }

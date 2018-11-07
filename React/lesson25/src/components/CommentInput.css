@@ -107,3 +107,10 @@
     width: 75vh;
     display: flex;
 }
+
+.codeBlock {
+    border: 1px solid #dddddd;
+    border-radius: 2px;
+    background-color: #eeeeee;
+    font-family: monospace;
+}

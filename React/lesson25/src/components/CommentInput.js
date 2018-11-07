@@ -60,7 +60,6 @@ class CommentInput extends Component {
         }
     }
 
-
     render() {
         return (
             <div>
