@@ -870,5 +870,80 @@ So, instead of using HTML tags like ```<code></code>``` to show the content, we 
 
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson28/src/Exercise.js)    
 
+
+## [Lesson29](http://huziketang.mangojuice.top/books/react/lesson29) Context - share parent's data          
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson29/src/app.js)        
+
+In parent class (App.js), we defined the fontColor context.
+```javascript
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {Header, Body, Footer} from './components';
+
+class App extends Component {
+    static childContextTypes = {
+        fontColor: PropTypes.string
+    };
+
+    constructor() {
+        super();
+        this.state = {fontColor: 'red'}
+    }
+
+    getChildContext() {
+        return {fontColor: this.state.fontColor}
+    }
+
+
+    render() {
+        return (
+            <div>
+                <Header/>
+                <Body/>
+                <Footer/>
+                <button onClick={() => {
+                    this.setState({fontColor: 'red'})
+                }}>Red theme
+                </button>
+                <button onClick={() => {
+                    this.setState({fontColor: 'black'})
+                }}>Black theme
+                </button>
+            </div>
+        );
+    }
+}
+
+export default App;
+```
+
+In order to access ```Context``` in children like ```Header```, ```Body``` and ```Footer```, we go with     
+```javascript
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+
+class Header extends Component {
+    static contextTypes = {
+        fontColor: PropTypes.string
+    };
+
+    render() {
+        return (
+            <h1 style={{color: this.context.fontColor}}>Header</h1>
+        );
+    }
+}
+
+export {Header};
+```
+
+[Exercise](http://scriptoj.mangojuice.top/problems/15)      
+完成高阶组件 ```makeProvider```，接受一个任意类型的数据和组件作为参数：     
+```javascript
+Post = makeProvider({ name: 'Jerry' })(Post)
+```
+```Post``` 下的所有子组件都可以通过 ```this.context.data``` 获取到传给 ```makeProvider``` 的参数。如上面的 ```Post``` 及其子组件的内部可以通过 ```this.context.data.name``` 获取到 ```Jerry```。     
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson29/src/Exercise.js)    
+
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
