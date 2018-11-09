@@ -945,5 +945,185 @@ Post = makeProvider({ name: 'Jerry' })(Post)
 ```Post``` 下的所有子组件都可以通过 ```this.context.data``` 获取到传给 ```makeProvider``` 的参数。如上面的 ```Post``` 及其子组件的内部可以通过 ```this.context.data.name``` 获取到 ```Jerry```。     
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson29/src/Exercise.js)    
 
+
+# Redux
+A data architecture based on Flux       
+
+## [Lesson30](http://huziketang.mangojuice.top/books/react/lesson30) React-redux - dispatch          
+Manipulate the view with ```appState```, and the only way to modify ```appState``` is by calling ```dispatch()```       
+```javascript
+/**
+* state
+* @type {{title: {text: string, color: string}, content: {text: string, color: string}}}
+*/
+const appState = {
+    title: {
+        text: 'React.js 小书',
+        color: 'red',
+    },
+    content: {
+        text: 'React.js 小书内容',
+        color: 'blue'
+    }
+};
+
+/**
+* Update state with action
+* @param action
+*/
+function dispatch(action) {
+    switch (action.type) {
+        case 'UPDATE_TITLE_TEXT':
+            appState.title.text = action.title;
+            break;
+        case 'UPDATE_TITLE_COLOR':
+            appState.title.color = action.color;
+            break;
+        default:
+    }
+}
+
+function renderApp(appState) {
+    // render view here with appState
+}
+```
+
+Render the view
+```javascript
+renderApp(appState);
+```
+
+Call ```dispatch``` to update ```state``` and then call ```renderApp``` to refresh the view
+```javascript
+dispatch({type: 'UPDATE_TITLE_TEXT', title: 'React.js 小书 ver 2'});
+dispatch({type: 'UPDATE_TITLE_COLOR', color: 'black'});
+renderApp(appState);
+```
+
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson30/src/index.js)        
+
+
+## [Lesson31](http://huziketang.mangojuice.top/books/react/lesson31) React-redux - subscribe        
+According to lesson30, we need to render the view as we dispatch the state. Now, there is another solution.     
+We can observe the state, if there are changes, it will render the view simultaneously.     
+
+state
+```javascript
+const appState = {
+    title: {
+        text: 'React.js 小书',
+        color: 'red',
+    },
+    content: {
+        text: 'React.js 小书内容',
+        color: 'blue'
+    }
+};
+```
+
+Call the ```createStore``` at the very first, it will register listeners as the observer. As the ```state``` changes, refresh the view via listener
+```javascript
+function createStore(state, stateChanger) {
+    const listeners = [];
+    const subscribe = (listener) => listeners.push(listener);
+    const getState = () => state;
+    const dispatch = (action) => {
+        stateChanger(state, action);
+        listeners.forEach((listener) => listener());
+    };
+    return {getState, dispatch, subscribe};
+}
+```
+
+What state will be modified depends on ```action```, so we've got to define a ```stateChanger``` to handle ```state``` with ```action```
+```javascript
+function stateChanger(state, action) {
+    switch (action.type) {
+        case 'UPDATE_TITLE_TEXT':
+            appState.title.text = action.title;
+            break;
+
+        case 'UPDATE_TITLE_COLOR':
+            appState.title.color = action.color;
+            break;
+        default:
+    }
+}
+```
+
+Now we are ready to render the view with our Redux structure
+```javascript
+const store = createStore(appState, stateChanger);
+store.subscribe(() => renderApp(store.getState()));
+
+const action1 = {type: 'UPDATE_TITLE_TEXT', title: 'React.js 小书 ver 2'};
+store.dispatch(action1);
+const action2 = {type: 'UPDATE_TITLE_COLOR', color: 'black'};
+store.dispatch(action2);
+```
+
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson31/src/index.js)      
+
+## [Lesson33](http://huziketang.mangojuice.top/books/react/lesson33) React-redux - share ```state```        
+In the last lesson, we have 2 main issues to optimise:      
+1. Performance: render the view if needed       
+2. Flexibility: share ```state```       
+
+First of all, render the view if state changes
+```javascript
+function renderApp(appState, prevState = {} /*default value*/) {
+    if (prevState === appState)
+        return;
+    if (appState.title !== prevState.title)
+        renderTitle(appState.title, prevState.title);
+    if (appState.content !== prevState.content)
+        renderContent(appState.content, prevState.content);
+}
+```
+
+Secondly, clone the state (you could go to [ES6](https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6#Triple_dots) to learn how to use ```...```)       
+```javascript
+function stateChanger(state, action) {
+    switch (action.type) {
+        case 'UPDATE_TITLE_TEXT': 
+            return {
+                ...state,
+                title: {
+                    ...state.title,
+                    text: action.text
+                }
+            };
+        case 'UPDATE_TITLE_COLOR':
+            return {
+                ...state,
+                title: {
+                    ...state.title,
+                    color: action.color
+                }
+            };
+        default:
+            return state;
+    }
+}
+```
+
+Initialise the view
+```javascript
+const store = createStore(appState, stateChanger);
+let prevState = store.getState(); // cache previous state
+store.subscribe(() => {
+    const newState = store.getState();
+    renderApp(newState, prevState);
+    prevState = newState; // cache previous state
+});
+// initialise the view
+renderApp(store.getState());
+```
+
+Update the view with a new action 
+```javascript
+const action1 = {type: 'UPDATE_TITLE_TEXT', text: 'React.js 小书 ver 2'};
+store.dispatch(action1);
+```
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)

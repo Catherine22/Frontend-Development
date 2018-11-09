@@ -246,6 +246,12 @@
         a3.push('######');
         console.log(a1, a3);
 
+        let state = {title: 'title', subtitle: 'subtitle'};
+        let newState = {...state, subtitle: 'new subtitle', page: 5};
+        console.log(`...: ${state === newState}`);
+        console.log(`...: ${state.title === newState.title}`);
+        console.log('...:', newState);
+
         // Promise
         // new Promise((resolve, reject) => {
         //     console.log('pending...');
