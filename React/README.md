@@ -1125,5 +1125,106 @@ Update the view with a new action
 const action1 = {type: 'UPDATE_TITLE_TEXT', text: 'React.js 小书 ver 2'};
 store.dispatch(action1);
 ```
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson33/src/index.js)      
+
+## [Lesson34](http://huziketang.mangojuice.top/books/react/Lesson34) React-redux - reducer       
+
+1. Merge ```appState``` and ```stateChanger```      
+```javascript
+function stateChanger(state, action) {
+    if (!state) {
+        state = {
+            title: {
+                text: 'React.js 小书',
+                color: 'red',
+            },
+            content: {
+                text: 'React.js 小书内容',
+                color: 'blue'
+            }
+        };
+    }
+
+    switch (action.type) {
+        case 'UPDATE_TITLE_TEXT':
+            return {
+                ...state,
+                title: {
+                    ...state.title,
+                    text: action.text
+                }
+            };
+        case 'UPDATE_TITLE_COLOR':
+            return {
+                ...state,
+                title: {
+                    ...state.title,
+                    color: action.color
+                }
+            };
+        default:
+            return state;
+    }
+}
+```
+
+2. Rename ```stateChanger``` to ```reducer```       
+3. Create ```store``` without the default ```state```
+```javascript
+function createStore(reducer) {
+    let state = null;
+    const listeners = [];
+    const subscribe = (listener) => listeners.push(listener);
+    const getState = () => state;
+    const dispatch = (action) => {
+        state = reducer(state, action);
+        listeners.forEach((listener) => listener());
+    };
+
+    // initialise the state
+    dispatch({});
+    return {getState, dispatch, subscribe};
+}
+```
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson34/src/index.js)    
+
+## [Lesson35](http://huziketang.mangojuice.top/books/react/Lesson35) React-redux - To put everything into consideration    
+Now, we've got an awesome ```createStore``` function, we use ```reducer``` to initialise and return the cloned state.  
+We have a redux template:     
+```javascript
+/**
+* initialise and return state properly
+* @param state
+* @param action
+*/
+function reducer(state, action) {
+}
+
+/**
+* Create the store
+* @type {{getState, dispatch, subscribe}}
+*/
+const store = createStore(reducer);
+
+/**
+* Bind a listener to update the view by calling renderApp
+*/
+store.subscribe(() => renderApp(store.getState()));
+
+/**
+* Before we start to update the view, it should be initialised at first
+*/
+renderApp(store.getState());
+
+/**
+* Update the view
+*/
+store.dispatch(action)
+```
+[Exercise](http://scriptoj.mangojuice.top/problems/16)      
+完成一个符合 ```Redux``` 要求的 ```Reducer``` ```usersReducer```，它可以支持对一个存储用户信息的数组进行增、删、改的需求     
+
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/Lesson35/src/Exercise.js) 
+
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
