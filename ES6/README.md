@@ -447,7 +447,12 @@ a1 = [2, 3, 4, 5];
 a2 = [1, ...a1, 6]; // [1, 2, 3, 4, 5, 6]
 ```
 
-2. Clone objects
+2. Clone objects        
+
+In JS, when we assign an object to another object, technically, the both objects share the same reference (address).        
+That means these two objects will be updated simultaneously.
+
+Array
 ```JavaScript
 let a1 = [1, true, 's'];
 let a3 = a1;
@@ -457,7 +462,19 @@ a3.push('######');
 // a3: [1, true, "s", "######"]
 ```
 
+Object
+```javascript
+let state = {title: 'title', subtitle: 'subtitle'};
+let newState = state;
+newState.title = 'new title';
+
+// state: {title: "title", subtitle: "new subtitle"}
+// newState: {title: "title", subtitle: "new subtitle"}
+```
+
 To avoid to be manipulated by new reference a3, we use ```...``` as a key word to copy an independent object
+
+Array
 ```JavaScript
 let a1 = [1, true, 's'];
 let a3 = [...a1];
@@ -466,7 +483,20 @@ a3.push('######');
 // a1: [1, true, "s"]
 // a3: [1, true, "s", "######"]
 ```
+
 ### Default_Arguments
+
+Object
+```javascript
+let state = {title: 'title', subtitle: 'subtitle'};
+let newState = {...state, subtitle: 'new subtitle', page: 5};
+
+// state === newState: false
+// state.title === newState.title: true
+// state: {title: 'title', subtitle: 'subtitle'}
+// newState: {title: 'title', subtitle: 'new subtitle', page: 5}
+```
+
 ```JavaScript
 // default gender = 'M'
 function showPersonalInfo(name, gender = 'M') {
