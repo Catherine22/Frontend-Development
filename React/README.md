@@ -1188,7 +1188,7 @@ function createStore(reducer) {
 ```
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson34/src/index.js)    
 
-## [Lesson35](http://huziketang.mangojuice.top/books/react/Lesson35) React-redux - To put everything into consideration    
+## [Lesson35](http://huziketang.mangojuice.top/books/react/lesson35) React-redux - To put everything into consideration    
 Now, we've got an awesome ```createStore``` function, we use ```reducer``` to initialise and return the cloned state.  
 We have a redux template:     
 ```javascript
@@ -1224,7 +1224,7 @@ store.dispatch(action)
 [Exercise](http://scriptoj.mangojuice.top/problems/16)      
 完成一个符合 ```Redux``` 要求的 ```Reducer``` ```usersReducer```，它可以支持对一个存储用户信息的数组进行增、删、改的需求     
 
-[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/Lesson35/src/Exercise.js) 
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson35/src/Exercise.js) 
 
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
