@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import UsersTable from './components/UsersTable';
+import {ADD_USER, UPDATE_USER, DELETE_USER} from './Commands';
 
 
 class App extends Component {
@@ -97,6 +98,77 @@ class App extends Component {
                 </header>
             </div>
         );
+    }
+
+    createStore(state, stateChanger) {
+        const listeners = [];
+        const subscribe = (listener) => listeners.push(listener);
+        const getState = () => state;
+        const dispatch = (action) => {
+            stateChanger(state, action);
+            listeners.forEach((listener) => listener());
+        };
+        return {getState, dispatch, subscribe};
+    }
+
+    stateChanger(state, action) {
+        let users = [];
+        switch (action.type) {
+            case ADD_USER:
+                users = [...state.users];
+                let isNewUser = true;
+                let header = users.length - 1;
+                while (header >= 0) {
+                    if (users[header].id === action.user.id) {
+                        isNewUser = false;
+                        break;
+                    }
+                    header -= 1;
+                }
+
+                if (isNewUser) {
+                    users.push(action.user);
+                    this.setState({
+                        users
+                    });
+                } else {
+                    alert('Error! User existed');
+                }
+                break;
+            case DELETE_USER:
+                users = [];
+                state.users.forEach((value) => {
+                    if (value.id !== action.user.id) {
+                        users.push(value);
+                    }
+                });
+                if (users.length !== state.users.length) {
+                    this.setState({
+                        users
+                    });
+                } else {
+                    alert('Error! User not found');
+                }
+                break;
+            case UPDATE_USER:
+                users = [];
+                let updated = false;
+                state.users.forEach((value) => {
+                    if (value.id === action.user.id) {
+                        users.push(value);
+                        updated = true;
+                    }
+                });
+                if (updated) {
+                    this.setState({
+                        users
+                    });
+                } else {
+                    alert('Error! User not found');
+                }
+                break;
+            default:
+        }
     }
 }
 
