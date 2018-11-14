@@ -233,6 +233,138 @@ Packet从源主机到目的主机中可能含有多个链路集，路由器选�
 - 下载完所有.mmdb或.dat文件后放入同一个目录底下，Preferences中选择Name Resolution，MaxMind栏位选择Edit，添加刚才创建的目录   
 ![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark15.png)    
 
+- 在Ethernet II中看到地理信息   
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark16.png)  
+
+### 时间设置
+View - Time Display Format，选择适合的时间显示，比如绝对时间或相对时间（Seconds Since Beginning of Capture）。
+
+### 数据包捕获   
+一般来说，直接用内建的过滤器，不用特地学习过滤器的语法。   
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark17.png)   
+也可以从列表选择 Manage Capture Filters 添加自定义过滤器，[官网范例](https://wiki.wireshark.org/CaptureFilters#Examples)。  
+
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark18.png)    
+>格式    
+1. Type，类型    
+   例如：host, net, port, portrange   
+2. dir，方向   
+   例如：src, dst, src or dst, src and dst, ra, ta   
+3. Proto，协议   
+   例如：ether, fddi, tr, wlan, ip, ip6, arp, rarp, decnet, tcp and udp
+
+>逻辑运算符    
+与：```and``` 或 ```&&```    
+或：```or``` 或 ```||```   
+非：```！``` 或 ```not```   
+等于：```==``` 或 ```eq```    
+不等于：```!=``` 或 ```ne```   
+大于：```>``` 或 ```gt```   
+小于：```<``` 或 ```lt```     
+大于等于：```>=``` 或 ```ge```   
+小于等于：```<=``` 或 ```le```   
+
+例子：   
+**过滤ipv6**    
+```
+ip6
+```
+**过滤192.168.0.11网络流量，限制长度为24bits**    
+```
+net 192.168.0.11/24
+```
+
+**过滤arp协议**    
+```
+arp
+```
+或   
+```
+ether proto 0x0806
+```    
+更多以太网协议见[wiki](https://zh.wikipedia.org/wiki/%E4%BB%A5%E5%A4%AA%E7%B1%BB%E5%9E%8B)    
+
+**ICMP过滤**
+
+echo请求(type = 8)或echo回复(type = 0)
+```
+icmp[icmptype] == 0 or icmp[icmptype] == 8
+```
+测试指令    
+```
+$ping www.baidu.com
+```
+
+**ICMP6过滤**
+```
+icmp[icmp6type] == 0
+```
+
+**过滤port从10到100**
+```
+portrange 10-100
+```
+
+**通过协议字节偏移值（Offsets）获取数据**   
+IPv4 packet header的格式   
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark19.png)    
+比如我们要找出1000bits的packet，就看Total Length栏位（位于第2字节，占2字节）    
+```
+ip[2:2] == 1000
+```
+或者找出TTL（位于第8字节）为64的packet   
+```
+ip[8:1] == 64
+```
+也可以省略为   
+```
+ip[8] == 64
+```
+
+**捕捉主机196.21.5.254的Telnet数据包**    
+```
+host 196.21.5.254 and tcp port 23
+```   
+
+**捕捉主机196.21.5.254的ping数据包**   
+```
+host 192.168.0.11 and (icmp[icmptype] == 0 or icmp[icmptype] == 8)
+```
+
+**捕捉单播流量**    
+非广播、非组播   
+```
+not broadcast and not multicast
+```
+
+**捕捉非本地流量**   
+```
+not src and dst net 196.21.5.254
+```
+### 数据包过滤   
+可以直接输入语法，或点击Express查找所有指令。   
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark20.png)    
+另一种常用方式则是直接从结果中找出感兴趣的包，并且指定特定栏位作为过滤条件。    
+比如我想找来源为151.101.108.133的packet，则    
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark21.png)    
+Wireshark自动生成过滤条件   
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark22.png)    
+
+另一个实例，改用複製的方式获取过滤条件   
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark23.png)    
+黏贴至过滤栏位   
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark24.png)    
+
+***注意：显示过滤器和捕获过滤器的语法不同***   
+比如捕获ip为192.168.0.1用```ip host 192.168.0.1```或可省略为```host 192.168.0.1```，但在显示过滤器中则用```ip.addr == 192.168.0.1```，显示过滤器的功能更多。    
+
+***[Wireshark显示过滤器列表](https://www.wireshark.org/docs/dfref/)***
+### 其他
+#### 追踪流    
+
+查看TCP流，可以捕获明码内容    
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark25.png)    
+![Wireshark](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/Wireshark26.png)    
 
 # 参考来源
 计算机网络 自顶向下方法    

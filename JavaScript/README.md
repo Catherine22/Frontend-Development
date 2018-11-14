@@ -5,9 +5,27 @@ JavaScript = ECMAScript + DOM + BOM
 ## Get started
 - Upper case and lower case are different
 - ***Every statement must end with ```;```.*** Browsers automatically create ```;``` while the developer does not use ```;```. However, that impacts the performance. The worst of all, browsers sometimes add ```;``` incorrectly.
-- Blanks and empty lines are ignored. 
+- Blanks and empty lines are ignored.
 
-### literal， 字面量
+## Navigator
+- Get started
+  - [Literal， 字面量](#Literal)   
+  - [Identifier, 标识符](#Identifier)   
+  - [Type, 数据类型](#Type)   
+  - [Operator, 运算符或操作符](#Operator)   
+  - [Flow control and looping,  流程控制](#Flow)    
+  - [Object](#Object)   
+  - [Function](#Function)   
+  - [Constructor, 构造函数](#Constructor)   
+  - [Prototype](#Prototype)   
+- [GC, Garbage Collection](#GC)   
+- [Array](#Array)   
+- [Regular expression, 正则表达式](#正则表达式)   
+- [ECMAScrip](#ECMAScrip)   
+- [宿主对象](#宿主对象)   
+- [Reference](#Reference)   
+
+### Literal
 literals are allowed to be used directly. For example:      
 ```javascript
 alert(152013257012304);
@@ -18,13 +36,13 @@ var id = 152013257012304;
 alert(id);
 ```
 
-### Identifier, 标识符      
+### Identifier      
 An JS identifier might constants numbers, alphabets, underscores and currency symbols ($). But starting with a number is illegal.        
 ```javascript
 var $123_a = 0;
 ```
 
-### Type, 数据类型      
+### Type      
 There are six data types in JavaScript:     
 - String        
 - Number        
@@ -39,10 +57,10 @@ There are six data types in JavaScript:
 
 Go to [Type.js] to see more.
 
-### Operator, 运算符或操作符
+### Operator
 Go to [Operator.js] to see more.
 
-### Flow control and looping,  流程控制  
+### Flow  
 ```javascript
 var cars = ["BMW", "Volvo", "Saab", "Ford"];
 var i = 0;
@@ -82,7 +100,7 @@ console.log(count + ' prime numbers were found');
 
 ### Object
 Object combines and associates multiple types (String, Number, Boolean and Object)
-        
+
 Three different kinds of Object:        
 1. 内建对象     
     a. ES standard      
@@ -90,7 +108,7 @@ Three different kinds of Object:
 2. 宿主对象     
     a. Object offered by the runtime environment (browser). E.g. BOM, DOM       
 3. 自定义对象
-    
+
 E.g. Create an object with name and age properties.
 ```javascript
 var person = new Object();
@@ -106,7 +124,7 @@ person['age'] = 18;
 or
 ```javascript
 var person = {
-    name: 'Scout', 
+    name: 'Scout',
     age: 18
 };
 ```
@@ -148,7 +166,7 @@ Heap
 |         |                |
 |         |                |
 | 0x001   | name = 'Scout' |
-        
+
 In stack, the value refers to addresses.    
 Stack       
 
@@ -343,7 +361,7 @@ obj.showName = function() {
 obj.showName();
 ```
 
-### 构造函数，Constructor
+### Constructor
 Technically, Constructor is a function used to create objects, Constructor usually starts with a capital letter.        
 Use ```new``` to call a constructor.        
 ```javascript
@@ -447,7 +465,7 @@ showCar.apply({car: 'Motorhome'}, ['white']); // Motorhome, color=white
 ```
 [Function.js]
 
-## Garbage Collection 
+## GC
 Browsers automatically deal with rubbish (which are basically objects do not be refer by a specific key in the stack) in the heap, there are different solution depends on the browser.
 
 ## Array
@@ -581,7 +599,7 @@ console.log(randoms); // [10, 9, 7, 4, 2]
 ```
 [Array.js]
 
-## Regular expression, 正则表达式
+## 正则表达式
 NO BLANKS       
 ```javascript
 const reg = new RegExp('YOUR_RULE', 'MODE')
@@ -669,7 +687,7 @@ console.log(message.split(/[A-z]/));
 E.g. Search THE FIRST 'abc', 'adc' or 'aec' from String
 ```javascript
 message = 'a$bcdef cda a_e_c 0280aec4792';
-console.log(message.search(/a[bde]c/)); 
+console.log(message.search(/a[bde]c/));
 // 22
 ```
 
@@ -778,8 +796,8 @@ A135-1234-1234A: false}
 
 ```javascript
 randomString = [
-  'test@test.com', 'a.b_@gmail.com', 'david.lim@gmail.com', 
-  'test@test_1.com', 'testgmail.com', 'test@gmail', 'test@@test.com', 'test@test.a', 'test@abcdfghjklertyui.com.abc.qwert.12345', 
+  'test@test.com', 'a.b_@gmail.com', 'david.lim@gmail.com',
+  'test@test_1.com', 'testgmail.com', 'test@gmail', 'test@@test.com', 'test@test.a', 'test@abcdfghjklertyui.com.abc.qwert.12345',
   'test@ddd.abcdef', 'test@abc.com.dddddd', 'test!@gmail.com', 'test..c@gmail.com', 'test@abc.123', 'david.lim@gmail.comorgm'];
 
 reg = /\w{3,}(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
@@ -801,6 +819,7 @@ test@test_1.com]
 
 ## ECMAScrip
 A specification for JavaScript. JavaScript will be executed by a distinct engine of individual browser. V8 engine of Chrome for example, showing high performance while running JavaScript.     
+GO to [ES6  example](https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6) to learn more.
 
 ### ESLint
 ```
@@ -836,7 +855,7 @@ In HTML, we have 4 type of nodes:
 3. Attribute: ```id="pid"```       
 4. Text: ```This is a paragraph```
 
-In HTML, code will be loaded from the top. For example, 
+In HTML, code will be loaded from the top. For example,
 ```html
 <head>
     <script type="text/javascript">
@@ -889,7 +908,7 @@ However, the ```window.onload``` can be place on the top or bottom of the script
 ## Tips
 - Try to package JS code outside html files so that the JS code is able to be reused or cached by browsers. See [Introduction]
 
-## Cast
+## Reference
 [尚硅谷JavaScript视频]
 
 

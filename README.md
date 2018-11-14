@@ -3,10 +3,9 @@
 ### [JS Programming Language](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript)
 
 ### ES6
-### [Cp. ES5 and ES6](https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6)
+### [ES5 vs ES6](https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6)    
 
-## React 
-### [React Tutorial](https://github.com/Catherine22/Front-end-warm-up/tree/master/React)
+## React
 
 ## React Native
 ### [Fetch data from the Internet via axios](https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/albums/)
@@ -30,6 +29,10 @@
 
 ## Computer Networking
 ### [Computer Networks and the Internet](https://github.com/Catherine22/Front-end-warm-up/blob/master/Network/Network1.md)
-- WAN, LAN    
+- WAN, LAN       
 - TCP/IP    
-- Wireshark
+- Wireshark   
+
+### [Application Layer](https://github.com/Catherine22/Front-end-warm-up/blob/master/Network/Network2.md)
+- client-server paradigm    
+- peer-to-peer paradigm
