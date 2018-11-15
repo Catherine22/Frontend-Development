@@ -4,14 +4,23 @@ import wrapWithLoadData from './WrapWithLoadData';
 
 class InputWithUserName extends Component {
     static propTypes = {
-        id: PropTypes.string,
-        username: PropTypes.string
+        id: PropTypes.string.isRequired,
+        username: PropTypes.string.isRequired,
+        sendEvent: PropTypes.func
     };
+
+    _onButtonClicked() {
+        this.props.sendEvent();
+        console.log('InputWithUserName', '_onButtonClicked');
+    }
 
     render() {
         console.log(this.props);
         return (
-            <input value={this.props.username}/>
+            <div>
+                <input value={this.props.username}/>
+                <button onClick={this._onButtonClicked.bind(this)}>Click me</button>
+            </div>
         );
     }
 }

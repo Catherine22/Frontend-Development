@@ -24,9 +24,13 @@ export default (WrappedComponent, id) => {
             });
         }
 
+        _onButtonClicked() {
+            console.log('NewComponent', 'data collection');
+        }
+
         render() {
             console.log('WrapWithLoadData', this.state);
-            return (<WrappedComponent username={this.state.username}/>);
+            return (<WrappedComponent username={this.state.username} sendEvent={this._onButtonClicked.bind(this)}/>);
         }
 
     }

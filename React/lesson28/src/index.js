@@ -6,10 +6,10 @@ import Exercise from './Exercise';
 import * as serviceWorker from './serviceWorker';
 
 // TODO: Hide this code block to run Exercise
-// ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // TODO: Exercise
-ReactDOM.render(<Exercise />, document.getElementById('root'));
+// ReactDOM.render(<Exercise />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
