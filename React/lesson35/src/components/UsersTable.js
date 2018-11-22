@@ -2,9 +2,17 @@ import React, {Component} from 'react';
 import {Grid, Input, Select} from 'react-spreadsheet-grid';
 import './react_spreadsheet_grid_overrides.css';
 import PropTypes from 'prop-types';
+import {usersTableIDs} from './Constants';
 
 
 class UsersTable extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            rows: this.props.data
+        }
+    }
 
     static defaultPropTypes = {
         genderType: PropTypes.arrayOf(
@@ -42,25 +50,60 @@ class UsersTable extends Component {
         return clone;
     }
 
+    _onFieldChange(rowId, field, value) {
+        console.log('UserTable', '_onFieldChanged', rowId, field, value);
+
+        let formattedRow = this.formatUsers(this.state.rows)[rowId];
+        let row = Object.assign({}, this.state.rows[rowId]);
+        let isUpdated = false;
+        switch (field) {
+            case usersTableIDs.INPUT_NAME:
+                isUpdated = formattedRow.username !== value;
+                row.username = value;
+                break;
+            case usersTableIDs.INPUT_GENDER:
+                isUpdated = formattedRow.gender !== value;
+                row.gender = value;
+                break;
+            case usersTableIDs.INPUT_AGE:
+                isUpdated = formattedRow.age !== value;
+                row.age = value;
+                break;
+            default:
+        }
+
+
+        if (isUpdated) {
+
+            let modifiedRows = [...this.state.rows];
+            modifiedRows[rowId] = row;
+            this.setState({
+                rows: modifiedRows
+            });
+        }
+    }
+
     render() {
+        console.log('props', this.props);
+        console.log('state', this.state);
         return (
             <div>
                 <Grid
                     columns={[
                         {
-                            id: 'Name',
+                            id: usersTableIDs.INPUT_NAME,
                             title: () => 'Name',
                             value: (row, {focus}) => {
                                 return (
                                     <Input
                                         value={row.username}
                                         focus={focus}
-                                        onChange={this.props.onFieldChanged(row.id, 'Name', row.username)}
+                                        onChange={this._onFieldChange.bind(this, row.id, usersTableIDs.INPUT_NAME)}
                                     />
                                 );
                             }
                         }, {
-                            id: 'Gender',
+                            id: usersTableIDs.INPUT_GENDER,
                             title: () => 'Gender',
                             value: (row, {focus}) => {
                                 return (
@@ -69,26 +112,26 @@ class UsersTable extends Component {
                                         selectedId={row.gender}
                                         focus={focus}
                                         items={this.props.genderType}
-                                        onChange={this.props.onFieldChanged(row.id, 'Gender', row.gender)}
+                                        onChange={this._onFieldChange.bind(this, row.id, usersTableIDs.INPUT_GENDER)}
                                     />
                                 );
                             }
                         }, {
-                            id: 'Age',
+                            id: usersTableIDs.INPUT_AGE,
                             title: () => 'Age',
                             value: (row, {focus}) => {
                                 return (
                                     <Input
                                         value={row.age}
                                         focus={focus}
-                                        onChange={this.props.onFieldChanged(row.id, 'Age', row.age)}
+                                        onChange={this._onFieldChange.bind(this, row.id, usersTableIDs.INPUT_AGE)}
                                     />
                                 );
                             }
                         }
                     ]}
 
-                    rows={this.formatUsers(this.props.data)}
+                    rows={this.formatUsers(this.state.rows)}
                     getRowKey={row => row.id}
                 />
             </div>);

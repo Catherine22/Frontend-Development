@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import UsersTable from './components/UsersTable';
 import {ADD_USER, UPDATE_USER, DELETE_USER} from './Commands';
+import {usersTableIDs} from './components/Constants';
 
 class App extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class App extends Component {
                 username: '',
                 isMale: true,
                 birth: '',
-                id: ''
+                id: -1
             },
 
             users: []
@@ -44,6 +45,7 @@ class App extends Component {
         this.setState({
             users: this.store.getState().users
         });
+
     }
 
     _onNameChanged(event) {
@@ -117,7 +119,7 @@ class App extends Component {
         }
 
         if (birth.length === 0) {
-            alert('Please input birth');
+            alert('Please input correct birth');
             return;
         }
 
@@ -148,9 +150,16 @@ class App extends Component {
     }
 
     _onFieldChanged(rowId, fieldId, value) {
-        console.log('_onFieldChanged', rowId);
-        console.log('_onFieldChanged', fieldId);
-        console.log('_onFieldChanged', value);
+
+        console.log('_onFieldChanged', rowId, fieldId, value);
+
+        // const updateUser = {
+        //     type: UPDATE_USER,
+        //     user
+        // };
+        //
+        // console.log('action', updateUser);
+        // this.store.dispatch(updateUser);
     }
 
     render() {
@@ -205,7 +214,7 @@ class App extends Component {
         const subscribe = (listener) => listeners.push(listener);
         const getState = () => state;
         const dispatch = (action) => {
-            state = reducer(state, action);
+            state = reducer(null, action);
             listeners.forEach((listener) => listener());
         };
 
@@ -267,10 +276,14 @@ class App extends Component {
             case UPDATE_USER:
                 users = [];
                 let updated = false;
-                state.users.forEach((value) => {
-                    if (value.id === action.user.id) {
-                        users.push(value);
-                        updated = true;
+                state.users.forEach((user) => {
+                    if (user.id === action.user.id) {
+                        users.push(user);
+                        if (user.username !== action.user.username
+                            || user.isMale !== action.user.isMale
+                            || user.birth !== action.user.birth) {
+                            updated = true;
+                        }
                     }
                 });
                 if (updated) {
