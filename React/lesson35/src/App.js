@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import UsersTable from './components/UsersTable';
-import {ADD_USER, UPDATE_USER, DELETE_USER} from './Commands';
-import {usersTableIDs} from './components/Constants';
+import {ADD_USER, UPDATE_USER, DELETE_USER, UPDATE_USERS} from './Commands';
 
 class App extends Component {
     constructor(props) {
@@ -149,17 +148,12 @@ class App extends Component {
         }
     }
 
-    _onFieldChanged(rowId, fieldId, value) {
-
-        console.log('_onFieldChanged', rowId, fieldId, value);
-
-        // const updateUser = {
-        //     type: UPDATE_USER,
-        //     user
-        // };
-        //
-        // console.log('action', updateUser);
-        // this.store.dispatch(updateUser);
+    _onListChanged(rows) {
+        const updateUsers = {
+            type: UPDATE_USERS,
+            users: rows
+        };
+        this.store.dispatch(updateUsers);
     }
 
     render() {
@@ -198,7 +192,7 @@ class App extends Component {
                         </div>
                         <label className='button-submit' onClick={this._onSubmitPressed.bind(this)}>submit</label>
                     </div>
-                    <UsersTable onFieldChanged={this._onFieldChanged.bind(this)} data={users}/>
+                    <UsersTable onListChanged={this._onListChanged.bind(this)} data={users}/>
                     <div className='footer'>
                         <label className='button-save' onClick={this._onSavePressed.bind(this)}>save</label>
                         <label className='button-save' onClick={this._onCancelPressed.bind(this)}>clear</label>
@@ -214,7 +208,7 @@ class App extends Component {
         const subscribe = (listener) => listeners.push(listener);
         const getState = () => state;
         const dispatch = (action) => {
-            state = reducer(null, action);
+            state = reducer(state, action);
             listeners.forEach((listener) => listener());
         };
 
@@ -273,28 +267,12 @@ class App extends Component {
                     console.log('Error! User not found');
                     return state;
                 }
-            case UPDATE_USER:
-                users = [];
-                let updated = false;
-                state.users.forEach((user) => {
-                    if (user.id === action.user.id) {
-                        users.push(user);
-                        if (user.username !== action.user.username
-                            || user.isMale !== action.user.isMale
-                            || user.birth !== action.user.birth) {
-                            updated = true;
-                        }
-                    }
-                });
-                if (updated) {
-                    return {
-                        ...state,
-                        users
-                    };
-                } else {
-                    console.log('Error! User not found');
-                    return state;
-                }
+            case UPDATE_USERS:
+                users = [...action.users];
+                return {
+                    ...state,
+                    users
+                };
             default:
                 return state;
         }

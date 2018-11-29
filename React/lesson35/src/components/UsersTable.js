@@ -22,7 +22,7 @@ class UsersTable extends Component {
             })
         ),
         data: PropTypes.array.isRequired,
-        onFieldChanged: PropTypes.func.isRequired
+        onListChanged: PropTypes.func.isRequired
     };
 
     static defaultProps = {
@@ -43,7 +43,7 @@ class UsersTable extends Component {
             clone.push({
                 username: value.username,
                 gender: (value.isMale === true) ? 'Male' : 'Female',
-                age: thisYear - value.birth,
+                age: thisYear - parseInt(value.birth),
                 id: value.id
             });
         });
@@ -52,8 +52,10 @@ class UsersTable extends Component {
 
     _onFieldChange(rowId, field, value) {
         console.log('UserTable', '_onFieldChanged', rowId, field, value);
+        console.log('UserTable', this.state.rows);
 
         let formattedRow = this.formatUsers(this.state.rows)[rowId];
+        let thisYear = new Date().getFullYear();
         let row = Object.assign({}, this.state.rows[rowId]);
         let isUpdated = false;
         switch (field) {
@@ -63,23 +65,25 @@ class UsersTable extends Component {
                 break;
             case usersTableIDs.INPUT_GENDER:
                 isUpdated = formattedRow.gender !== value;
-                row.gender = value;
+                row.isMale = (value === 'Male');
                 break;
             case usersTableIDs.INPUT_AGE:
                 isUpdated = formattedRow.age !== value;
-                row.age = value;
+                row.birth = `${thisYear - parseInt(value)}`;
                 break;
             default:
         }
 
 
         if (isUpdated) {
-
             let modifiedRows = [...this.state.rows];
             modifiedRows[rowId] = row;
             this.setState({
-                rows: modifiedRows
+                rows: this.formatUsers(modifiedRows)
             });
+            console.log('modifiedRows', modifiedRows);
+
+            this.props.onListChanged(modifiedRows);
         }
     }
 
@@ -135,6 +139,20 @@ class UsersTable extends Component {
                     getRowKey={row => row.id}
                 />
             </div>);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.isEqual(nextProps.data, this.state.rows)) {
+            return false;
+        }
+        this.setState({
+            rows: nextProps.data
+        });
+        return true;
+    }
+
+    isEqual(array1, array2) {
+        return JSON.stringify(array1) === JSON.stringify(array2);
     }
 
 }
