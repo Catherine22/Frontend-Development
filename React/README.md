@@ -1226,5 +1226,12 @@ store.dispatch(action)
 
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson35/src/Exercise.js) 
 
+## [Lesson36](http://huziketang.mangojuice.top/books/react/lesson36) 
+## [Lesson37](http://huziketang.mangojuice.top/books/react/lesson37) React-redux: context + store 
+
+### Step1. create a redux skeleton
+In [App.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson36/src/App.js)
+
+
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
