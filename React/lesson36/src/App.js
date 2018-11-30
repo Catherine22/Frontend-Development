@@ -1,21 +1,24 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types'
 import {Content, Header} from './components';
+import CHANGE_COLOUR from './constants';
 
-const CHANGE_COLOUR = 0;
 
 class App extends Component {
     static childContextTypes = {
-        themeColor: PropTypes.string
+        store: PropTypes.shape({
+            getState: PropTypes.func.isRequired,
+            dispatch: PropTypes.func.isRequired,
+            subscribe: PropTypes.func.isRequired
+        })
     };
 
     constructor(props) {
         super(props);
-
         const themeReducer = (state, action) => {
             if (!state) {
                 return {
-                    themeColor: 'red'
+                    themeColour: 'green'
                 };
             }
 
@@ -23,30 +26,23 @@ class App extends Component {
                 case CHANGE_COLOUR:
                     return {
                         ...state,
-                        themeColor: action.colour
+                        themeColour: action.themeColour
                     };
                 default:
                     return state;
             }
         };
 
-        const store = this.createStore(themeReducer);
-
-        this.state = {
-            themeColor: 'black'
-        }
-    }
-
-    getChildContext() {
-        return {themeColor: this.state.themeColor}
+        this.store = this.createStore(themeReducer);
     }
 
     createStore(reducer) {
-        let state = [];
+        let state = null;
         const listeners = [];
         const subscribe = (listener) => listeners.push(listener);
         const getState = () => state;
         const dispatch = (action) => {
+            console.log('dispatch', action);
             state = reducer(state, action);
             listeners.forEach((listener) => listener());
         };
@@ -56,22 +52,17 @@ class App extends Component {
         return {getState, dispatch, subscribe};
     }
 
+    getChildContext() {
+        return {store: this.store}
+    }
+
     render() {
         return (
             <div>
                 <Header/>
-                <Content changeColour={this.changeColour}/>
+                <Content/>
             </div>);
     }
-
-
-    changeColour = (colour) => {
-        this.setState({
-            themeColor: colour
-        })
-    }
-
-
 }
 
 export default App;

@@ -1230,8 +1230,11 @@ store.dispatch(action)
 ## [Lesson37](http://huziketang.mangojuice.top/books/react/lesson37) React-redux: context + store 
 
 ### Step1. create a redux skeleton
-In [App.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson36/src/App.js)
+Create the store and return it as childContext in [App.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson36/src/App.js), and don't forget to set appropriate childContextTypes.     
 
+### Step2. subscribe the listener and update views via ```dispatch```
+See more about ```dispatch```: [ThemeSwitch.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson36/src/component/ThemeSwitch.js)      
+Other components: [components.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson36/src/component/)       
 
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
