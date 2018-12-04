@@ -1236,5 +1236,14 @@ Create the store and return it as childContext in [App.js](https://github.com/Ca
 See more about ```dispatch```: [ThemeSwitch.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson36/src/component/ThemeSwitch.js)      
 Other components: [components.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson36/src/component/)       
 
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson36/src/Exercise.js) 
+
+## [Lesson38](http://huziketang.mangojuice.top/books/react/lesson38) A typical react-redux example
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/Lesson38/src/redux/Conenct.js) 
+
+1. Build an app with context structure      
+2. Create connect, move context-related code block to connect       
+
+
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)

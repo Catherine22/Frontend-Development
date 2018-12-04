@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
+import {ThemeSwitch} from './';
 import PropTypes from 'prop-types';
-import CHANGE_COLOUR from '../constants';
-import connect from '../redux/Connect';
+import {connect} from '../redux/Connect';
 
-class ThemeSwitch extends Component {
-
+class Content extends Component {
     static contextTypes = {
         store: PropTypes.shape({
             getState: PropTypes.func.isRequired,
@@ -45,31 +44,15 @@ class ThemeSwitch extends Component {
         })
     }
 
-
     render() {
         return (
             <div>
-                <button style={{color: this.state.themeColour}} onClick={this.onRedSelected}>Red</button>
-                <button style={{color: this.state.themeColour}} onClick={this.onBlueSelected}>Blue</button>
+                <p style={{color: this.state.themeColour}}>React.js 小书内容</p>
+                <ThemeSwitch/>
             </div>
         );
-    };
-
-    onBlueSelected = () => {
-        this.context.store.dispatch({
-            type: CHANGE_COLOUR,
-            themeColour: 'blue'
-        });
-    };
-
-    onRedSelected = () => {
-        this.context.store.dispatch({
-            type: CHANGE_COLOUR,
-            themeColour: 'red'
-        });
-    };
+    }
 }
-
 
 /**
  * Redux
@@ -84,4 +67,4 @@ const mapStateToProps = (state) => {
 
 Content = connect(mapStateToProps)(Content);
 
-export {ThemeSwitch};
+export {Content};

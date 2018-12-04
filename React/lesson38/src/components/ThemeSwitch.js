@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import CHANGE_COLOUR from '../constants';
-import connect from '../redux/Connect';
+import CHANGE_COLOUR from "../constants";
 
 class ThemeSwitch extends Component {
 
@@ -20,31 +19,18 @@ class ThemeSwitch extends Component {
         }
     }
 
-    /** This could be moved to redux connect
-     componentWillMount() {
-        const {subscribe} = this.context.store;
-        this._updateColour();
+    componentWillMount() {
+        const {getState, subscribe} = this.context.store;
+        this._updateColour(getState().themeColour);
         subscribe(this._updateColour.bind(this));
     }
 
-     _updateColour() {
+    _updateColour() {
         const {getState} = this.context.store;
         this.setState({
             themeColour: getState().themeColour
         });
     };
-     */
-
-    /**
-     * Redux - update the state if the props changed.
-     * @param nextProps
-     */
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            themeColour: nextProps.themeColour
-        })
-    }
-
 
     render() {
         return (
@@ -69,19 +55,5 @@ class ThemeSwitch extends Component {
         });
     };
 }
-
-
-/**
- * Redux
- * @param state
- * @returns {{themeColour: *}}
- */
-const mapStateToProps = (state) => {
-    return {
-        themeColour: state.themeColour
-    }
-};
-
-Content = connect(mapStateToProps)(Content);
 
 export {ThemeSwitch};
