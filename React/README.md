@@ -1238,11 +1238,16 @@ Other components: [components.js](https://github.com/Catherine22/Front-end-warm-
 
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson36/src/Exercise.js) 
 
-## [Lesson38](http://huziketang.mangojuice.top/books/react/lesson38) A typical react-redux example
-[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/Lesson38/src/redux/Conenct.js) 
+## [Lesson38](http://huziketang.mangojuice.top/books/react/lesson38) React-redux: context + store + redux
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson38/src/redux/Conenct.js) 
 
 1. Build an app with context structure      
 2. Create connect, move context-related code block to connect       
+
+## [Lesson39](http://huziketang.mangojuice.top/books/react/Lesson39) React-redux: [Lesson38] + dispatch
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson39/src/redux/Conenct.js) 
+
+3. Move dispatch functions to connect, see more in [ThemeSwitch](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson38/src/components/ThemeSwitch.js)
 
 
 # Reference

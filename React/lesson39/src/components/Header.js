@@ -4,7 +4,7 @@ import {connect} from '../redux/Connect';
 
 class Header extends Component {
     /** This could be moved to redux connect
-     static contextTypes = {
+    static contextTypes = {
         store: PropTypes.shape({
             getState: PropTypes.func.isRequired,
             dispatch: PropTypes.func.isRequired,
