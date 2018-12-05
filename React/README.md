@@ -1244,10 +1244,18 @@ Other components: [components.js](https://github.com/Catherine22/Front-end-warm-
 1. Build an app with context structure      
 2. Create connect, move context-related code block to connect       
 
-## [Lesson39](http://huziketang.mangojuice.top/books/react/Lesson39) React-redux: [Lesson38] + dispatch
+## [Lesson39](http://huziketang.mangojuice.top/books/react/lesson39) React-redux: Lesson38 + dispatch
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson39/src/redux/Conenct.js) 
 
 3. Move dispatch functions to connect, see more in [ThemeSwitch](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson38/src/components/ThemeSwitch.js)
+
+
+## [Lesson40](http://huziketang.mangojuice.top/books/react/lesson40) React-redux: Lesson39 + provider
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson40/src/) Redux example
+
+1. Create context, store and reducer in [Provider.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson40/src/redux/Provider.js)     
+2. Wrap components in [App.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson40/src/App.js) with ```<Provider/>```       
+3. Update children components via ```props```, define map the ```state``` to ```props```(```mapStateToProps```) or do something (```dispatch```), manage all the functions in ```connect```.
 
 
 # Reference
