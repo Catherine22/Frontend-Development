@@ -1,102 +1,281 @@
 import React, {Component} from 'react';
 import './App.css';
 import UsersTable from './components/UsersTable';
-
+import {ADD_USER, UPDATE_USER, DELETE_USER, UPDATE_USERS} from './Commands';
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            isMale: true,
-            birth: '',
-            id: '',
+            user: {
+                username: '',
+                isMale: true,
+                birth: '',
+                id: -1
+            },
 
-            users: [
-                {
-                    username: 'Alex',
-                    isMale: true,
-                    birth: 1988,
-                    id: 'A0001'
-                },
-
-                {
-                    username: 'Joanne',
-                    isMale: false,
-                    birth: 1980,
-                    id: 'A0002'
-                }
-            ]
+            users: []
+            // users: [
+            //     {
+            //         username: 'Alex',
+            //         isMale: true,
+            //         birth: 1988,
+            //         id: 'A0001'
+            //     },
+            //
+            //     {
+            //         username: 'Joanne',
+            //         isMale: false,
+            //         birth: 1980,
+            //         id: 'A0002'
+            //     }
+            // ]
         };
     }
 
-    _onGenderChecked() {
+    componentWillMount() {
+        this.store = this.createStore(this.reducer);
+        this.store.subscribe(() => {
+            console.log('subscribe', this.store.getState());
+            this.setState({
+                users: this.store.getState().users
+            });
+        });
         this.setState({
-            isMale: !this.state.isMale
+            users: this.store.getState().users
+        });
+
+    }
+
+    _onNameChanged(event) {
+        this.setState({
+            user: {
+                ...this.state.user,
+                username: event.target.value
+            }
+        });
+    }
+
+    _onBirthChanged(event) {
+        this.setState({
+            user: {
+                ...this.state.user,
+                birth: event.target.value
+            }
+        });
+    }
+
+    _onMaleCheckboxPressed() {
+        // console.log('M M C', this.maleCheckbox.checked);
+        // console.log('M F C', this.femaleCheckbox.checked);
+        let isMale;
+        if (this.maleCheckbox.checked) {
+            this.maleCheckbox.checked = true;
+            this.femaleCheckbox.checked = false;
+            isMale = true;
+        } else {
+            this.maleCheckbox.checked = false;
+            this.femaleCheckbox.checked = true;
+            isMale = false;
+        }
+
+        this.setState({
+            user: {
+                ...this.state.user,
+                isMale
+            }
+        });
+    }
+
+    _onFemaleCheckboxPressed() {
+        // console.log('F M C', this.maleCheckbox.checked);
+        // console.log('F F C', this.femaleCheckbox.checked);
+        let isMale;
+        if (this.femaleCheckbox.checked) {
+            this.maleCheckbox.checked = false;
+            this.femaleCheckbox.checked = true;
+            isMale = false;
+        } else {
+            this.maleCheckbox.checked = true;
+            this.femaleCheckbox.checked = false;
+            isMale = true;
+        }
+
+        this.setState({
+            user: {
+                ...this.state.user,
+                isMale
+            }
         });
     }
 
     _onSubmitPressed() {
-        if (this.state.username.length === 0) {
+        const {users} = this.state;
+        const {username, isMale, birth} = this.state.user;
+        if (username.length === 0) {
             alert('Please input username');
             return;
         }
 
-        if (this.state.birth.length === 0) {
-            alert('Please input birth');
+        if (birth.length === 0) {
+            alert('Please input correct birth');
             return;
         }
 
-        let clone = [];
-        this.state.users.map((value) => {
-            if (value.id !== this.state.id) {
-                clone.push(value);
+        const addUser = {
+            type: ADD_USER,
+            user: {
+                username,
+                isMale,
+                birth,
+                id: users.length
             }
-            return value;
-        });
+        };
 
-        this.setState({
-            users: clone
-        });
+        console.log('action', addUser);
+        this.store.dispatch(addUser);
     }
 
-    _onFieldChanged(rowId, fieldId, value) {
+    _onSavePressed() {
+        if (localStorage) {
+            localStorage.setItem('users', JSON.stringify(this.state.users));
+        }
+    }
 
+    _onCancelPressed() {
+        if (localStorage) {
+            localStorage.clear();
+        }
+    }
+
+    _onListChanged(rows) {
+        const updateUsers = {
+            type: UPDATE_USERS,
+            users: rows
+        };
+        this.store.dispatch(updateUsers);
     }
 
     render() {
-        const {username, birth, isMale, users} = this.state;
+        const {users} = this.state;
+        const {username, birth, isMale} = this.state.user;
         return (
             <div className="App">
                 <header className="App-header">
                     <div className='input-field'>
                         <div className='input-item-field'>
                             <div>
-                                Name: <input value={username}/>
+                                Name: <input value={username}
+                                             onChange={this._onNameChanged.bind(this)}/>
                             </div>
                             <div>
-                                Birth: <input value={birth}/>
+                                Birth: <input value={birth}
+                                              onChange={this._onBirthChanged.bind(this)}/>
                             </div>
                             <div>
-                                <input type='checkbox'
+                                <input ref={(input) => {
+                                    this.maleCheckbox = input;
+                                }}
+                                       name='M'
+                                       type='checkbox'
                                        checked={isMale}
-                                       onChange={this._onGenderChecked.bind(this)}/>Male
+                                       onChange={this._onMaleCheckboxPressed.bind(this)}/>Male
                                 <input style={{marginLeft: 10}}
+                                       ref={(input) => {
+                                           this.femaleCheckbox = input;
+                                       }}
+                                       name='F'
                                        type='checkbox'
                                        checked={!isMale}
-                                       onChange={this._onGenderChecked.bind(this)}/>Female
+                                       onChange={this._onFemaleCheckboxPressed.bind(this)}/>Female
                             </div>
                         </div>
                         <label className='button-submit' onClick={this._onSubmitPressed.bind(this)}>submit</label>
                     </div>
-                    <UsersTable onFieldChanged={this._onFieldChanged.bind(this)} data={users}/>
+                    <UsersTable onListChanged={this._onListChanged.bind(this)} data={users}/>
                     <div className='footer'>
-                        <label className='button-save' onClick={this._onSubmitPressed.bind(this)}>save</label>
-                        <label className='button-save' onClick={this._onSubmitPressed.bind(this)}>cancel</label>
+                        <label className='button-save' onClick={this._onSavePressed.bind(this)}>save</label>
+                        <label className='button-save' onClick={this._onCancelPressed.bind(this)}>clear</label>
                     </div>
                 </header>
             </div>
         );
+    }
+
+    createStore(reducer) {
+        let state = null;
+        const listeners = [];
+        const subscribe = (listener) => listeners.push(listener);
+        const getState = () => state;
+        const dispatch = (action) => {
+            state = reducer(state, action);
+            listeners.forEach((listener) => listener());
+        };
+
+        // initialise the state
+        dispatch({});
+        return {getState, dispatch, subscribe};
+    }
+
+    reducer(state, action) {
+        if (!state) {
+            let data = [];
+            if (localStorage && localStorage.getItem('users'))
+                data = JSON.parse(localStorage.getItem('users'));
+            state = {
+                users: data
+            };
+        }
+
+        let users = [];
+        switch (action.type) {
+            case ADD_USER:
+                users = [...state.users];
+                let isNewUser = true;
+                let header = users.length - 1;
+                while (header >= 0) {
+                    if (users[header].id === action.user.id) {
+                        isNewUser = false;
+                        break;
+                    }
+                    header -= 1;
+                }
+
+                if (isNewUser) {
+                    users.push(action.user);
+                    return {
+                        ...state,
+                        users
+                    };
+                } else {
+                    console.log('Error! User existed');
+                    return state;
+                }
+            case DELETE_USER:
+                users = [];
+                state.users.forEach((value) => {
+                    if (value.id !== action.user.id) {
+                        users.push(value);
+                    }
+                });
+                if (users.length !== state.users.length) {
+                    return {
+                        ...state,
+                        users
+                    };
+                } else {
+                    console.log('Error! User not found');
+                    return state;
+                }
+            case UPDATE_USERS:
+                users = [...action.users];
+                return {
+                    ...state,
+                    users
+                };
+            default:
+                return state;
+        }
     }
 }
 

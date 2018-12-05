@@ -1226,5 +1226,37 @@ store.dispatch(action)
 
 [code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson35/src/Exercise.js) 
 
+## [Lesson36](http://huziketang.mangojuice.top/books/react/lesson36) 
+## [Lesson37](http://huziketang.mangojuice.top/books/react/lesson37) React-redux: context + store 
+
+### Step1. create a redux skeleton
+Create the store and return it as childContext in [App.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson36/src/App.js), and don't forget to set appropriate childContextTypes.     
+
+### Step2. subscribe the listener and update views via ```dispatch```
+See more about ```dispatch```: [ThemeSwitch.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson36/src/component/ThemeSwitch.js)      
+Other components: [components.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson36/src/component/)       
+
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson36/src/Exercise.js) 
+
+## [Lesson38](http://huziketang.mangojuice.top/books/react/lesson38) React-redux: context + store + redux
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson38/src/redux/Conenct.js) 
+
+1. Build an app with context structure      
+2. Create connect, move context-related code block to connect       
+
+## [Lesson39](http://huziketang.mangojuice.top/books/react/lesson39) React-redux: Lesson38 + dispatch
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson39/src/redux/Conenct.js) 
+
+3. Move dispatch functions to connect, see more in [ThemeSwitch](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson38/src/components/ThemeSwitch.js)
+
+
+## [Lesson40](http://huziketang.mangojuice.top/books/react/lesson40) React-redux: Lesson39 + provider
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson40/src/) Redux example
+
+1. Create context, store and reducer in [Provider.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson40/src/redux/Provider.js)     
+2. Wrap components in [App.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson40/src/App.js) with ```<Provider/>```       
+3. Update children components via ```props```, define map the ```state``` to ```props```(```mapStateToProps```) or do something (```dispatch```), manage all the functions in ```connect```.
+
+
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)

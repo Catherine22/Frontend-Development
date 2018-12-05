@@ -3,9 +3,10 @@
 ### [JS Programming Language](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript)
 
 ### ES6
-### [ES5 vs ES6](https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6)    
+### [Cp. ES5 and ES6](https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6)
 
 ## React
+### [React Tutorial](https://github.com/Catherine22/Front-end-warm-up/tree/master/React)
 
 ## React Native
 ### [Fetch data from the Internet via axios](https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/albums/)
