@@ -11,6 +11,7 @@ class Provider extends Component {
         }),
         children: PropTypes.any
     };
+
     static childContextTypes = {
         store: PropTypes.shape({
             getState: PropTypes.func.isRequired,
