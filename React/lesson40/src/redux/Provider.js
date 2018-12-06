@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import CHANGE_COLOUR from "../constants";
+import CHANGE_COLOUR from '../constants';
 
 class Provider extends Component {
     static propTypes = {
-        store: PropTypes.shape({
-            getState: PropTypes.func.isRequired,
-            dispatch: PropTypes.func.isRequired,
-            subscribe: PropTypes.func.isRequired
-        }),
         children: PropTypes.any
     };
 

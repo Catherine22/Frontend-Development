@@ -579,10 +579,16 @@ render() {
     return (
         <div>
             <CountView value={this.state.count}/>
-            <button onClick={this._onButtonPressed.bind(this)}>Update view</button>
         </div>
     );
 }
+```
+
+The state in [CountView.js] is
+```javascript
+this.state = {
+    version: 0
+};
 ```
 
 The lifecycle of 2 components ([App.js] and [CountView.js]) will be:        
@@ -590,36 +596,87 @@ The lifecycle of 2 components ([App.js] and [CountView.js]) will be:
 [App Lifecycle] constructor
 [App Lifecycle] componentWillMount
 [App Lifecycle] render constructor
+[CountView Lifecycle] constructor
 [CountView Lifecycle] componentWillMount
 [CountView Lifecycle] render
 [CountView Lifecycle] componentDidMount
 [App Lifecycle] componentDidMount
 ```
 
-When the "Update state" button is pressed, the state will be updated, and the new lifecycle events will be:       
+When the "Update CountView state" button is pressed, the state will be updated, and the new lifecycle events will be:       
 ```
-[App Lifecycle] render
 [CountView Lifecycle] shouldComponentUpdate
-nextProps {value: 1}
-[CountView Lifecycle] shouldComponentUpdate
-nextProps {value: 1}
-nextState null
+    nextProps {value: 0}
+    nextState {version: 1}
+[CountView Lifecycle] componentWillUpdate
+    nextProps {value: 0}
+    nextState {version: 1}
 [CountView Lifecycle] render
+[CountView Lifecycle] componentDidUpdate
+    prevProps {value: 0}
+    prevState {version: 0}
+```
+
+When the "Update CountView props" button is pressed, the state will be updated, and the new lifecycle events will be:       
+(Update state and props in [App] and [CountView] respectively)      
+```
+[App Lifecycle] shouldComponentUpdate
+    nextProps {}
+    nextState {count: 1, isHide: false}
+[App Lifecycle] componentWillUpdate
+    nextProps {}
+    nextState {count: 1, isHide: false}
+[App Lifecycle] render
+[CountView Lifecycle] componentWillReceiveProps
+    nextProps {value: 1}
+    nextState {}
+[CountView Lifecycle] shouldComponentUpdate
+    nextProps {value: 1}
+    nextState {version: 1}
+[CountView Lifecycle] componentWillUpdate
+    nextProps {value: 1}
+    nextState {version: 1}
+[CountView Lifecycle] render
+[CountView Lifecycle] componentDidUpdate
+    prevProps {value: 0}
+    prevState {version: 1}
+[App Lifecycle] componentDidUpdate
+    nextProps {}
+    nextState {count: 0, isHide: false}
 ```
 
 If we press "Hide/Show the view" button to hide or show a component, the new lifecycle events will be:     
 Hide the view       
 ```
+[App Lifecycle] shouldComponentUpdate
+    nextProps {}
+    nextState {count: 1, isHide: true}
+[App Lifecycle] componentWillUpdate
+    nextProps {}
+    nextState {count: 1, isHide: true}
 [App Lifecycle] render
+[CountView Lifecycle] componentWillUnmount
+[App Lifecycle] componentDidUpdate
+    prevProps {}
+    prevState {count: 1, isHide: false}
 ```
 
 Show the view
 ```
+[App Lifecycle] shouldComponentUpdate
+    nextProps {}
+    nextState {count: 1, isHide: false}
+[App Lifecycle] componentWillUpdate
+    nextProps {}
+    nextState {count: 1, isHide: false}
 [App Lifecycle] render
 [CountView Lifecycle] constructor
 [CountView Lifecycle] componentWillMount
 [CountView Lifecycle] render
 [CountView Lifecycle] componentDidMount
+[App Lifecycle] componentDidMount
+    prevProps {}
+    prevState {count: 1, isHide: true}
 ```
 
 ***Notice, you can optimise code from here!***
@@ -1224,7 +1281,7 @@ store.dispatch(action)
 [Exercise](http://scriptoj.mangojuice.top/problems/16)      
 完成一个符合 ```Redux``` 要求的 ```Reducer``` ```usersReducer```，它可以支持对一个存储用户信息的数组进行增、删、改的需求     
 
-[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson35/src/Exercise.js) 
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson35/src/App.js) 
 
 ## [Lesson36](http://huziketang.mangojuice.top/books/react/lesson36) 
 ## [Lesson37](http://huziketang.mangojuice.top/books/react/lesson37) React-redux: context + store 
@@ -1256,6 +1313,12 @@ Other components: [components.js](https://github.com/Catherine22/Front-end-warm-
 1. Create context, store and reducer in [Provider.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson40/src/redux/Provider.js)     
 2. Wrap components in [App.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson40/src/App.js) with ```<Provider/>```       
 3. Update children components via ```props```, define map the ```state``` to ```props```(```mapStateToProps```) or do something (```dispatch```), manage all the functions in ```connect```.
+
+[Exercise](http://scriptoj.mangojuice.top/problems/17)   
+直接使用在 [实现 Users Reducer](http://scriptoj.mangojuice.top/problems/16) 中实现的 ```userReducer```。用 ```react-redux``` 完成 ```UserList```、```User``` 组件，可以对用户列表进行显示、增加、删除操作。
+你不需要实现 ```store``` 的生成和使用 ```Provider```，只需要完成 ```connect``` 的过程和组件的实现。
+（留意 ```<input type="number" />``` 的字符串和数字的转换问题）
+
 
 
 # Reference

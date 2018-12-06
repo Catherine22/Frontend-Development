@@ -73,3 +73,44 @@
     font-size: calc(10px + 1vmin);
     align-self: flex-end;
 }
+
+.input-area {
+    resize: none;
+    font-size: calc(10px + 1vmin);
+    height: calc(10px + 2vmin);
+    background-color: #282c34;
+    border: 0;
+    color: white;
+    width: auto;
+    font-weight: bold;
+    white-space: normal;
+    text-align: justify;
+    -moz-text-align-last: center; /* Firefox 12+ */
+    text-align-last: center;
+}
+
+table {
+    width: 70%;
+    margin: 20px
+}
+
+th {
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    font-size: calc(10px + 1vmin);
+}
+
+.textAreaField {
+    line-height: calc(5px + 2vmin);
+    display: block;
+    font-size: calc(5px + 2vmin);
+    resize: none;
+    white-space: pre-line;
+    color: white;
+    background-color: #282c34;
+}
+
+.textAreaField:focus {
+    outline: none;
+}
