@@ -117,8 +117,7 @@ class App extends Component {
             if (localStorage && localStorage.getItem('users'))
                 data = JSON.parse(localStorage.getItem('users'));
             state = {
-                users: data,
-                user: null
+                users: data
             };
         }
 

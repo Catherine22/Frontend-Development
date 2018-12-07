@@ -1308,18 +1308,22 @@ Other components: [components.js](https://github.com/Catherine22/Front-end-warm-
 
 
 ## [Lesson40](http://huziketang.mangojuice.top/books/react/lesson40) React-redux: Lesson39 + provider
-[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson40/src/) Redux example
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson40/src/) User-defined Redux example
 
 1. Create context, store and reducer in [Provider.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson40/src/redux/Provider.js)     
 2. Wrap components in [App.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson40/src/App.js) with ```<Provider/>```       
 3. Update children components via ```props```, define map the ```state``` to ```props```(```mapStateToProps```) or do something (```dispatch```), manage all the functions in ```connect```.
+
+
+## [Lesson42](http://huziketang.mangojuice.top/books/react/lesson42) React-redux: example
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson42/src/) Redux example
 
 [Exercise](http://scriptoj.mangojuice.top/problems/17)   
 直接使用在 [实现 Users Reducer](http://scriptoj.mangojuice.top/problems/16) 中实现的 ```userReducer```。用 ```react-redux``` 完成 ```UserList```、```User``` 组件，可以对用户列表进行显示、增加、删除操作。
 你不需要实现 ```store``` 的生成和使用 ```Provider```，只需要完成 ```connect``` 的过程和组件的实现。
 （留意 ```<input type="number" />``` 的字符串和数字的转换问题）
 
-
+[code](https://github.com/Catherine22/Front-end-warm-up/tree/master/React/lesson42/src/Exercise.js) 
 
 # Reference
 [React.js 小书](http://huziketang.mangojuice.top/books/react/)
