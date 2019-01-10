@@ -28,7 +28,7 @@
                                 </connections>
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDr-Fd-b7p">
-                                <rect key="frame" x="0.0" y="120" width="320" height="360"/>
+                                <rect key="frame" x="0.0" y="120" width="320" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -36,7 +36,6 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bDr-Fd-b7p" secondAttribute="bottom" id="5ZA-Y5-N33"/>
                             <constraint firstItem="bDr-Fd-b7p" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="56" id="79v-4m-0fb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bDr-Fd-b7p" secondAttribute="trailing" id="9Cj-fF-KmF"/>
                             <constraint firstItem="bDr-Fd-b7p" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hxF-2G-SNx"/>

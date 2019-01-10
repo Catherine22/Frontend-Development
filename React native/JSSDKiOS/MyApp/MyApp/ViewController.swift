@@ -11,17 +11,17 @@ import UIKit
 class ViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var logLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        logLabel.numberOfLines = 0
     }
     
-    // This method will be triggered as "Enter" is typed
 //        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 //          queryData(text: searchBar.text!)
 //        }
     
-    // This method will be triggered as users are typing
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // Do something as users clear the Search Bar
         if searchBar.text?.count == 0 {
