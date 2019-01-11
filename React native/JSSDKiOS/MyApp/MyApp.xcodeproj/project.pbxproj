@@ -12,6 +12,7 @@
 		F3F0FBA021E747ED00302B20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FB9E21E747ED00302B20 /* Main.storyboard */; };
 		F3F0FBA221E747EF00302B20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FBA121E747EF00302B20 /* Assets.xcassets */; };
 		F3F0FBA521E747EF00302B20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FBA321E747EF00302B20 /* LaunchScreen.storyboard */; };
+		F3F0FBAE21E7558B00302B20 /* DiamondBridge.js in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FBAD21E7558B00302B20 /* DiamondBridge.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		F3F0FBA121E747EF00302B20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3F0FBA421E747EF00302B20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3F0FBA621E747EF00302B20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3F0FBAD21E7558B00302B20 /* DiamondBridge.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = DiamondBridge.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				F3F0FB9A21E747ED00302B20 /* AppDelegate.swift */,
+				F3F0FBAC21E7555400302B20 /* JS */,
 				F3F0FB9C21E747ED00302B20 /* ViewController.swift */,
 				F3F0FB9E21E747ED00302B20 /* Main.storyboard */,
 				F3F0FBA121E747EF00302B20 /* Assets.xcassets */,
@@ -62,6 +65,14 @@
 				F3F0FBA621E747EF00302B20 /* Info.plist */,
 			);
 			path = MyApp;
+			sourceTree = "<group>";
+		};
+		F3F0FBAC21E7555400302B20 /* JS */ = {
+			isa = PBXGroup;
+			children = (
+				F3F0FBAD21E7558B00302B20 /* DiamondBridge.js */,
+			);
+			path = JS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,6 +133,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3F0FBAE21E7558B00302B20 /* DiamondBridge.js in Resources */,
 				F3F0FBA521E747EF00302B20 /* LaunchScreen.storyboard in Resources */,
 				F3F0FBA221E747EF00302B20 /* Assets.xcassets in Resources */,
 				F3F0FBA021E747ED00302B20 /* Main.storyboard in Resources */,

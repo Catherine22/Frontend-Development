@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JavaScriptCore
 
 class ViewController: UIViewController, UISearchBarDelegate {
 
@@ -16,6 +17,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         logLabel.numberOfLines = 0
+        logLabel.text = ""
     }
     
 //        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -33,11 +35,25 @@ class ViewController: UIViewController, UISearchBarDelegate {
     }
     
     func queryData(text: String) {
-        print("queryData:\(text)")
+        let context: JSContext! = JSContext()
+        context.evaluateScript("function echo(input) { return input}")
+        let response: JSValue = context.evaluateScript("echo(\"\(text)\")")
+        logLabel.text = response.toString()
     }
     
     func reloadData() {
         print("reload data")
+        logLabel.text = "Loading..."
+        
+        let fileURL = Bundle.main.url(forResource:"DiamondBridge", withExtension: "js")
+        do {
+            let jsCode = try NSString.init(contentsOf: fileURL!, encoding: String.Encoding.utf8.rawValue)
+            print("jsCode: \(jsCode)")
+        } catch {
+            print("Error loading js code: \(error)")
+        }
+        
+        
     }
 
 
