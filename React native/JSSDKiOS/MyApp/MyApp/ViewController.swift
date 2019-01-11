@@ -12,12 +12,15 @@ import JavaScriptCore
 class ViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var logLabel: UILabel!
+    let context: JSContext! = JSContext()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         logLabel.numberOfLines = 0
         logLabel.text = ""
+        
+        injectJS()
     }
     
 //        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -34,9 +37,19 @@ class ViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
+    func injectJS() {
+        let fileURL = Bundle.main.url(forResource:"DiamondBridge", withExtension: "js")
+        do {
+            let jsCode = try NSString.init(contentsOf: fileURL!, encoding: String.Encoding.utf8.rawValue)
+            //        context.evaluateScript("function echo(input) { return input}")
+            context.evaluateScript("\(jsCode)")
+            print("jsCode: \(jsCode)")
+        } catch {
+            print("Error loading js code: \(error)")
+        }
+    }
+    
     func queryData(text: String) {
-        let context: JSContext! = JSContext()
-        context.evaluateScript("function echo(input) { return input}")
         let response: JSValue = context.evaluateScript("echo(\"\(text)\")")
         logLabel.text = response.toString()
     }
@@ -44,16 +57,6 @@ class ViewController: UIViewController, UISearchBarDelegate {
     func reloadData() {
         print("reload data")
         logLabel.text = "Loading..."
-        
-        let fileURL = Bundle.main.url(forResource:"DiamondBridge", withExtension: "js")
-        do {
-            let jsCode = try NSString.init(contentsOf: fileURL!, encoding: String.Encoding.utf8.rawValue)
-            print("jsCode: \(jsCode)")
-        } catch {
-            print("Error loading js code: \(error)")
-        }
-        
-        
     }
 
 
