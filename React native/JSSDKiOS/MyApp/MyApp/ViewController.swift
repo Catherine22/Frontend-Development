@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import JavaScriptCore
+//import JSCoreSDK
 
 class ViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var logLabel: UILabel!
-    let context: JSContext! = JSContext()
+//    let diamondBridge = DiamondBridge()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
         logLabel.numberOfLines = 0
         logLabel.text = ""
         
-        injectJS()
+//        diamondBridge.injectJS()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -38,17 +38,17 @@ class ViewController: UIViewController, UISearchBarDelegate {
     }
     
     func queryData(text: String) {
-        var log = "version: \(getVersion())"
-        
-        let user = getUser()
-        log += "\ngetUser: {name: \(user.name), age: \(user.age), isAdule: \(user.isAdult)}"
-        
-        let members = getMembers()
-        log += "\ngetMembers: [\(members[0]), \(members[1]), \(members[2])]"
-        
-        log += "\necho: \(echo(text))"
-        
-        logLabel.text = log
+//        var log = "version: \(diamondBridge.getVersion())"
+//
+//        let user = diamondBridge.getUser()
+//        log += "\ngetUser: {name: \(user.name), age: \(user.age), isAdule: \(user.isAdult)}"
+//
+//        let members = diamondBridge.getMembers()
+//        log += "\ngetMembers: [\(members[0]), \(members[1]), \(members[2])]"
+//
+//        log += "\necho: \(diamondBridge.echo(text))"
+//
+//        logLabel.text = log
     }
         
     
@@ -57,48 +57,6 @@ class ViewController: UIViewController, UISearchBarDelegate {
         logLabel.text = "Loading..."
     }
     
-    // SDK
-    func injectJS() {
-        let resources = ["DiamondBridge"]
-        resources.forEach { (res) in
-            let fileURL = Bundle.main.url(forResource: res, withExtension: "js")
-            do {
-                let jsCode = try NSString.init(contentsOf: fileURL!, encoding: String.Encoding.utf8.rawValue)
-                context.evaluateScript("\(jsCode)")
-                //                print("Loaded \(res): \(jsCode)")
-            } catch {
-                print("Error loading js code: \(error)")
-            }
-        }
-    }
     
-    func getVersion() -> Double {
-        let version: JSValue = context.evaluateScript("getVersion()")
-        return version.toDouble()
-    }
-    
-    func getUser() -> User {
-        let getUser = context.evaluateScript("getUser")
-        let response = getUser?.call(withArguments: [""])
-        let user = User(name: response!.forProperty("name")!.toString(), age: response!.forProperty("age")!.toNumber()!.intValue, isAdult: response!.forProperty("isAdult")!.toBool())
-        return user
-    }
-    
-    func getMembers() -> [String] {
-        let getMembers = context.evaluateScript("getMembers")
-        let response = getMembers?.call(withArguments: [""])
-        var members: [String] = []
-        for index in 0..<3 {
-            members.append(response!.atIndex(index)!.toString())
-        }
-        
-        return members
-    }
-    
-    func echo(_ text: String) -> String {
-        let echo = context.evaluateScript("echo")
-        let response = echo?.call(withArguments: [text])
-        return response!.toString()
-    }
 }
 
