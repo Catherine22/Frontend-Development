@@ -7,12 +7,12 @@
 //
 
 import Foundation
-class User {
-    var name: String
-    var age: Int
-    var isAdult: Bool
+public class User {
+    public var name: String
+    public var age: Int
+    public var isAdult: Bool
     
-    init(name: String, age: Int, isAdult: Bool) {
+    public init(name: String, age: Int, isAdult: Bool) {
         self.name = name
         self.age = age
         self.isAdult = isAdult

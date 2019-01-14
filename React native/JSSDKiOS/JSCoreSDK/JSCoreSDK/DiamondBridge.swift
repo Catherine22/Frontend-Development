@@ -9,11 +9,14 @@
 import Foundation
 import JavaScriptCore
 
-class DiamondBridge {
+public class DiamondBridge {
+    
     
     let context: JSContext! = JSContext()
+    public init() {
+    }
     
-    func injectJS() {
+    public func injectJS() {
         let resources = ["JSBridge"]
         resources.forEach { (res) in
             let fileURL = Bundle.main.url(forResource: res, withExtension: "js")
@@ -27,19 +30,19 @@ class DiamondBridge {
         }
     }
     
-    func getVersion() -> Double {
+    public func getVersion() -> Double {
         let version: JSValue = context.evaluateScript("getVersion()")
         return version.toDouble()
     }
     
-    func getUser() -> User {
+    public func getUser() -> User {
         let getUser = context.evaluateScript("getUser")
         let response = getUser?.call(withArguments: [""])
         let user = User(name: response!.forProperty("name")!.toString(), age: response!.forProperty("age")!.toNumber()!.intValue, isAdult: response!.forProperty("isAdult")!.toBool())
         return user
     }
     
-    func getMembers() -> [String] {
+    public func getMembers() -> [String] {
         let getMembers = context.evaluateScript("getMembers")
         let response = getMembers?.call(withArguments: [""])
         var members: [String] = []
@@ -50,7 +53,7 @@ class DiamondBridge {
         return members
     }
     
-    func echo(_ text: String) -> String {
+    public func echo(_ text: String) -> String {
         let echo = context.evaluateScript("echo")
         let response = echo?.call(withArguments: [text])
         return response!.toString()
