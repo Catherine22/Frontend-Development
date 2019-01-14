@@ -38,7 +38,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
     }
     
     func injectJS() {
-        let resources = ["nebulahelper", "stringhelper", "urlbuilder", "uuid", "constants", "strings", "wording/en", "wording/ja", "DiamondBridge"]
+        let resources = ["DiamondBridge"]
         resources.forEach { (res) in
             let fileURL = Bundle.main.url(forResource: res, withExtension: "js")
             do {
