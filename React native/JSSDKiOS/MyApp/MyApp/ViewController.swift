@@ -23,34 +23,37 @@ class ViewController: UIViewController, UISearchBarDelegate {
         injectJS()
     }
     
-//        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//          queryData(text: searchBar.text!)
-//        }
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // Do something as users clear the Search Bar
         if searchBar.text?.count == 0 {
             reloadData()
         } else {
             // Query data as users are typing to improve user experience.
-            queryData(text: searchBar.text!)
+//            queryData(text: searchBar.text!)
         }
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        queryData(text: searchBar.text!)
+    }
+    
     func injectJS() {
-        let fileURL = Bundle.main.url(forResource:"DiamondBridge", withExtension: "js")
-        do {
-            let jsCode = try NSString.init(contentsOf: fileURL!, encoding: String.Encoding.utf8.rawValue)
-            //        context.evaluateScript("function echo(input) { return input}")
-            context.evaluateScript("\(jsCode)")
-            print("jsCode: \(jsCode)")
-        } catch {
-            print("Error loading js code: \(error)")
+        let resources = ["nebulahelper", "stringhelper", "urlbuilder", "uuid", "constants", "strings", "wording/en", "wording/ja", "DiamondBridge"]
+        resources.forEach { (res) in
+            let fileURL = Bundle.main.url(forResource: res, withExtension: "js")
+            do {
+                let jsCode = try NSString.init(contentsOf: fileURL!, encoding: String.Encoding.utf8.rawValue)
+                context.evaluateScript("\(jsCode)")
+//                print("Loaded \(res): \(jsCode)")
+            } catch {
+                print("Error loading js code: \(error)")
+            }
         }
     }
     
     func queryData(text: String) {
-        let response: JSValue = context.evaluateScript("echo(\"\(text)\")")
+//        let response: JSValue = context.evaluateScript("echo(\"\(text)\")")
+        let response: JSValue = context.evaluateScript("\"\(text)\"")
         logLabel.text = response.toString()
     }
     

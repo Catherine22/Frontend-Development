@@ -13,6 +13,13 @@
 		F3F0FBA221E747EF00302B20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FBA121E747EF00302B20 /* Assets.xcassets */; };
 		F3F0FBA521E747EF00302B20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FBA321E747EF00302B20 /* LaunchScreen.storyboard */; };
 		F3F0FBAE21E7558B00302B20 /* DiamondBridge.js in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FBAD21E7558B00302B20 /* DiamondBridge.js */; };
+		F3F0FBB521E8B38200302B20 /* stringhelper.js in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FBB121E8B38100302B20 /* stringhelper.js */; };
+		F3F0FBB621E8B38200302B20 /* nebulahelper.js in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FBB221E8B38200302B20 /* nebulahelper.js */; };
+		F3F0FBB721E8B38200302B20 /* urlbuilder.js in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FBB321E8B38200302B20 /* urlbuilder.js */; };
+		F3F0FBB821E8B38200302B20 /* uuid.js in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FBB421E8B38200302B20 /* uuid.js */; };
+		F3F0FBBC21E8B38D00302B20 /* strings.js in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FBB921E8B38C00302B20 /* strings.js */; };
+		F3F0FBBD21E8B38D00302B20 /* constants.js in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FBBA21E8B38C00302B20 /* constants.js */; };
+		F3F0FBBE21E8B38D00302B20 /* wording in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FBBB21E8B38D00302B20 /* wording */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,13 @@
 		F3F0FBA421E747EF00302B20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3F0FBA621E747EF00302B20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3F0FBAD21E7558B00302B20 /* DiamondBridge.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = DiamondBridge.js; sourceTree = "<group>"; };
+		F3F0FBB121E8B38100302B20 /* stringhelper.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = stringhelper.js; sourceTree = "<group>"; };
+		F3F0FBB221E8B38200302B20 /* nebulahelper.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = nebulahelper.js; sourceTree = "<group>"; };
+		F3F0FBB321E8B38200302B20 /* urlbuilder.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = urlbuilder.js; sourceTree = "<group>"; };
+		F3F0FBB421E8B38200302B20 /* uuid.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = uuid.js; sourceTree = "<group>"; };
+		F3F0FBB921E8B38C00302B20 /* strings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = strings.js; sourceTree = "<group>"; };
+		F3F0FBBA21E8B38C00302B20 /* constants.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = constants.js; sourceTree = "<group>"; };
+		F3F0FBBB21E8B38D00302B20 /* wording */ = {isa = PBXFileReference; lastKnownFileType = folder; path = wording; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,9 +84,32 @@
 		F3F0FBAC21E7555400302B20 /* JS */ = {
 			isa = PBXGroup;
 			children = (
+				F3F0FBB021E8B35700302B20 /* values */,
+				F3F0FBAF21E8B34B00302B20 /* utils */,
 				F3F0FBAD21E7558B00302B20 /* DiamondBridge.js */,
 			);
 			path = JS;
+			sourceTree = "<group>";
+		};
+		F3F0FBAF21E8B34B00302B20 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				F3F0FBB221E8B38200302B20 /* nebulahelper.js */,
+				F3F0FBB121E8B38100302B20 /* stringhelper.js */,
+				F3F0FBB321E8B38200302B20 /* urlbuilder.js */,
+				F3F0FBB421E8B38200302B20 /* uuid.js */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		F3F0FBB021E8B35700302B20 /* values */ = {
+			isa = PBXGroup;
+			children = (
+				F3F0FBBA21E8B38C00302B20 /* constants.js */,
+				F3F0FBB921E8B38C00302B20 /* strings.js */,
+				F3F0FBBB21E8B38D00302B20 /* wording */,
+			);
+			path = values;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,10 +170,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3F0FBBD21E8B38D00302B20 /* constants.js in Resources */,
+				F3F0FBBE21E8B38D00302B20 /* wording in Resources */,
 				F3F0FBAE21E7558B00302B20 /* DiamondBridge.js in Resources */,
+				F3F0FBB821E8B38200302B20 /* uuid.js in Resources */,
 				F3F0FBA521E747EF00302B20 /* LaunchScreen.storyboard in Resources */,
 				F3F0FBA221E747EF00302B20 /* Assets.xcassets in Resources */,
 				F3F0FBA021E747ED00302B20 /* Main.storyboard in Resources */,
+				F3F0FBB521E8B38200302B20 /* stringhelper.js in Resources */,
+				F3F0FBB621E8B38200302B20 /* nebulahelper.js in Resources */,
+				F3F0FBB721E8B38200302B20 /* urlbuilder.js in Resources */,
+				F3F0FBBC21E8B38D00302B20 /* strings.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
