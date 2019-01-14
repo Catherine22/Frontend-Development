@@ -52,10 +52,24 @@ class ViewController: UIViewController, UISearchBarDelegate {
     }
     
     func queryData(text: String) {
-//        let response: JSValue = context.evaluateScript("echo(\"\(text)\")")
-        let response: JSValue = context.evaluateScript("\"\(text)\"")
-        logLabel.text = response.toString()
+        let version: JSValue = context.evaluateScript("getVersion()")
+        var log = "version: \(version.toDouble())"
+        
+        let getUser = context.evaluateScript("getUser")
+        var response = getUser?.call(withArguments: [""])
+        log += "\ngetUser: {name: \(response!.forProperty("name")!), age: \(response!.forProperty("age")!), isAdule: \(response!.forProperty("isAdult")!)}"
+        
+        let getMembers = context.evaluateScript("getMembers")
+        response = getMembers?.call(withArguments: [""])
+        log += "\ngetMembers: [\(response!.atIndex(0)!), \(response!.atIndex(1)!), \(response!.atIndex(2)!)]"
+        
+        let echo = context.evaluateScript("echo")
+        response = echo?.call(withArguments: [text])
+        log += "\necho: \(response!)"
+        
+        logLabel.text = log
     }
+        
     
     func reloadData() {
         print("reload data")
