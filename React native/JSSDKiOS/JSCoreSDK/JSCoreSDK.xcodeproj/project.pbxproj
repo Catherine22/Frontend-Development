@@ -10,10 +10,8 @@
 		F3D8108F21EC95A7007AC8A2 /* JSCoreSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = F3D8108D21EC95A7007AC8A2 /* JSCoreSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F3D8109821EC9977007AC8A2 /* DiamondBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8109721EC9977007AC8A2 /* DiamondBridge.swift */; };
 		F3D8109A21EC99A0007AC8A2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8109921EC99A0007AC8A2 /* User.swift */; };
-		F3D8109F21EC99E9007AC8A2 /* JSBridge.js in Resources */ = {isa = PBXBuildFile; fileRef = F3D8109E21EC99E9007AC8A2 /* JSBridge.js */; };
 		F3D810A021EC9AC9007AC8A2 /* DiamondBridge.swift in Headers */ = {isa = PBXBuildFile; fileRef = F3D8109721EC9977007AC8A2 /* DiamondBridge.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		F3D810A121EC9AC9007AC8A2 /* User.swift in Headers */ = {isa = PBXBuildFile; fileRef = F3D8109921EC99A0007AC8A2 /* User.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		F3D810A221EC9AE5007AC8A2 /* JSBridge.js in Headers */ = {isa = PBXBuildFile; fileRef = F3D8109E21EC99E9007AC8A2 /* JSBridge.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,7 +20,6 @@
 		F3D8108E21EC95A7007AC8A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3D8109721EC9977007AC8A2 /* DiamondBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiamondBridge.swift; sourceTree = "<group>"; };
 		F3D8109921EC99A0007AC8A2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		F3D8109E21EC99E9007AC8A2 /* JSBridge.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = JSBridge.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,21 +52,12 @@
 		F3D8108C21EC95A7007AC8A2 /* JSCoreSDK */ = {
 			isa = PBXGroup;
 			children = (
-				F3D8109B21EC99A6007AC8A2 /* JS warehouse */,
 				F3D8108D21EC95A7007AC8A2 /* JSCoreSDK.h */,
 				F3D8108E21EC95A7007AC8A2 /* Info.plist */,
 				F3D8109721EC9977007AC8A2 /* DiamondBridge.swift */,
 				F3D8109921EC99A0007AC8A2 /* User.swift */,
 			);
 			path = JSCoreSDK;
-			sourceTree = "<group>";
-		};
-		F3D8109B21EC99A6007AC8A2 /* JS warehouse */ = {
-			isa = PBXGroup;
-			children = (
-				F3D8109E21EC99E9007AC8A2 /* JSBridge.js */,
-			);
-			path = "JS warehouse";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -82,7 +70,6 @@
 				F3D8108F21EC95A7007AC8A2 /* JSCoreSDK.h in Headers */,
 				F3D810A021EC9AC9007AC8A2 /* DiamondBridge.swift in Headers */,
 				F3D810A121EC9AC9007AC8A2 /* User.swift in Headers */,
-				F3D810A221EC9AE5007AC8A2 /* JSBridge.js in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +131,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3D8109F21EC99E9007AC8A2 /* JSBridge.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
