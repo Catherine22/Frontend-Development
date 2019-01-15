@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F39EA9BF21EDEB0D00C54B68 /* JSWarehouse.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F39EA9BE21EDEB0D00C54B68 /* JSWarehouse.bundle */; };
 		F3D8108F21EC95A7007AC8A2 /* JSCoreSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = F3D8108D21EC95A7007AC8A2 /* JSCoreSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F3D8109821EC9977007AC8A2 /* DiamondBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8109721EC9977007AC8A2 /* DiamondBridge.swift */; };
 		F3D8109A21EC99A0007AC8A2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8109921EC99A0007AC8A2 /* User.swift */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F39EA9BE21EDEB0D00C54B68 /* JSWarehouse.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSWarehouse.bundle; sourceTree = "<group>"; };
 		F3D8108A21EC95A7007AC8A2 /* JSCoreSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSCoreSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D8108D21EC95A7007AC8A2 /* JSCoreSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSCoreSDK.h; sourceTree = "<group>"; };
 		F3D8108E21EC95A7007AC8A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 				F3D8108E21EC95A7007AC8A2 /* Info.plist */,
 				F3D8109721EC9977007AC8A2 /* DiamondBridge.swift */,
 				F3D8109921EC99A0007AC8A2 /* User.swift */,
+				F39EA9BE21EDEB0D00C54B68 /* JSWarehouse.bundle */,
 			);
 			path = JSCoreSDK;
 			sourceTree = "<group>";
@@ -131,6 +134,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F39EA9BF21EDEB0D00C54B68 /* JSWarehouse.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

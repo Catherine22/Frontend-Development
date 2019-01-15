@@ -7,12 +7,12 @@
 //
 
 import UIKit
-//import JSCoreSDK
+import JSCoreSDK
 
 class ViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var logLabel: UILabel!
-//    let diamondBridge = DiamondBridge()
+    let diamondBridge = DiamondBridge()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
         logLabel.numberOfLines = 0
         logLabel.text = ""
         
-//        diamondBridge.injectJS()
+        diamondBridge.injectJS()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -38,17 +38,17 @@ class ViewController: UIViewController, UISearchBarDelegate {
     }
     
     func queryData(text: String) {
-//        var log = "version: \(diamondBridge.getVersion())"
-//
-//        let user = diamondBridge.getUser()
-//        log += "\ngetUser: {name: \(user.name), age: \(user.age), isAdule: \(user.isAdult)}"
-//
-//        let members = diamondBridge.getMembers()
-//        log += "\ngetMembers: [\(members[0]), \(members[1]), \(members[2])]"
-//
-//        log += "\necho: \(diamondBridge.echo(text))"
-//
-//        logLabel.text = log
+        var log = "version: \(diamondBridge.getVersion())"
+
+        let user = diamondBridge.getUser()
+        log += "\ngetUser: {name: \(user.name), age: \(user.age), isAdule: \(user.isAdult)}"
+
+        let members = diamondBridge.getMembers()
+        log += "\ngetMembers: [\(members[0]), \(members[1]), \(members[2])]"
+
+        log += "\necho: \(diamondBridge.echo(text))"
+
+        logLabel.text = log
     }
         
     

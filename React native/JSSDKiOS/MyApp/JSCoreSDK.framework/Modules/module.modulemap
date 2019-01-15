@@ -1,0 +1,11 @@
+framework module JSCoreSDK {
+  umbrella header "JSCoreSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module JSCoreSDK.Swift {
+    header "JSCoreSDK-Swift.h"
+    requires objc
+}

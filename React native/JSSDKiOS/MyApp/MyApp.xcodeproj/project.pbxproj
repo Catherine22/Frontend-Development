@@ -7,17 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F3D8109621EC9644007AC8A2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8109521EC9644007AC8A2 /* User.swift */; };
+		F3CBBBE721EDED1800550C4D /* JSCoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3CBBBE621EDED1800550C4D /* JSCoreSDK.framework */; };
+		F3CBBBE821EDED1800550C4D /* JSCoreSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3CBBBE621EDED1800550C4D /* JSCoreSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F3CBBBEA21EDED6500550C4D /* JSWarehouse.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F3CBBBE921EDED6500550C4D /* JSWarehouse.bundle */; };
+		F3CBBBEB21EDED7000550C4D /* JSCoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3CBBBE621EDED1800550C4D /* JSCoreSDK.framework */; };
+		F3CBBBEC21EDED7000550C4D /* JSCoreSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3CBBBE621EDED1800550C4D /* JSCoreSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F3CBBBED21EDED7E00550C4D /* JSCoreSDK.framework in Resources */ = {isa = PBXBuildFile; fileRef = F3CBBBE621EDED1800550C4D /* JSCoreSDK.framework */; };
 		F3F0FB9B21E747ED00302B20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F0FB9A21E747ED00302B20 /* AppDelegate.swift */; };
 		F3F0FB9D21E747ED00302B20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F0FB9C21E747ED00302B20 /* ViewController.swift */; };
 		F3F0FBA021E747ED00302B20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FB9E21E747ED00302B20 /* Main.storyboard */; };
 		F3F0FBA221E747EF00302B20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FBA121E747EF00302B20 /* Assets.xcassets */; };
 		F3F0FBA521E747EF00302B20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FBA321E747EF00302B20 /* LaunchScreen.storyboard */; };
-		F3F0FBAE21E7558B00302B20 /* DiamondBridge.js in Resources */ = {isa = PBXBuildFile; fileRef = F3F0FBAD21E7558B00302B20 /* DiamondBridge.js */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F39EA9AF21EDE4C400C54B68 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F3CBBBE821EDED1800550C4D /* JSCoreSDK.framework in Embed Frameworks */,
+				F3CBBBEC21EDED7000550C4D /* JSCoreSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		F3D8109521EC9644007AC8A2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F3CBBBE621EDED1800550C4D /* JSCoreSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSCoreSDK.framework; sourceTree = "<group>"; };
+		F3CBBBE921EDED6500550C4D /* JSWarehouse.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSWarehouse.bundle; sourceTree = "<group>"; };
 		F3F0FB9721E747ED00302B20 /* MyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F0FB9A21E747ED00302B20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3F0FB9C21E747ED00302B20 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -25,7 +45,6 @@
 		F3F0FBA121E747EF00302B20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3F0FBA421E747EF00302B20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3F0FBA621E747EF00302B20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F3F0FBAD21E7558B00302B20 /* DiamondBridge.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = DiamondBridge.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +52,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3CBBBE721EDED1800550C4D /* JSCoreSDK.framework in Frameworks */,
+				F3CBBBEB21EDED7000550C4D /* JSCoreSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +63,8 @@
 		F3F0FB8E21E747ED00302B20 = {
 			isa = PBXGroup;
 			children = (
+				F3CBBBE921EDED6500550C4D /* JSWarehouse.bundle */,
+				F3CBBBE621EDED1800550C4D /* JSCoreSDK.framework */,
 				F3F0FB9921E747ED00302B20 /* MyApp */,
 				F3F0FB9821E747ED00302B20 /* Products */,
 			);
@@ -59,23 +82,13 @@
 			isa = PBXGroup;
 			children = (
 				F3F0FB9A21E747ED00302B20 /* AppDelegate.swift */,
-				F3F0FBAC21E7555400302B20 /* JS */,
 				F3F0FB9C21E747ED00302B20 /* ViewController.swift */,
 				F3F0FB9E21E747ED00302B20 /* Main.storyboard */,
 				F3F0FBA121E747EF00302B20 /* Assets.xcassets */,
 				F3F0FBA321E747EF00302B20 /* LaunchScreen.storyboard */,
 				F3F0FBA621E747EF00302B20 /* Info.plist */,
-				F3D8109521EC9644007AC8A2 /* User.swift */,
 			);
 			path = MyApp;
-			sourceTree = "<group>";
-		};
-		F3F0FBAC21E7555400302B20 /* JS */ = {
-			isa = PBXGroup;
-			children = (
-				F3F0FBAD21E7558B00302B20 /* DiamondBridge.js */,
-			);
-			path = JS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -88,6 +101,7 @@
 				F3F0FB9321E747ED00302B20 /* Sources */,
 				F3F0FB9421E747ED00302B20 /* Frameworks */,
 				F3F0FB9521E747ED00302B20 /* Resources */,
+				F39EA9AF21EDE4C400C54B68 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -136,9 +150,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3F0FBAE21E7558B00302B20 /* DiamondBridge.js in Resources */,
+				F3CBBBED21EDED7E00550C4D /* JSCoreSDK.framework in Resources */,
 				F3F0FBA521E747EF00302B20 /* LaunchScreen.storyboard in Resources */,
 				F3F0FBA221E747EF00302B20 /* Assets.xcassets in Resources */,
+				F3CBBBEA21EDED6500550C4D /* JSWarehouse.bundle in Resources */,
 				F3F0FBA021E747ED00302B20 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,7 +167,6 @@
 			files = (
 				F3F0FB9D21E747ED00302B20 /* ViewController.swift in Sources */,
 				F3F0FB9B21E747ED00302B20 /* AppDelegate.swift in Sources */,
-				F3D8109621EC9644007AC8A2 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +313,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -316,6 +334,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
