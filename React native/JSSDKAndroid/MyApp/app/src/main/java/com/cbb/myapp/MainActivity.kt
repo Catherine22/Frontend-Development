@@ -3,7 +3,6 @@ package com.cbb.myapp
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -13,6 +12,7 @@ import android.speech.RecognizerIntent
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.cbb.jscoresdk.DiamondBridge
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,12 +20,15 @@ class MainActivity : AppCompatActivity() {
     private var searchView: MaterialSearchView? = null
     private var tv_log: TextView? = null
 
+    private var diamondBridge: DiamondBridge? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initComponent()
+        injectJS()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -97,10 +100,10 @@ class MainActivity : AppCompatActivity() {
         tv_log = findViewById(R.id.tv_log)
         searchView = findViewById(R.id.search_view)
         searchView?.adjustTintAlpha(0.8f)
+        searchView?.clearHistory()
         searchView?.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 queryData(query)
-                searchView?.clearAll()
                 return false
             }
 
@@ -129,6 +132,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun queryData(query: String) {
         tv_log?.text = String.format("Query: %s", query)
+    }
+
+    private fun injectJS() {
+        diamondBridge = DiamondBridge(this@MainActivity)
     }
 }
 
