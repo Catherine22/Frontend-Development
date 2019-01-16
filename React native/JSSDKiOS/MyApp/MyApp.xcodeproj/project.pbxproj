@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F3CBBBE721EDED1800550C4D /* JSCoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3CBBBE621EDED1800550C4D /* JSCoreSDK.framework */; };
 		F3CBBBE821EDED1800550C4D /* JSCoreSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3CBBBE621EDED1800550C4D /* JSCoreSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F3CBBBEA21EDED6500550C4D /* JSWarehouse.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F3CBBBE921EDED6500550C4D /* JSWarehouse.bundle */; };
-		F3CBBBEB21EDED7000550C4D /* JSCoreSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3CBBBE621EDED1800550C4D /* JSCoreSDK.framework */; };
-		F3CBBBEC21EDED7000550C4D /* JSCoreSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3CBBBE621EDED1800550C4D /* JSCoreSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F3CBBBED21EDED7E00550C4D /* JSCoreSDK.framework in Resources */ = {isa = PBXBuildFile; fileRef = F3CBBBE621EDED1800550C4D /* JSCoreSDK.framework */; };
 		F3F0FB9B21E747ED00302B20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F0FB9A21E747ED00302B20 /* AppDelegate.swift */; };
 		F3F0FB9D21E747ED00302B20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F0FB9C21E747ED00302B20 /* ViewController.swift */; };
@@ -28,7 +25,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				F3CBBBE821EDED1800550C4D /* JSCoreSDK.framework in Embed Frameworks */,
-				F3CBBBEC21EDED7000550C4D /* JSCoreSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,8 +48,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3CBBBE721EDED1800550C4D /* JSCoreSDK.framework in Frameworks */,
-				F3CBBBEB21EDED7000550C4D /* JSCoreSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
