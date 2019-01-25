@@ -104,12 +104,9 @@
 		F37D94F221F5A3BA00810DED /* JSCoreSDK */ = {
 			isa = PBXGroup;
 			children = (
+				F3FA2AF721FAFFEE00CDE41B /* ExposedJSModules */,
 				F37D950121F5B53900810DED /* Models */,
 				F37D94FC21F5ADD400810DED /* Utils */,
-				F37D94F321F5A3DA00810DED /* DiamondBridge.swift */,
-				F3FA2AF121FAED9A00CDE41B /* JSCoreDelegate.swift */,
-				F3FA2AF521FAFE4E00CDE41B /* NebulaModuleDelegate.swift */,
-				F3FA2AED21FAE79000CDE41B /* NebulaModule.swift */,
 			);
 			path = JSCoreSDK;
 			sourceTree = "<group>";
@@ -161,6 +158,17 @@
 				F37D94E021F5A19500810DED /* ViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F3FA2AF721FAFFEE00CDE41B /* ExposedJSModules */ = {
+			isa = PBXGroup;
+			children = (
+				F37D94F321F5A3DA00810DED /* DiamondBridge.swift */,
+				F3FA2AF121FAED9A00CDE41B /* JSCoreDelegate.swift */,
+				F3FA2AF521FAFE4E00CDE41B /* NebulaModuleDelegate.swift */,
+				F3FA2AED21FAE79000CDE41B /* NebulaModule.swift */,
+			);
+			path = ExposedJSModules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

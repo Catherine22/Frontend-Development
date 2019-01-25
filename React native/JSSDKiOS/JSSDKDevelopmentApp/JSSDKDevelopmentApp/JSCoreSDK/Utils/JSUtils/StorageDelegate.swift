@@ -11,5 +11,5 @@ import JavaScriptCore
 
 @objc protocol StorageDelegate: JSExport {
     func setValueForKey(key: String, value: String)
-    func getValueForKey(key: String)
+    func getValueForKey(key: String) -> String
 }

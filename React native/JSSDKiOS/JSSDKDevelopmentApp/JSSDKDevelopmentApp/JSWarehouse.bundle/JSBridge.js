@@ -28,10 +28,9 @@ function echo (input) {
 }
 
 function ensureAppID() {
-    requirejs(["testLib"], function(testLib) {
-        let console = JSConsole()
-        console.log('dddd', 'testLib loaded');
-        console.log('dddd', testLib.ensureAppID());
-   });
+    homecontroller_ensureAppID(()=>{
+        let console = JSConsole();
+        console.log('dddd', 'ensureAppID called');
+    })
 }
 

@@ -16,6 +16,6 @@ class Constants {
     
     let JS_BUNDLE = "JSWarehouse"
     let JS_RESOURCES = [
-        "NebulaModule": ["require", "testLib", "JSBridge"]
+        "NebulaModule": ["Constants", "NebulaClient", "HomeController", "JSBridge"]
     ]
 }

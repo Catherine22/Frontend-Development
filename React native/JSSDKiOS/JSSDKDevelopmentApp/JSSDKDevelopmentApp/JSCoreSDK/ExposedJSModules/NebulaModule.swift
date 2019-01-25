@@ -12,7 +12,6 @@ import JavaScriptCore
 public class NebulaModule {
     
     let TAG = "NebulaModule"
-    let JS_RESOURCES = ["require", "testLib", "JSBridge"]
     var jsCoreDelegate: JSCoreDelegate?
     var context: JSContext?
     var jsReferences: [JSValue] = []
@@ -46,6 +45,19 @@ extension NebulaModule: NebulaModuleDelegate {
     //        return version.toDouble()
     //    }
     //
+    
+    //
+    //    public func getMembers() -> [String] {
+    //        let getMembers = context.evaluateScript("getMembers")
+    //        let response = getMembers?.call(withArguments: [""])
+    //        var members: [String] = []
+    //        for index in 0..<3 {
+    //            members.append(response!.atIndex(index)!.toString())
+    //        }
+    //
+    //        return members
+    //    }
+    
     func getUser() -> User? {
         let getUser = context?.evaluateScript("getUser")
         if let response = getUser?.call(withArguments: [""]) {
@@ -58,17 +70,6 @@ extension NebulaModule: NebulaModuleDelegate {
         }
         return nil
     }
-    //
-    //    public func getMembers() -> [String] {
-    //        let getMembers = context.evaluateScript("getMembers")
-    //        let response = getMembers?.call(withArguments: [""])
-    //        var members: [String] = []
-    //        for index in 0..<3 {
-    //            members.append(response!.atIndex(index)!.toString())
-    //        }
-    //
-    //        return members
-    //    }
     
     func echo(_ text: String) -> String? {
         let echo = context?.evaluateScript("echo")
