@@ -47,23 +47,26 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         var response = "quering \(text)..."
         
         switch(text) {
-        case FUNCTIONS[0]:
+        case "echo":
             popUpAlertWithTextField(numbersOfTextfield: 1) { (arguments) in
                 response = self.diamondBridge.echo(arguments[0])
                 self.popUpResponseAlert(message: response)
             }
             break
-        case FUNCTIONS[1]:
+        case "ensureAppID":
+            response = self.diamondBridge.ensureAppID()
+            self.popUpResponseAlert(message: response)
             break
-        case FUNCTIONS[2]:
+        case "loadPairingInfo":
             break
         default:
             response = "Function not found"
+            popUpResponseAlert(message: response)
         }
     }
     
     func popUpAlertWithTextField(numbersOfTextfield: Int, onTextInputed: ((_ arguments: [String]) -> Void)? = nil) {
-        let title = numbersOfTextfield > 1 ? "Set Up Arguments" : "Set Up Argument"
+        let title = numbersOfTextfield > 1 ? "Add Arguments" : "Add Argument"
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         var textFields: [UITextField] = []
         for _ in 0..<numbersOfTextfield {
