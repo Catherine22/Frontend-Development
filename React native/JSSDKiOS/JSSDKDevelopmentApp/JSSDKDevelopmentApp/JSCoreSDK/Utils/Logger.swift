@@ -9,10 +9,33 @@
 import Foundation
 
 class Logger {
-    static let showLog = false
-    static func d (_ message: String) {
-        if Logger.showLog {
+    static let shared = Logger()
+    
+    let SHOW_LOG = true
+    let KEEP_LOG = true
+    
+    private init() {
+        
+    }
+    
+    func d (_ message: String) {
+        if self.SHOW_LOG {
             NSLog(message)
+        }
+        persistant(message)
+    }
+    
+    func d (_ tag: String, _ message: String) {
+        let content = "[\(tag)] \(message)"
+        if self.SHOW_LOG {
+            NSLog(content)
+        }
+        persistant(content)
+    }
+    
+    func persistant(_ message: String) {
+        if self.KEEP_LOG {
+            // save logs
         }
     }
 }

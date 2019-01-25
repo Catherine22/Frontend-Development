@@ -11,8 +11,9 @@ import JavaScriptCore
 
 public class DiamondBridge {
     
+    let TAG = "DiamondBridge"
     let JS_BUNDLE = "JSWarehouse"
-    let JS_RESOURCES = ["JSBridge"]
+    let JS_RESOURCES = ["require", "JSBridge", "testLib"]
     let context: JSContext! = JSContext()
     public init() {
     }
@@ -24,21 +25,22 @@ public class DiamondBridge {
                 if let fileURL = bundle?.url(forResource: res, withExtension: "js") {
                     do {
                         let jsCode = try NSString.init(contentsOf: fileURL, encoding: String.Encoding.utf8.rawValue)
+                        // Load dependencies first
+                        loadNativeModules()
                         context.evaluateScript("\(jsCode)")
                         // print("Loaded: \(jsCode)")
                         context.exceptionHandler = { (context, exception) in
-                            Logger.d("Handled exception: \(exception)")
+                            Logger.shared.d(self.TAG, "Handled exception: \(exception)")
                         }
-                        loadNativeModules()
                     } catch {
-                        Logger.d("Error loading js code: \(error)")
+                        Logger.shared.d(TAG, "Error loading js code: \(error)")
                     }
                 } else {
-                    Logger.d("Error loading js code: JS bundle url not found")
+                    Logger.shared.d(TAG, "Error loading js code: JS bundle url not found")
                 }
             }
         } else {
-            Logger.d("Error loading js code: JS bundle not found")
+            Logger.shared.d(TAG, "Error loading js code: JS bundle not found")
         }
     }
     
@@ -71,11 +73,34 @@ public class DiamondBridge {
         return response!.toString()
     }
     
+    // save / load values via specific keys from both iOS and JS
+    // call (static) variables and functions from JS
+    // [JS / iOS side] call back from iOS / JS
+    // Try JS https connection
+    
+    
     private func loadNativeModules() {
-        // Load Platform
+        // Load Platform from JS side
+        /*
+         let platform = Platform()
+         let os = platform.os;
+         */
         let platformScript: @convention(block) () -> Platform = {
             return Platform()
         }
         context.setObject(unsafeBitCast(platformScript, to: AnyObject.self), forKeyedSubscript: "Platform" as NSCopying & NSObjectProtocol)
+        
+        // Load Storage from JS side
+        let storage: @convention(block) () -> Storage = {
+            return Storage()
+        }
+        context.setObject(unsafeBitCast(storage, to: AnyObject.self), forKeyedSubscript: "Storage" as NSCopying & NSObjectProtocol)
+        
+        // Load JSLogger from JS side
+        let consoleScript: @convention(block) () -> JSConsole = {
+            return JSConsole()
+        }
+        context.setObject(unsafeBitCast(consoleScript, to: AnyObject.self), forKeyedSubscript: "JSConsole" as NSCopying & NSObjectProtocol)
+        
     }
 }

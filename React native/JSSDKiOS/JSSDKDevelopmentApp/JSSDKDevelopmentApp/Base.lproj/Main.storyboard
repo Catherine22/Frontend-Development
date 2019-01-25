@@ -26,24 +26,26 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="38s-4O-zUT"/>
                                 </connections>
                             </searchBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZd-A6-XEm">
-                                <rect key="frame" x="0.0" y="120" width="375" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0w7-kn-eYv">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="CAu-cy-Eu5"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="HZd-A6-XEm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="56" id="UMj-wo-uhc"/>
-                            <constraint firstItem="HZd-A6-XEm" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Yca-Mr-e3s"/>
-                            <constraint firstItem="HZd-A6-XEm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="iL4-Fe-2Xa"/>
+                            <constraint firstItem="0w7-kn-eYv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="56" id="1yh-Bj-C6v"/>
+                            <constraint firstItem="0w7-kn-eYv" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="BdT-3t-fLm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0w7-kn-eYv" secondAttribute="trailing" id="PEh-qK-doU"/>
+                            <constraint firstItem="0w7-kn-eYv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nC1-SM-pfJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="v3e-3c-Kgg"/>
                     <connections>
-                        <outlet property="logLabel" destination="HZd-A6-XEm" id="hOE-pm-7Gz"/>
+                        <outlet property="functionTableView" destination="0w7-kn-eYv" id="dSc-pm-fVw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
