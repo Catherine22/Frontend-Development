@@ -11,15 +11,12 @@ import Foundation
 class Logger {
     static let shared = Logger()
     
-    let SHOW_LOG = true
-    let KEEP_LOG = true
-    
     private init() {
         
     }
     
     func d (_ message: String) {
-        if self.SHOW_LOG {
+        if Constants.shared.SHOW_LOG {
             NSLog(message)
         }
         persistant(message)
@@ -27,14 +24,14 @@ class Logger {
     
     func d (_ tag: String, _ message: String) {
         let content = "[\(tag)] \(message)"
-        if self.SHOW_LOG {
+        if Constants.shared.SHOW_LOG {
             NSLog(content)
         }
         persistant(content)
     }
     
     func persistant(_ message: String) {
-        if self.KEEP_LOG {
+        if Constants.shared.KEEP_LOG {
             // save logs
         }
     }

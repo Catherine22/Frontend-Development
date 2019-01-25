@@ -7,7 +7,7 @@
 //
 
 import Foundation
-public class User {
+public class User: CustomStringConvertible {
     public var name: String
     public var age: Int
     public var isAdult: Bool
@@ -17,4 +17,6 @@ public class User {
         self.age = age
         self.isAdult = isAdult
     }
+    
+    public var description: String { return "User: { name: \(name), age: \(age), isAdult: \(isAdult) }" }
 }

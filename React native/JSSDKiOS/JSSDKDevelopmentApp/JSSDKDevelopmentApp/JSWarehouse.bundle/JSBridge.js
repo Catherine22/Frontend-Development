@@ -1,14 +1,14 @@
 //const teamMembers = ["Amber", "Ben", "Carol"];
-//const amber = {name: "Amber", age: 18, isAdult: true};
+const amber = {name: "Amber", age: 18, isAdult: true};
 //const storage = Storage();
 //
 //function getVersion() {
 //    return 1.0;
 //}
 //
-//function getUser () {
-//    return amber;
-//}
+function getUser () {
+    return amber;
+}
 //
 //function getMembers () {
 //    return teamMembers;

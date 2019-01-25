@@ -24,6 +24,10 @@
 		F3FA2AE421FAA10300CDE41B /* JSConsoleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2AE321FAA10300CDE41B /* JSConsoleDelegate.swift */; };
 		F3FA2AEB21FAA4C100CDE41B /* FunctionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2AE921FAA4C100CDE41B /* FunctionCell.swift */; };
 		F3FA2AEC21FAA4C100CDE41B /* FunctionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3FA2AEA21FAA4C100CDE41B /* FunctionCell.xib */; };
+		F3FA2AEE21FAE79000CDE41B /* NebulaModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2AED21FAE79000CDE41B /* NebulaModule.swift */; };
+		F3FA2AF021FAE7F600CDE41B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2AEF21FAE7F600CDE41B /* Constants.swift */; };
+		F3FA2AF221FAED9A00CDE41B /* JSCoreDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2AF121FAED9A00CDE41B /* JSCoreDelegate.swift */; };
+		F3FA2AF421FAF7C500CDE41B /* JSValueState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2AF321FAF7C500CDE41B /* JSValueState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,10 @@
 		F3FA2AE321FAA10300CDE41B /* JSConsoleDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSConsoleDelegate.swift; sourceTree = "<group>"; };
 		F3FA2AE921FAA4C100CDE41B /* FunctionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionCell.swift; sourceTree = "<group>"; };
 		F3FA2AEA21FAA4C100CDE41B /* FunctionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FunctionCell.xib; sourceTree = "<group>"; };
+		F3FA2AED21FAE79000CDE41B /* NebulaModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NebulaModule.swift; sourceTree = "<group>"; };
+		F3FA2AEF21FAE7F600CDE41B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F3FA2AF121FAED9A00CDE41B /* JSCoreDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSCoreDelegate.swift; sourceTree = "<group>"; };
+		F3FA2AF321FAF7C500CDE41B /* JSValueState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSValueState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,8 @@
 		F37D94DD21F5A19500810DED /* JSSDKDevelopmentApp */ = {
 			isa = PBXGroup;
 			children = (
+				F3FA2AE621FAA3EF00CDE41B /* Controllers */,
+				F3FA2AE521FAA3DE00CDE41B /* Views */,
 				F37D94F221F5A3BA00810DED /* JSCoreSDK */,
 				F37D94DE21F5A19500810DED /* AppDelegate.swift */,
 				F37D94E221F5A19500810DED /* Main.storyboard */,
@@ -92,11 +102,11 @@
 		F37D94F221F5A3BA00810DED /* JSCoreSDK */ = {
 			isa = PBXGroup;
 			children = (
-				F3FA2AE621FAA3EF00CDE41B /* Controllers */,
-				F3FA2AE521FAA3DE00CDE41B /* Views */,
 				F37D950121F5B53900810DED /* Models */,
 				F37D94FC21F5ADD400810DED /* Utils */,
 				F37D94F321F5A3DA00810DED /* DiamondBridge.swift */,
+				F3FA2AF121FAED9A00CDE41B /* JSCoreDelegate.swift */,
+				F3FA2AED21FAE79000CDE41B /* NebulaModule.swift */,
 			);
 			path = JSCoreSDK;
 			sourceTree = "<group>";
@@ -105,7 +115,9 @@
 			isa = PBXGroup;
 			children = (
 				F3FA2AE221FAA03E00CDE41B /* JSUtils */,
+				F3FA2AEF21FAE7F600CDE41B /* Constants.swift */,
 				F37D94FD21F5ADE400810DED /* Logger.swift */,
+				F3FA2AF321FAF7C500CDE41B /* JSValueState.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -229,10 +241,14 @@
 				F37D94F421F5A3DA00810DED /* DiamondBridge.swift in Sources */,
 				F37D94FE21F5ADE400810DED /* Logger.swift in Sources */,
 				F37D950521F5CD6D00810DED /* StorageDelegate.swift in Sources */,
+				F3FA2AF421FAF7C500CDE41B /* JSValueState.swift in Sources */,
 				F37D94DF21F5A19500810DED /* AppDelegate.swift in Sources */,
 				F37D94F821F5A6C100810DED /* Platform.swift in Sources */,
+				F3FA2AF221FAED9A00CDE41B /* JSCoreDelegate.swift in Sources */,
 				F37D950021F5B40900810DED /* PlatformDelegate.swift in Sources */,
+				F3FA2AF021FAE7F600CDE41B /* Constants.swift in Sources */,
 				F37D950721F5CDD200810DED /* Storage.swift in Sources */,
+				F3FA2AEE21FAE79000CDE41B /* NebulaModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

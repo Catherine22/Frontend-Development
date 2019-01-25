@@ -9,27 +9,34 @@
 import Foundation
 import JavaScriptCore
 
-public class DiamondBridge {
+public class DiamondBridge: JSCoreDelegate {
     
     let TAG = "DiamondBridge"
-    let JS_BUNDLE = "JSWarehouse"
-    let JS_RESOURCES = ["require", "testLib", "JSBridge"]
-    let context: JSContext! = JSContext()
+    let vm = JSVirtualMachine()
+    var context: JSContext?
+    
+    public var nebula: NebulaModule
+    
     public init() {
+        context = JSContext(virtualMachine: vm)
+        nebula = NebulaModule()
+        nebula.context = context
+        nebula.jsCoreDelegate = self
+        nebula.injectJS()
     }
     
-    public func injectJS() {
-        if let jsBundlePath = Bundle.main.path(forResource: JS_BUNDLE, ofType: "bundle") {
+    func injectJS(resources: [String]) {
+        if let jsBundlePath = Bundle.main.path(forResource: Constants.shared.JS_BUNDLE, ofType: "bundle") {
             let bundle = Bundle(path: jsBundlePath)
-            JS_RESOURCES.forEach { (res) in
+            resources.forEach { (res) in
                 if let fileURL = bundle?.url(forResource: res, withExtension: "js") {
                     do {
                         let jsCode = try NSString.init(contentsOf: fileURL, encoding: String.Encoding.utf8.rawValue)
                         // MARK: Load dependencies first
                         loadNativeModules()
-                        context.evaluateScript("\(jsCode)")
+                        context?.evaluateScript("\(jsCode)")
                         // print("Loaded: \(jsCode)")
-                        context.exceptionHandler = { (context, exception) in
+                        context?.exceptionHandler = { (context, exception) in
                             Logger.shared.d(self.TAG, "Handled exception: \(exception)")
                         }
                     } catch {
@@ -43,7 +50,6 @@ public class DiamondBridge {
             Logger.shared.d(TAG, "Error loading js code: JS bundle not found")
         }
     }
-
     
     // MARK: Load native modules
     private func loadNativeModules() {
@@ -55,59 +61,37 @@ public class DiamondBridge {
         let platformScript: @convention(block) () -> Platform = {
             return Platform()
         }
-        context.setObject(unsafeBitCast(platformScript, to: AnyObject.self), forKeyedSubscript: "Platform" as NSCopying & NSObjectProtocol)
+        context?.setObject(unsafeBitCast(platformScript, to: AnyObject.self), forKeyedSubscript: "Platform" as NSCopying & NSObjectProtocol)
         
         // Load Storage from JS side
         let storage: @convention(block) () -> Storage = {
             return Storage()
         }
-        context.setObject(unsafeBitCast(storage, to: AnyObject.self), forKeyedSubscript: "Storage" as NSCopying & NSObjectProtocol)
+        context?.setObject(unsafeBitCast(storage, to: AnyObject.self), forKeyedSubscript: "Storage" as NSCopying & NSObjectProtocol)
         
         // Load JSLogger from JS side
         let consoleScript: @convention(block) () -> JSConsole = {
             return JSConsole()
         }
-        context.setObject(unsafeBitCast(consoleScript, to: AnyObject.self), forKeyedSubscript: "JSConsole" as NSCopying & NSObjectProtocol)
+        context?.setObject(unsafeBitCast(consoleScript, to: AnyObject.self), forKeyedSubscript: "JSConsole" as NSCopying & NSObjectProtocol)
         
     }
     
-//    public func getVersion() -> Double {
-//        let version: JSValue = context.evaluateScript("getVersion()")
-//        return version.toDouble()
-//    }
-//
-//    public func getUser() -> User {
-//        let getUser = context.evaluateScript("getUser")
-//        let response = getUser?.call(withArguments: [""])
-//        let user = User(name: response!.forProperty("name")!.toString(), age: response!.forProperty("age")!.toNumber()!.intValue, isAdult: response!.forProperty("isAdult")!.toBool())
-//        return user
-//    }
-//
-//    public func getMembers() -> [String] {
-//        let getMembers = context.evaluateScript("getMembers")
-//        let response = getMembers?.call(withArguments: [""])
-//        var members: [String] = []
-//        for index in 0..<3 {
-//            members.append(response!.atIndex(index)!.toString())
-//        }
-//
-//        return members
-//    }
-    
-    public func echo(_ text: String) -> String {
-        let echo = context.evaluateScript("echo")
-        let response = echo?.call(withArguments: [text])
-        return response!.toString()
+    // MARK: Moniter JSValue to manage memory
+    func jsValueDidChange(state: JSValueState) {
+        switch state {
+        case .add(let objects):
+            objects.forEach { (object) in
+                vm?.addManagedReference(object, withOwner: self)
+            }
+            break
+        case .remove(let objects):
+            objects.forEach { (object) in
+                vm?.removeManagedReference(object, withOwner: self)
+            }
+            break
+        default:
+            break
+        }
     }
-    
-    public func ensureAppID() -> String {
-        let ensureAppID = context.evaluateScript("ensureAppID")
-        let response = ensureAppID?.call(withArguments: [""])
-        return response!.toString()
-    }
-    
-    // save / load values via specific keys from both iOS and JS
-    // call (static) variables and functions from JS
-    // [JS / iOS side] call back from iOS / JS
-    // Try JS https connection
 }

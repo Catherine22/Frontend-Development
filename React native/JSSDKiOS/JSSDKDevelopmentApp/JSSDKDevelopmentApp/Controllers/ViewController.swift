@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
-    let FUNCTIONS = ["echo", "ensureAppID", "loadPairingInfo"]
+    let FUNCTIONS = ["echo", "getUser", "ensureAppID", "loadPairingInfo"]
     let diamondBridge = DiamondBridge()
     var functionList:[String] = []
     
@@ -23,9 +23,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         functionTableView.delegate = self
         functionTableView.dataSource = self
         functionTableView.register(UINib(nibName: "FunctionCell", bundle: nil), forCellReuseIdentifier: "functionCell")
-        
-        //TODO: Load Javascript files
-        diamondBridge.injectJS()
     }
     
     //MARK: TableView
@@ -49,12 +46,16 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         switch(text) {
         case "echo":
             popUpAlertWithTextField(numbersOfTextfield: 1) { (arguments) in
-                response = self.diamondBridge.echo(arguments[0])
+                response = self.diamondBridge.nebula.echo(arguments[0])!
                 self.popUpResponseAlert(message: response)
             }
             break
+        case "getUser":
+            let amber = self.diamondBridge.nebula.getUser()
+            self.popUpResponseAlert(message: String(describing: amber))
+            break
         case "ensureAppID":
-            response = self.diamondBridge.ensureAppID()
+            response = self.diamondBridge.nebula.ensureAppID()!
             self.popUpResponseAlert(message: response)
             break
         case "loadPairingInfo":
@@ -106,7 +107,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         present(alert, animated: true, completion: nil)
     }
     
-    //MARK: SearchVar
+    //MARK: SearchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // Do something as users clear the Search Bar
         if searchBar.text?.count == 0 {
