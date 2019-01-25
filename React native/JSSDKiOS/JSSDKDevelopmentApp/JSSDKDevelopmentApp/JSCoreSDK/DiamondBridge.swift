@@ -15,14 +15,15 @@ public class DiamondBridge: JSCoreDelegate {
     let vm = JSVirtualMachine()
     var context: JSContext?
     
-    public var nebula: NebulaModule
+    var nebula: NebulaModuleDelegate?
     
     public init() {
         context = JSContext(virtualMachine: vm)
-        nebula = NebulaModule()
-        nebula.context = context
-        nebula.jsCoreDelegate = self
-        nebula.injectJS()
+        let nebulaModule = NebulaModule()
+        nebulaModule.context = context
+        nebulaModule.jsCoreDelegate = self
+        nebulaModule.injectJS()
+        nebula = nebulaModule.self
     }
     
     func injectJS(resources: [String]) {

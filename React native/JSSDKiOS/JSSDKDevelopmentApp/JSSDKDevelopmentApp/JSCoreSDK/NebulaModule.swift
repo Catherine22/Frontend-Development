@@ -27,7 +27,20 @@ public class NebulaModule {
         jsCoreDelegate?.injectJS(resources: Constants.shared.JS_RESOURCES["NebulaModule"]!)
     }
     
+    func addObjectReference(_ obj: JSValue) {
+        jsReferences.append(obj)
+        jsValueState = .none
+        jsValueState = .add([obj])
+    }
     
+    func release() {
+        jsValueState = .none
+        jsValueState = .remove(jsReferences)
+    }
+}
+
+// MARK: Exposed APIs
+extension NebulaModule: NebulaModuleDelegate {
     //    public func getVersion() -> Double {
     //        let version: JSValue = context.evaluateScript("getVersion()")
     //        return version.toDouble()
@@ -73,16 +86,5 @@ public class NebulaModule {
             return response.toString()
         }
         return nil
-    }
-    
-    func addObjectReference(_ obj: JSValue) {
-        jsReferences.append(obj)
-        jsValueState = .none
-        jsValueState = .add([obj])
-    }
-    
-    func release() {
-        jsValueState = .none
-        jsValueState = .remove(jsReferences)
     }
 }

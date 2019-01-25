@@ -28,6 +28,7 @@
 		F3FA2AF021FAE7F600CDE41B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2AEF21FAE7F600CDE41B /* Constants.swift */; };
 		F3FA2AF221FAED9A00CDE41B /* JSCoreDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2AF121FAED9A00CDE41B /* JSCoreDelegate.swift */; };
 		F3FA2AF421FAF7C500CDE41B /* JSValueState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2AF321FAF7C500CDE41B /* JSValueState.swift */; };
+		F3FA2AF621FAFE4E00CDE41B /* NebulaModuleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA2AF521FAFE4E00CDE41B /* NebulaModuleDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		F3FA2AEF21FAE7F600CDE41B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F3FA2AF121FAED9A00CDE41B /* JSCoreDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSCoreDelegate.swift; sourceTree = "<group>"; };
 		F3FA2AF321FAF7C500CDE41B /* JSValueState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSValueState.swift; sourceTree = "<group>"; };
+		F3FA2AF521FAFE4E00CDE41B /* NebulaModuleDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NebulaModuleDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				F37D94FC21F5ADD400810DED /* Utils */,
 				F37D94F321F5A3DA00810DED /* DiamondBridge.swift */,
 				F3FA2AF121FAED9A00CDE41B /* JSCoreDelegate.swift */,
+				F3FA2AF521FAFE4E00CDE41B /* NebulaModuleDelegate.swift */,
 				F3FA2AED21FAE79000CDE41B /* NebulaModule.swift */,
 			);
 			path = JSCoreSDK;
@@ -234,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F37D94F621F5A3F900810DED /* User.swift in Sources */,
+				F3FA2AF621FAFE4E00CDE41B /* NebulaModuleDelegate.swift in Sources */,
 				F3FA2AE421FAA10300CDE41B /* JSConsoleDelegate.swift in Sources */,
 				F37D94E121F5A19500810DED /* ViewController.swift in Sources */,
 				F3FA2AEB21FAA4C100CDE41B /* FunctionCell.swift in Sources */,

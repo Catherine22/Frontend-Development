@@ -46,16 +46,16 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         switch(text) {
         case "echo":
             popUpAlertWithTextField(numbersOfTextfield: 1) { (arguments) in
-                response = self.diamondBridge.nebula.echo(arguments[0])!
+                response = self.diamondBridge.nebula!.echo(arguments[0])!
                 self.popUpResponseAlert(message: response)
             }
             break
         case "getUser":
-            let amber = self.diamondBridge.nebula.getUser()
+            let amber = diamondBridge.nebula!.getUser()
             self.popUpResponseAlert(message: String(describing: amber))
             break
         case "ensureAppID":
-            response = self.diamondBridge.nebula.ensureAppID()!
+            response = diamondBridge.nebula!.ensureAppID()!
             self.popUpResponseAlert(message: response)
             break
         case "loadPairingInfo":
