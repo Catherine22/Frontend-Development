@@ -10,6 +10,7 @@ import Foundation
 import JavaScriptCore
 
 @objc protocol StorageDelegate: JSExport {
-    func setValueForKey(key: String, value: String)
-    func getValueForKey(key: String) -> String
+    var DEVICE_UUID: String { get }
+    func setValue(_ key: String, _ value: String)
+    func getValueForKey(_ key: String) -> String
 }

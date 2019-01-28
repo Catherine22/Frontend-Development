@@ -11,4 +11,5 @@ import Foundation
 @objc class Platform: NSObject, PlatformDelegate {
     var os: String = "iOS"
     var sdkVersion: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    var uuid: String = UUID().uuidString
 }

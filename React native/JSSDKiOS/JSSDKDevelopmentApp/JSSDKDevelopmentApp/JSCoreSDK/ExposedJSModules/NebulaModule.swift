@@ -58,18 +58,18 @@ extension NebulaModule: NebulaModuleDelegate {
     //        return members
     //    }
     
-    func getUser() -> User? {
-        let getUser = context?.evaluateScript("getUser")
-        if let response = getUser?.call(withArguments: [""]) {
-            addObjectReference(response)
-            let user = User(
-                name: response.forProperty("name")!.toString(),
-                age: response.forProperty("age")!.toNumber()!.intValue,
-                isAdult: response.forProperty("isAdult")!.toBool())
-            return user
-        }
-        return nil
-    }
+//    func getUser() -> User? {
+//        let getUser = context?.evaluateScript("getUser")
+//        if let response = getUser?.call(withArguments: [""]) {
+//            addObjectReference(response)
+//            let user = User(
+//                name: response.forProperty("name")!.toString(),
+//                age: response.forProperty("age")!.toNumber()!.intValue,
+//                isAdult: response.forProperty("isAdult")!.toBool())
+//            return user
+//        }
+//        return nil
+//    }
     
     func echo(_ text: String) -> String? {
         let echo = context?.evaluateScript("echo")

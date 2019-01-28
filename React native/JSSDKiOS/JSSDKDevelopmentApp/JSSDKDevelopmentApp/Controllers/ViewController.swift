@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
-    let FUNCTIONS = ["echo", "getUser", "ensureAppID", "loadPairingInfo"]
+    let FUNCTIONS = ["echo", "ensureAppID", "loadPairingInfo"]
     let diamondBridge = DiamondBridge()
     var functionList:[String] = []
     
@@ -49,10 +49,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                 response = self.diamondBridge.nebula!.echo(arguments[0])!
                 self.popUpResponseAlert(message: response)
             }
-            break
-        case "getUser":
-            let amber = diamondBridge.nebula!.getUser()
-            self.popUpResponseAlert(message: String(describing: amber))
             break
         case "ensureAppID":
             response = diamondBridge.nebula!.ensureAppID()!

@@ -9,6 +9,5 @@
 import Foundation
 protocol NebulaModuleDelegate {
     func echo(_ text: String) -> String?
-    func getUser() -> User?
     func ensureAppID() -> String?
 }

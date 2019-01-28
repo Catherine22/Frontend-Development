@@ -30,6 +30,21 @@ class Logger {
         persistant(content)
     }
     
+    func e (_ message: String) {
+        if Constants.shared.SHOW_LOG {
+            NSLog(message)
+        }
+        persistant(message)
+    }
+    
+    func e (_ tag: String, _ message: String) {
+        let content = "[\(tag)] \(message)"
+        if Constants.shared.SHOW_LOG {
+            NSLog(content)
+        }
+        persistant(content)
+    }
+    
     func persistant(_ message: String) {
         if Constants.shared.KEEP_LOG {
             // save logs

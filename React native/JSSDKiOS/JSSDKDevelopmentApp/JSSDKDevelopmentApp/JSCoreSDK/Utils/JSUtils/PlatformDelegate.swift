@@ -12,4 +12,5 @@ import JavaScriptCore
 @objc protocol PlatformDelegate: JSExport {
     var os: String { get set }
     var sdkVersion: String { get set }
+    var uuid: String { get }
 }

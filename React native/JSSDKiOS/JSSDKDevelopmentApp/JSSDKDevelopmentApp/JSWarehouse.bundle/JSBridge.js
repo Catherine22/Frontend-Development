@@ -30,7 +30,7 @@ function echo (input) {
 function ensureAppID() {
     homecontroller_ensureAppID(()=>{
         let console = JSConsole();
-        console.log('dddd', 'ensureAppID called');
+        console.log('dddd', APP_ID);
     })
 }
 
