@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="User" representedClassName=".ProfileItem" syncable="YES" codeGenerationType="class">
-        <attribute name="device_uuid" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
-    </entity>
-    <elements>
-        <element name="User" positionX="-54" positionY="-9" width="128" height="60"/>
-    </elements>
-</model>
