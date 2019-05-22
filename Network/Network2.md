@@ -3,6 +3,7 @@
 
 ## 应用层协议
 分为**标准协议**和不需要经过Internet管理机构审核的**非标准协议**。
+![application_layer_protocols](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/application_layer_protocols.png)   
 
 ## 客户-服务器模式
 传统模式。服务进程不停的运行，需要服务时就打开客户进程接收。    
@@ -27,15 +28,47 @@ socket地址以ipv4来说，一个IP地址有四个bytes，也就是32bits，端
 
 #### TLI
 Transport Layer Interface, 传输层接口。   
-在TCP/IP协议簇中有三个常见的传输层接口：UDP、TCP和SCTP。详见[传输层篇](https://github.com/Catherine22/Front-end-warm-up/blob/master/Network/Network3.md)。
+在TCP/IP协议簇中有三个常见的传输层接口：UDP、TCP和SCTP。详见[传输层篇](https://github.com/Catherine22/Front-end-warm-up/blob/master/Network/Network3.md)
 
 #### STREAM
 
-### 标准应用
+## 标准客户-服务器模式
 
 #### WWW
 用户通过浏览器访问一个正在服务器上运行的程序。   
 ![browser](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/screenshots/browser.png)    
+
+### 浏览器
+通过浏览器访问文档，控制程序（可以是HTTP、FTP等协议）使用解释程序（比如HTML􏳨、Java、JavaScript）显示文档。
+```
+protocol://host:port/path
+```
+
+- protocol: E.g. Http, FTP    
+- host: 服务器的ip地址或域名   
+- path：􏴔􏴕􏰤􏴞操作系统中文件的位置和名称    
+- port: 常见端口如下：   
+
+| port | name |
+| ---- | ---- |
+| 20/21 | FTP |
+| 22 | SSH |
+| 23 | Telnet |
+| 25 | SMTP |
+| 53 | DNS |
+| 67/68 | DHCP |
+| 69 | TFTP |
+| 80 | HTTP |
+| 110 | POP |
+| 123 | NTP |
+| 137/138/139 | NetBIOS |
+| 143 | IMAP |
+| 161/162 | SNMP |
+| 179 | BGP |
+| 389 | LDAP |
+| 443 | HTTPS |
+| 636 | LDAPS |
+| 989/990 | FTP over TLS/SSL |
 
 
 ## 对等模式
@@ -44,4 +77,4 @@ P2P模式。一台计算机可同时提供和接收服务，不需要一个一�
 例如：BitTorrent、Skype、IPTV和网络电话等。
 
 ## 混合模式
-比如可以红客户-服务器模式来找到匹配的节点（peer）地址，再由该节点实际提供服务。
+比如可以从客户-服务器模式来找到匹配的节点（peer）地址，再由该节点实际提供服务。
