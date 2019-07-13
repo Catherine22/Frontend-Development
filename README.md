@@ -27,13 +27,3 @@
 ### [Android Oreo updates ](https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/Oreo)
 - New features (Firebase cloud messaging, notification channels, foreground services, JobScheduler) on Android Oreo devices   
 - React Native communicates with Android Native Modules
-
-## Computer Networking
-### [Computer Networks and the Internet](https://github.com/Catherine22/Front-end-warm-up/blob/master/Network/Network1.md)
-- WAN, LAN       
-- TCP/IP    
-- Wireshark   
-
-### [Application Layer](https://github.com/Catherine22/Front-end-warm-up/blob/master/Network/Network2.md)
-- client-server paradigm    
-- peer-to-peer paradigm
