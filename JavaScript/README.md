@@ -129,6 +129,31 @@ var person = {
 };
 ```
 
+**defineProperty**
+Define a new key-value in a object, define the permission of which with ```defineProperty```    
+1. ```value```    
+2. ```writable```: allow the value to be reset
+3. ```enumerable```: allow the value to be listed in a for-loop or enum   
+4. ```configurable```: allow all the above properities to be updated    
+
+E.g. A student named Steven is giving an id, which is not allowed to be changed.    
+```javascript
+var student = {
+  name: "Steven",
+  age: 10
+}
+
+Object.defineProperty(student, "id", {
+  value: 2094820,
+  writable: false,
+  enumerable: true,
+  configurable: false
+})
+
+// student.id = 2094820
+
+student.id = 123; // not working, student.id is still 2094820
+```
 
 **Memory**      
 stack vs heap
