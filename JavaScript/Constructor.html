@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script>
-        function Employee(name, id) {
-          this.name = name;
-          this.id = id;
+    <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+        <script>
+            function Employee(name, id) {
+                this.name = name;
+                this.id = id;
 
-          this.showname = function showName() {
-            console.log(this.name);
-          }
-        }
+                this.showname = function showName() {
+                    console.log(this.name);
+                };
+            }
 
-        var julianne = new Employee('Julianne', 1);
-        var gina = new Employee('Gina', 2);
+            var julianne = new Employee('Julianne', 1);
+            var gina = new Employee('Gina', 2);
 
-        console.log(julianne);
-        console.log(gina);
-        julianne.showname();
-        console.log(julianne instanceof Employee);
-
-    </script>
-</head>
-<body>
-
-</body>
+            console.log(julianne);
+            console.log(gina);
+            julianne.showname();
+            console.log(julianne instanceof Employee);
+        </script>
+    </head>
+    <body></body>
 </html>

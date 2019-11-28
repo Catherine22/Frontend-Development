@@ -1,0 +1,40 @@
+{
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "explorer.confirmDragAndDrop": false,
+    "window.zoomLevel": 0,
+    "cSpell.language": "en-GB",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "vetur.validation.template": false,
+    "eslint.validate": [
+        {
+            "language": "javascript",
+            "autoFix": true
+        },
+        {
+            "language": "html",
+            "autoFix": true
+        },
+        {
+            "language": "vue",
+            "autoFix": true
+        },
+        {
+            "language": "javascriptreact",
+            "autoFix": true
+        }
+    ],
+    "eslint.enable": true,
+    "eslint.alwaysShowStatus": true,
+    "eslint.autoFixOnSave": true,
+    "prettier.singleQuote": true,
+    "prettier.arrowParens": "always",
+    "prettier.tabWidth": 4,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

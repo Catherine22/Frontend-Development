@@ -1,6 +1,6 @@
 // +, -, *, /, %
 console.log('\n+');
-var result = 123 + 456;
+let result = 123 + 456;
 console.log(result); // 579
 
 result = true + 3; // true = 1
@@ -35,7 +35,6 @@ result = 0;
 console.log(result++);
 console.warn(result);
 
-
 // For any value do a '-', '*' or '/' comes to a number, meaning you can convert a value to a number by '-', '*' or '/'
 console.log('\n-');
 result = '10';
@@ -65,7 +64,6 @@ console.log(result); // 2
 result = -18 % 5;
 console.log(result); // -3
 
-
 console.log('\n!');
 result = false;
 console.log(!result);
@@ -83,19 +81,19 @@ true || console.log('true || me'); // not showing
 
 // Biwise operators
 console.log('\nAND');
-console.log((1 & 1)); // 1
-console.log((1 & 0)); // 0
-console.log((0 & 1)); // 0
-console.log((0 & 0)); // 0
+console.log(1 & 1); // 1
+console.log(1 & 0); // 0
+console.log(0 & 1); // 0
+console.log(0 & 0); // 0
 
 console.log('\nOR');
-console.log((1 | 1)); // 1
-console.log((1 | 0)); // 1
-console.log((0 | 1)); // 1
-console.log((0 | 0)); // 0
+console.log(1 | 1); // 1
+console.log(1 | 0); // 1
+console.log(0 | 1); // 1
+console.log(0 | 0); // 0
 
 console.log('\nXOR');
-console.log((1 ^ 1)); // 0
-console.log((1 ^ 0)); // 1
-console.log((0 ^ 1)); // 1
-console.log((0 ^ 0)); // 0
+console.log(1 ^ 1); // 0
+console.log(1 ^ 0); // 1
+console.log(0 ^ 1); // 1
+console.log(0 ^ 0); // 0

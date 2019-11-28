@@ -1,329 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <button id="btn1">Button1</button>
-    <br>
-    <button id="btn2">Button2</button>
-    <br>
-    <button id="btn3">Button3</button>
-    <br>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+        <button id="btn1">Button1</button>
+        <br />
+        <button id="btn2">Button2</button>
+        <br />
+        <button id="btn3">Button3</button>
+        <br />
 
-    <script>
-        // js object to JSON
-        let personObj = {name: 'Kobe'};
-        let person = JSON.stringify(personObj);
-        console.log(typeof person);
+        <script>
+            // js object to JSON
+            let personObj = { name: 'Kobe' };
+            let person = JSON.stringify(personObj);
+            console.log(typeof person);
 
-        // JSON to js object
-        let obj = JSON.parse(person);
-        console.log(typeof obj);
+            // JSON to js object
+            let obj = JSON.parse(person);
+            console.log(typeof obj);
 
-        // Object.create(prototype, [descriptors])
-        let person1 = {username: 'Bob', age: 20};
-        let person2 = Object.create(person1, {
-            sex: {
-                value: 'M',
-                writable: true,
-                enumerable: true
-            },
-            title: {
-                value: 'chef',
-                writable: true,
-                configurable: false
+            // Object.create(prototype, [descriptors])
+            let person1 = { username: 'Bob', age: 20 };
+            let person2 = Object.create(person1, {
+                sex: {
+                    value: 'M',
+                    writable: true,
+                    enumerable: true
+                },
+                title: {
+                    value: 'chef',
+                    writable: true,
+                    configurable: false
+                }
+            });
+            console.log('person1', person1);
+            console.log('person2', person2);
+            person2.sex = 'F';
+            delete person2.sex; // not allowed
+            console.log('person2 updated', person2);
+
+            // Enum properties
+            for (let i in person2) {
+                console.log(i);
+                // title is not available due to enumerable = false
             }
-        });
-        console.log('person1', person1);
-        console.log('person2', person2);
-        person2.sex = 'F';
-        delete person2.sex; // not allowed
-        console.log('person2 updated', person2);
 
-        // Enum properties
-        for (let i in person2) {
-            console.log(i);
-            // title is not available due to enumerable = false
-        }
-
-        // Object
-        let person3 = {firstName: 'Conan', lastName: 'Bryan'};
-        let person4 = Object.defineProperties(person3, {
-            fullName: {
-                get() {
+            // Object
+            let person3 = { firstName: 'Conan', lastName: 'Bryan' };
+            let person4 = Object.defineProperties(person3, {
+                fullName: {
+                    get() {
+                        return `${this.firstName} ${this.lastName}`;
+                    },
+                    set(data) {
+                        let name = data.split(' ');
+                        this.firstName = name[0];
+                        this.lastName = name[1];
+                    }
+                }
+            });
+            let person5 = {
+                firstName: 'Conan',
+                lastName: 'Bryan',
+                get fullName() {
                     return `${this.firstName} ${this.lastName}`;
                 },
-                set(data) {
+                set fullName(data) {
                     let name = data.split(' ');
                     this.firstName = name[0];
                     this.lastName = name[1];
                 }
-            }
-        });
-        let person5 = {
-            firstName: 'Conan',
-            lastName: 'Bryan',
-            get fullName() {
-                return `${this.firstName} ${this.lastName}`;
-            },
-            set fullName(data) {
-                let name = data.split(' ');
-                this.firstName = name[0];
-                this.lastName = name[1];
-            }
-        };
+            };
 
-        console.log(person4.fullName);
-        person4.fullName = "Conan O'Bryan";
-        console.log(person4.fullName);
+            console.log(person4.fullName);
+            person4.fullName = "Conan O'Bryan";
+            console.log(person4.fullName);
 
-        console.log(person5.fullName);
-        person5.fullName = "Conan O'Bryan";
-        console.log(person5.fullName);
+            console.log(person5.fullName);
+            person5.fullName = "Conan O'Bryan";
+            console.log(person5.fullName);
 
-        // Array
-        let arr = ['A', 'B', 'C', 'D', 'A', 'B', 'C', 'D'];
-        console.log('indexOf', arr.indexOf('A'));
-        console.log('lastIndexOf', arr.lastIndexOf('A'));
-        arr.forEach(function (value, index) {
-            console.log(`arr[${index}] = ${value}`);
-        });
-        let newArr = arr.map(function (value, index) {
-            return value.toLowerCase();
-        });
-        console.log(newArr);
-        let arr2 = arr.filter(function (value, index) {
-            if (value === 'A' || value === 'C') {
-                return value;
-            }
-        });
-        console.log(arr2);
-
-        // bind(), call() and apply()
-        let myCar = {
-            typeOfCar: 'Sedan',
-            colour: 'Black',
-            spec() {
-                console.log(this);
-                // console.log(`typeOfCar: ${this.typeOfCar}, colour: ${this.colour}`);
-            },
-            update(typeOfCar, colour) {
-                this.typeOfCar = typeOfCar;
-                this.colour = colour;
-                console.log(this);
-                // console.log(`typeOfCar: ${this.typeOfCar}, colour: ${this.colour}`);
-            }
-        };
-        let myCoupe = {typeOfCar: 'Sedan', colour: 'Black'};
-
-        myCar.spec();
-        myCar.spec.call(myCoupe);
-        myCar.spec.apply(myCoupe);
-
-        myCar.update('Coupe', 'Blue');
-        myCar.update.call(myCoupe, 'Coupe', 'Blue');
-        myCar.update.apply(myCoupe, ['Coupe', 'Blue']);
-
-
-        let module = {
-            x: 81,
-            getX() {
-                console.log('this', this);
-                return this.x;
-            }
-        };
-
-        console.log(module.getX()); // 81
-
-        let retrieveX = module.getX;
-        console.log(retrieveX()); // undefined
-
-        let boundGetX = retrieveX.bind(module);
-        console.log(boundGetX()); // 81
-
-
-        function LateBloomer() {
-            this.petalCount = 2;
-        }
-
-        LateBloomer.prototype.bloom = function () {
-            // wait for 5 seconds
-            window.setTimeout(this.declare.bind(this), 5000);
-        };
-
-        LateBloomer.prototype.declare = function () {
-            console.log('I am a beautiful flower with ' + this.petalCount + ' petals!');
-        };
-
-        let flower = new LateBloomer();
-        flower.bloom();
-
-        // Destruction
-        let conan = {username: "Conan O'brian", age: 55, gender: 'M'};
-        console.log(`username: ${conan.username}`);
-
-        let {username, age} = conan;
-        console.log(`username: ${username}, age: ${age}`);
-
-        let colours = ['red', 'yellow', 'white', 'blue'];
-        let [, y, , b] = colours;
-        console.log(y, b);
-
-        // Object Function
-        let myPhone = {
-            colour: 'white',
-            typeOfPhone: 'iPhone',
-            getColour: function () {
-                return this.colour;
-            },
-            getType() {
-                return this.typeOfPhone;
-            }
-        };
-        console.log(myPhone.getColour());
-        console.log(myPhone.getType());
-
-        // Arrow Function
-        let arrowFunc1 = () => console.log('I am an arrow function');
-        let arrowFunc2 = data => console.log(data);
-        let arrowFunc3 = (data1, data2) => console.log(data1, data2);
-        let getCircumference = (radius) => {
-            const PI = 3.14;
-            return 2 * radius * PI;
-        };
-        arrowFunc1();
-        arrowFunc2('YO');
-        arrowFunc3('Hi,', 'there!');
-        console.log(getCircumference(5));
-
-        let btn1 = document.getElementById('btn1');
-        let btn2 = document.getElementById('btn2');
-        btn1.onclick = function () {
-            alert("Click btn1");
-        };
-        btn2.onclick = () => {
-            alert("Click btn2");
-        };
-
-        var name = '???';
-        let cat = {
-            name: 'Cat',
-            showName1: () => {
-                console.log(this, this.name);
-            },
-            showName2: function () {
-                console.log(this, this.name);
-            }
-        };
-
-        cat.showName1();
-        cat.showName2();
-
-        function showName1(name) {
-            console.log(this, name);
-        }
-
-        showName2 = (name) => {
-            console.log(this, name);
-        };
-        showName1('Dog');
-        showName2('Dog');
-
-        // ...
-        let a1 = [1, true, 's'];
-        let a2 = ['p', 'q', ...a1];
-        console.log(a2);
-        a1 = [2, 3, 4, 5];
-        a2 = [1, ...a1, 6];
-        console.log(a2);
-
-        let a3 = a1;
-        a3.push('######');
-        console.log(a1, a3);
-
-        a1 = [1, true, 's'];
-        a3 = [...a1];
-        a3.push('######');
-        console.log(a1, a3);
-
-        let state = {title: 'title', subtitle: 'subtitle'};
-        let newState = {...state, subtitle: 'new subtitle', page: 5};
-        console.log(`...: ${state === newState}`);
-        console.log(`...: ${state.title === newState.title}`);
-        console.log('...:', newState);
-
-        // Promise
-        // new Promise((resolve, reject) => {
-        //     console.log('pending...');
-        //
-        //     // Do async tasks here, e.g. I/O operations
-        //     setTimeout(() => {
-        //         let randomResult = Math.floor(Math.random() * 2);
-        //         if (randomResult === 1) {
-        //             resolve({code: 200, info: 'Success'}); // success, the state will become fulfilled
-        //         } else {
-        //             reject({code: 404, info: 'Not found'}); // fail, the state will become rejected
-        //         }
-        //     }, 2000)
-        // }).then((message) => {
-        //     // fulfilled
-        //     console.log(`${message.code}: ${message.info}`);
-        // }, (message) => {
-        //     // rejected
-        //     console.log(`${message.code}: ${message.info}`);
-        // });
-        // console.log('After promise');
-
-
-        function connect(url) {
-            // GET https://agile-island-78787.herokuapp.com/openAPI/cities
-            // GET https://agile-island-78787.herokuapp.com/openAPI/weather?id=1851632
-            return new Promise((resolve, reject) => {
-                console.log('pending...');
-
-                let xmlHttp = new XMLHttpRequest();
-                xmlHttp.onreadystatechange = function () {
-                    if (xmlHttp.readyState === XMLHttpRequest.DONE) {
-                        if (xmlHttp.status === 200) {
-                            // success
-                            resolve({data: xmlHttp.responseText});
-                        } else {
-                            // fail to retrieve data
-                            reject({data: xmlHttp.status})
-                        }
-                    }
-                };
-
-                xmlHttp.open('GET', url);
-                xmlHttp.send();
+            // Array
+            let arr = ['A', 'B', 'C', 'D', 'A', 'B', 'C', 'D'];
+            console.log('indexOf', arr.indexOf('A'));
+            console.log('lastIndexOf', arr.lastIndexOf('A'));
+            arr.forEach(function(value, index) {
+                console.log(`arr[${index}] = ${value}`);
             });
-        }
-
-        connect('https://agile-island-78787.herokuapp.com/openAPI/cities').then((response) => {
-            console.log('fulfilled');
-            let cities = JSON.parse(response.data);
-            cities.forEach(function (value, index) {
-                console.log(value);
-                if (value.city === 'London') {
-                    connect(`https://agile-island-78787.herokuapp.com/openAPI/weather?id=${value.id}`)
-                        .then((response) => {
-                            console.log('fulfilled');
-                            alert(response.data);
-                        }, (response) => {
-                            console.log('rejected');
-                            alert(`Error code: ${response.data}`);
-                        });
+            let newArr = arr.map(function(value, index) {
+                return value.toLowerCase();
+            });
+            console.log(newArr);
+            let arr2 = arr.filter(function(value, index) {
+                if (value === 'A' || value === 'C') {
+                    return value;
                 }
             });
-            console.log(response.data);
-        }, (response) => {
-            console.log('rejected');
-            alert(`Error code: ${response.data}`);
-        });
+            console.log(arr2);
 
-    </script>
-</head>
-<body>
+            // bind(), call() and apply()
+            let myCar = {
+                typeOfCar: 'Sedan',
+                colour: 'Black',
+                spec() {
+                    console.log(this);
+                    // console.log(`typeOfCar: ${this.typeOfCar}, colour: ${this.colour}`);
+                },
+                update(typeOfCar, colour) {
+                    this.typeOfCar = typeOfCar;
+                    this.colour = colour;
+                    console.log(this);
+                    // console.log(`typeOfCar: ${this.typeOfCar}, colour: ${this.colour}`);
+                }
+            };
+            let myCoupe = { typeOfCar: 'Sedan', colour: 'Black' };
 
-</body>
+            myCar.spec();
+            myCar.spec.call(myCoupe);
+            myCar.spec.apply(myCoupe);
+
+            myCar.update('Coupe', 'Blue');
+            myCar.update.call(myCoupe, 'Coupe', 'Blue');
+            myCar.update.apply(myCoupe, ['Coupe', 'Blue']);
+
+            let module = {
+                x: 81,
+                getX() {
+                    console.log('this', this);
+                    return this.x;
+                }
+            };
+
+            console.log(module.getX()); // 81
+
+            let retrieveX = module.getX;
+            console.log(retrieveX()); // undefined
+
+            let boundGetX = retrieveX.bind(module);
+            console.log(boundGetX()); // 81
+
+            function LateBloomer() {
+                this.petalCount = 2;
+            }
+
+            LateBloomer.prototype.bloom = function() {
+                // wait for 5 seconds
+                window.setTimeout(this.declare.bind(this), 5000);
+            };
+
+            LateBloomer.prototype.declare = function() {
+                console.log(
+                    'I am a beautiful flower with ' +
+                        this.petalCount +
+                        ' petals!'
+                );
+            };
+
+            let flower = new LateBloomer();
+            flower.bloom();
+
+            // Destruction
+            let conan = { username: "Conan O'brian", age: 55, gender: 'M' };
+            console.log(`username: ${conan.username}`);
+
+            let { username, age } = conan;
+            console.log(`username: ${username}, age: ${age}`);
+
+            let colours = ['red', 'yellow', 'white', 'blue'];
+            let [, y, , b] = colours;
+            console.log(y, b);
+
+            // Object Function
+            let myPhone = {
+                colour: 'white',
+                typeOfPhone: 'iPhone',
+                getColour: function() {
+                    return this.colour;
+                },
+                getType() {
+                    return this.typeOfPhone;
+                }
+            };
+            console.log(myPhone.getColour());
+            console.log(myPhone.getType());
+
+            // Arrow Function
+            let arrowFunc1 = () => console.log('I am an arrow function');
+            let arrowFunc2 = (data) => console.log(data);
+            let arrowFunc3 = (data1, data2) => console.log(data1, data2);
+            let getCircumference = (radius) => {
+                const PI = 3.14;
+                return 2 * radius * PI;
+            };
+            arrowFunc1();
+            arrowFunc2('YO');
+            arrowFunc3('Hi,', 'there!');
+            console.log(getCircumference(5));
+
+            let btn1 = document.getElementById('btn1');
+            let btn2 = document.getElementById('btn2');
+            btn1.onclick = function() {
+                alert('Click btn1');
+            };
+            btn2.onclick = () => {
+                alert('Click btn2');
+            };
+
+            var name = '???';
+            let cat = {
+                name: 'Cat',
+                showName1: () => {
+                    console.log(this, this.name);
+                },
+                showName2: function() {
+                    console.log(this, this.name);
+                }
+            };
+
+            cat.showName1();
+            cat.showName2();
+
+            function showName1(name) {
+                console.log(this, name);
+            }
+
+            showName2 = (name) => {
+                console.log(this, name);
+            };
+            showName1('Dog');
+            showName2('Dog');
+
+            // ...
+            let a1 = [1, true, 's'];
+            let a2 = ['p', 'q', ...a1];
+            console.log(a2);
+            a1 = [2, 3, 4, 5];
+            a2 = [1, ...a1, 6];
+            console.log(a2);
+
+            let a3 = a1;
+            a3.push('######');
+            console.log(a1, a3);
+
+            a1 = [1, true, 's'];
+            a3 = [...a1];
+            a3.push('######');
+            console.log(a1, a3);
+
+            let state = { title: 'title', subtitle: 'subtitle' };
+            let newState = { ...state, subtitle: 'new subtitle', page: 5 };
+            console.log(`...: ${state === newState}`);
+            console.log(`...: ${state.title === newState.title}`);
+            console.log('...:', newState);
+
+            // Promise
+            // new Promise((resolve, reject) => {
+            //     console.log('pending...');
+            //
+            //     // Do async tasks here, e.g. I/O operations
+            //     setTimeout(() => {
+            //         let randomResult = Math.floor(Math.random() * 2);
+            //         if (randomResult === 1) {
+            //             resolve({code: 200, info: 'Success'}); // success, the state will become fulfilled
+            //         } else {
+            //             reject({code: 404, info: 'Not found'}); // fail, the state will become rejected
+            //         }
+            //     }, 2000)
+            // }).then((message) => {
+            //     // fulfilled
+            //     console.log(`${message.code}: ${message.info}`);
+            // }, (message) => {
+            //     // rejected
+            //     console.log(`${message.code}: ${message.info}`);
+            // });
+            // console.log('After promise');
+
+            function connect(url) {
+                // GET https://agile-island-78787.herokuapp.com/openAPI/cities
+                // GET https://agile-island-78787.herokuapp.com/openAPI/weather?id=1851632
+                return new Promise((resolve, reject) => {
+                    console.log('pending...');
+
+                    let xmlHttp = new XMLHttpRequest();
+                    xmlHttp.onreadystatechange = function() {
+                        if (xmlHttp.readyState === XMLHttpRequest.DONE) {
+                            if (xmlHttp.status === 200) {
+                                // success
+                                resolve({ data: xmlHttp.responseText });
+                            } else {
+                                // fail to retrieve data
+                                reject({ data: xmlHttp.status });
+                            }
+                        }
+                    };
+
+                    xmlHttp.open('GET', url);
+                    xmlHttp.send();
+                });
+            }
+
+            connect(
+                'https://agile-island-78787.herokuapp.com/openAPI/cities'
+            ).then(
+                (response) => {
+                    console.log('fulfilled');
+                    let cities = JSON.parse(response.data);
+                    cities.forEach(function(value, index) {
+                        console.log(value);
+                        if (value.city === 'London') {
+                            connect(
+                                `https://agile-island-78787.herokuapp.com/openAPI/weather?id=${value.id}`
+                            ).then(
+                                (response) => {
+                                    console.log('fulfilled');
+                                    alert(response.data);
+                                },
+                                (response) => {
+                                    console.log('rejected');
+                                    alert(`Error code: ${response.data}`);
+                                }
+                            );
+                        }
+                    });
+                    console.log(response.data);
+                },
+                (response) => {
+                    console.log('rejected');
+                    alert(`Error code: ${response.data}`);
+                }
+            );
+        </script>
+    </head>
+    <body></body>
 </html>

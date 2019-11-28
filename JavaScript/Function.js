@@ -9,7 +9,6 @@ function func(f, arg) {
 
 func(hello, 'Rally');
 
-
 // Nested functions
 function funcParent() {
   function funcChild() {
@@ -23,8 +22,7 @@ funcParent();
 // Run instant functions
 (function print() {
   console.log('I am instant function');
-}());
-
+})();
 
 // Call a function which returns a function
 function rmbToUsd(money) {
@@ -82,7 +80,6 @@ console.log(julianne); // Employee {name: "Julianne", id: 1, showname: ƒ}
 console.log(julianne.TAG); // Employee
 julianne.showName(); // Julianne
 
-
 // Override
 console.log(julianne.toString());
 Employee.prototype.toString = function() {
@@ -90,15 +87,24 @@ Employee.prototype.toString = function() {
 };
 console.log(julianne.toString());
 
-
 // call and apply functions
 function showCar(color) {
   console.log(`${this.car}, color=${color}`);
 }
 
 showCar('black');
-showCar.call({car: 'Sport car'}, 'red');
-showCar.apply({car: 'Motorhome'}, ['white']);
+showCar.call(
+    {
+      car: 'Sport car',
+    },
+    'red'
+);
+showCar.apply(
+    {
+      car: 'Motorhome',
+    },
+    ['white']
+);
 
 let carWorld = {
   car: 'trunk',
@@ -107,5 +113,15 @@ let carWorld = {
   },
 };
 carWorld.showCar('black');
-carWorld.showCar.call({car: 'Sport car'}, 'red');
-carWorld.showCar.apply({car: 'Motorhome'}, ['white']);
+carWorld.showCar.call(
+    {
+      car: 'Sport car',
+    },
+    'red'
+);
+carWorld.showCar.apply(
+    {
+      car: 'Motorhome',
+    },
+    ['white']
+);
