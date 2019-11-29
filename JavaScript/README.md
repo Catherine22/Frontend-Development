@@ -1,21 +1,77 @@
 # JavaScript
 
-JavaScript = ECMAScript + DOM + BOM
+Javascript is one of the core roles in web development (Javascript + CSS + HTML)  
+HTML: The content of web pages  
+CSS: Styling web pages  
+JS: Programming capabilities
 
-## Get started
+## Basics
 
 -   Upper case and lower case are different
 -   **_Every statement must end with `;`._** Browsers automatically create `;` while the developer does not use `;`. However, that impacts the performance. The worst of all, browsers sometimes add `;` incorrectly.
 -   Blanks and empty lines are ignored.
+-   IDEs You might need:
+    -   Brackets
+    -   Visual Studio Code
 
-## IDEs
+### ESLint and Prettier
 
--   Brackets
--   Visual Studio Code
+1. Add eslint and prettier plugins for Visual Studio Code
+2. Press `command` + `shift` + `p` and search 'settings.json'
+3. Add the following rules:
+
+```json
+{
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "explorer.confirmDragAndDrop": false,
+    "window.zoomLevel": 0,
+    "cSpell.language": "en-GB",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "vetur.validation.template": false,
+    "vetur.completion.scaffoldSnippetSources": {
+        "workspace": "💼",
+        "user": "(User)",
+        "vetur": ""
+    },
+    "eslint.validate": [
+        {
+            "language": "javascript",
+            "autoFix": true
+        },
+        {
+            "language": "html",
+            "autoFix": true
+        },
+        {
+            "language": "vue",
+            "autoFix": true
+        },
+        {
+            "language": "javascriptreact",
+            "autoFix": true
+        }
+    ],
+    "eslint.enable": true,
+    "eslint.alwaysShowStatus": true,
+    "eslint.autoFixOnSave": true,
+    "prettier.singleQuote": true,
+    "prettier.arrowParens": "always",
+    "prettier.tabWidth": 4,
+    "prettier.jsxBracketSameLine": false,
+    "prettier.jsxSingleQuote": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
+```
+
+The settings include vue.js (You need to install vuter as well) and react native formatting.
 
 ## Navigator
 
--   Get started
+-   Basics
     -   [Literal， 字面量](#Literal)
     -   [Identifier, 标识符](#Identifier)
     -   [Type, 数据类型](#Type)
@@ -25,11 +81,12 @@ JavaScript = ECMAScript + DOM + BOM
     -   [Function](#Function)
     -   [Constructor, 构造函数](#Constructor)
     -   [Prototype](#Prototype)
--   [GC, Garbage Collection](#GC)
--   [Array](#Array)
--   [Regular expression, 正则表达式](#正则表达式)
--   [ECMAScrip](#ECMAScrip)
--   [宿主对象](#宿主对象)
+    -   [GC, Garbage Collection](#GC)
+    -   [Array](#Array)
+    -   [Regular expression, 正则表达式](#正则表达式)
+    -   [ECMAScrip](#ECMAScrip)
+-   Intermediate Tutorial
+    -   [Javascript Engine](#javascript-engine)
 -   [Reference](#Reference)
 
 ### Literal
@@ -60,14 +117,14 @@ var $123_a = 0;
 There are six data types in JavaScript:
 
 -   String
--   Number  
-     - Infinity  
-     - NaN: Not a number  
-     - fraction: Using JS to calculate fractions, you might get an incorrect answer. For example, 0.1 + 0.2 = 0.30000000000000004
+-   Number
+    -   Infinity
+    -   NaN: Not a number
+    -   fraction: Using JS to calculate fractions, you might get an incorrect answer. For example, 0.1 + 0.2 = 0.30000000000000004
 -   Boolean
 -   Null
--   Undefined  
-     - This means the editor has declared a variable, but he/she did not define a value for that variable.
+-   Undefined
+    -   This means the editor has declared a variable, but he/she did not define a value for that variable.
 -   Object
 
 Go to [Type.js] to see more.
@@ -526,11 +583,11 @@ showCar.apply({ car: 'Motorhome' }, ['white']); // Motorhome, color=white
 
 [Function.js]
 
-## GC
+### GC
 
 Browsers automatically deal with rubbish (which are basically objects do not be refer by a specific key in the stack) in the heap, there are different solution depends on the browser.
 
-## Array
+### Array
 
 It can be anything type you need to store in an array
 
@@ -583,7 +640,7 @@ var removedMember = arr.shift(); // 1
 console.log(arr); // [2, 3]
 ```
 
-### forEach (IE 8 or order version does not work)
+#### forEach (IE 8 or order version does not work)
 
 ```javascript
 var arr = ['Joanne', 'Irene', 'Catherine'];
@@ -597,7 +654,7 @@ arr.forEach(function(value, index, array) {
 // value:Catherine, index:2, array:Joanne,Irene,Catherine
 ```
 
-### slice
+#### slice
 
 Return a range of elements in an array
 
@@ -607,7 +664,7 @@ var subArr1 = arr.slice(0, 3); // [a, b, c]
 var subArr2 = arr.slice(0, -2); // [a, b, c]
 ```
 
-### splice
+#### splice
 
 1. Delete a range of elements in an array  
    splice(from, **element numbers**)
@@ -628,7 +685,7 @@ console.log(arr); // ["a", "b", "c", "d", "e"]
 console.log(anonymousArr); // ["*", "*"]
 ```
 
-### concat
+#### concat
 
 Merge 2 arrays
 
@@ -638,7 +695,7 @@ var arr2 = [4, 5, 6];
 var newArr = arr1.concat(arr2, 7, 8); // [1, 2, 3, 4, 5, 6, 7, 8]
 ```
 
-### join
+#### join
 
 Convert an array to String
 
@@ -648,7 +705,7 @@ console.log(arr1.join()); // 1,2,3
 console.log(arr1.join('-')); // 1-2-3
 ```
 
-### Reverse
+#### Reverse
 
 ```javascript
 arr = [1, 2, 3, 4, 5];
@@ -656,7 +713,7 @@ console.log(arr.reverse()); // [5, 4, 3, 2, 1]
 console.log(arr); // [5, 4, 3, 2, 1]
 ```
 
-### Sort
+#### Sort
 
 Sort by unicode  
 In `function(a, b)`, a is the top member whereas b is the last member.
@@ -681,7 +738,7 @@ console.log(randoms); // [10, 9, 7, 4, 2]
 
 [Array.js]
 
-## 正则表达式
+### 正则表达式
 
 NO BLANKS
 
@@ -865,7 +922,7 @@ console.log(`${message}: ${message.replace(reg, '')}`);
 //     David Lin     : David Lim
 ```
 
-### Verify phone numbers
+#### Verify phone numbers
 
 1. 11 digits
 2. Start by 1
@@ -905,7 +962,7 @@ A135-1234-1234A: false}
 */
 ```
 
-### Verify email addresses
+#### Verify email addresses
 
 [letters, numbers and/or _] + (optional) [. + letters, numbers and/or _] + @ + [letters and/or numbers] + . + [2-5 letters] + (optional)[. + 2-5 letters]
 
@@ -945,125 +1002,34 @@ test@test_1.com]
 
 [Utils.html]
 
-## ECMAScrip
+### ECMAScrip
 
 A specification for JavaScript. JavaScript will be executed by a distinct engine of individual browser. V8 engine of Chrome for example, showing high performance while running JavaScript.  
 GO to [ES6 example](https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6) to learn more.
 
-### ESLint
+## Javascript Engine
 
-```
-npm install eslint --save-dev
-```
+![JS engine's pipeline](https://miro.medium.com/max/2038/1*ZIH_wjqDfZn6NRKsDi9mvA.png)
+[reference](https://medium.com/dailyjs/understanding-v8s-bytecode-317d46c94775)
 
-```
-npm install --save-dev eslint-config-google
-```
+-   [AST explorer](https://astexplorer.net/)
 
-.eslintrc
+> So, is Javascript an interpreted language?
+> Ans: Not technically. Because it depends on how JS engine deals with it.
 
-```
-{
-    "extends": ["eslint:recommended", "google"],
-    "rules": {
-        // Additional, per-project rules...
-    }
-}
-```
-
-# 宿主对象
-
-## DOM, Document Object Model
-
--   Document: a html page
--   Object: everything in the page
--   Model: display the relation between objects
-    ![screenshot][2]
-
-### Node
-
-```html
-<p id="pid">This is a paragraph</p>
-```
-
-In HTML, we have 4 type of nodes:
-
-1. Document: The whole HTML file
-2. Element: `<p/>`
-3. Attribute: `id="pid"`
-4. Text: `This is a paragraph`
-
-In HTML, code will be loaded from the top. For example,
-
-```html
-<head>
-    <script type="text/javascript">
-        // Get the <button/>
-        let btn = document.getElementById('btn');
-        btn.onclick = function() {
-            alert('讨厌，你点我干嘛');
-        };
-    </script>
-    <button id="btn">我是一个按钮</button>
-</head>
-```
-
-The `onclick` will be malfunction, to fix this issue, I can either switch their positions
-
-```html
-<head>
-    <button id="btn">我是一个按钮</button>
-    <script type="text/javascript">
-        // Get the <button/>
-        let btn = document.getElementById('btn');
-        btn.onclick = function() {
-            alert('讨厌，你点我干嘛');
-        };
-    </script>
-</head>
-```
-
-Or load javascript when the page loaded.
-
-```javascript
-<head>
-    <script type="text/javascript">
-        // Html loaded
-        window.onload = function() {
-            console.log('Page Loaded');
-            // Get the <button/>
-            let btn = document.getElementById('btn');
-            btn.onclick = function() {
-                alert('讨厌，你点我干嘛');
-            };
-        };
-    </script>
-    <button id="btn">我是一个按钮</button>
-</head>
-```
-
-However, the `window.onload` can be place on the top or bottom of the script. It will be better if we drag the `window.onload` on the bottom, because loading code without executing immediately are not supposed to be happen before loading views.
-
-[DOM.html]
-
-## BOM
-
-## Tips
-
--   Try to package JS code outside html files so that the JS code is able to be reused or cached by browsers. See [Introduction]
+### Problematic keywords
 
 ## Reference
 
-[尚硅谷 JavaScript 视频]
-
-[尚硅谷javascript视频]: https://www.bilibili.com/video/av21589800/?p=1&spm_id_from=333.788.multi_page.1
-[helloworld]: https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/HelloWorld.html
-[introduction]: https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Introduction.html
-[type.js]: https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Type.js
-[operator.js]: https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Operator.js
-[function.js]: https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Function.js
-[array.js]: https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Array.js
-[utils.html]: https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Utils.html
-[dom.html]: https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/DOM.html
-[1]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/JavaScript/screenshot_forEach.png
-[2]: https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/JavaScript/screenshot_domTree.png
+[尚硅谷 javascript 视频](https://www.bilibili.com/video/av21589800/?p=1&spm_id_from=333.788.multi_page.1)
+[best advanced javascript course ever](https://www.udemy.com/course/advanced-javascript-concepts/)
+[helloworld](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/HelloWorld.html)
+[introduction](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Introduction.html)
+[type.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Type.js)
+[operator.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Operator.js)
+[function.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Function.js)
+[array.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Array.js)
+[utils.html](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Utils.html)
+[dom.html](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/DOM.html)
+[1](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/JavaScript/screenshot_forEach.png)
+[2](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/JavaScript/screenshot_domTree.png)
