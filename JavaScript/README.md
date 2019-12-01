@@ -85,6 +85,7 @@ The settings include vue.js (You need to install vuter as well) and react native
     -   [Array](#Array)
     -   [Regular expression, 正则表达式](#正则表达式)
     -   [ECMAScrip](#ECMAScrip)
+    -   [Chrome debugger](#chrome-debugger)
 -   Intermediate Tutorial
     -   [Javascript Engine](#javascript-engine)
 -   [Reference](#Reference)
@@ -1007,6 +1008,13 @@ test@test_1.com]
 A specification for JavaScript. JavaScript will be executed by a distinct engine of individual browser. V8 engine of Chrome for example, showing high performance while running JavaScript.  
 GO to [ES6 example](https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6) to learn more.
 
+### Chrome Debugger
+
+![3](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/JavaScript/screenshot_debugger.png)
+
+-   open developer tools panel: `⌘` + `⌥` + `i`
+-   You can create your own code snippet to run JavaScript, add the `debugger` keyword to stop the execution
+
 ## Javascript Engine
 
 ![JS engine's pipeline](https://miro.medium.com/max/2038/1*ZIH_wjqDfZn6NRKsDi9mvA.png)
@@ -1019,17 +1027,24 @@ GO to [ES6 example](https://github.com/Catherine22/Front-end-warm-up/tree/master
 
 ### Problematic keywords
 
+JS engine cannot optimise code snippet properly with these keywords. I.e. These keywords is absolutely functional, but it would slower the execution a little bit.
+
+-   eval()
+-   arguments
+-   for in
+-   with
+-   delete
+-   hidden classes
+-   inline caching
+
 ## Reference
 
-[尚硅谷 javascript 视频](https://www.bilibili.com/video/av21589800/?p=1&spm_id_from=333.788.multi_page.1)
-[best advanced javascript course ever](https://www.udemy.com/course/advanced-javascript-concepts/)
-[helloworld](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/HelloWorld.html)
-[introduction](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Introduction.html)
-[type.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Type.js)
-[operator.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Operator.js)
-[function.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Function.js)
-[array.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Array.js)
-[utils.html](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Utils.html)
-[dom.html](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/DOM.html)
-[1](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/JavaScript/screenshot_forEach.png)
-[2](https://raw.githubusercontent.com/Catherine22/Front-end-warm-up/master/JavaScript/screenshot_domTree.png)
+-   [Advanced Javascript concepts](https://www.udemy.com/course/advanced-javascript-concepts/)
+-   [helloworld](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/HelloWorld.html)
+-   [introduction](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Introduction.html)
+-   [type.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Type.js)
+-   [operator.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Operator.js)
+-   [function.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Function.js)
+-   [array.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Array.js)
+-   [utils.html](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Utils.html)
+-   [dom.html](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/DOM.html)
