@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="styles.css" />
+        <title>Buying socks</title>
+    </head>
+
+    <body>
+        <div class="nav-bar"></div>
+
+        <div id="app">
+            <div class="product">
+                <div class="product-image">
+                    <img v-bind:src="image" alt="A pair of socks" />
+                </div>
+
+                <div class="product-info">
+                    <h1>{{ product }}</h1>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
