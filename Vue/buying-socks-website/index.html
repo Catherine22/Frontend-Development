@@ -10,47 +10,8 @@
         <div class="nav-bar"></div>
 
         <div id="app">
-            <div class="product">
-                <div class="product-image">
-                    <img :src="image" :alt="imageAlt" />
-                </div>
-
-                <div class="product-info">
-                    <h1>{{ productTitle }}</h1>
-                    <p v-if="variants[selectedVariant].variantQuantity >= 10">
-                        In stock
-                    </p>
-                    <p
-                        v-else-if="variants[selectedVariant].variantQuantity > 0 && variants[selectedVariant].variantQuantity < 10"
-                    >
-                        Almost sold out!
-                    </p>
-                    <p
-                        v-else
-                        :style="[ inStock? '': { textDecoration: 'line-through' }]"
-                    >
-                        Out of stock
-                    </p>
-                    <li v-for="detail in details">{{ detail }}</li>
-                    <div
-                        class="color-box"
-                        v-for="(variant, index) in variants"
-                        :key="variant.variantId"
-                        :style="{ backgroundColor: variant.variantColour }"
-                        @mouseover="updateProductImage(index)"
-                    ></div>
-                    <button
-                        :class="{ disabledButton: !inStock }"
-                        @click="addToCart()"
-                        :disabled="!inStock"
-                    >
-                        Add to Cart
-                    </button>
-                    <div class="cart">
-                        <p>Cart({{ cart }})</p>
-                    </div>
-                </div>
-            </div>
+            <product :premium="isPremium"></product>
+            <product :premium="true"></product>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="main.js"></script>
