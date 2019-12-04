@@ -12,7 +12,7 @@
         <div id="app">
             <div class="product">
                 <div class="product-image">
-                    <img :src="imageBlueSocks" :alt="image_alt" />
+                    <img :src="image" :alt="imageAlt" />
                 </div>
 
                 <div class="product-info">
@@ -21,10 +21,29 @@
                     <p v-else-if="inventory > 0 && inventory < 10">
                         Almost sold out!
                     </p>
-                    <p v-else>Out of stock</p>
+                    <p
+                        v-else
+                        :style="[ inStock? '': { textDecoration: 'line-through' }]"
+                    >
+                        Out of stock
+                    </p>
                     <li v-for="detail in details">{{ detail }}</li>
-                    <div v-for="variant in variants" :key="variant.variantId">
-                        <p>{{ variant.variantColour }}</p>
+                    <div
+                        class="color-box"
+                        v-for="variant in variants"
+                        :key="variant.variantId"
+                        :style="{ backgroundColor: variant.variantColour }"
+                        @mouseover="updateProductImage(variant.variantImage)"
+                    ></div>
+                    <button
+                        :class="{ disabledButton: !inStock }"
+                        @click="addToCart()"
+                        :disabled="!inStock"
+                    >
+                        Add to Cart
+                    </button>
+                    <div class="cart">
+                        <p>Cart({{ cart }})</p>
                     </div>
                 </div>
             </div>
