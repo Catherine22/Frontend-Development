@@ -12,11 +12,20 @@
         <div id="app">
             <div class="product">
                 <div class="product-image">
-                    <img v-bind:src="image" alt="A pair of socks" />
+                    <img :src="imageBlueSocks" :alt="image_alt" />
                 </div>
 
                 <div class="product-info">
                     <h1>{{ product }}</h1>
+                    <p v-if="inventory >= 10">In stock</p>
+                    <p v-else-if="inventory > 0 && inventory < 10">
+                        Almost sold out!
+                    </p>
+                    <p v-else>Out of stock</p>
+                    <li v-for="detail in details">{{ detail }}</li>
+                    <div v-for="variant in variants" :key="variant.variantId">
+                        <p>{{ variant.variantColour }}</p>
+                    </div>
                 </div>
             </div>
         </div>
