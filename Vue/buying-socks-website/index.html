@@ -10,7 +10,10 @@
         <div class="nav-bar"></div>
 
         <div id="app">
-            <product :premium="isPremium"></product>
+            <div class="cart">
+                <p>Cart({{ cart.length }})</p>
+            </div>
+            <product :premium="isPremium" @add-to-cart="updateCart"></product>
             <product :premium="true"></product>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
