@@ -13,8 +13,7 @@
             <div class="cart">
                 <p>Cart({{ cart.length }})</p>
             </div>
-            <product :premium="isPremium" @add-to-cart="updateCart"></product>
-            <product :premium="true"></product>
+            <product :premium="isPremium" @add-to-cart="updateCart" />
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="main.js"></script>

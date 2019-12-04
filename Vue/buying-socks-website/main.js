@@ -43,6 +43,7 @@ Vue.component('product', {
                         Add to Cart
                     </button>
                 </div>
+                <product-review />
             </div>`,
     data() {
         return {
@@ -68,17 +69,6 @@ Vue.component('product', {
             ]
         };
     },
-    methods: {
-        addToCart() {
-            this.$emit(
-                'add-to-cart',
-                this.variants[this.selectedVariant].variantId
-            );
-        },
-        updateProductImage(index) {
-            this.selectedVariant = index;
-        }
-    },
     computed: {
         productTitle() {
             return `${this.brand} ${this.product}`;
@@ -91,6 +81,79 @@ Vue.component('product', {
         },
         shipping() {
             return this.premium ? 'Free' : '$2.99';
+        }
+    },
+    methods: {
+        addToCart() {
+            this.$emit(
+                'add-to-cart',
+                this.variants[this.selectedVariant].variantId
+            );
+        },
+        updateProductImage(index) {
+            this.selectedVariant = index;
+        }
+    }
+});
+
+Vue.component('product-review', {
+    template: `<div>
+                <div>
+                    <h2>Reviews</h2>
+                    <p v-if="reviews.length==0">There are no reviews yet.</p>
+                    <ul>
+                        <li v-for="review in reviews">
+                            <p>{{ review.name }}</p>
+                            <p>{{ review.rating }}</p>
+                            <p>{{ review.comments }}</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- the submit.prevent event will no longer reload the page -->
+                <form class="review-form" @submit.prevent="onSubmit">
+                    <p>
+                        <label>Name:</label>
+                        <input id="reviewer" v-model="review.name" />
+                    </p>
+                    <p>
+                        <label>Review:</label>
+                        <textarea
+                            id="review"
+                            v-model="review.comments"
+                        ></textarea>
+                    </p>
+                    <p>
+                        <label>Rating:</label>
+                        <select id="rating" v-model.number="review.rating">
+                            <option>5</option>
+                            <option>4</option>
+                            <option>3</option>
+                            <option>2</option>
+                            <option>1</option>
+                        </select>
+                    </p>
+                    <p>
+                        <input type="submit" value="Submit" />
+                    </p>
+                </form>
+            </div>`,
+    data() {
+        return {
+            review: {
+                name: null,
+                comments: null,
+                rating: null
+            },
+            reviews: []
+        };
+    },
+    methods: {
+        onSubmit() {
+            this.reviews.push({ ...this.review });
+            this.review.name = null;
+            this.review.comments = null;
+            this.review.rating = null;
         }
     }
 });
