@@ -112,6 +112,12 @@ Vue.component('product-review', {
 
                 <!-- the submit.prevent event will no longer reload the page -->
                 <form class="review-form" @submit.prevent="onSubmit">
+                    <p v-if="errors.length>0">
+                        <b>Please correct the following error(s):</b>
+                        <ul>
+                            <li v-for="error in errors">{{ error }}</li>
+                        </ul>
+                    </p>
                     <p>
                         <label>Name:</label>
                         <input id="reviewer" v-model="review.name" />
@@ -145,15 +151,34 @@ Vue.component('product-review', {
                 comments: null,
                 rating: null
             },
-            reviews: []
+            reviews: [],
+            errors: []
         };
     },
     methods: {
         onSubmit() {
+            this.errors = [];
+            if (!this.verifyText(this.review.name)) {
+                this.errors.push('Name required');
+            }
+            if (!this.verifyText(this.review.comments)) {
+                this.errors.push('Comments required');
+            }
+            if (!this.verifyText(this.review.rating)) {
+                this.errors.push('Rating required');
+            }
+            if (this.errors.length > 0) {
+                return;
+            }
+
             this.reviews.push({ ...this.review });
             this.review.name = null;
             this.review.comments = null;
             this.review.rating = null;
+        },
+
+        verifyText(str) {
+            return !!str && /\S+/.test(str);
         }
     }
 });
