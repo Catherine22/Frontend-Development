@@ -43,7 +43,7 @@ Vue.component('product', {
                         Add to Cart
                     </button>
                 </div>
-                <product-review />
+                <product-tabs />
             </div>`,
     data() {
         return {
@@ -96,9 +96,16 @@ Vue.component('product', {
     }
 });
 
-Vue.component('product-review', {
+Vue.component('product-tabs', {
     template: `<div>
-                <div>
+                <span class="tab" 
+                      :class="{ activeTab: selectedTab === tab}" 
+                      v-for="(tab, index) in tabs" 
+                      :key="index" 
+                      @click="selectedTab = tab"
+                >{{ tab }}</span>
+
+                <div v-show="selectedTab === 'Reviews'">
                     <h2>Reviews</h2>
                     <p v-if="reviews.length==0">There are no reviews yet.</p>
                     <ul>
@@ -110,6 +117,25 @@ Vue.component('product-review', {
                     </ul>
                 </div>
 
+                <product-review v-show="selectedTab === 'Make a reviews'" 
+                                @review-submitted="addReview"/>
+            </div>`,
+    data() {
+        return {
+            tabs: ['Reviews', 'Make a reviews'],
+            selectedTab: 'Reviews',
+            reviews: []
+        };
+    },
+    methods: {
+        addReview(review) {
+            this.reviews.push(review);
+        }
+    }
+});
+
+Vue.component('product-review', {
+    template: `<div>
                 <!-- the submit.prevent event will no longer reload the page -->
                 <form class="review-form" @submit.prevent="onSubmit">
                     <p v-if="errors.length>0">
@@ -151,7 +177,6 @@ Vue.component('product-review', {
                 comments: null,
                 rating: null
             },
-            reviews: [],
             errors: []
         };
     },
@@ -171,7 +196,7 @@ Vue.component('product-review', {
                 return;
             }
 
-            this.reviews.push({ ...this.review });
+            this.$emit('review-submitted', { ...this.review });
             this.review.name = null;
             this.review.comments = null;
             this.review.rating = null;
