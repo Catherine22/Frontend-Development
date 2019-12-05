@@ -76,6 +76,38 @@
                 <div v-show="isOdd">{{ givenNumber }} is a odd number</div>
                 <div v-show="isEven">{{ givenNumber }} is a even number</div>
             </p>
+
+            <p>
+                <h2>#8 List & Loop</h2>
+                <ul>
+                    <li v-for="student in students">{{ student }}</li>
+                </ul>
+                <ul style="list-style-type:none">
+                    <li v-for="(teacher, index) in staff">{{ index+1 }}. {{ teacher.name }}</li>
+                </ul>
+                <ul>
+                    <li v-for="teacher in staff">
+                        <div v-for="(v, k) in teacher">{{ k }}: {{ v }}</div>
+                    </li>
+                </ul>
+            </p>
+
+            <h2>#9 Shared components</h2>
+            <button-counter></button-counter>
+
+            <h2>#10 Refs</h2>
+            <input type = "text" ref="refInput">
+            <button @click="readRef">Read Ref</button>
+        </div>
+
+        <h2>#10 Two Vue objects</h2>
+        <div id="vm1">
+            <h3>{{ title }}</h1>
+        </div>
+
+        <div id="vm2">
+            <h3>{{ title }}</h1>
+            <button @click="overrideTitle1">Change View Model 1's title</button>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

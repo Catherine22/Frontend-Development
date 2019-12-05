@@ -1,3 +1,13 @@
+Vue.component('button-counter', {
+    data() {
+        return {
+            count: 0
+        };
+    },
+    template:
+        '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+});
+
 var vm = new Vue({
     el: '#example',
     data: {
@@ -22,7 +32,20 @@ var vm = new Vue({
         isJasonNearby: false,
 
         // #7
-        givenNumber: null
+        givenNumber: null,
+
+        // #8
+        students: ['Jeff', 'Erica', 'Madeline'],
+        staff: [
+            {
+                name: 'Conan',
+                age: 45
+            },
+            {
+                name: 'Bill',
+                age: 40
+            }
+        ]
     },
     computed: {
         reversedMessage() {
@@ -78,6 +101,30 @@ var vm = new Vue({
         },
         onTypeAltEnter() {
             alert('Age submitted!');
+        },
+        readRef() {
+            console.log(this.$refs);
+            alert(`You've typed "${this.$refs.refInput.value}"`);
+        }
+    }
+});
+
+var vm1 = new Vue({
+    el: '#vm1',
+    data: {
+        title: 'View Model 1'
+    },
+    methods: {}
+});
+
+var vm2 = new Vue({
+    el: '#vm2',
+    data: {
+        title: 'View Model 2'
+    },
+    methods: {
+        overrideTitle1() {
+            vm1.title = 'New View Model 1';
         }
     }
 });
