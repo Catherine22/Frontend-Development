@@ -1,0 +1,27 @@
+#canvas {
+    width: 80%;
+    padding: 200px 20px;
+    text-align: center;
+    border: 1px solid #333333;
+}
+
+.deprecated-item {
+    text-decoration: line-through;
+}
+
+span {
+    background: green;
+    display: inline;
+    padding: 10px;
+    color: white;
+    margin: 10px 0;
+}
+
+.red span {
+    background: red;
+}
+
+.nearby span:after {
+    content: 'nearby';
+    margin-left: 10px;
+}
