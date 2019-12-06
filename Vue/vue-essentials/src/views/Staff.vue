@@ -2,6 +2,7 @@
     <div>
         <app-header :title="title"></app-header>
         <ninja :ninjas="ninjas" />
+        <button @click="fire">Fire ninja</button>
         <app-footer></app-footer>
     </div>
 </template>
@@ -29,6 +30,37 @@ export default {
                 { name: 'Yoshi', speciality: 'Data Diggin', show: false }
             ]
         };
+    },
+    methods: {
+        fire() {
+            this.ninjas.pop();
+        }
+    },
+
+    // lifecycle hooks
+    beforeCreate() {
+        console.log('beforeCreate');
+    },
+    created() {
+        console.log('created');
+    },
+    beforeMount() {
+        console.log('beforeMount');
+    },
+    mounted() {
+        console.log('mounted');
+    },
+    beforeUpdate() {
+        console.log('beforeUpdate');
+    },
+    updated() {
+        console.log('updated');
+    },
+    beforeDestroy() {
+        console.log('beforeDestroy');
+    },
+    destroyed() {
+        console.log('destroyed');
     }
 };
 </script>

@@ -1,22 +1,22 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Staff from '../views/Staff.vue';
+import CheatSheet from '../views/CheatSheet.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
     {
-        path: '/staff',
-        name: 'staff',
-        component: Staff
-    },
-    {
         path: '/cheatSheet',
         name: 'cheatSheet',
+        component: CheatSheet
+    },
+    {
+        path: '/staff',
+        name: 'staff',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "cheatSheet" */ '../views/CheatSheet.vue')
+        component: () => import(/* webpackChunkName: "staff" */ '../views/Staff.vue')
     }
 ];
 

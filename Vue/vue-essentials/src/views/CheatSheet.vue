@@ -4,21 +4,16 @@
         <a :href="website">v-bind + &lt;a&gt;</a>
         <p v-html="divTag"></p>
 
-        <p></p>
         <h2>#1 v-on, click events</h2>
         <p>(vue variables in html tag) My age is {{ age }}</p>
         <button @click="add(1)" @dblclick="add(10)">Add</button>
         <button @click="substract(1)" @dblclick="substract(10)">Substract</button>
         <div id="canvas" @mousemove="onMouseMove">[{{ x }}, {{ y }}]</div>
-        <p></p>
 
-        <p></p>
         <h2>#2 Event modifiers</h2>
         <button @click.once="onButtonClickOnce">@click.once</button>
         <a :href="website" @click.prevent="onAClick">@click.prevent: prevent default behaviors</a>
-        <p></p>
 
-        <p></p>
         <h2>#3 Key modifiers</h2>
         <label>Name:</label>
         <input type="text" @keyup.enter="onTypeEnter" placeholder="Enter" />
@@ -28,9 +23,7 @@
             @keyup.alt.enter="onTypeAltEnter"
             placeholder="alt / option + enter"
         />
-        <p></p>
 
-        <p></p>
         <h2>#4 Two way binding</h2>
         <label>Name:</label>
         <input type="text" v-model="name" />
@@ -39,9 +32,7 @@
         <h3>Preview</h3>
         <div>Name: {{ name }}</div>
         <div>Password: {{ password }}</div>
-        <p></p>
 
-        <p></p>
         <h2>#5 Computed Properties</h2>
         <label>Say something:</label>
         <input type="text" v-model="rawMessage" />
@@ -49,9 +40,7 @@
         <a href="https://stackoverflow.com/questions/44350862/method-vs-computed-in-vue"
             >See method vs computed property</a
         >
-        <p></p>
 
-        <p></p>
         <h2>#6 Dynamic CSS</h2>
         <div @click="isRed = !isRed" :class="{ red: isRed }">
             <span>{{ dynamicCssBtn }}</span>
@@ -65,18 +54,14 @@
         <div :class="dynamicCssJason">
             <span>Jason</span>
         </div>
-        <p></p>
 
-        <p></p>
         <h2>#7 Conditionals</h2>
         <label>Type a number:</label>
         <input type="number" v-model="givenNumber" />
 
         <div v-show="isOdd">{{ givenNumber }} is a odd number</div>
         <div v-show="isEven">{{ givenNumber }} is a even number</div>
-        <p></p>
 
-        <p></p>
         <h2>#8 List & Loop</h2>
         <ul>
             <li v-for="student in students" :key="student">{{ student }}</li>
@@ -91,7 +76,6 @@
                 <div v-for="(v, k) in teacher" :key="v">{{ k }}: {{ v }}</div>
             </li>
         </ul>
-        <p></p>
 
         <h2>#9 Shared components</h2>
         <button-counter></button-counter>
@@ -116,6 +100,12 @@
         <!--Messanger1 communicate with Messanger2 directly without their parent component getting involved-->
         <messanger1 :usingEventBus="true"></messanger1>
         <messanger2 :usingEventBus="true"></messanger2>
+
+        <h2>#12 Slot</h2>
+
+        <h2>#13 Dynamic components</h2>
+        <component :is="selectedComponent"></component>
+        <button @click="switchComponent">Switch component</button>
     </div>
 </template>
 
@@ -125,13 +115,18 @@ import ButtonCounter from '@/components/ButtonCounter.vue';
 import Student from '@/components/Student.vue';
 import Messanger1 from '@/components/Messanger1.vue';
 import Messanger2 from '@/components/Messanger2.vue';
+import BannerGreen from '@/components/BannerGreen.vue';
+import BannerRed from '@/components/BannerRed.vue';
+
 export default {
     name: 'cheatSheet',
     components: {
         'button-counter': ButtonCounter,
         student: Student,
         messanger1: Messanger1,
-        messanger2: Messanger2
+        messanger2: Messanger2,
+        'banner-green': BannerGreen,
+        'banner-red': BannerRed
     },
     data() {
         return {
@@ -175,7 +170,10 @@ export default {
             messageBox: {
                 from1: null,
                 from2: null
-            }
+            },
+
+            // # 13
+            selectedComponent: 'banner-green'
         };
     },
     computed: {
@@ -238,6 +236,10 @@ export default {
         },
         saveMessageFrom2(event) {
             this.messageBox.from2 = event;
+        },
+        switchComponent() {
+            this.selectedComponent =
+                this.selectedComponent === 'banner-green' ? 'banner-red' : 'banner-green';
         }
     }
 };
