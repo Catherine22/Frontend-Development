@@ -13,7 +13,9 @@ module.exports = {
         camelcase: 2
     },
     parserOptions: {
-        parser: '@typescript-eslint/parser'
+        parser: 'babel-eslint',
+        sourceType: 'module',
+        ecmaVersion: 2018
     },
     overrides: [
         {

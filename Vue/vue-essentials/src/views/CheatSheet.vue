@@ -4,91 +4,100 @@
         <a :href="website">v-bind + &lt;a&gt;</a>
         <p v-html="divTag"></p>
 
-         <p>
-            <h2>#1 v-on, click events</h2>
-            <p>(vue variables in html tag) My age is {{ age }}</p>
-            <button @click="add(1)" @dblclick="add(10)">Add</button>
-            <button @click="substract(1)" @dblclick="substract(10)">Substract</button>
-            <div id="canvas" @mousemove="onMouseMove">[{{x}}, {{y}}]</div>
-        </p>
+        <p></p>
+        <h2>#1 v-on, click events</h2>
+        <p>(vue variables in html tag) My age is {{ age }}</p>
+        <button @click="add(1)" @dblclick="add(10)">Add</button>
+        <button @click="substract(1)" @dblclick="substract(10)">Substract</button>
+        <div id="canvas" @mousemove="onMouseMove">[{{ x }}, {{ y }}]</div>
+        <p></p>
+
+        <p></p>
+        <h2>#2 Event modifiers</h2>
+        <button @click.once="onButtonClickOnce">@click.once</button>
+        <a :href="website" @click.prevent="onAClick">@click.prevent: prevent default behaviors</a>
+        <p></p>
+
+        <p></p>
+        <h2>#3 Key modifiers</h2>
+        <label class="deprecated-item">Name:</label>
+        <input type="text" @keyup.enter="onTypeEnter" placeholder="Enter" />
+        <label class="deprecated-item">Password:</label>
+        <input
+            type="password"
+            @keyup.alt.enter="onTypeAltEnter"
+            placeholder="alt / option + enter"
+        />
+        <p></p>
+
+        <p></p>
+        <h2>#4 Two way binding</h2>
+        <label>Name:</label>
+        <input type="text" v-model="name" />
+        <label>Password:</label>
+        <input type="password" v-model="password" />
+        <h3>Preview</h3>
+        <div>Name: {{ name }}</div>
+        <div>Password: {{ password }}</div>
+        <p></p>
+
+        <p></p>
+        <h2>#5 Computed Properties</h2>
+        <label>Say something:</label>
+        <input type="text" v-model="rawMessage" />
+        <div>Reversed Message: {{ reversedMessage }}</div>
+        <a href="https://stackoverflow.com/questions/44350862/method-vs-computed-in-vue"
+            >See method vs computed property</a
+        >
+        <p></p>
+
+        <p></p>
+        <h2>#6 Dynamic CSS</h2>
+        <div @click="isRed = !isRed" :class="{ red: isRed }">
+            <span>{{ dynamicCssBtn }}</span>
+        </div>
 
         <p>
-            <h2>#2 Event modifiers</h2>
-            <button @click.once="onButtonClickOnce">@click.once</button>
-            <a :href="website" @click.prevent="onAClick">@click.prevent: prevent default behaviors</a>
-        </p>
-
-        <p>
-            <h2>#3 Key modifiers</h2>
-            <label class="deprecated-item">Name:</label>
-            <input type = "text" @keyup.enter="onTypeEnter" placeholder="Enter">
-            <label class="deprecated-item">Password:</label>
-            <input type = "password" @keyup.alt.enter="onTypeAltEnter" placeholder="alt / option + enter">
-        </p>
-
-        <p>
-            <h2>#4 Two way binding</h2>
-            <label>Name:</label>
-            <input type = "text" v-model="name">
-            <label>Password:</label>
-            <input type="password" v-model="password">
-            <h3>Preview</h3>
-            <div>Name: {{ name }}</div>
-            <div>Password: {{ password }}</div>
-        </p>
-
-        <p>
-            <h2>#5 Computed Properties</h2>
-            <label>Say something:</label>
-            <input type = "text" v-model="rawMessage">
-            <div>Reversed Message: {{ reversedMessage }}</div>
-            <a href="https://stackoverflow.com/questions/44350862/method-vs-computed-in-vue">See method vs computed property</a>
-        </p>
-
-
-        <p>
-            <h2>#6 Dynamic CSS</h2>
-            <div @click="isRed = !isRed" :class="{red: isRed}">
-                <span>{{ dynamicCssBtn }}</span>
-            </div>
-
-         <p>
             <button @click="isJasonRed = !isJasonRed">Toggle color</button>
             <button @click="isJasonNearby = !isJasonNearby">Toggle nearby</button>
-            <div :class="dynamicCssJason">
-                <span>Jason</span>
-            </div>
-        </p>
-        
-        <p>
-            <h2>#7 Conditionals</h2>
-            <label>Type a number:</label>
-            <input type = "number" v-model="givenNumber">
-
-            <div v-show="isOdd">{{ givenNumber }} is a odd number</div>
-            <div v-show="isEven">{{ givenNumber }} is a even number</div>
         </p>
 
-        <p>
-            <h2>#8 List & Loop</h2>
-            <ul>
-                <li v-for="student in students">{{ student }}</li>
-            </ul>
-            <ul style="list-style-type:none">
-                <li v-for="(teacher, index) in staff">{{ index+1 }}. {{ teacher.name }}</li>
-            </ul>
-            <ul>
-                <li v-for="teacher in staff">
-                    <div v-for="(v, k) in teacher">{{ k }}: {{ v }}</div>
-                </li>
-            </ul>
-        </p>
+        <div :class="dynamicCssJason">
+            <span>Jason</span>
+        </div>
+        <p></p>
+
+        <p></p>
+        <h2>#7 Conditionals</h2>
+        <label>Type a number:</label>
+        <input type="number" v-model="givenNumber" />
+
+        <div v-show="isOdd">{{ givenNumber }} is a odd number</div>
+        <div v-show="isEven">{{ givenNumber }} is a even number</div>
+        <p></p>
+
+        <p></p>
+        <h2>#8 List & Loop</h2>
+        <ul>
+            <li v-for="student in students" :key="student">{{ student }}</li>
+        </ul>
+        <ul style="list-style-type:none">
+            <li v-for="(teacher, index) in staff" :key="teacher.name">
+                {{ index + 1 }}. {{ teacher.name }}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="teacher in staff" :key="teacher.name">
+                <div v-for="(v, k) in teacher" :key="v">{{ k }}: {{ v }}</div>
+            </li>
+        </ul>
+        <p></p>
 
         <h2>#9 Shared components</h2>
         <ButtonCounter></ButtonCounter>
 
         <h2>#10 Refs</h2>
-        <input type = "text" ref="refInput">
+        <input type="text" ref="refInput" />
         <button @click="readRef">Read Ref</button>
     </div>
 </template>
@@ -105,12 +114,12 @@ export default {
         return {
             website: 'https://vuejs.org/',
             divTag: '<div>html tag from vm data</div>',
-            
+
             // #1
             age: 7,
             x: 0,
             y: 0,
-            
+
             // #4
             name: null,
             password: null,
@@ -138,7 +147,7 @@ export default {
                     age: 40
                 }
             ]
-        }
+        };
     },
     computed: {
         reversedMessage() {
@@ -158,18 +167,10 @@ export default {
             };
         },
         isOdd() {
-            return (
-                !!this.givenNumber &&
-                this.givenNumber > 0 &&
-                this.givenNumber % 2 === 1
-            );
+            return !!this.givenNumber && this.givenNumber > 0 && this.givenNumber % 2 === 1;
         },
         isEven() {
-            return (
-                !!this.givenNumber &&
-                this.givenNumber > 0 &&
-                this.givenNumber % 2 === 0
-            );
+            return !!this.givenNumber && this.givenNumber > 0 && this.givenNumber % 2 === 0;
         }
     },
     methods: {
@@ -200,10 +201,11 @@ export default {
             alert(`You've typed "${this.$refs.refInput.value}"`);
         }
     }
-}
+};
 </script>
 
-<style>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
 #canvas {
     width: 60%;
     padding: 200px 20px;
