@@ -94,7 +94,7 @@
         <p></p>
 
         <h2>#9 Shared components</h2>
-        <ButtonCounter></ButtonCounter>
+        <button-counter></button-counter>
 
         <h2>#10 Refs</h2>
         <input type="text" ref="refInput" />
@@ -108,7 +108,7 @@ import ButtonCounter from '@/components/ButtonCounter.vue';
 export default {
     name: 'cheatSheet',
     components: {
-        ButtonCounter
+        'button-counter': ButtonCounter
     },
     data() {
         return {
