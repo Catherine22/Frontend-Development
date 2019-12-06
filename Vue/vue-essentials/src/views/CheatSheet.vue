@@ -20,9 +20,9 @@
 
         <p></p>
         <h2>#3 Key modifiers</h2>
-        <label class="deprecated-item">Name:</label>
+        <label>Name:</label>
         <input type="text" @keyup.enter="onTypeEnter" placeholder="Enter" />
-        <label class="deprecated-item">Password:</label>
+        <label>Password:</label>
         <input
             type="password"
             @keyup.alt.enter="onTypeAltEnter"
@@ -99,16 +99,39 @@
         <h2>#10 Refs</h2>
         <input type="text" ref="refInput" />
         <button @click="readRef">Read Ref</button>
+
+        <h2>#11 Primitive vs Reference Type</h2>
+        <h3>1. Reference Type</h3>
+        <!--This design is a bit weird, if I update props from component1, props in component2 will be upeated as well. In React, I have to update root data and press it to other components in order to do so.-->
+        <student :students="students"></student>
+        <student :students="students"></student>
+        <button @click="dropOut">Drop out students from root view</button>
+
+        <h3 class="deprecated-item">2. Primitive Type = <code>$emit</code></h3>
+        <!--Messanger1 pushes events to the parent(this component), the parent pushes to Messanger2, and vice versa-->
+        <messanger1 @yell="saveMessageFrom1($event)" :message="messageBox.from2"></messanger1>
+        <messanger2 @yell="saveMessageFrom2($event)" :message="messageBox.from1"></messanger2>
+
+        <h3>2. Primitive Type = <code>EventBus</code></h3>
+        <!--Messanger1 communicate with Messanger2 directly without their parent component getting involved-->
+        <messanger1 :usingEventBus="true"></messanger1>
+        <messanger2 :usingEventBus="true"></messanger2>
     </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import ButtonCounter from '@/components/ButtonCounter.vue';
+import Student from '@/components/Student.vue';
+import Messanger1 from '@/components/Messanger1.vue';
+import Messanger2 from '@/components/Messanger2.vue';
 export default {
     name: 'cheatSheet',
     components: {
-        'button-counter': ButtonCounter
+        'button-counter': ButtonCounter,
+        student: Student,
+        messanger1: Messanger1,
+        messanger2: Messanger2
     },
     data() {
         return {
@@ -146,7 +169,13 @@ export default {
                     name: 'Bill',
                     age: 40
                 }
-            ]
+            ],
+
+            // #11
+            messageBox: {
+                from1: null,
+                from2: null
+            }
         };
     },
     computed: {
@@ -199,6 +228,16 @@ export default {
         readRef() {
             console.log(this.$refs);
             alert(`You've typed "${this.$refs.refInput.value}"`);
+        },
+        dropOut() {
+            this.students.pop();
+        },
+        saveMessageFrom1(event) {
+            console.log('from1', event);
+            this.messageBox.from1 = event;
+        },
+        saveMessageFrom2(event) {
+            this.messageBox.from2 = event;
         }
     }
 };

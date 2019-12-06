@@ -1,27 +1,32 @@
 <template>
-    <div id="ninjas">
+    <div id="students">
         <ul>
-            <li v-for="ninja in ninjas" :key="ninja.name" @click="ninja.show = !ninja.show">
-                <h2>{{ ninja.name }}</h2>
-                <h3 v-show="ninja.show">{{ ninja.speciality }}</h3>
+            <li v-for="student in students" :key="student">
+                <h2>{{ student }}</h2>
             </li>
         </ul>
+        <button @click="dropOut">Drop out</button>
     </div>
 </template>
 
 <script>
 export default {
     props: {
-        ninjas: {
+        students: {
             type: Array,
             required: true
+        }
+    },
+    methods: {
+        dropOut() {
+            this.students.pop();
         }
     }
 };
 </script>
 
 <style scoped>
-#ninjas {
+#students {
     width: 100%;
     max-width: 1200px;
     margin: 40px auto;
