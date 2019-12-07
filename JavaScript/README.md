@@ -8,7 +8,7 @@ JS: Programming capabilities
 ## Basics
 
 -   Upper case and lower case are different
--   **_Every statement must end with `;`._** Browsers automatically create `;` while the developer does not use `;`. However, that impacts the performance. The worst of all, browsers sometimes add `;` incorrectly.
+-   **Every statement must end with `;`.** Browsers automatically create `;` while the developer does not use `;`. However, that impacts the performance. The worst of all, browsers sometimes add `;` incorrectly.
 -   Blanks and empty lines are ignored.
 -   IDEs You might need:
     -   Brackets
@@ -1001,8 +1001,6 @@ test@test_1.com]
 */
 ```
 
-[Utils.html]
-
 ### ECMAScrip
 
 A specification for JavaScript. JavaScript will be executed by a distinct engine of individual browser. V8 engine of Chrome for example, showing high performance while running JavaScript.  
@@ -1037,6 +1035,66 @@ JS engine cannot optimise code snippet properly with these keywords. I.e. These 
 -   hidden classes
 -   inline caching
 
+### Call stack vs. memory heap
+
+As code runs, it pushes functions into the stack, and pup out after the execution. Simple variables can be stored on the stack, whereas objects and complex data structures are stored in memory heaps.
+
+## Threading
+
+**Javascript is a single-threaded programming language**. But sometimes Javascript can be 'asynchronous', and that's because browsers provide **Web APIs**, which is written in language like C++ to help Javascript to do a couple of operations. E.g. DOM, fetch.
+
+Being single-threaded means there is only one call stack while running, let's take a look at an example of call stack:
+
+```Javascript
+function a() {
+    b();
+}
+
+function b() {
+    console.log('done!');
+}
+
+a();
+```
+
+The call stack will be:
+
+```
+a();
+```
+
+```
+b();
+a();
+```
+
+```
+console.log('done!');
+b();
+a();
+```
+
+Once all the functions is done, they will be popped up in order
+
+```
+b();
+a();
+```
+
+```
+a();
+```
+
+```
+// empty
+```
+
+To see how exactly call stack and Web APIs work, go to [loupe].
+
+## Javascript Runtime
+
+The only Javascript time I know, as you might have heard, is Node.js. Node.js makes Javascript be able to run outside of browser. This 'program' uses V8 engine to interpret Javascript creates the entire environment to run Javascript code and offer additional APIs to do things like asynchronous jobs.
+
 ## Reference
 
 -   [Advanced Javascript concepts](https://www.udemy.com/course/advanced-javascript-concepts/)
@@ -1048,3 +1106,5 @@ JS engine cannot optimise code snippet properly with these keywords. I.e. These 
 -   [array.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Array.js)
 -   [utils.html](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Utils.html)
 -   [dom.html](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/DOM.html)
+
+[loupe]: http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
