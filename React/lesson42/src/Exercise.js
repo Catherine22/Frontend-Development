@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import './App.css';
 import {ADD_USER, DELETE_USER, UPDATE_USER} from './Commands';
-import UserRegister from './components/UserRegister';
-import UserList from './components/UserList';
+import {UserRegister, UserList} from './components/exercise/';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
 
-class App extends Component {
+class Exercise extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,7 +20,7 @@ class App extends Component {
     }
 
     componentWillMount() {
-        this.store = this.createStore(this.reducer);
+        this.store = createStore(this.reducer);
         this.store.subscribe(() => {
             console.log('subscribe', this.store.getState());
             this.setState({
@@ -83,32 +84,19 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
-                <header className="App-header">
-                    <UserRegister user={this.state.user} submitButtonPressed={this.submitButtonPressed}/>
-                    <UserList users={this.state.users} updateUser={(user) => this.tableChanged(user)}/>
-                    <div className='footer'>
-                        <label className='button-save' onClick={this.saveButtonPressed}>save</label>
-                        <label className='button-save' onClick={this.cancelButtonPressed}>clear</label>
-                    </div>
-                </header>
-            </div>
+            <Provider store={this.store}>
+                <div className="App">
+                    <header className="App-header">
+                        <UserRegister submitButtonPressed={this.submitButtonPressed}/>
+                        <UserList updateUser={(user) => this.tableChanged(user)}/>
+                        <div className='footer'>
+                            <label className='button-save' onClick={this.saveButtonPressed}>save</label>
+                            <label className='button-save' onClick={this.cancelButtonPressed}>clear</label>
+                        </div>
+                    </header>
+                </div>
+            </Provider>
         );
-    }
-
-    createStore(reducer) {
-        let state = null;
-        const listeners = [];
-        const subscribe = (listener) => listeners.push(listener);
-        const getState = () => state;
-        const dispatch = (action) => {
-            state = reducer(state, action);
-            listeners.forEach((listener) => listener());
-        };
-
-        // initialise the state
-        dispatch({});
-        return {getState, dispatch, subscribe};
     }
 
     reducer(state, action) {
@@ -172,4 +160,4 @@ class App extends Component {
 }
 
 
-export default App;
+export default Exercise;

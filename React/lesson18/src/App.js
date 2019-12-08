@@ -19,7 +19,39 @@ class App extends Component {
         console.log('[App Lifecycle]', 'componentDidMount');
     }
 
-    _onUpdateStateButtonPressed() {
+    shouldComponentUpdate(nextProps, nextState){
+        console.log('[App Lifecycle]', 'shouldComponentUpdate');
+        console.log('nextProps', nextProps);
+        console.log('nextState', nextState);
+
+        // Optimise code from here!
+        // return true to call render(), false to do nothing
+        return true;
+    }
+
+    componentWillReceiveProps(nextProps, nextState){
+        console.log('[App Lifecycle]', 'componentWillReceiveProps');
+        console.log('nextProps', nextProps);
+        console.log('nextState', nextState);
+    }
+
+    componentWillUpdate(nextProps, nextState){
+        console.log('[App Lifecycle]', 'componentWillUpdate');
+        console.log('nextProps', nextProps);
+        console.log('nextState', nextState);
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        console.log('[App Lifecycle]', 'componentDidUpdate');
+        console.log('prevProps', prevProps);
+        console.log('prevState', prevState);
+    }
+
+    componentWillUnmount() {
+        console.log('[App Lifecycle]', 'componentWillUnmount');
+    }
+
+    _onUpdatePropsButtonPressed() {
         this.setState(
             {
                 count: this.state.count + 1
@@ -41,11 +73,11 @@ class App extends Component {
             <div>
                 {this.state.isHide ? null : <CountView value={this.state.count}/>}
                 <div>
-                    <button onClick={this._onUpdateStateButtonPressed.bind(this)}>Update state</button>
+                    <button onClick={this._onUpdatePropsButtonPressed.bind(this)}>Update CountView props</button>
                 </div>
 
                 <div>
-                    <button onClick={this._onUpdateViewButtonPressed.bind(this)}>Hide/Show the view</button>
+                    <button onClick={this._onUpdateViewButtonPressed.bind(this)}>Hide/Show CountView</button>
                 </div>
             </div>
         );
