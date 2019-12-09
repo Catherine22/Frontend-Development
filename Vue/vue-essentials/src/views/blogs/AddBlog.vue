@@ -32,9 +32,7 @@
             <p>Blog Content:</p>
             <p>{{ blog.content }}</p>
             <p>Blog Options:</p>
-            <ul>
-                <li v-for="option in blog.options" :key="option">{{ option }}</li>
-            </ul>
+            <div v-for="option in blog.options" :key="option">{{ option }}</div>
             <p>Blog Author: {{ blog.selectedAuthor }}</p>
         </div>
 
@@ -68,11 +66,6 @@ export default {
                 .then(
                     response => {
                         console.log('onResponse', response);
-
-                        this.blog.title = null;
-                        this.blog.content = null;
-                        this.blog.options = [];
-                        this.blog.selectedAuthor = null;
                         this.blog.submitted = true;
                     },
                     error => {
@@ -84,6 +77,10 @@ export default {
             // Go back to the previous page
             // this.$router.go(-1);
 
+            this.blog.title = null;
+            this.blog.content = null;
+            this.blog.options = [];
+            this.blog.selectedAuthor = null;
             this.blog.submitted = false;
         }
     }

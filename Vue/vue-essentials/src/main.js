@@ -10,15 +10,16 @@ export const eventBus = new Vue();
 // http client
 Vue.use(VueResource);
 
-// custom directives
-Vue.directive('rainbow', {
-    bind(el, binding, vnode) {
-        // Generate random 6 digit numbers for colour hex
-        el.style.background = `#${Math.random()
-            .toString()
-            .slice(2, 8)}`;
-    }
-});
+// Global custom directives
+// Vue.directive('rainbow', {
+//     bind(el, binding, vnode) {
+//         // Generate random 6 digit numbers for colour hex
+//         el.style.background = `#${Math.random()
+//             .toString()
+//             .slice(2, 8)}`;
+//     }
+// });
+
 Vue.directive('theme', {
     bind(el, binding, vnode) {
         if (binding.value === 'banner') {
@@ -36,10 +37,10 @@ Vue.directive('theme', {
     }
 });
 
-// filter
-Vue.filter('capitalize', function(value) {
-    return value.toUpperCase();
-});
+// Global filter
+// Vue.filter('capitalize', function(value) {
+//     return value.toUpperCase();
+// });
 
 Vue.filter('snippet', function(value) {
     return `${value.slice(0, 50)}...`;

@@ -3,13 +3,14 @@
         <h2>All Blog Articles</h2>
         <input type="text" v-model="search" placeholder="Search blogs" />
         <div id="single-blog" v-for="blog in filterBlogs" :key="blog.title">
-            <h3>{{ blog.title }}</h3>
+            <h3 v-rainbow="">{{ blog.title }}</h3>
             <article>{{ blog.body }}{</article>
         </div>
     </div>
 </template>
 
 <script>
+import SearchMixins from '@/views/blogs/mixins/SearchMixins';
 export default {
     data() {
         return {
@@ -37,13 +38,17 @@ export default {
     created() {
         this.post();
     },
-    computed: {
-        filterBlogs() {
-            return this.blogs.filter(blog => {
-                return blog.title.includes(this.search);
-            });
+    directives: {
+        rainbow: {
+            bind(el, binding, vnode) {
+                // Generate random 6 digit numbers for colour hex
+                el.style.color = `#${Math.random()
+                    .toString()
+                    .slice(2, 8)}`;
+            }
         }
-    }
+    },
+    mixins: [SearchMixins]
 };
 </script>
 

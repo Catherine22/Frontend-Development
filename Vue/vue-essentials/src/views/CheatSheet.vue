@@ -118,7 +118,7 @@
         <router-link to="/getBlogs">Get blogs</router-link>
 
         <h2>#16 Custom Directives</h2>
-        <!--create rainbow in main.js at first-->
+        <!--create rainbow globally in main.js or locally in <script> at first-->
         <div id="colour-box" v-rainbow></div>
         <div id="colour-box" v-rainbow></div>
         <div id="colour-box" v-rainbow></div>
@@ -128,13 +128,17 @@
         <div id="gray-rectangular" v-theme:border="'adMob'"></div>
 
         <h2 class="deprecated-item">#17 Filter</h2>
-        <!--build filter in main.js at first-->
+        <!--create filter globally in main.js or locally in <script> at first-->
         <div>{{ lowerCaseRawData | capitalize }}</div>
         <div>{{ gibberish | snippet }}</div>
 
         <h2>#18 Custom Search Filter by using <code>computed</code></h2>
         <!--Check Search view in GetBlogs.vue-->
         <router-link to="/getBlogs">Get blogs</router-link>
+
+        <h2>#19 Mixins</h2>
+        <!--draw common elements (computed, methods, .etc) to a single .js file, and import the .js file to whatever .vue files defined mixin array to implement it-->
+        <router-link to="/blogMixins">Mixins</router-link>
     </div>
 </template>
 
@@ -232,6 +236,23 @@ export default {
         },
         isEven() {
             return !!this.givenNumber && this.givenNumber > 0 && this.givenNumber % 2 === 0;
+        }
+    },
+    // local filters (Cf. Global filters in main.js)
+    filters: {
+        capitalize(value) {
+            return value.toUpperCase();
+        }
+    },
+    // local custom directives (Cf. Global custom directives in main.js)
+    directives: {
+        rainbow: {
+            bind(el, binding, vnode) {
+                // Generate random 6 digit numbers for colour hex
+                el.style.background = `#${Math.random()
+                    .toString()
+                    .slice(2, 8)}`;
+            }
         }
     },
     methods: {
