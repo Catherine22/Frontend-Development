@@ -1,7 +1,8 @@
 <template>
     <div id="get-blogs">
         <h2>All Blog Articles</h2>
-        <div id="single-blog" v-for="blog in blogs" :key="blog.title">
+        <input type="text" v-model="search" placeholder="Search blogs" />
+        <div id="single-blog" v-for="blog in filterBlogs" :key="blog.title">
             <h3>{{ blog.title }}</h3>
             <article>{{ blog.body }}{</article>
         </div>
@@ -13,7 +14,8 @@ export default {
     data() {
         return {
             // userId, id, title, body
-            blogs: []
+            blogs: [],
+            search: ''
         };
     },
     methods: {
@@ -32,8 +34,15 @@ export default {
             );
         }
     },
-    mounted() {
+    created() {
         this.post();
+    },
+    computed: {
+        filterBlogs() {
+            return this.blogs.filter(blog => {
+                return blog.title.includes(this.search);
+            });
+        }
     }
 };
 </script>

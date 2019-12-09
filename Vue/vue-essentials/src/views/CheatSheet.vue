@@ -126,6 +126,15 @@
 
         <div id="gray-rectangular" v-theme="'banner'"></div>
         <div id="gray-rectangular" v-theme:border="'adMob'"></div>
+
+        <h2 class="deprecated-item">#17 Filter</h2>
+        <!--build filter in main.js at first-->
+        <div>{{ lowerCaseRawData | capitalize }}</div>
+        <div>{{ gibberish | snippet }}</div>
+
+        <h2>#18 Custom Search Filter by using <code>computed</code></h2>
+        <!--Check Search view in GetBlogs.vue-->
+        <router-link to="/getBlogs">Get blogs</router-link>
     </div>
 </template>
 
@@ -193,7 +202,12 @@ export default {
             },
 
             // #13
-            selectedComponent: 'banner-green'
+            selectedComponent: 'banner-green',
+
+            // #17
+            lowerCaseRawData: 'abcdef',
+            gibberish:
+                'eos qui et ipsum ipsam suscipit aut\nsed omnis non odio\nexpedita earum mollitia molestiae aut atque rem suscipit\nnam impedit esse'
         };
     },
     computed: {

@@ -36,6 +36,15 @@ Vue.directive('theme', {
     }
 });
 
+// filter
+Vue.filter('capitalize', function(value) {
+    return value.toUpperCase();
+});
+
+Vue.filter('snippet', function(value) {
+    return `${value.slice(0, 50)}...`;
+});
+
 new Vue({
     router,
     store,
