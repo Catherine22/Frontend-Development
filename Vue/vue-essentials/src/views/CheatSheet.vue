@@ -104,8 +104,12 @@
         <h2>#12 Slot</h2>
 
         <h2>#13 Dynamic components</h2>
+        <!--Components will be destoried while swithing components-->
         <component :is="selectedComponent"></component>
         <button @click="switchComponent">Switch component</button>
+
+        <h2>#14 Input Binding</h2>
+        <router-link to="/addBlog">Create a blog</router-link>
     </div>
 </template>
 
