@@ -66,7 +66,7 @@
         <ul>
             <li v-for="student in students" :key="student">{{ student }}</li>
         </ul>
-        <ul style="list-style-type:none">
+        <ul>
             <li v-for="(teacher, index) in staff" :key="teacher.name">
                 {{ index + 1 }}. {{ teacher.name }}
             </li>
@@ -113,6 +113,8 @@
 
         <h2>#15 Http client</h2>
         <router-link to="/addBlog">Post a blog</router-link>
+        <br />
+        <router-link to="/getBlogs">Get blogs</router-link>
     </div>
 </template>
 
@@ -264,6 +266,10 @@ export default {
 
 .deprecated-item {
     text-decoration: line-through;
+}
+
+ul {
+    list-style-type: none;
 }
 
 span {

@@ -16,7 +16,6 @@ export default {
 <style scoped>
 #container {
     padding: 20px;
-    max-width: 500px;
     text-align: center;
     background-color: green;
     color: white;
