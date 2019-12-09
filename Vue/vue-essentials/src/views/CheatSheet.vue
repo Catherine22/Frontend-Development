@@ -112,9 +112,20 @@
         <router-link to="/addBlog">Create a blog</router-link>
 
         <h2>#15 Http client</h2>
+        <!--add Vue.use(VueResource); in main.js at first-->
         <router-link to="/addBlog">Post a blog</router-link>
         <br />
         <router-link to="/getBlogs">Get blogs</router-link>
+
+        <h2>#16 Custom Directives</h2>
+        <!--create rainbow in main.js at first-->
+        <div id="colour-box" v-rainbow></div>
+        <div id="colour-box" v-rainbow></div>
+        <div id="colour-box" v-rainbow></div>
+        <div id="colour-box" v-rainbow></div>
+
+        <div id="gray-rectangular" v-theme="'banner'"></div>
+        <div id="gray-rectangular" v-theme:border="'adMob'"></div>
     </div>
 </template>
 
@@ -181,7 +192,7 @@ export default {
                 from2: null
             },
 
-            // # 13
+            // #13
             selectedComponent: 'banner-green'
         };
     },
@@ -287,5 +298,19 @@ span {
 .nearby span:after {
     content: 'nearby';
     margin-left: 10px;
+}
+
+#colour-box {
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    background: gray;
+    display: inline-block;
+}
+
+#gray-rectangular {
+    height: 60px;
+    margin: 10px;
+    background: #eeeeee;
 }
 </style>
