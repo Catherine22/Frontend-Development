@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
-import UsersTable from './components/UsersTable';
-import {ADD_USER, UPDATE_USER, DELETE_USER, UPDATE_USERS} from './Commands';
+import {ADD_USER, DELETE_USER, UPDATE_USER} from './Commands';
+import UserRegister from './components/UserRegister';
+import UserList from './components/UserList';
 
 class App extends Component {
     constructor(props) {
@@ -13,23 +14,7 @@ class App extends Component {
                 birth: '',
                 id: -1
             },
-
             users: []
-            // users: [
-            //     {
-            //         username: 'Alex',
-            //         isMale: true,
-            //         birth: 1988,
-            //         id: 'A0001'
-            //     },
-            //
-            //     {
-            //         username: 'Joanne',
-            //         isMale: false,
-            //         birth: 1980,
-            //         id: 'A0002'
-            //     }
-            // ]
         };
     }
 
@@ -44,74 +29,21 @@ class App extends Component {
         this.setState({
             users: this.store.getState().users
         });
-
     }
 
-    _onNameChanged(event) {
-        this.setState({
-            user: {
-                ...this.state.user,
-                username: event.target.value
-            }
-        });
-    }
+    tableChanged = (user) => {
+        const updateUsers = {
+            type: UPDATE_USER,
+            user
+        };
 
-    _onBirthChanged(event) {
-        this.setState({
-            user: {
-                ...this.state.user,
-                birth: event.target.value
-            }
-        });
-    }
+        console.log('action', updateUsers);
+        this.store.dispatch(updateUsers);
+    };
 
-    _onMaleCheckboxPressed() {
-        // console.log('M M C', this.maleCheckbox.checked);
-        // console.log('M F C', this.femaleCheckbox.checked);
-        let isMale;
-        if (this.maleCheckbox.checked) {
-            this.maleCheckbox.checked = true;
-            this.femaleCheckbox.checked = false;
-            isMale = true;
-        } else {
-            this.maleCheckbox.checked = false;
-            this.femaleCheckbox.checked = true;
-            isMale = false;
-        }
-
-        this.setState({
-            user: {
-                ...this.state.user,
-                isMale
-            }
-        });
-    }
-
-    _onFemaleCheckboxPressed() {
-        // console.log('F M C', this.maleCheckbox.checked);
-        // console.log('F F C', this.femaleCheckbox.checked);
-        let isMale;
-        if (this.femaleCheckbox.checked) {
-            this.maleCheckbox.checked = false;
-            this.femaleCheckbox.checked = true;
-            isMale = false;
-        } else {
-            this.maleCheckbox.checked = true;
-            this.femaleCheckbox.checked = false;
-            isMale = true;
-        }
-
-        this.setState({
-            user: {
-                ...this.state.user,
-                isMale
-            }
-        });
-    }
-
-    _onSubmitPressed() {
+    submitButtonPressed = (user) => {
         const {users} = this.state;
-        const {username, isMale, birth} = this.state.user;
+        const {username, isMale, birth} = user;
         if (username.length === 0) {
             alert('Please input username');
             return;
@@ -129,73 +61,35 @@ class App extends Component {
                 isMale,
                 birth,
                 id: users.length
-            }
+            },
+            users
         };
 
         console.log('action', addUser);
         this.store.dispatch(addUser);
-    }
+    };
 
-    _onSavePressed() {
+    saveButtonPressed = () => {
         if (localStorage) {
             localStorage.setItem('users', JSON.stringify(this.state.users));
         }
-    }
+    };
 
-    _onCancelPressed() {
+    cancelButtonPressed = () => {
         if (localStorage) {
             localStorage.clear();
         }
-    }
-
-    _onListChanged(rows) {
-        const updateUsers = {
-            type: UPDATE_USERS,
-            users: rows
-        };
-        this.store.dispatch(updateUsers);
-    }
+    };
 
     render() {
-        const {users} = this.state;
-        const {username, birth, isMale} = this.state.user;
         return (
             <div className="App">
                 <header className="App-header">
-                    <div className='input-field'>
-                        <div className='input-item-field'>
-                            <div>
-                                Name: <input value={username}
-                                             onChange={this._onNameChanged.bind(this)}/>
-                            </div>
-                            <div>
-                                Birth: <input value={birth}
-                                              onChange={this._onBirthChanged.bind(this)}/>
-                            </div>
-                            <div>
-                                <input ref={(input) => {
-                                    this.maleCheckbox = input;
-                                }}
-                                       name='M'
-                                       type='checkbox'
-                                       checked={isMale}
-                                       onChange={this._onMaleCheckboxPressed.bind(this)}/>Male
-                                <input style={{marginLeft: 10}}
-                                       ref={(input) => {
-                                           this.femaleCheckbox = input;
-                                       }}
-                                       name='F'
-                                       type='checkbox'
-                                       checked={!isMale}
-                                       onChange={this._onFemaleCheckboxPressed.bind(this)}/>Female
-                            </div>
-                        </div>
-                        <label className='button-submit' onClick={this._onSubmitPressed.bind(this)}>submit</label>
-                    </div>
-                    <UsersTable onListChanged={this._onListChanged.bind(this)} data={users}/>
+                    <UserRegister user={this.state.user} submitButtonPressed={this.submitButtonPressed}/>
+                    <UserList users={this.state.users} updateUser={(user) => this.tableChanged(user)}/>
                     <div className='footer'>
-                        <label className='button-save' onClick={this._onSavePressed.bind(this)}>save</label>
-                        <label className='button-save' onClick={this._onCancelPressed.bind(this)}>clear</label>
+                        <label className='button-save' onClick={this.saveButtonPressed}>save</label>
+                        <label className='button-save' onClick={this.cancelButtonPressed}>clear</label>
                     </div>
                 </header>
             </div>
@@ -251,6 +145,10 @@ class App extends Component {
                     console.log('Error! User existed');
                     return state;
                 }
+            case UPDATE_USER:
+                return {
+                    ...state
+                };
             case DELETE_USER:
                 users = [];
                 state.users.forEach((value) => {
@@ -267,12 +165,6 @@ class App extends Component {
                     console.log('Error! User not found');
                     return state;
                 }
-            case UPDATE_USERS:
-                users = [...action.users];
-                return {
-                    ...state,
-                    users
-                };
             default:
                 return state;
         }
