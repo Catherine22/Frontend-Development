@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="styles.css" />
+        <title>Buying socks</title>
+    </head>
+
+    <body>
+        <div class="nav-bar"></div>
+
+        <div id="app">
+            <div class="cart">
+                <p>Cart({{ cart.length }})</p>
+            </div>
+            <product :premium="isPremium" @add-to-cart="updateCart" />
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
