@@ -85,8 +85,9 @@ The settings include vue.js (You need to install vuter as well) and react native
     -   [Array](#Array)
     -   [Regular expression, 正则表达式](#正则表达式)
     -   [ECMAScrip](#ECMAScrip)
+    -   [DOM](#DOM)
     -   [Chrome debugger](#chrome-debugger)
--   Intermediate Tutorial
+-   Core of Javascript
     -   [Javascript Engine](#javascript-engine)
 -   [Reference](#Reference)
 
@@ -1005,6 +1006,45 @@ test@test_1.com]
 
 A specification for JavaScript. JavaScript will be executed by a distinct engine of individual browser. V8 engine of Chrome for example, showing high performance while running JavaScript.  
 GO to [ES6 example](https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6) to learn more.
+
+### DOM
+DOM, Document Object Model.     
+
+> Document: Document is basically a file, in DOM, we are normally referring to .html files        
+> Object: Objects in html files, every html tag is a object       
+> Model: Model is how you layout this structure       
+
+Example:
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My title</title>
+    <head>
+    <body>
+        <h1>Hello</h1>
+    </body>
+</html>
+```
+
+Your DOM view will be
+```
+├─DOCTYPE: html
+└─HTML
+  ├─HEAD
+  | ├─#text:
+  | ├─TITLE
+  | |  └─#text: My title
+  | └─#text:
+  └─BODY
+    ├─#text:
+    ├─H1
+    | └─#text: Hello
+    └─#text:
+```
+
+[DOM online viewer](https://software.hixie.ch/utilities/js/live-dom-viewer/)        
+[DOM Document](https://www.w3.org/TR/DOM-Level-2-Core/)     
 
 ### Chrome Debugger
 
