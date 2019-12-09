@@ -110,6 +110,9 @@
 
         <h2>#14 Input Binding</h2>
         <router-link to="/addBlog">Create a blog</router-link>
+
+        <h2>#15 Http client</h2>
+        <router-link to="/addBlog">Post a blog</router-link>
     </div>
 </template>
 
