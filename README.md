@@ -10,7 +10,7 @@
 
 ### Vue.js
 
-### [Vue.js Cheat sheet](https://github.com/Catherine22/Front-end-warm-up/tree/master/Vue/Vue/vue-essentials)
+### [Vue.js Cheat sheet](https://github.com/Catherine22/Front-end-warm-up/tree/master/Vue/vue-essentials)
 
 ## React
 
