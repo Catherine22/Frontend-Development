@@ -1,3 +1,5 @@
+let eventBus = new Vue();
+
 Vue.component('product', {
     props: {
         premium: {
@@ -43,7 +45,7 @@ Vue.component('product', {
                         Add to Cart
                     </button>
                 </div>
-                <product-review />
+                <product-tabs />
             </div>`,
     data() {
         return {
@@ -96,9 +98,16 @@ Vue.component('product', {
     }
 });
 
-Vue.component('product-review', {
+Vue.component('product-tabs', {
     template: `<div>
-                <div>
+                <span class="tab" 
+                      :class="{ activeTab: selectedTab === tab}" 
+                      v-for="(tab, index) in tabs" 
+                      :key="index" 
+                      @click="selectedTab = tab"
+                >{{ tab }}</span>
+
+                <div v-show="selectedTab === 'Reviews'">
                     <h2>Reviews</h2>
                     <p v-if="reviews.length==0">There are no reviews yet.</p>
                     <ul>
@@ -110,8 +119,32 @@ Vue.component('product-review', {
                     </ul>
                 </div>
 
+                <product-review v-show="selectedTab === 'Make a reviews'" />
+            </div>`,
+    data() {
+        return {
+            tabs: ['Reviews', 'Make a reviews'],
+            selectedTab: 'Reviews',
+            reviews: []
+        };
+    },
+    mounted() {
+        eventBus.$on('review-submitted', (review) => {
+            this.reviews.push(review);
+        });
+    }
+});
+
+Vue.component('product-review', {
+    template: `<div>
                 <!-- the submit.prevent event will no longer reload the page -->
                 <form class="review-form" @submit.prevent="onSubmit">
+                    <p v-if="errors.length>0">
+                        <b>Please correct the following error(s):</b>
+                        <ul>
+                            <li v-for="error in errors">{{ error }}</li>
+                        </ul>
+                    </p>
                     <p>
                         <label>Name:</label>
                         <input id="reviewer" v-model="review.name" />
@@ -145,15 +178,33 @@ Vue.component('product-review', {
                 comments: null,
                 rating: null
             },
-            reviews: []
+            errors: []
         };
     },
     methods: {
         onSubmit() {
-            this.reviews.push({ ...this.review });
+            this.errors = [];
+            if (!this.verifyText(this.review.name)) {
+                this.errors.push('Name required');
+            }
+            if (!this.verifyText(this.review.comments)) {
+                this.errors.push('Comments required');
+            }
+            if (!this.verifyText(this.review.rating)) {
+                this.errors.push('Rating required');
+            }
+            if (this.errors.length > 0) {
+                return;
+            }
+
+            eventBus.$emit('review-submitted', { ...this.review });
             this.review.name = null;
             this.review.comments = null;
             this.review.rating = null;
+        },
+
+        verifyText(str) {
+            return !!str && /\S+/.test(str);
         }
     }
 });
