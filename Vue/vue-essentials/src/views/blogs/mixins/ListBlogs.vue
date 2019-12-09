@@ -19,7 +19,7 @@ export default {
         };
     },
     methods: {
-        post() {
+        getPosts() {
             this.$http.get('https://jsonplaceholder.typicode.com/posts').then(
                 response => {
                     console.log('onResponse', response);
@@ -35,7 +35,7 @@ export default {
         }
     },
     created() {
-        this.post();
+        this.getPosts();
     },
     directives: {
         rainbow: {

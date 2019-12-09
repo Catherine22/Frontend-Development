@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import App from './App.vue';
-import router from './router';
+import routes from './routes';
 import store from './store';
 import VueResource from 'vue-resource';
+import VueRouter from 'vue-router';
 
 Vue.config.productionTip = false;
 export const eventBus = new Vue();
@@ -44,6 +45,13 @@ Vue.directive('theme', {
 
 Vue.filter('snippet', function(value) {
     return `${value.slice(0, 50)}...`;
+});
+
+// Vue router
+Vue.use(VueRouter);
+const router = new VueRouter({
+    mode: 'history' /* Cf. 'hash' mode */,
+    routes
 });
 
 new Vue({

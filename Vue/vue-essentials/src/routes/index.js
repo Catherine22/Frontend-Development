@@ -1,10 +1,10 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
 import CheatSheet from '../views/CheatSheet.vue';
 
-Vue.use(VueRouter);
-
 const routes = [
+    {
+        path: '/',
+        redirect: './cheatSheet'
+    },
     {
         path: '/cheatSheet',
         name: 'cheatSheet',
@@ -43,11 +43,16 @@ const routes = [
         // which is lazy-loaded when the route is visited.
         component: () =>
             import(/* webpackChunkName: "blogMixins" */ '../views/blogs/mixins/BlogMixins.vue')
+    },
+    {
+        path: '/blog/:id',
+        name: 'singleBlog',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import(/* webpackChunkName: "blogMixins" */ '../views/blogs/SingleBlog.vue')
     }
 ];
 
-const router = new VueRouter({
-    routes
-});
-
-export default router;
+export default routes;
