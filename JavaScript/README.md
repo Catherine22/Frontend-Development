@@ -88,6 +88,8 @@ The settings include vue.js (You need to install vuter as well) and react native
     -   [Chrome debugger](#chrome-debugger)
 -   Intermediate Tutorial
     -   [Javascript Engine](#javascript-engine)
+    -   [Javascript Runtime](#javascript-runtime)
+    -   [Hoisting](#hoisting)
 -   [Reference](#Reference)
 
 ### Literal
@@ -1059,16 +1061,16 @@ a();
 
 The call stack will be:
 
-```
+```Javascript
 a();
 ```
 
-```
+```Javascript
 b();
 a();
 ```
 
-```
+```Javascript
 console.log('done!');
 b();
 a();
@@ -1076,16 +1078,16 @@ a();
 
 Once all the functions is done, they will be popped up in order
 
-```
+```Javascript
 b();
 a();
 ```
 
-```
+```Javascript
 a();
 ```
 
-```
+```Javascript
 // empty
 ```
 
@@ -1095,10 +1097,47 @@ To see how exactly call stack and Web APIs work, go to [loupe].
 
 The only Javascript time I know, as you might have heard, is Node.js. Node.js makes Javascript be able to run outside of browser. This 'program' uses V8 engine to interpret Javascript creates the entire environment to run Javascript code and offer additional APIs to do things like asynchronous jobs.
 
+## Hoisting
+
+Javascript engine allocates memory for variables and functions before we execute it. E.g.
+
+```Javascript
+console.log(teddy);
+console.log(sing());
+
+var teddy = 'bear';
+function sing() {
+  console.log('Hello from the other side...');
+}
+
+// undefined
+// 'Hello from the other side...'
+```
+
+The reason why this code snippet doesn't crash is that Javascript engine hoist it before running `console.log(teddy);`, what it does is `var teddy = undefined;`. The function is moved to the top before being called as well.  
+Notice, hoisting is working when the code snippet starts from `var` and `function`, on the other hand, `const` and `let` do not be hoisted. A special case is **function expression**.
+
+```Javascript
+console.log(teddy);
+console.log(snoopy);
+sing();
+
+let teddy = 'bear';
+const snoopy = 'dogs';
+// function expression
+var sing = function() {
+    console.log('Hello from the other side...');
+}
+
+// Uncaught ReferenceError: Cannot access 'teddy' before initialization
+// Uncaught ReferenceError: Cannot access 'snoopy' before initialization
+// Uncaught TypeError: sing is not a function
+```
+
 ## Reference
 
 -   [Advanced Javascript concepts](https://www.udemy.com/course/advanced-javascript-concepts/)
--   [helloworld](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/HelloWorld.html)
+-   [helloWorld](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/HelloWorld.html)
 -   [introduction](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Introduction.html)
 -   [type.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Type.js)
 -   [operator.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Operator.js)
