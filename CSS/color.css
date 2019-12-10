@@ -1,0 +1,8 @@
+h1 {
+    background-color: #eeeeee;
+    /* text color */
+    color: purple;
+
+    /* Border */
+    border: 1px solid gray;
+}

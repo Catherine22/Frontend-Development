@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CSS</title>
+        <!--(Option1) External CSS-->
+        <link rel="stylesheet" type="text/css" href="implementation.css" />
+
+        <!--(Option2) Internal CSS-->
+        <style>
+            h1 {
+                font-style: italic;
+                color: cornflowerblue;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!--(Option3) Inline CSS-->
+        <h2 style="color:palevioletred; text-align:center;">Inline CSS</h2>
+        <h1 style="color:palevioletred; text-align:center;">
+            Merge first, priority: Inline CSS > Internal CSS > External CSS
+        </h1>
+    </body>
+</html>
