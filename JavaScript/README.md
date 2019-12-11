@@ -1134,6 +1134,77 @@ var sing = function() {
 // Uncaught TypeError: sing is not a function
 ```
 
+### More examples
+
+```Javascript
+console.log('#1, a=', a);
+var a = 10;
+console.log('#2, a=', a);
+var a = 20;
+console.log('#3, a=', a);
+```
+
+Your will get: #1 = undefined, #2 = 10, #3 = 20
+
+```Javascript
+console.log('#1, f()=', f());
+function f() {
+return 0;
+}
+
+console.log('#2, f()=', f());
+function f() {
+return 1;
+}
+
+console.log('#3, f()=', f());
+```
+
+Your will get: #1 = 1, #2 = 1, #3 = 1
+
+```Javascript
+var favouriteFood = 'hot dog';
+function toGo() {
+  console.log(`I\'d like some ${favouriteFood}`)
+
+  var favouriteFood = 'pizza';
+  console.log(`A ${favouriteFood} is just fine`);
+}
+
+toGo();
+```
+
+The result will be:
+
+```
+'I'd like some undefined'
+'A pizza is just fine'
+```
+
+With Javascript hoisting, this code is actually be executed as:
+
+```Javascript
+/*----------------------------------------*/
+/**************** Hoisting ****************/
+/*----------------------------------------*/
+// Assign undefined to statements start with 'var'
+var favouriteFood = undefined;
+
+// Define statements start with 'function'
+function toGo() {
+  console.log(`I\'d like some ${favouriteFood}`)
+
+  var favouriteFood = 'pizza';
+  console.log(`A ${favouriteFood} is just fine`);
+}
+/*----------------------------------------*/
+/**************** Hoisting ****************/
+/*----------------------------------------*/
+
+var favouriteFood = 'hot dog';
+toGo();
+```
+
 ## Reference
 
 -   [Advanced Javascript concepts](https://www.udemy.com/course/advanced-javascript-concepts/)
