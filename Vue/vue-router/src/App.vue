@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <nav-bar></nav-bar>
         <div id="nav">
             App
         </div>
@@ -7,6 +8,15 @@
     </div>
 </template>
 
+<script>
+import Vue from 'vue';
+import NavBar from '@/components/common/navBar';
+export default Vue.extend({
+    components: {
+        'nav-bar': NavBar
+    }
+});
+</script>
 <style>
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
