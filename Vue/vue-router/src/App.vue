@@ -4,7 +4,8 @@
         <nav-drawer></nav-drawer>
 
         <v-content>
-            <home />
+            <home v-if="isRoot" />
+            <router-view v-else></router-view>
         </v-content>
     </v-app>
 </template>
@@ -23,6 +24,28 @@ export default {
         'nav-drawer': navDrawer
     },
 
-    data: () => ({})
+    data: () => ({
+        isRoot: true
+    }),
+
+    watch: {
+        $route(to, from) {
+            // react to route changes...
+            console.log('route to', to, 'from', from);
+        }
+    }
 };
 </script>
+
+<style scoped>
+.container-visible {
+    position: absolute;
+    z-index: 10;
+    visibility: visible;
+}
+.container-hidden {
+    position: absolute;
+    z-index: 10;
+    visibility: hidden;
+}
+</style>
