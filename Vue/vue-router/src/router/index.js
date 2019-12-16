@@ -19,19 +19,25 @@ const routes = [
         component: Home
     },
 
-    /* 3. Navigate to a particular page when the given path starts with '/ninja' */
-    // You can use `this.$route.params.pathMatch` to see the path represents the asterisk (E.g. /ninja-male, i.e. 'male' in this case)
+    /* 3. Navigate to a particular page when the given path starts with '/option' */
+    // You can use `this.$route.params.pathMatch` to see the path represents the asterisk (E.g. /option1, i.e. '1' in this case)
     {
-        path: '/ninja-*',
-        name: 'retiredNinjas',
-        component: () => import('@/components/page/retiredNinjas/index.vue')
+        path: '/option*',
+        name: 'option',
+        component: () => import('@/components/page/option/index.vue')
     },
 
-    /* 4. Standard; Path: /ninja */
+    /* 4. Standard; Path: /ninjas */
     {
         path: '/ninjas',
         name: 'ninjas',
         component: () => import('@/components/page/ninjas/index.vue')
+    },
+
+    {
+        path: '/history',
+        name: 'history',
+        component: () => import('@/components/page/history/index.vue')
     },
 
     /* 5. Path: ninjas/:id E.g. /ninjas/a001 */
@@ -42,6 +48,7 @@ const routes = [
 
         /* 6. Nested outlet. Path: /ninjas/:id/profile */
         children: [
+            /* Path: /ninjas/:id/profile */
             {
                 name: 'profile',
                 path: 'profile',

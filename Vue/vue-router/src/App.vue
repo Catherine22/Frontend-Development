@@ -4,8 +4,7 @@
         <nav-drawer></nav-drawer>
 
         <v-content>
-            <home v-if="isRoot" />
-            <router-view v-else></router-view>
+            <router-view></router-view>
         </v-content>
     </v-app>
 </template>
@@ -19,18 +18,14 @@ export default {
     name: 'App',
 
     components: {
-        home: Home,
         appBar,
         'nav-drawer': navDrawer
     },
 
-    data: () => ({
-        isRoot: true
-    }),
+    data: () => ({}),
 
     watch: {
         $route(to, from) {
-            // react to route changes...
             console.log('route to', to, 'from', from);
         }
     }

@@ -1,11 +1,11 @@
 <template>
     <v-container>
-        <div>Retired ninjas</div>
+        <div>History</div>
     </v-container>
 </template>
 <script>
 import Vue from 'vue';
 export default Vue.extend({
-    name: 'retiredNinjas'
+    name: 'history'
 });
 </script>

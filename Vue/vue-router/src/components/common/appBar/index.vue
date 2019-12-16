@@ -19,8 +19,8 @@
             </template>
 
             <v-list>
-                <v-list-item v-for="n in 5" :key="n" @click="() => {}">
-                    <v-list-item-title>Option {{ n }}</v-list-item-title>
+                <v-list-item v-for="item in menu" :key="item.name" @click="$router.push(item.path)">
+                    <v-list-item-title>{{ item.name }}</v-list-item-title>
                 </v-list-item>
             </v-list>
         </v-menu>
@@ -31,6 +31,30 @@ import Vue from 'vue';
 import { eventBus } from '@/main.js';
 import { OPEN_DRAWER } from '@/constants';
 export default Vue.extend({
+    data: () => ({
+        menu: [
+            {
+                name: 'history',
+                path: '/history'
+            },
+            {
+                name: 'option1',
+                path: '/option1'
+            },
+            {
+                name: 'option2',
+                path: '/option2'
+            },
+            {
+                name: 'option3',
+                path: '/option3'
+            },
+            {
+                name: 'option4',
+                path: '/option4'
+            }
+        ]
+    }),
     methods: {
         openDrawer() {
             eventBus.$emit(OPEN_DRAWER);
