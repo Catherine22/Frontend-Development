@@ -1,11 +1,11 @@
 <template>
     <v-container>
-        <div>Option</div>
+        <div>Menu item</div>
     </v-container>
 </template>
 <script>
 import Vue from 'vue';
 export default Vue.extend({
-    name: 'option'
+    name: 'menuItem'
 });
 </script>

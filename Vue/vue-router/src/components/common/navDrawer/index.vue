@@ -33,21 +33,21 @@ export default Vue.extend({
             }
         ]
     }),
+
     methods: {
         routeTo(page) {
-            this.$router.replace({ name: page }).catch(err => {
+            this.$router.push({ name: page }).catch(err => {
                 console.warn('navigation', err);
             });
-        },
-        goBack() {
-            window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/');
         }
     },
+
     created() {
         eventBus.$on(OPEN_DRAWER, () => {
             this.drawer = !this.drawer;
         });
     },
+
     destroyed() {
         eventBus.$off(OPEN_DRAWER);
     }

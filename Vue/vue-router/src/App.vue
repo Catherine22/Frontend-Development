@@ -12,7 +12,6 @@
 <script>
 import appBar from '@/components/common/appBar';
 import navDrawer from '@/components/common/navDrawer';
-import Home from '@/components/page/home';
 
 export default {
     name: 'App',
@@ -22,13 +21,7 @@ export default {
         'nav-drawer': navDrawer
     },
 
-    data: () => ({}),
-
-    watch: {
-        $route(to, from) {
-            console.log('route to', to, 'from', from);
-        }
-    }
+    data: () => ({})
 };
 </script>
 
