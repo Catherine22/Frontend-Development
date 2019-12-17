@@ -1,15 +1,5 @@
 # Front-end-warm-up
 
-## Url Structure
-
-## JavaScript
-
-### [JS Programming Language](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript)
-
-### ES6
-
-### [Cf. ES5 and ES6](https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6)
-
 ## Basic
 
 ### Environment and tools
@@ -27,6 +17,8 @@ Take a look before getting started: [Does URL Structure Affect SEO? Here’s Wha
 
 1. [Why rounding odd font sizes to even?](https://ux.stackexchange.com/questions/129973/why-rounding-odd-font-sizes-to-even)
 2. [The 8-Point Grid System](https://builttoadapt.io/intro-to-the-8-point-grid-system-d2573cde8632)
+3. Image size
+    - Your image size should not be larger than for example, 1200px, it depends on laptops and PCs's screen resolution.
 
 ### Redirect
 
@@ -37,6 +29,14 @@ Take a look before getting started: [Does URL Structure Affect SEO? Here’s Wha
 ### SEO
 
 [SEO Starter Guide]
+
+### JavaScript
+
+#### [JS Programming Language](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript)
+
+### ES6
+
+#### [Cf. ES5 and ES6](https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6)
 
 ## Popular frameworks
 
