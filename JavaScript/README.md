@@ -1221,8 +1221,8 @@ toGo();
 ## Reference
 
 -   [Advanced Javascript concepts](https://www.udemy.com/course/advanced-javascript-concepts/)
--   [helloWorld](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/HelloWorld.html)
--   [introduction](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Introduction.html)
+-   [helloWorld.html](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/HelloWorld.html)
+-   [introduction.html](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Introduction.html)
 -   [type.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Type.js)
 -   [operator.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Operator.js)
 -   [function.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Function.js)

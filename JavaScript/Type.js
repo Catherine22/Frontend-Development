@@ -3,7 +3,7 @@ console.log('\nString');
 let myString1 = 'Hello';
 let myString2 = 'Hello';
 let myString3 =
-    '\'You\'ve got pleasure out of me in this life, and want to save yourself through me in the life to come.\'says Nekhlyudov.';
+    "'You've got pleasure out of me in this life, and want to save yourself through me in the life to come.'says Nekhlyudov.";
 let myString4 =
     '"You\'ve got pleasure out of me in this life, and want to save yourself through me in the life to come."says Nekhlyudov.';
 let myString5 = '\\';

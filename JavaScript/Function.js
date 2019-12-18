@@ -1,51 +1,51 @@
 // Call a function with a function as an argument
 function hello(name) {
-  console.log('hello, ' + name);
+    console.log('hello, ' + name);
 }
 
 function func(f, arg) {
-  return f(arg);
+    return f(arg);
 }
 
 func(hello, 'Rally');
 
 // Nested functions
 function funcParent() {
-  function funcChild() {
-    console.log('child');
-  }
-  console.log('parent');
-  return funcChild();
+    function funcChild() {
+        console.log('child');
+    }
+    console.log('parent');
+    return funcChild();
 }
 funcParent();
 
 // Run instant functions
 (function print() {
-  console.log('I am instant function');
+    console.log('I am instant function');
 })();
 
 // Call a function which returns a function
 function rmbToUsd(money) {
-  return money * 0.15;
+    return money * 0.15;
 }
 
 function rmbToPound(money) {
-  return money * 0.11;
+    return money * 0.11;
 }
 
 function rmb(money) {
-  return money;
+    return money;
 }
 
 // Return a function
 function currency(nationality) {
-  if (nationality === 'US') {
-    return rmbToUsd;
-  } else if (nationality === 'UK') {
-    return rmbToPound;
-  } else {
-    return rmb;
-  }
+    if (nationality === 'US') {
+        return rmbToUsd;
+    } else if (nationality === 'UK') {
+        return rmbToPound;
+    } else {
+        return rmb;
+    }
 }
 
 let allowance = 100;
@@ -56,23 +56,23 @@ console.log(cash + ' rmb is equal to ' + usd + ' usd or ' + pound + ' pound');
 
 // Set a function as a value in an object
 var obj = {
-  name: 'Charlotte',
-  age: 19,
-  showName: function() {
-    console.log(obj.name);
-  },
+    name: 'Charlotte',
+    age: 19,
+    showName: function() {
+        console.log(obj.name);
+    }
 };
 obj.showName();
 
 // Prototype
 function Employee(name, id) {
-  this.name = name;
-  this.id = id;
+    this.name = name;
+    this.id = id;
 }
 
 Employee.prototype.TAG = 'Employee';
 Employee.prototype.showName = function() {
-  console.log(this.name);
+    console.log(this.name);
 };
 
 let julianne = new Employee('Julianne', 1);
@@ -83,45 +83,45 @@ julianne.showName(); // Julianne
 // Override
 console.log(julianne.toString());
 Employee.prototype.toString = function() {
-  return 'I am a happy employee';
+    return 'I am a happy employee';
 };
 console.log(julianne.toString());
 
 // call and apply functions
 function showCar(color) {
-  console.log(`${this.car}, color=${color}`);
+    console.log(`${this.car}, color=${color}`);
 }
 
 showCar('black');
 showCar.call(
     {
-      car: 'Sport car',
+        car: 'Sport car'
     },
     'red'
 );
 showCar.apply(
     {
-      car: 'Motorhome',
+        car: 'Motorhome'
     },
     ['white']
 );
 
 let carWorld = {
-  car: 'trunk',
-  showCar: function(color) {
-    console.log(`${this.car}, color=${color}`);
-  },
+    car: 'trunk',
+    showCar: function(color) {
+        console.log(`${this.car}, color=${color}`);
+    }
 };
 carWorld.showCar('black');
 carWorld.showCar.call(
     {
-      car: 'Sport car',
+        car: 'Sport car'
     },
     'red'
 );
 carWorld.showCar.apply(
     {
-      car: 'Motorhome',
+        car: 'Motorhome'
     },
     ['white']
 );
