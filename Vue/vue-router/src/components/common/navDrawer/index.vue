@@ -21,15 +21,6 @@ export default Vue.extend({
             {
                 title: 'List',
                 name: 'ninjas'
-            },
-            {
-                title: 'Tab'
-            },
-            {
-                title: 'Foo'
-            },
-            {
-                title: 'Bar'
             }
         ]
     }),
