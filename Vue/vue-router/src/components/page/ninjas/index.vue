@@ -19,7 +19,12 @@
                 :key="ninja.id"
                 :class="index % 2 === 0 ? 'light-row' : 'dark-row'"
             >
-                <td align="center">{{ ninja.id }}</td>
+                <td align="center">
+                    <!--Path = /ninjas/:id-->
+                    <router-link :to="{ name: 'ninja', params: { id: ninja.id } }">{{
+                        ninja.id
+                    }}</router-link>
+                </td>
                 <td align="center">{{ ninja.name }}</td>
                 <td align="center">{{ ninja.dept }}</td>
                 <td align="center">{{ unixTimestampToDatetime(ninja.onBoard) }}</td>
@@ -54,6 +59,11 @@ export default Vue.extend({
             }
 
             return `${num}`;
+        },
+
+        routeTo(ninja) {
+            // Go to /ninjas/:id/profile
+            this.$router.push({ name: 'profile', params: { id: ninja.id } });
         }
     }
 });

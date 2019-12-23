@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <div>Ninja, id = ???</div>
+        <div>Ninja's id = {{ this.$route.params.id }}</div>
     </v-container>
 </template>
 <script>
