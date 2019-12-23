@@ -49,32 +49,32 @@ Take a look before getting started: [Does URL Structure Affect SEO? Here’s Wha
 
 1. [Fetch data from the Internet via axios]
 
--   The third party reference (axios)
--   ListView
+    - The third party reference (axios)
+    - ListView
 
 2. [Login via Email]
 
--   Firebase OAuth
+    - Firebase OAuth
 
 3. [Redux Introduction]
 
--   Basic Redux
+    - Basic Redux
 
 4. [Navigating screens + Redux]
 
--   Navigation via react-native-router-flux
--   Redux + redux-thunk
--   Firebase OAuth
+    - Navigation via react-native-router-flux
+    - Redux + redux-thunk
+    - Firebase OAuth
 
 5. [Android Oreo updates]
 
--   New features (Firebase cloud messaging, notification channels, foreground services, JobScheduler) on Android Oreo devices
--   React Native communicates with Android Native Modules
+    - New features (Firebase cloud messaging, notification channels, foreground services, JobScheduler) on Android Oreo devices
+    - React Native communicates with Android Native Modules
 
 ### Vue.js
 
--   [Basics]
--   [router]
+1.  [Basics]
+2.  [router]
 
 #### Useful UI components:
 
