@@ -1,6 +1,5 @@
 <template>
     <v-container>
-        <div>Ninja's id = {{ $route.params.id }}</div>
         <v-tabs v-model="selectedTab">
             <v-tab v-for="tab in tabs" :key="tab" @click="routeTo(tab.name, tab.params)">
                 {{ tab.name }}
