@@ -330,6 +330,20 @@
                     alert(`Error code: ${response.data}`);
                 }
             );
+
+            // generator
+            function* generatorFunc() {
+                console.log('Step1...');
+                yield 'step1';
+
+                console.log('Step2...');
+                yield 'step2';
+            }
+
+            const generatorObj = generatorFunc();
+            console.log('Generators', generatorObj.next().value);
+            console.log('Generators', generatorObj.next().value);
+            console.log('Generators', generatorObj.next().value);
         </script>
     </head>
     <body></body>
