@@ -317,28 +317,41 @@ We can retrieve all of the arguments by `arguments`
 `callee`: refer to the current function
 
 ```javascript
-function testArgument(a, b, c) {
-    console.log(
-        `We now have ${arguments.length} arguments: [${arguments[0]}, ${arguments[1]}, ${arguments[2]}]`
-    );
-    console.log(arguments.callee === testArgument);
+function f(a, b, c) {
+    console.log(arguments);
+    console.log(arguments.callee === f);
 }
-
-testArgument('a1', 'a2', 'a3');
-// We now have 3 arguments: [a1, a2, a3]
+f('A', 'B', 'C');
+// { 0: 'A', 1: 'B', 2: 'C'}
 // true
 ```
 
 `arguments` is an array includes all the arguments of a function, it still exists even if the function is called without arguments.
 
 ```javascript
-function func() {
-    console.log(`We have ${arguments.length} arguments`);
-    console.log(`Arguments:[${arguments[0]}, ${arguments[1]}]`);
+function f() {
+    console.log(arguments);
 }
-func('Hello', 123);
-// We have 2 arguments
-// Arguments:[Hello, 123]
+f();
+// {}
+```
+
+Two ways to convert arguments to an array
+
+1.
+
+```javascript
+let arr = Array.from(arguments);
+```
+
+2.
+
+```javascript
+function f(...args) {
+    console.log(args);
+}
+f('A', 'B', 'C');
+// ['A', 'B', 'C']
 ```
 
 -   Input objects as arguments
@@ -1208,8 +1221,8 @@ toGo();
 ## Reference
 
 -   [Advanced Javascript concepts](https://www.udemy.com/course/advanced-javascript-concepts/)
--   [helloWorld](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/HelloWorld.html)
--   [introduction](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Introduction.html)
+-   [helloWorld.html](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/HelloWorld.html)
+-   [introduction.html](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Introduction.html)
 -   [type.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Type.js)
 -   [operator.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Operator.js)
 -   [function.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Function.js)
