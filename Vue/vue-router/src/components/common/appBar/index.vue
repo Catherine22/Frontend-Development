@@ -74,7 +74,6 @@ export default Vue.extend({
                 eventBus.$emit(OPEN_DRAWER);
             } else {
                 // go back
-                console.log('Go back', 'length =', window.history.length);
                 window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/');
             }
         }

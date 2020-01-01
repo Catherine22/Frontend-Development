@@ -1,6 +1,7 @@
 <template>
     <v-container>
-        <div>Ninja profile</div>
+        <div>Ninja's profile</div>
+        <div>Id = {{ $route.params.id }}</div>
     </v-container>
 </template>
 <script>
