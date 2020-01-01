@@ -25,6 +25,10 @@ export default Vue.extend({
         routeTo(name, params) {
             this.$router.replace({ name, params });
         }
+    },
+    mounted() {
+        let { name, params } = this.tabs[0];
+        this.routeTo(name, params);
     }
 });
 </script>
