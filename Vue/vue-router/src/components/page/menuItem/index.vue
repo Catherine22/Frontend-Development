@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <div>Menu item</div>
+        <div>Menu item {{ $route.params.pathMatch }}</div>
     </v-container>
 </template>
 <script>
