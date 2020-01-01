@@ -90,6 +90,7 @@ The settings include vue.js (You need to install vuter as well) and react native
     -   [Javascript Engine](#javascript-engine)
     -   [Javascript Runtime](#javascript-runtime)
     -   [Hoisting](#hoisting)
+    -   [IIFE](#iife)
 -   [Reference](#Reference)
 
 ### Literal
@@ -1216,6 +1217,68 @@ function toGo() {
 
 var favouriteFood = 'hot dog';
 toGo();
+```
+
+## IIFE
+
+Aka Immediately-invoked Function Expression, a common Javascript design pattern.  
+It allows us to call functions immediately right after it is created. E.g.
+
+Normally, you cannot
+
+```Javascript
+function a() {
+    // do something
+}();
+// error -> Uncaught SyntaxError: Unexpected token ')'
+```
+
+With IIFE, you can:
+
+```Javascript
+// style 1
+(function a() {
+     console.log('a is running...');
+     }
+)()
+ // a is running...
+
+// style 2
+(function a() {
+     console.log('a is running...');
+     }()
+)
+ // a is running...
+```
+
+Eventually, we can have one global variable containing objects and functions. The advantage is that this code snippet only pollute the global execution context once, i.e. `script1` in next examples, we are scoping things into their own environments.
+
+```Javascript
+let script1 = (function () {
+    function a1() {
+        return 5;
+    }
+    return {
+        a1: a1
+    }
+})()
+
+script1.a1(); // 5
+```
+
+You can access arguments if you need
+
+```Javascript
+let script2 = (function (num) {
+    function a1() {
+        return num;
+    }
+    return {
+        a1: a1
+    }
+})(12345)
+
+script2.a1(); // 12345
 ```
 
 ## Reference
