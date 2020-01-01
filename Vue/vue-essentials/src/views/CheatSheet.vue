@@ -139,9 +139,6 @@
         <h2>#19 Mixins</h2>
         <!--draw common elements (computed, methods, .etc) to a single .js file, and import the .js file to whatever .vue files defined mixin array to implement it-->
         <router-link to="/blogMixins">Mixins</router-link>
-
-        <h2>#20 Passing params to another router</h2>
-        <router-link to="/blog/4">Blog No. 4</router-link>
     </div>
 </template>
 
