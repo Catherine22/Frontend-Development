@@ -1,4 +1,4 @@
-# Front-end-warm-up
+# The web developer bootcamp
 
 ## Basic
 
@@ -13,12 +13,16 @@
 
 Take a look before getting started: [Does URL Structure Affect SEO? Here’s What Google Thinks]
 
+### SEO
+
+[SEO Starter Guide]
+
 ### UX
 
 1. [Why rounding odd font sizes to even?]
 2. [The 8-Point Grid System]
 3. Image size
-    - Your image size should not be larger than for example, 1200px, it depends on laptops and PCs's screen resolution.
+    - Your image size should not be larger than for example, 1200px, it depends on laptops and PCs' screen resolution.
 4. [HTML5 Semantic Elements]
 
 ### Redirect
@@ -27,9 +31,7 @@ Take a look before getting started: [Does URL Structure Affect SEO? Here’s Wha
 
 > If you have access to header modification, use 301, if you don't, then use rel=canonical.
 
-### SEO
-
-[SEO Starter Guide]
+### Reactive Web Applications
 
 ### JavaScript
 
@@ -38,6 +40,8 @@ Take a look before getting started: [Does URL Structure Affect SEO? Here’s Wha
 #### [Cf. ES5 and ES6]
 
 ## Popular frameworks
+
+Core elements to build a web app are HTML + CSS + Javascript, no matter whatever framework you are using.
 
 ### React
 
@@ -52,6 +56,16 @@ Take a look before getting started: [Does URL Structure Affect SEO? Here’s Wha
 
 1. [APEXCHARTS.JS]
 2. [Element UI]
+
+## CDD
+
+### Storybook
+
+### Private npm
+
+-   [verdaccio]: A lightweight private npm proxy registry
+
+## PWA
 
 [why rounding odd font sizes to even?]: https://ux.stackexchange.com/questions/129973/why-rounding-odd-font-sizes-to-even
 [the 8-point grid system]: https://builttoadapt.io/intro-to-the-8-point-grid-system-d2573cde8632
@@ -71,3 +85,4 @@ Take a look before getting started: [Does URL Structure Affect SEO? Here’s Wha
 [android oreo updates]: https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/Oreo
 [basics]: https://github.com/Catherine22/Front-end-warm-up/tree/master/Vue/vue-essentials
 [router]: https://github.com/Catherine22/Front-end-warm-up/tree/master/Vue/vue-router
+[verdaccio]: https://verdaccio.org/
