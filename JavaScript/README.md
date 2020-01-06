@@ -91,6 +91,7 @@ The settings include vue.js (You need to install vuter as well) and react native
     -   [Javascript Runtime](#javascript-runtime)
     -   [Hoisting](#hoisting)
     -   [IIFE](#iife)
+    -   [This](#this)
 -   [Reference](#Reference)
 
 ### Literal
@@ -1279,6 +1280,104 @@ let script2 = (function (num) {
 })(12345)
 
 script2.a1(); // 12345
+```
+
+## This
+
+Before we dive into `this`, let's have a look at the code snippet
+
+```Javascript
+var name = 'Alice';
+function whoAmI() {
+    console.log(this.name);
+}
+
+const obj = {
+    name: 'Bob',
+    whoAmI: function() {
+         console.log(this.name);
+    }
+}
+
+whoAmI(); // Alice
+obj.whoAmI(); // Bob
+```
+
+Let change it a little bit
+
+```Javascript
+var name = 'Alice';
+function whoAmI() {
+    console.log(this.name);
+}
+
+const obj = {
+    name: 'Bob',
+    whoAmI: function() {
+        var f = function() {
+            console.log(this.name);
+        };
+        return f();
+    }
+}
+
+whoAmI(); // Alice
+obj.whoAmI(); // Alice
+```
+
+**In JavaScript our lexical scope (available data + variables where the function was defined) determines our available variables. Not where the function is called (dynamic scope)**
+
+To make obj.whoAmI() print 'Bob', here are three solutions
+
+1. ES6 arrow function
+
+Arrow function is lexical scope
+
+```Javascript
+const obj = {
+    name: 'Bob',
+    whoAmI: function() {
+        var f = () => {
+            console.log(this.name);
+        };
+        return f();
+    }
+}
+
+obj.whoAmI(); // Bob
+```
+
+2. binding this
+
+```Javascript
+const obj = {
+    name: 'Bob',
+    whoAmI: function() {
+        var f = function() {
+            console.log(this.name);
+        };
+        return f.bind(this)();
+    }
+}
+
+obj.whoAmI(); // Bob
+```
+
+3. Point this to self
+
+```Javascript
+const obj = {
+    name: 'Bob',
+    whoAmI: function() {
+        var self = this;
+        var f = function() {
+            console.log(self.name);
+        };
+        return f();
+    }
+}
+
+obj.whoAmI(); // Bob
 ```
 
 ## Reference
