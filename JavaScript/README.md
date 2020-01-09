@@ -72,18 +72,18 @@ The settings include vue.js (You need to install vuter as well) and react native
 ## Navigator
 
 -   Basics
-    -   [Literal， 字面量](#Literal)
-    -   [Identifier, 标识符](#Identifier)
-    -   [Type, 数据类型](#Type)
-    -   [Operator, 运算符或操作符](#Operator)
-    -   [Flow control and looping,   流程控制](#Flow)
+    -   [Literal](#Literal)
+    -   [Identifier](#Identifier)
+    -   [Type](#Type)
+    -   [Operator](#Operator)
+    -   [Flow control and looping](#flow)
     -   [Object](#Object)
     -   [Function](#Function)
-    -   [Constructor, 构造函数](#Constructor)
+    -   [Constructor](#Constructor)
     -   [Prototype](#Prototype)
     -   [GC, Garbage Collection](#GC)
     -   [Array](#Array)
-    -   [Regular expression, 正则表达式](#正则表达式)
+    -   [Regular expression](#regular-expression)
     -   [ECMAScrip](#ECMAScrip)
     -   [Chrome debugger](#chrome-debugger)
 -   Intermediate Tutorial
@@ -726,7 +726,7 @@ console.log(randoms); // [10, 9, 7, 4, 2]
 
 [Array.js]
 
-### 正则表达式
+### Regular Expression
 
 NO BLANKS
 

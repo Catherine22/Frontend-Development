@@ -4,6 +4,47 @@
 
 ### [JS Programming Language](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript)
 
+### ECMAScript
+
+-   ES6
+
+[ES6 Overview](http://es6-features.org/#Constants)
+
+-   ES2017
+
+`async`/`await` syntax
+
+E.g. React Native `fetch`
+
+```Javascript
+function getMoviesFromApiAsync() {
+  return fetch('https://facebook.github.io/react-native/movies.json')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      return responseJson.movies;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+```
+
+ES2017 style
+
+```Javascript
+async function getMoviesFromApi() {
+  try {
+    let response = await fetch(
+      'https://facebook.github.io/react-native/movies.json',
+    );
+    let responseJson = await response.json();
+    return responseJson.movies;
+  } catch (error) {
+    console.error(error);
+  }
+}
+```
+
 ## React
 
 ### [React Tutorial](https://github.com/Catherine22/Front-end-warm-up/tree/master/React)
