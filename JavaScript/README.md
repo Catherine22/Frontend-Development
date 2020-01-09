@@ -92,6 +92,8 @@ The settings include vue.js (You need to install vuter as well) and react native
     -   [Hoisting](#hoisting)
     -   [IIFE](#iife)
     -   [This](#this)
+    -   [apply() and call()](#apply-and-call)
+    -   [bind()](#bind)
 -   [Reference](#Reference)
 
 ### Literal
@@ -568,38 +570,6 @@ julianne.toString = function() {
 };
 console.log(julianne.toString()); // I am a happy employee
 ```
-
-### Apply and call functions
-
-We have 3 ways to run a function: `func()`, `func.call()` and `func.apply()`. When it comes to `call()` and `apply()`, the first argument we input is used to assign to `this`.
-
-1. No argument
-
-```javascript
-var carWorld = {
-    car: 'trunk',
-    showCar: function() {
-        console.log(this.car);
-    }
-};
-carWorld.showCar(); // trunk
-carWorld.showCar.call({ car: 'Sport car' }); // Sport car
-carWorld.showCar.apply({ car: 'Motorhome' }); // Motorhome
-```
-
-2. Call a function with arguments
-
-```javascript
-function showCar(color) {
-    console.log(`${this.car}, color=${color}`);
-}
-
-showCar('black'); // undefined, color=black
-showCar.call({ car: 'Sport car' }, 'red'); // Sport car, color=red
-showCar.apply({ car: 'Motorhome' }, ['white']); // Motorhome, color=white
-```
-
-[Function.js]
 
 ### GC
 
@@ -1379,6 +1349,86 @@ const obj = {
 
 obj.whoAmI(); // Bob
 ```
+
+## apply() and call()
+
+Before we explain what `apply()` and `call()` are, let's take a look at the code snippet at first
+
+```Javascript
+let wizard = {
+    name: 'Merlin',
+    health: 80,
+    heal() {
+        return this.health = 100;
+    }
+}
+
+console.log(wizard); // {name: "Merlin", health: 80, heal: ƒ}
+wizard.heal();
+console.log(wizard); // {name: "Merlin", health: 100, heal: ƒ}
+```
+
+Then we have another object, this Robin can't `heal` himself
+
+```Javascript
+let archer = {
+    name: 'Robin Hood',
+    health: 30
+}
+```
+
+To `heal` someone who do not know how to use magic, i.e. to call function from another object, we can used `apply()` or `call()`
+
+```Javascript
+// {name: "Robin Hood", health: 30}
+wizard.heal.call(archer);
+// {name: "Robin Hood", health: 100}
+```
+
+The only difference between `apply()` and `call()` is the way to access arguments.
+
+```Javascript
+let wizard = {
+    name: 'Merlin',
+    health: 80,
+    heal() {
+        return this.health = 100;
+    },
+    fly(d1, d2, d3) {
+        this.health -= d1;
+        this.health -= d2;
+        this.health -= d3;
+        return this.health;
+    }
+}
+
+let archer = {
+    name: 'Robin Hood',
+    health: 30
+}
+```
+
+```Javascript
+wizard.fly.call(archer, 1, 3, 5);
+// {name: "Robin Hood", health: 21}
+```
+
+Or
+
+```Javascript
+wizard.fly.apply(archer, [1, 3, 5]);
+// {name: "Robin Hood", health: 21}
+```
+
+Another example: To find out the max number in a given array
+
+```Javascript
+function getMaxNumber(arr){
+  return Math.max.apply(null, arr);
+}
+```
+
+## bind()
 
 ## Reference
 
