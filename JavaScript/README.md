@@ -93,7 +93,7 @@ The settings include vue.js (You need to install vuter as well) and react native
     -   [IIFE](#iife)
     -   [This](#this)
     -   [apply() and call()](#apply-and-call)
-    -   [bind()](#bind)
+    -   [Function currying - bind()](#function-currying-bind)
 -   [Reference](#Reference)
 
 ### Literal
@@ -1350,6 +1350,67 @@ const obj = {
 obj.whoAmI(); // Bob
 ```
 
+More examples of how the `this` keyword works in Javascriptreact
+
+```Javascript
+var name = 'unknown';
+const a = {
+    name: 'a',
+    echo() {
+        return this.name;
+    }
+}
+
+
+const b = {
+    name: 'b',
+    echo() {
+        return function() {
+            return this.name;
+        }
+    }
+}
+
+
+const c = {
+    name: 'c',
+    echo() {
+        return () => {
+            return this.name;
+            }
+        }
+}
+
+
+a.echo(); // a
+b.echo()(); // unknown
+c.echo()(); // c
+```
+
+Now, this one is tricky
+
+```Javascript
+var name = 'unknown';
+const d = {
+    name: 'd',
+    echo() {
+        return this.name;
+    }
+}
+
+d.echo(); // d
+
+const trick = d.echo;
+trick(); // unknown
+```
+
+To solve this issue, we have to bind `trick` to the lexical scope, i.e. link `this` to `d` object.
+
+```Javascript
+const trick = d.echo.bind(d);
+trick(); // d
+```
+
 ## apply() and call()
 
 Before we explain what `apply()` and `call()` are, let's take a look at the code snippet at first
@@ -1428,7 +1489,25 @@ function getMaxNumber(arr){
 }
 ```
 
-## bind()
+## Function currying - bind()
+
+```Javascript
+function add(a, b) {
+    return (a + b);
+}
+
+add(1, 1); // 2
+```
+
+Let's bind the `add()` and see what will happen
+
+```Javascript
+const addTwo = add.bind(this, 2);
+addTwo(1); // 3
+
+const addTen = add.bind(this, 10);
+addTen(1); // 11
+```
 
 ## Reference
 
