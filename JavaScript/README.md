@@ -100,13 +100,13 @@ The settings include vue.js (You need to install vuter as well) and react native
 
 literals are allowed to be used directly. For example:
 
-```javascript
+```Javascript
 alert(152013257012304);
 ```
 
 We do not use literals very often, variables are commonly used, like
 
-```javascript
+```Javascript
 var id = 152013257012304;
 alert(id);
 ```
@@ -115,7 +115,7 @@ alert(id);
 
 An JS identifier might constants numbers, alphabets, underscores and currency symbols (\$). But starting with a number is illegal.
 
-```javascript
+```Javascript
 var $123_a = 0;
 ```
 
@@ -142,7 +142,7 @@ Go to [Operator.js] to see more.
 
 ### Flow
 
-```javascript
+```Javascript
 var cars = ['BMW', 'Volvo', 'Saab', 'Ford'];
 var i = 0;
 // while
@@ -159,7 +159,7 @@ for (; cars[i]; ) {
 
 Find out prime numbers from 1 to 100
 
-```javascript
+```Javascript
 var i = 2;
 var count = 0;
 while (i <= 100) {
@@ -195,7 +195,7 @@ Three different kinds of Object:
 
 E.g. Create an object with name and age properties.
 
-```javascript
+```Javascript
 var person = new Object();
 person.name = 'Scout';
 person.age = 18;
@@ -203,7 +203,7 @@ person.age = 18;
 
 or
 
-```javascript
+```Javascript
 var person = new Object();
 person['name'] = 'Scout';
 person['age'] = 18;
@@ -211,7 +211,7 @@ person['age'] = 18;
 
 or
 
-```javascript
+```Javascript
 var person = {
     name: 'Scout',
     age: 18
@@ -223,7 +223,7 @@ stack vs heap
 
 In JS, basic types are saved to stack
 
-```javascript
+```Javascript
 var a = 123;
 var b = a;
 a++;
@@ -239,7 +239,7 @@ In stack:
 
 Object is saved to heap
 
-```javascript
+```Javascript
 var obj = { name: 'Scout' };
 var refer = obj;
 refer['name'] = 'Jean';
@@ -265,7 +265,7 @@ Stack
 
 obj and refer have the same value (the address in heap)
 
-```javascript
+```Javascript
 console.log(obj == refer); // true
 
 var obj = {
@@ -287,7 +287,7 @@ When we use 'new' to create an object, the computer will automatically offer new
 
 Function encapsulates and runs code is a kind of object.
 
-```javascript
+```Javascript
 var func = new Function(
     // put code here with quotes
     "return '我是构造函数';"
@@ -302,7 +302,7 @@ console.log(func['bye']); // 回见
 
 Technically, the above code is correct, but we don't use that very often. Instead, we do:
 
-```javascript
+```Javascript
 function sum(num1, num2) {
     return num1 + num2;
 }
@@ -310,7 +310,7 @@ function sum(num1, num2) {
 
 or
 
-```javascript
+```Javascript
 // Anonymous function
 var sum = function(num1, num2) {
     return num1 + num2;
@@ -320,7 +320,7 @@ var sum = function(num1, num2) {
 We can retrieve all of the arguments by `arguments`  
 `callee`: refer to the current function
 
-```javascript
+```Javascript
 function f(a, b, c) {
     console.log(arguments);
     console.log(arguments.callee === f);
@@ -332,7 +332,7 @@ f('A', 'B', 'C');
 
 `arguments` is an array includes all the arguments of a function, it still exists even if the function is called without arguments.
 
-```javascript
+```Javascript
 function f() {
     console.log(arguments);
 }
@@ -344,13 +344,13 @@ Two ways to convert arguments to an array
 
 1.
 
-```javascript
+```Javascript
 let arr = Array.from(arguments);
 ```
 
 2.
 
-```javascript
+```Javascript
 function f(...args) {
     console.log(args);
 }
@@ -360,7 +360,7 @@ f('A', 'B', 'C');
 
 -   Input objects as arguments
 
-```javascript
+```Javascript
 function package(container) {
     return (
         'height:' +
@@ -378,7 +378,7 @@ package(box);
 
 -   Call a function with a function as an argument
 
-```javascript
+```Javascript
 function hello(name) {
     console.log('hello, ' + name);
 }
@@ -392,7 +392,7 @@ func(hello, 'Rally'); // hello, Rally
 
 or
 
-```javascript
+```Javascript
 function callFuncByFunc(func) {
     return func();
 }
@@ -404,7 +404,7 @@ callFuncByFunc(function() {
 -   Nested functions  
     Call functions inside a function
 
-```javascript
+```Javascript
 function funcParent() {
     function funcChild() {
         console.log('child');
@@ -418,7 +418,7 @@ funcParent(); // parent child
 -   Run instant functions  
     There is no variable to refer to this function, which means this function can only be run once.
 
-```javascript
+```Javascript
 (function print() {
     console.log('I am instant function');
 })(); // I am instant function
@@ -428,7 +428,7 @@ funcParent(); // parent child
 > func(): Call the function func()  
 > func: the func() object`
 
-```javascript
+```Javascript
 function sayHello() {
     console.log('Hi, there!');
 }
@@ -442,7 +442,7 @@ fun(sayHello); // ƒ sayHello() { console.log('Hi, there!'); }
 
 -   Call a function which returns a function
 
-```javascript
+```Javascript
 function rmbToUsd(money) {
     return money * 0.15;
 }
@@ -475,7 +475,7 @@ console.log(cash + ' rmb is equal to ' + usd + ' usd or ' + pound + ' pound'); /
 
 -   对象的方法，Set a function as a value in an object
 
-```javascript
+```Javascript
 var obj = {};
 obj.name = 'Charlotte';
 obj.age = 19;
@@ -491,7 +491,7 @@ obj.showName();
 Technically, Constructor is a function used to create objects, Constructor usually starts with a capital letter.  
 Use `new` to call a constructor.
 
-```javascript
+```Javascript
 function Employee(name, id) {
     this.name = name;
     this.id = id;
@@ -508,7 +508,7 @@ julianne.showname(); // Julianne
 
 However, if we initialize the Employee 1,000 times, which means we will create 1,000 showname functions. We can make all the objects share the same function
 
-```javascript
+```Javascript
 function Employee(name, id) {
     this.name = name;
     this.id = id;
@@ -530,7 +530,7 @@ The above solution is still not perfect, it occupies global space and it would l
 
 Set a function in the prototype of Employee, every new Employee object can use the function we just create.
 
-```javascript
+```Javascript
 function Employee(name, id) {
     this.name = name;
     this.id = id;
@@ -549,7 +549,7 @@ julianne.showName(); // Julianne
 
 ### Override functions
 
-```javascript
+```Javascript
 console.log(julianne.toString()); // [object Object]
 
 // override
@@ -561,7 +561,7 @@ console.log(julianne.toString()); // Hi, I am Julianne
 
 ### Override parent's functions
 
-```javascript
+```Javascript
 console.log(julianne.toString()); // [object Object]
 
 // override
@@ -569,6 +569,26 @@ julianne.toString = function() {
     return 'Hi, I am Julianne';
 };
 console.log(julianne.toString()); // I am a happy employee
+```
+
+### Copy Object
+
+You cannot simply copy an object like `a = b`, because object is passing by reference.
+
+Two ways to shallow copy (which means you cannot clone nested objects):
+
+```Javascript
+let a = Object.assign({}, b);
+```
+
+```Javascript
+let a = {...b};
+```
+
+Deep clone
+
+```Javascript
+let a = JSON.parse(JSON.stringify(b));
 ```
 
 ### GC
@@ -579,7 +599,7 @@ Browsers automatically deal with rubbish (which are basically objects do not be 
 
 It can be anything type you need to store in an array
 
-```javascript
+```Javascript
 var obj = { name: 'Ana' };
 var func = function() {
     console.log('I am a function');
@@ -592,13 +612,13 @@ arr[5](); // I am a function
 
 Initialize an array of size 10
 
-```javascript
+```Javascript
 var arr = new Array(10);
 ```
 
 -   Add a value to the end of an array
 
-```javascript
+```Javascript
 var arr = [1, 2, 3];
 var newLength = arr.push(4); // 4
 console.log(arr); // [1, 2, 3, 4]
@@ -606,7 +626,7 @@ console.log(arr); // [1, 2, 3, 4]
 
 -   Add a value from the top of an array
 
-```javascript
+```Javascript
 var arr = [1, 2, 3];
 var newLength = arr.unshift(0); // 4
 console.log(arr); // [0, 1, 2, 3]
@@ -614,7 +634,7 @@ console.log(arr); // [0, 1, 2, 3]
 
 -   Remove the last member of an array
 
-```javascript
+```Javascript
 var arr = [1, 2, 3];
 var removedMember = arr.pop(); // 3
 console.log(arr); // [1, 2]
@@ -622,7 +642,7 @@ console.log(arr); // [1, 2]
 
 -   Remove the first member of an array
 
-```javascript
+```Javascript
 var arr = [1, 2, 3];
 var removedMember = arr.shift(); // 1
 console.log(arr); // [2, 3]
@@ -630,7 +650,7 @@ console.log(arr); // [2, 3]
 
 #### forEach (IE 8 or order version does not work)
 
-```javascript
+```Javascript
 var arr = ['Joanne', 'Irene', 'Catherine'];
 
 arr.forEach(function(value, index, array) {
@@ -646,7 +666,7 @@ arr.forEach(function(value, index, array) {
 
 Return a range of elements in an array
 
-```javascript
+```Javascript
 var arr = ['a', 'b', 'c', 'd', 'e'];
 var subArr1 = arr.slice(0, 3); // [a, b, c]
 var subArr2 = arr.slice(0, -2); // [a, b, c]
@@ -657,7 +677,7 @@ var subArr2 = arr.slice(0, -2); // [a, b, c]
 1. Delete a range of elements in an array  
    splice(from, **element numbers**)
 
-```javascript
+```Javascript
 var arr = ['a', 'b', 'c', 'd', 'e'];
 var subArr1 = arr.splice(1, 3);
 console.log('removed: ' + subArr1); // removed: [b, c, d]
@@ -666,7 +686,7 @@ console.log(arr); // [a, e]
 
 2. Update elements
 
-```javascript
+```Javascript
 var arr = ['a', 'b', '*', '*', 'e'];
 var anonymousArr = arr.splice(2, 2, 'c', 'd');
 console.log(arr); // ["a", "b", "c", "d", "e"]
@@ -677,7 +697,7 @@ console.log(anonymousArr); // ["*", "*"]
 
 Merge 2 arrays
 
-```javascript
+```Javascript
 var arr1 = [1, 2, 3];
 var arr2 = [4, 5, 6];
 var newArr = arr1.concat(arr2, 7, 8); // [1, 2, 3, 4, 5, 6, 7, 8]
@@ -687,7 +707,7 @@ var newArr = arr1.concat(arr2, 7, 8); // [1, 2, 3, 4, 5, 6, 7, 8]
 
 Convert an array to String
 
-```javascript
+```Javascript
 var arr1 = [1, 2, 3];
 console.log(arr1.join()); // 1,2,3
 console.log(arr1.join('-')); // 1-2-3
@@ -695,7 +715,7 @@ console.log(arr1.join('-')); // 1-2-3
 
 #### Reverse
 
-```javascript
+```Javascript
 arr = [1, 2, 3, 4, 5];
 console.log(arr.reverse()); // [5, 4, 3, 2, 1]
 console.log(arr); // [5, 4, 3, 2, 1]
@@ -711,7 +731,7 @@ In `function(a, b)`, a is the top member whereas b is the last member.
 > 0: the two elements are the same  
 > < 0: the two elements won't exchange
 
-```javascript
+```Javascript
 var randoms = [9, 2, 4, 7, 10];
 randoms.sort(function(a, b) {
     return a - b;
@@ -730,13 +750,13 @@ console.log(randoms); // [10, 9, 7, 4, 2]
 
 NO BLANKS
 
-```javascript
+```Javascript
 const reg = new RegExp('YOUR_RULE', 'MODE');
 ```
 
 or
 
-```javascript
+```Javascript
 const reg = /YOUR_RULE/DEMO;
 ```
 
@@ -744,7 +764,7 @@ const reg = /YOUR_RULE/DEMO;
 > i: Ignore case  
 > g: Global mode
 
-```javascript
+```Javascript
 function checkArray(array, reg) {
     const results = {};
     for (let i = 0; i < array.length; i++) {
@@ -756,7 +776,7 @@ function checkArray(array, reg) {
 
 E.g. Include 'abc' and ignore case
 
-```javascript
+```Javascript
 const messyABC = ['_.AbC__', 'a_b9c', 'abc', ''];
 let reg = /abc/i;
 checkArray(messyABC, reg);
@@ -765,7 +785,7 @@ checkArray(messyABC, reg);
 
 E.g. Include 'a', 'b' and 'c' and ignore case
 
-```javascript
+```Javascript
 reg = /a|b|c/i;
 checkArray(messyABC, reg);
 // {_.AbC__: true, a_b9c: true, abc: true, "": false}
@@ -775,7 +795,7 @@ checkArray(messyABC, reg);
 
 E.g. Capital Letters are included
 
-```javascript
+```Javascript
 let randomString = ['_.^$)?<}', 'E123098', 'cdef', '', '02804792'];
 reg = /[A-Z]/;
 checkArray(randomString, reg);
@@ -787,7 +807,7 @@ checkArray(randomString, reg);
 
 E.g 'abc', 'adc' or 'aec' are included
 
-```javascript
+```Javascript
 randomString = ['abcdef', 'cda', 'AEC', 'a_e_c', 'aec02804792aec'];
 reg = /a[bde]c/; // /abc|adc|aec/
 checkArray(randomString, reg);
@@ -798,7 +818,7 @@ checkArray(randomString, reg);
 
 E.g. String starts from 'a'
 
-```javascript
+```Javascript
 reg = /^a/;
 checkArray(randomString, reg);
 // {abcdef: true, cda: false, AEC: false, a_e_c: true, aec02804792aec: true}
@@ -806,7 +826,7 @@ checkArray(randomString, reg);
 
 E.g. String starts from 'aec'
 
-```javascript
+```Javascript
 reg = /(aec)$/i;
 checkArray(randomString, reg);
 // {abcdef: false, cda: false, AEC: true, a_e_c: false, aec02804792aec: true}
@@ -814,7 +834,7 @@ checkArray(randomString, reg);
 
 Cp.
 
-```javascript
+```Javascript
 reg = /^(aec)$/i;
 checkArray(randomString, reg);
 // {abcdef: false, cda: false, AEC: true, a_e_c: false, aec02804792aec: false}
@@ -822,7 +842,7 @@ checkArray(randomString, reg);
 
 E.g. Split String by letters
 
-```javascript
+```Javascript
 let message = '1z2bX3L4p5y6f7';
 console.log(message.split(/[A-z]/));
 // ["1", "2", "", "3", "4", "5", "6", "7"]
@@ -830,7 +850,7 @@ console.log(message.split(/[A-z]/));
 
 E.g. Search THE FIRST 'abc', 'adc' or 'aec' from String
 
-```javascript
+```Javascript
 message = 'a$bcdef cda a_e_c 0280aec4792';
 console.log(message.search(/a[bde]c/));
 // 22
@@ -838,7 +858,7 @@ console.log(message.search(/a[bde]c/));
 
 E.g. Replace THE FIRST 'abc', 'adc' or 'aec' from String
 
-```javascript
+```Javascript
 message = '(abc)qwepoim(aec)acpo(adc)';
 console.log(message.replace(/a[bde]c/, '@_@'));
 // (@_@)qwepoim(aec)acpo(adc)
@@ -846,7 +866,7 @@ console.log(message.replace(/a[bde]c/, '@_@'));
 
 > Replace ALL by MODE=`g`
 
-```javascript
+```Javascript
 message = '(abc)qwepoim(aec)acpo(adc)';
 console.log(message.replace(/a[bde]c/g, '@_@'));
 // (@_@)qwepoim(@_@)acpo(@_@)
@@ -854,7 +874,7 @@ console.log(message.replace(/a[bde]c/g, '@_@'));
 
 E.g. Include 'aaaa' (4 consecutive 'a')
 
-```javascript
+```Javascript
 randomString = ['aaa', 'aaaa', 'ababababab', 'aaaaaaaa'];
 reg = /a{4}/;
 checkArray(randomString, reg);
@@ -864,7 +884,7 @@ checkArray(randomString, reg);
 > Check for 5 consecutive 'ab', we use `\(ab){5}\`  
 > Check for 'a' + at least 2 and at most 3 consecutive 'bcd' + 'e'
 
-```javascript
+```Javascript
 randomString = ['abcde', 'abcdbcdbcde', 'abcdbcdbcdbcdbcde', 'bcd', 'abcd'];
 reg = /a(bcd){2,3}e/;
 checkArray(randomString, reg);
@@ -877,7 +897,7 @@ checkArray(randomString, reg);
 > `element+`: equal to `element{1, }`  
 > `element*`: equal to `element{0, }`
 
-```javascript
+```Javascript
 randomString = ['ABC', 'ABCABC', 'AABBCC', 'DEF'];
 reg = /(abc)+/i;
 checkArray(randomString, reg);
@@ -894,7 +914,7 @@ checkArray(randomString, reg);
 
 E.g. `trim()`
 
-```javascript
+```Javascript
 message = '    ad  min     ';
 reg = /\s/g;
 console.log(`${message}: ${message.replace(reg, '')}`);
@@ -903,7 +923,7 @@ console.log(`${message}: ${message.replace(reg, '')}`);
 
 E.g. Trim the beginning and the end the String
 
-```javascript
+```Javascript
 message = '    David Lin     ';
 reg = /^\s* | \s*$/g;
 console.log(`${message}: ${message.replace(reg, '')}`);
@@ -916,7 +936,7 @@ console.log(`${message}: ${message.replace(reg, '')}`);
 2. Start by 1
 3. the second digit must be 3-9
 
-```javascript
+```Javascript
 randomString = [
     '135-1234-1234',
     'A135-1234-1234A',
@@ -954,7 +974,7 @@ A135-1234-1234A: false}
 
 [letters, numbers and/or _] + (optional) [. + letters, numbers and/or _] + @ + [letters and/or numbers] + . + [2-5 letters] + (optional)[. + 2-5 letters]
 
-```javascript
+```Javascript
 randomString = [
     'test@test.com',
     'a.b_@gmail.com',
