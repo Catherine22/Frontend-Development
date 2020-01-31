@@ -4,6 +4,8 @@
 
 ### [JS Programming Language](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript)
 
+### [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
+
 ### ECMAScript
 
 -   ES6
