@@ -94,6 +94,7 @@ The settings include vue.js (You need to install vuter as well) and react native
     -   [This](#this)
     -   [apply() and call()](#apply-and-call)
     -   [Function currying - bind()](#function-currying-bind)
+    -   [Higher Order Functions](#higher-order-functions)
 -   [Reference](#Reference)
 
 ### Literal
@@ -1527,6 +1528,34 @@ addTwo(1); // 3
 
 const addTen = add.bind(this, 10);
 addTen(1); // 11
+```
+
+## Higher Order Functions
+
+Function returns function.
+
+E.g. A HOF function
+
+```Javascript
+const multiplyBy = function(n1) {
+    return function(n2) {
+        return n1 * n2;
+    }
+}
+```
+
+Or written in ES6 style
+
+```Javascript
+const multiplyBy = (n1) => (n2) => n1 * n2;
+```
+
+And you can call the function
+
+```Javascript
+const multiplyByTen = multiplyBy(10);
+multiplyByTen(2); // 20
+multiplyByTen(5); // 50
 ```
 
 ## Reference
