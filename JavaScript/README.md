@@ -95,6 +95,8 @@ The settings include vue.js (You need to install vuter as well) and react native
     -   [apply() and call()](#apply-and-call)
     -   [Function currying - bind()](#function-currying-bind)
     -   [Higher Order Functions](#higher-order-functions)
+    -   [Closure](#Closure)
+    -   [Encapsulation](#encapsulation)
 -   [Reference](#Reference)
 
 ### Literal
@@ -1556,6 +1558,33 @@ And you can call the function
 const multiplyByTen = multiplyBy(10);
 multiplyByTen(2); // 20
 multiplyByTen(5); // 50
+```
+
+## Encapsulation
+
+What encapsulation does is to hide some information from the outside world.
+
+For example:
+
+```Javascript
+const makeNuclearButton = () => {
+    let timeWithoutDestruction = 0;
+    const passTime = () => timeWithoutDestruction++; // hide this method
+    const totalPeaceTime = () => timeWithoutDestruction;
+    const launch = () => {
+        timeWithoutDestruction = -1;
+        return '💥';
+    }
+    setInterval(passTime, 1000);
+    return {
+        launch,
+        totalPeaceTime
+    }
+}
+
+const ohNo = makeNuclearButton();
+ohNo.totalPeaceTime(); // 5
+ohNo.launch(); // 💥
 ```
 
 ## Reference
