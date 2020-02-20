@@ -97,6 +97,8 @@ The settings include vue.js (You need to install vuter as well) and react native
     -   [Higher Order Functions](#higher-order-functions)
     -   [Closure](#Closure)
     -   [Encapsulation](#encapsulation)
+    -   [Prototypal Inheritance](#prototypal-inheritance)
+        -   [Extend the functionality of a built-in object](#extend-the-function-of-a-built-in-object)
 -   [Reference](#Reference)
 
 ### Literal
@@ -1585,6 +1587,48 @@ const makeNuclearButton = () => {
 const ohNo = makeNuclearButton();
 ohNo.totalPeaceTime(); // 5
 ohNo.launch(); // 💥
+```
+
+## Prototypal Inheritance
+
+```Javascript
+const lizard = {
+    name: 'lizard',
+    isVenomous: true
+}
+const lizardman = {
+    name: 'lizardman',
+    canDream: true
+}
+lizardman.__proto__ = lizard;
+
+lizardman.canDream; // true
+lizardman.isVenomous; // true
+lizardman // {name: "lizardman" canDream: true __proto__: {name: "lizard" isVenomous: true __proto__: {...}}
+lizardman.hasOwnProperty('canDream'); // true
+lizardman.hasOwnProperty('isVenomous'); // false
+```
+
+### Extend the functionality of a built-in object
+
+E.g. Create a `format()` of `Date`
+
+```Javascript
+Date.prototype.format = function() {
+    let formattedDate = '';
+    const yyyy = this.getFullYear();
+    const mm = this.getMonth() + 1;
+    const dd = this.getDate();
+
+    formattedDate += (mm > 9) ? mm: `0${mm}`;
+    formattedDate += '/';
+    formattedDate += (dd > 9) ? dd : `0${dd}`;
+    formattedDate += '/';
+    formattedDate += yyyy;
+    return formattedDate;
+}
+
+new Date().format(); // 02/20/2020
 ```
 
 ## Reference
