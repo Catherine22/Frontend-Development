@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-
-# The web developer bootcamp
+# The Web Developer Bootcamp
 
 ## Basic
 
