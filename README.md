@@ -1,4 +1,4 @@
-# The web developer bootcamp
+# The Web Developer Bootcamp
 
 ## Basic
 
@@ -33,11 +33,52 @@ Take a look before getting started: [Does URL Structure Affect SEO? Here’s Wha
 
 ### Reactive Web Applications
 
-### JavaScript
+## JavaScript
 
-#### [JS Programming Language]
+### [JS Programming Language](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript)
 
-#### [Cf. ES5 and ES6]
+### [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
+
+### ECMAScript
+
+-   ES6
+
+[ES6 Overview](http://es6-features.org/#Constants)
+
+-   ES2017
+
+`async`/`await` syntax
+
+E.g. React Native `fetch`
+
+```Javascript
+function getMoviesFromApiAsync() {
+  return fetch('https://facebook.github.io/react-native/movies.json')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      return responseJson.movies;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+```
+
+ES2017 style
+
+```Javascript
+async function getMoviesFromApi() {
+  try {
+    let response = await fetch(
+      'https://facebook.github.io/react-native/movies.json',
+    );
+    let responseJson = await response.json();
+    return responseJson.movies;
+  } catch (error) {
+    console.error(error);
+  }
+}
+```
 
 ## Popular frameworks
 
@@ -59,7 +100,12 @@ Core elements to build a web app are HTML + CSS + Javascript, no matter whatever
 
 ## CDD
 
+Aka Component-Driven Development.  
+A state-of-the-art design pattern for Vue.js
+
 ### Storybook
+
+A tool to manage your UI components, make it easier to share components between web apps.
 
 ### Private npm
 
@@ -76,7 +122,6 @@ Core elements to build a web app are HTML + CSS + Javascript, no matter whatever
 [apexcharts.js]: https://apexcharts.com/
 [element ui]: https://element.eleme.io/#/en-US
 [js programming language]: https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript
-[cf. es5 and es6]: https://github.com/Catherine22/Front-end-warm-up/tree/master/ES6
 [react examples]: https://github.com/Catherine22/Front-end-warm-up/tree/master/React
 [fetch data from the internet via axios]: https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/albums/
 [login via email]: https://github.com/Catherine22/Front-end-warm-up/blob/master/React%20native/auth/
