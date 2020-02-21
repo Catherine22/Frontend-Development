@@ -5,6 +5,28 @@ HTML: The content of web pages
 CSS: Styling web pages  
 JS: Programming capabilities
 
+## Navigator
+
+-   [ESLint and Prettier](#eslint-and-prettier)
+-   [Javascript Engine](#javascript-engine)
+    -   [Problematic keywords](#problematic-keywords)
+    -   [Call stack vs. memory heap](#call-stack-vs-memory-heap)
+    -   [Threading](#threading)
+-   [Javascript Runtime](#javascript-runtime)
+-   [Hoisting](#hoisting)
+    -   [More Examples](#more-examples)
+-   [IIFE](#iife)
+-   [This](#this)
+-   [apply() and call()](#apply-and-call)
+-   [Function currying - bind()](#function-currying-bind)
+-   [Higher Order Functions](#higher-order-functions)
+-   [Closure](#Closure)
+-   [Encapsulation](#encapsulation)
+-   [Prototypal Inheritance](#prototypal-inheritance)
+    -   [Extend the functionality of a built-in object](#extend-the-function-of-a-built-in-object)
+-   [FP and OOP](#fp-and-oop)
+-   [Reference](#Reference)
+
 ## ESLint and Prettier
 
 1. Add eslint and prettier plugins for Visual Studio Code
@@ -43,27 +65,6 @@ JS: Programming capabilities
 ```
 
 The settings include vue.js (You need to install vuter as well) and react native formatting.
-
-## Navigator
-
--   [Javascript Engine](#javascript-engine)
-    -   [Problematic keywords](#problematic-keywords)
-    -   [Call stack vs. memory heap](#callstack-vs-memory-heap)
-    -   [Threading](#threading)
--   [Javascript Runtime](#javascript-runtime)
--   [Hoisting](#hoisting)
-    -   [More Examples](#more-examples)
--   [IIFE](#iife)
--   [This](#this)
--   [apply() and call()](#apply-and-call)
--   [Function currying - bind()](#function-currying-bind)
--   [Higher Order Functions](#higher-order-functions)
--   [Closure](#Closure)
--   [Encapsulation](#encapsulation)
--   [Prototypal Inheritance](#prototypal-inheritance)
-    -   [Extend the functionality of a built-in object](#extend-the-function-of-a-built-in-object)
--   [FP and OOP](#fp-and-oop)
--   [Reference](#Reference)
 
 ## Javascript Engine
 
@@ -749,13 +750,5 @@ const necromancer2 = createNecromancer('Lucas', 'cauldron', 'frailty');
 ## Reference
 
 -   [Advanced Javascript concepts](https://www.udemy.com/course/advanced-javascript-concepts/)
--   [helloWorld.html](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/HelloWorld.html)
--   [introduction.html](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Introduction.html)
--   [type.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Type.js)
--   [operator.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Operator.js)
--   [function.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Function.js)
--   [array.js](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Array.js)
--   [utils.html](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/Utils.html)
--   [dom.html](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript/DOM.html)
 
 [loupe]: http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
