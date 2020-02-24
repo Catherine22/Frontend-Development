@@ -35,7 +35,7 @@ Take a look before getting started: [Does URL Structure Affect SEO? Here’s Wha
 
 ## JavaScript
 
-### [JS Programming Language](https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript)
+### [JS Programming Language](JavaScript)
 
 ### [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
 
@@ -92,6 +92,7 @@ Core elements to build a web app are HTML + CSS + Javascript, no matter whatever
 
 1.  [Basics]
 2.  [router]
+3.  [nuxt-fundamentals]
 
 #### Useful UI components:
 
@@ -121,13 +122,14 @@ A tool to manage your UI components, make it easier to share components between 
 [is there an advantage to using rel="canonical" over a 301 redirect?]: https://www.youtube.com/watch?v=zW5UL3lzBOA
 [apexcharts.js]: https://apexcharts.com/
 [element ui]: https://element.eleme.io/#/en-US
-[js programming language]: https://github.com/Catherine22/Front-end-warm-up/tree/master/JavaScript
-[react examples]: https://github.com/Catherine22/Front-end-warm-up/tree/master/React
-[fetch data from the internet via axios]: https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/albums/
+[js programming language]: JavaScript
+[react examples]: React
+[fetch data from the internet via axios]: React%20native/albums/
 [login via email]: https://github.com/Catherine22/Front-end-warm-up/blob/master/React%20native/auth/
 [redux introduction]: https://github.com/Catherine22/Front-end-warm-up/blob/master/React%20native/tech_stack/
-[navigating screens + redux]: https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/manager/
-[android oreo updates]: https://github.com/Catherine22/Front-end-warm-up/tree/master/React%20native/Oreo
-[basics]: https://github.com/Catherine22/Front-end-warm-up/tree/master/Vue/vue-essentials
-[router]: https://github.com/Catherine22/Front-end-warm-up/tree/master/Vue/vue-router
+[navigating screens + redux]: React%20native/manager/
+[android oreo updates]: React%20native/Oreo
+[basics]: Vue/vue-essentials
+[router]: Vue/vue-router
+[nuxt-fundamentals]: Vue/nuxt-fundamentals
 [verdaccio]: https://verdaccio.org/
