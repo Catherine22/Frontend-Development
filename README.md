@@ -84,6 +84,8 @@ async function getMoviesFromApi() {
 
 Core elements to build a web app are HTML + CSS + Javascript, no matter whatever framework you are using.
 
+### Angular
+
 ### React
 
 ### Vue.js
@@ -97,7 +99,7 @@ Core elements to build a web app are HTML + CSS + Javascript, no matter whatever
 1. [APEXCHARTS.JS]
 2. [Element UI]
 
-## CDD
+#### CDD
 
 Aka Component-Driven Development.  
 A state-of-the-art design pattern for Vue.js
