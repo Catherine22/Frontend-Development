@@ -86,8 +86,6 @@ Core elements to build a web app are HTML + CSS + Javascript, no matter whatever
 
 ### React
 
-[React examples]
-
 ### Vue.js
 
 1.  [Basics]
@@ -123,10 +121,9 @@ A tool to manage your UI components, make it easier to share components between 
 [apexcharts.js]: https://apexcharts.com/
 [element ui]: https://element.eleme.io/#/en-US
 [js programming language]: JavaScript
-[react examples]: React
 [fetch data from the internet via axios]: React%20native/albums/
-[login via email]: https://github.com/Catherine22/Front-end-warm-up/blob/master/React%20native/auth/
-[redux introduction]: https://github.com/Catherine22/Front-end-warm-up/blob/master/React%20native/tech_stack/
+[login via email]: React%20native/auth/
+[redux introduction]: React%20native/tech_stack/
 [navigating screens + redux]: React%20native/manager/
 [android oreo updates]: React%20native/Oreo
 [basics]: Vue/vue-essentials

@@ -86,7 +86,7 @@
 
         <h2>#11 Primitive vs Reference Type</h2>
         <h3>1. Reference Type</h3>
-        <!--This design is a bit weird, if I update props from component1, props in component2 will be upeated as well. In React, I have to update root data and press it to other components in order to do so.-->
+        <!--This design is a bit weird, if I update props from component1, props in component2 will be upeated as well. In React, I have to update root data and press it to other components to do so.-->
         <student :students="students"></student>
         <student :students="students"></student>
         <button @click="dropOut">Drop out students from root view</button>
