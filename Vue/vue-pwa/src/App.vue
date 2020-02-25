@@ -1,10 +1,19 @@
 <template>
-    <div class="container">
-        <navbar />
-        <transition name="fade">
-            <router-view />
-        </transition>
-    </div>
+    <el-container>
+        <el-header>
+            <navbar />
+        </el-header>
+        <el-main
+            v-loading="$store.state.pageLoading"
+            element-loading-text="Loading..."
+            element-loading-spinner="el-icon-loading"
+            class="main"
+        >
+            <transition name="fade">
+                <router-view class="router-view" />
+            </transition>
+        </el-main>
+    </el-container>
 </template>
 
 <script>
@@ -13,34 +22,33 @@ import Navbar from '@/components/Navbar/index.vue';
 
 export default Vue.extend({
     name: 'App',
-    components: { Navbar }
+    components: { Navbar },
+    mounted() {
+        this.$store.commit('setPageLoading', false);
+    }
 });
 </script>
 
 <style lang="scss" scoped>
-.button--green {
-    display: inline-block;
-    border-radius: 4px;
-    border: 1px solid #3b8070;
-    color: #3b8070;
-    text-decoration: none;
-    padding: 10px 30px;
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
 }
-.button--green:hover {
-    color: #fff;
-    background-color: #3b8070;
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
 }
-.button--grey {
-    display: inline-block;
-    border-radius: 4px;
-    border: 1px solid #35495e;
-    color: #35495e;
-    text-decoration: none;
-    padding: 10px 30px;
-    margin-left: 15px;
+.main {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
-.button--grey:hover {
-    color: #fff;
-    background-color: #35495e;
+.router-view {
+    position: absolute;
+    top: 108px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 </style>

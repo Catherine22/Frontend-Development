@@ -9,9 +9,55 @@
         <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
         <title><%= htmlWebpackPlugin.options.title %></title>
         <!--PWA Safari meta tags-->
-        <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <link
+            href="<%= BASE_URL %>img/appleCover/2048x2732.png"
+            sizes="2048x2732"
+            rel="apple-touch-startup-image"
+        />
+        <link
+            href="<%= BASE_URL %>img/appleCover/1668x2224.png"
+            sizes="1668x2224"
+            rel="apple-touch-startup-image"
+        />
+        <link
+            href="<%= BASE_URL %>img/appleCover/1536x2048.png"
+            sizes="1536x2048"
+            rel="apple-touch-startup-image"
+        />
+        <link
+            href="<%= BASE_URL %>img/appleCover/1242x2208.png"
+            sizes="1242x2208"
+            rel="apple-touch-startup-image"
+        />
+        <link
+            href="<%= BASE_URL %>img/appleCover/1125x2436.png"
+            sizes="1125x2436"
+            rel="apple-touch-startup-image"
+        />
+        <link
+            href="<%= BASE_URL %>img/appleCover/750x1334.png"
+            sizes="750x1334"
+            rel="apple-touch-startup-image"
+        />
+        <link
+            href="<%= BASE_URL %>img/appleCover/640x1136.png"
+            sizes="640x1136"
+            rel="apple-touch-startup-image"
+        />
+        <title>Vue PWA</title>
     </head>
+    <style>
+        body {
+            margin: 0;
+        }
+        #container {
+            padding: 1rem;
+            background: var(--navy);
+            color: #112f41;
+        }
+    </style>
     <body>
         <noscript>
             <strong

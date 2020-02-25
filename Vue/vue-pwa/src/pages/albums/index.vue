@@ -13,26 +13,6 @@ export default Vue.extend({
     components: { Banner },
     data() {
         return {
-            // albums: [
-            //     {
-            //         image:
-            //             'https://images-na.ssl-images-amazon.com/images/I/71RfNE3rIyL._SX522_.jpg',
-            //         link:
-            //             'https://www.amazon.com/Lover-Taylor-Swift/dp/B07SRF26YQ/ref=sr_1_1?keywords=Taylor+Swift&qid=1582608360&sr=8-1'
-            //     },
-            //     {
-            //         image:
-            //             'https://images-na.ssl-images-amazon.com/images/I/81Ii6u2neLL._AC_UY218_ML3_.jpg',
-            //         link:
-            //             'https://www.amazon.com/reputation-Taylor-Swift/dp/B077H93JN4/ref=sr_1_6?keywords=Taylor+Swift&qid=1582608360&sr=8-6'
-            //     },
-            //     {
-            //         image:
-            //             'https://images-na.ssl-images-amazon.com/images/I/61m85Bk6HEL._SX522_.jpg',
-            //         link:
-            //             'https://www.amazon.com/1989-Taylor-Swift/dp/B00OBRI7FS/ref=sr_1_8?keywords=Taylor+Swift&qid=1582608360&sr=8-8'
-            //     }
-            // ]
             albums: [
                 {
                     image: 'img/banners/1989.png',

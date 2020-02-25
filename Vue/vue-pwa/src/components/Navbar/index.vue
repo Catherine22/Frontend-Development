@@ -20,7 +20,6 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 70px;
     font-weight: lighter;
     letter-spacing: 0.5px;
 }

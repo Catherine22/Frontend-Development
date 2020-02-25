@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from '@/store';
 
 Vue.use(VueRouter);
 
@@ -32,8 +33,12 @@ const router = new VueRouter({
     routes
 });
 
-router.beforeEach(async (to: any, from: any, next: any) => {
+router.beforeEach((to, from, next) => {
+    store.commit('setPageLoading', true);
     next();
+});
+router.afterEach(() => {
+    store.commit('setPageLoading', false);
 });
 
 export default router;
