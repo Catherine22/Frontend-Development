@@ -27,6 +27,8 @@
 -   [Tooling and Useful Dependencies](#tooling-and-useful-dependencies)
     -   [Storybook](#storybook)
     -   [Verdaccio](#verdaccio)
+-   [Deployment](#deployment)
+    -   [Vue.js Deployment](#vuejs-deployment)
 
 ## Basis
 
@@ -157,8 +159,12 @@ Frameworks help you better integrate with the processing language.
 
 ### Vue.js
 
-1.  [Basics]
-2.  [router]
+Vue.js demos:
+
+1.  [vue-essentials]
+2.  [vue-router]
+3.  [nuxt-fundamentals]
+4.  [vue-pwa]
 
 #### Useful UI Dependencies
 
@@ -175,7 +181,7 @@ A Vue.js framework
 4. SEO friendly
 5. Code splitting
 
-[Nuxt.js demo]
+Demo: [nuxt-fundamentals]
 
 ## Design Patterns
 
@@ -197,6 +203,8 @@ Research says, 40% of users bounce from sites that take longer than **3 seconds*
 -   Use AMP components to improve first visit performance.
 -   Precaching: Download and cache files when first run (then always use the cached files).
 -   To log if user goes with pwa, you can set up a specific `"start_url` in `public/manifest.json`
+
+Demo: [vue-pwa]
 
 ### Service Workers
 
@@ -255,6 +263,19 @@ A tool to manage your UI components, make it easier to share components between 
 
 A lightweight private npm proxy registry to help you build your private npm registry.
 
+## Deployment
+
+### Vue.js Deployment
+
+To build a Docker image and deploy your web app, you need to:
+
+1. Add build scripts in package.json
+2. Add webpack config in vue.config.js
+3. Add nginx.conf
+4. Create Dockerfile and dockerignore
+
+For more information, see [vue-pwa]
+
 [why rounding odd font sizes to even?]: https://ux.stackexchange.com/questions/129973/why-rounding-odd-font-sizes-to-even
 [the 8-point grid system]: https://builttoadapt.io/intro-to-the-8-point-grid-system-d2573cde8632
 [html5 semantic elements]: https://guide.freecodecamp.org/html/html5-semantic-elements/
@@ -269,10 +290,11 @@ A lightweight private npm proxy registry to help you build your private npm regi
 [redux introduction]: React%20native/tech_stack/
 [navigating screens + redux]: React%20native/manager/
 [android oreo updates]: React%20native/Oreo
-[basics]: Vue/vue-essentials
-[router]: Vue/vue-router
-[nuxt.js demo]: Vue/nuxt-fundamentals
+[vue-essentials]: Vue/vue-essentials
+[vue-router]: Vue/vue-router
+[nuxt-fundamentals]: Vue/nuxt-fundamentals
 [verdaccio]: https://verdaccio.org/
 [javascript tutorials]: JavaScript/README.md
 [google javascript style guide]: https://google.github.io/styleguide/jsguide.html
 [rwa gallery]: https://responsive-jp.com/
+[vue-pwa]: Vue/vue-pwa
