@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <!--PWA android meta tags-->
+        <link rel="manifest" href="manifest.json" />
+        <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+        <title><%= htmlWebpackPlugin.options.title %></title>
+        <!--PWA Safari meta tags-->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-title" content="Vue PWA" />
+        <link rel="apple-touch-icon" href="icon512.png" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link
+            href="<%= BASE_URL %>img/appleCover/2048x2732.png"
+            sizes="2048x2732"
+            rel="apple-touch-startup-image"
+        />
+        <link
+            href="<%= BASE_URL %>img/appleCover/1668x2224.png"
+            sizes="1668x2224"
+            rel="apple-touch-startup-image"
+        />
+        <link
+            href="<%= BASE_URL %>img/appleCover/1536x2048.png"
+            sizes="1536x2048"
+            rel="apple-touch-startup-image"
+        />
+        <link
+            href="<%= BASE_URL %>img/appleCover/1242x2208.png"
+            sizes="1242x2208"
+            rel="apple-touch-startup-image"
+        />
+        <link
+            href="<%= BASE_URL %>img/appleCover/1125x2436.png"
+            sizes="1125x2436"
+            rel="apple-touch-startup-image"
+        />
+        <link
+            href="<%= BASE_URL %>img/appleCover/750x1334.png"
+            sizes="750x1334"
+            rel="apple-touch-startup-image"
+        />
+        <link
+            href="<%= BASE_URL %>img/appleCover/640x1136.png"
+            sizes="640x1136"
+            rel="apple-touch-startup-image"
+        />
+        <title>Vue PWA</title>
+    </head>
+    <style>
+        body {
+            margin: 0;
+        }
+        #container {
+            padding: 1rem;
+            background: var(--navy);
+            color: #112f41;
+        }
+    </style>
+    <body>
+        <noscript>
+            <strong
+                >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly
+                without JavaScript enabled. Please enable it to continue.</strong
+            >
+        </noscript>
+        <div id="app"></div>
+        <!-- built files will be auto injected -->
+    </body>
+</html>

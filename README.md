@@ -1,17 +1,47 @@
 # The Web Developer Bootcamp
 
-## Basic
+## Navigation
 
-### Environment and tools
+-   [Basis](#basis)
+    -   [Environment and Tools](#environment-and-tools)
+    -   [URL Structure](#url-structure)
+    -   [SEO](#seo)
+    -   [UX](#ux)
+    -   [Redirect](#redirect)
+    -   [Reactive Web Applications](#reactive-web-applications)
+-   [JavaScript](#javaScript)
+    -   [Style Guide](#style-guide)
+    -   [ECMAScript](#ecmaScript)
+-   [Popular Frontend Frameworks](#popular-frontend-framework)
+    -   [Angular](#angular)
+    -   [React](#react)
+    -   [Vue.js](#vuejs)
+        -   [Useful UI Dependencies](#useful-ui-dependencies)
+        -   [Nuxt.js](#nuxtjs)
+-   [Design Patterns](#design-patterns)
+    -   [CDD](#cdd)
+-   [Progressive Web App](#progressive-web-app)
+    -   [Service Workers](#service-workers)
+    -   [Lighthouse](#lighthouse)
+-   [AMP](#amp)
+-   [Tooling and Useful Dependencies](#tooling-and-useful-dependencies)
+    -   [Storybook](#storybook)
+    -   [Verdaccio](#verdaccio)
+-   [Deployment](#deployment)
+    -   [Vue.js Deployment](#vuejs-deployment)
+
+## Basis
+
+### Environment and Tools
 
 1. Chrome
 2. Node.js
 3. Visual Studio Code
-4. Visual Studio Code extensions (Eslint, HTML Snippets, Prettier, Copy Relative Path)
+4. Visual Studio Code extensions (Eslint, HTML Snippets, Prettier, Copy Relative Path, TabNine, etc.)
 
-### URL structure
+### URL Structure
 
-Take a look before getting started: [Does URL Structure Affect SEO? Here’s What Google Thinks]
+[Does URL Structure Affect SEO? Here’s What Google Thinks]
 
 ### SEO
 
@@ -33,11 +63,15 @@ Take a look before getting started: [Does URL Structure Affect SEO? Here’s Wha
 
 ### Reactive Web Applications
 
+[RWA Gallery]
+
 ## JavaScript
 
-### [JS Programming Language](JavaScript)
+For more information, see [JavaScript Tutorials]
 
-### [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
+### Style Guide
+
+For more information, see [Google JavaScript Style Guide]
 
 ### ECMAScript
 
@@ -47,14 +81,18 @@ Take a look before getting started: [Does URL Structure Affect SEO? Here’s Wha
 
 -   ES2017
 
-`async`/`await` syntax
+Replace Promise chain to `async`/`await`
 
-E.g. React Native `fetch`
+E.g. `fetch` API
 
 ```Javascript
 function getMoviesFromApiAsync() {
   return fetch('https://facebook.github.io/react-native/movies.json')
-    .then((response) => response.json())
+    .then((response) => {
+      // response.ok: status in the range 200-299
+      if (!response.ok) throw response.statueText;
+      return response.json();
+    })
     .then((responseJson) => {
       return responseJson.movies;
     })
@@ -64,7 +102,7 @@ function getMoviesFromApiAsync() {
 }
 ```
 
-ES2017 style
+`fetch` in ES2017 style
 
 ```Javascript
 async function getMoviesFromApi() {
@@ -72,6 +110,8 @@ async function getMoviesFromApi() {
     let response = await fetch(
       'https://facebook.github.io/react-native/movies.json',
     );
+    if (!response.ok) throw response.statueText;
+
     let responseJson = await response.json();
     return responseJson.movies;
   } catch (error) {
@@ -80,9 +120,38 @@ async function getMoviesFromApi() {
 }
 ```
 
-## Popular frameworks
+E.g. Add a event listener to window
 
-Core elements to build a web app are HTML + CSS + Javascript, no matter whatever framework you are using.
+```Javascript
+window.addEventListener('load', (event: any) => {
+    event.waitUntil(navigator.serviceWorker.register('/service-worker.js')
+    .then(register => {
+      console.log('Registered!');
+    }).catch(error => {
+      console.warn(error);
+    })
+});
+```
+
+In ES2017 style
+
+```Javascript
+window.addEventListener('load', (event: any) => {
+    try {
+        const register = async () => {
+            await navigator.serviceWorker.register('/service-worker.js');
+        };
+        event.waitUntil(register());
+    } catch (error) {
+        console.warn(error);
+    }
+});
+```
+
+## Popular JS Frameworks
+
+For whatever framework you are using, core elements to build a web app are HTML, CSS and Javascript.  
+Frameworks help you better integrate with the processing language.
 
 ### Angular
 
@@ -90,29 +159,122 @@ Core elements to build a web app are HTML + CSS + Javascript, no matter whatever
 
 ### Vue.js
 
-1.  [Basics]
-2.  [router]
-3.  [nuxt-fundamentals]
+Vue.js demos:
 
-#### Useful UI components:
+1.  [vue-essentials]
+2.  [vue-router]
+3.  [nuxt-fundamentals]
+4.  [vue-pwa]
+
+#### Useful UI Dependencies
 
 1. [APEXCHARTS.JS]
 2. [Element UI]
 
-#### CDD
+#### Nuxt.js
+
+A Vue.js framework
+
+1. Server side rerendering
+2. Pre-rerendering
+3. Better performance
+4. SEO friendly
+5. Code splitting
+
+Demo: [nuxt-fundamentals]
+
+## Design Patterns
+
+### CDD
 
 Aka Component-Driven Development.  
 A state-of-the-art design pattern for Vue.js
+
+## Progressive Web App
+
+Research says, 40% of users bounce from sites that take longer than **3 seconds** to load.
+
+-   PWA provides:
+    1. Reliable: Fast loading, work offline and on flaky networks.
+    2. Fast: Smooth animation, jank-free scrolling and seamless navigation.
+    3. Engaging: Launch from the home screen and send push notifications.
+-   PWA speeds up website loading by leveraging service workers to cache assets, but it cannot handle the first visit (where there is no cache).
+-   `self::addEventListener`: Inside the service worker, self refers to the service worker itself, otherwise, it refers to the window object.
+-   Use AMP components to improve first visit performance.
+-   Precaching: Download and cache files when first run (then always use the cached files).
+-   To log if user goes with pwa, you can set up a specific `"start_url` in `public/manifest.json`
+
+Demo: [vue-pwa]
+
+### Service Workers
+
+-   Client side proxy written in JavaScript between your web app and the outside.
+-   Cache assets locally.
+-   Script:
+    -   Lifecycle: install, activate
+    -   Intercept network requests: fetch
+    -   Receive push message: push
+    -   Receive data when idle: sync
+-   Service Worker has a lifecycle independently
+
+![sw](screenshots/sw.png)
+
+### Lighthouse
+
+-   To trail PWA, there is a tool called Lighthouse built in Chrome dev tools.
+-   Lighthouse reports how well your site or app is doing in terms of performance, accessibility, security, SEO and PWA features.
+-   Improve development cycle: Code and Test - Lighthouse - Debug - Lighthouse - Code and Test - ...
+
+## AMP
+
+AMP, Accelerated Mobile Pages.
+
+## CORS
+
+Cross Origin Resource Sharing.
+
+-   Origin: A combination of scheme, host and port. E.g. "http://www.example.com" has scheme "http", port "80" and the host is "www.example.com".
+-   In the previous example, if you visit the website with "https", it is a different origin.
+-   CORS enables to fetch resources outside from your app's origin.
+-   Generally, you can load most resources from different origin, such as images, scripts, video/audio, embeds.
+-   You CANNOT load xml and JSON from different origin, unless you grant the permission.
+-   Here is the CORS implementation in the nutshell:
+    -   Add origin header on request
+    -   Server sends `access-control-allow-origin` if allowed
+    -   If server does not support CORS:
+
+```Javascript
+fetch('https://foo.com/data.json'), {
+  mode: 'no-cors' // 'cors' by default
+}.then(response => {
+  // ...
+}).catch(error => {
+  // ...
+})
+```
+
+## Tooling and Useful Dependencies
 
 ### Storybook
 
 A tool to manage your UI components, make it easier to share components between web apps.
 
-### Private npm
+### Verdaccio
 
--   [verdaccio]: A lightweight private npm proxy registry
+A lightweight private npm proxy registry to help you build your private npm registry.
 
-## PWA
+## Deployment
+
+### Vue.js Deployment
+
+To build a Docker image and deploy your web app, you need to:
+
+1. Add build scripts in package.json
+2. Add webpack config in vue.config.js
+3. Add nginx.conf
+4. Create Dockerfile and dockerignore
+
+For more information, see [vue-pwa]
 
 [why rounding odd font sizes to even?]: https://ux.stackexchange.com/questions/129973/why-rounding-odd-font-sizes-to-even
 [the 8-point grid system]: https://builttoadapt.io/intro-to-the-8-point-grid-system-d2573cde8632
@@ -128,7 +290,11 @@ A tool to manage your UI components, make it easier to share components between 
 [redux introduction]: React%20native/tech_stack/
 [navigating screens + redux]: React%20native/manager/
 [android oreo updates]: React%20native/Oreo
-[basics]: Vue/vue-essentials
-[router]: Vue/vue-router
+[vue-essentials]: Vue/vue-essentials
+[vue-router]: Vue/vue-router
 [nuxt-fundamentals]: Vue/nuxt-fundamentals
 [verdaccio]: https://verdaccio.org/
+[javascript tutorials]: JavaScript/README.md
+[google javascript style guide]: https://google.github.io/styleguide/jsguide.html
+[rwa gallery]: https://responsive-jp.com/
+[vue-pwa]: Vue/vue-pwa
