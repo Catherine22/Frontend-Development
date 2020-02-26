@@ -5,12 +5,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         <!--PWA android meta tags-->
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="manifest.json" />
         <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
         <title><%= htmlWebpackPlugin.options.title %></title>
         <!--PWA Safari meta tags-->
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-title" content="Vue PWA" />
+        <link rel="apple-touch-icon" href="icon512.png" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link
             href="<%= BASE_URL %>img/appleCover/2048x2732.png"
             sizes="2048x2732"

@@ -7,12 +7,11 @@ import locale from 'element-ui/lib/locale/lang/en';
 import '@/assets/css/reset.css';
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/css/style.scss';
-import pwa from './pwa';
+import './sw';
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI, { locale });
 
-pwa();
 new Vue({
     router,
     store,

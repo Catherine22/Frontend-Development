@@ -79,14 +79,18 @@ For more information, see [Google JavaScript Style Guide]
 
 -   ES2017
 
-`async`/`await` syntax
+Replace Promise chain to `async`/`await`
 
-E.g. React Native `fetch`
+E.g. `fetch` API
 
 ```Javascript
 function getMoviesFromApiAsync() {
   return fetch('https://facebook.github.io/react-native/movies.json')
-    .then((response) => response.json())
+    .then((response) => {
+      // response.ok: status in the range 200-299
+      if (!response.ok) throw response.statueText;
+      return response.json();
+    })
     .then((responseJson) => {
       return responseJson.movies;
     })
@@ -104,12 +108,42 @@ async function getMoviesFromApi() {
     let response = await fetch(
       'https://facebook.github.io/react-native/movies.json',
     );
+    if (!response.ok) throw response.statueText;
+
     let responseJson = await response.json();
     return responseJson.movies;
   } catch (error) {
     console.error(error);
   }
 }
+```
+
+E.g. Add a event listener to window
+
+```Javascript
+window.addEventListener('load', (event: any) => {
+    event.waitUntil(navigator.serviceWorker.register('/service-worker.js')
+    .then(register => {
+      console.log('Registered!');
+    }).catch(error => {
+      console.warn(error);
+    })
+});
+```
+
+In ES2017 style
+
+```Javascript
+window.addEventListener('load', (event: any) => {
+    try {
+        const register = async () => {
+            await navigator.serviceWorker.register('/service-worker.js');
+        };
+        event.waitUntil(register());
+    } catch (error) {
+        console.warn(error);
+    }
+});
 ```
 
 ## Popular JS Frameworks
@@ -159,14 +193,23 @@ Research says, 40% of users bounce from sites that take longer than **3 seconds*
     2. Fast: Smooth animation, jank-free scrolling and seamless navigation.
     3. Engaging: Launch from the home screen and send push notifications.
 -   PWA speeds up website loading by leveraging service workers to cache assets, but it cannot handle the first visit (where there is no cache).
+-   `self::addEventListener`: Inside the service worker, self refers to the service worker itself, otherwise, it refers to the window object.
 -   Use AMP components to improve first visit performance.
-
-For more information, see [AMP](#amp)
+-   Precaching: Download and cache files when first run (then always use the cached files).
+-   To log if user goes with pwa, you can set up a specific `"start_url` in `public/manifest.json`
 
 ### Service Workers
 
--   Client side proxy written in JavaScript.
+-   Client side proxy written in JavaScript between your web app and the outside.
 -   Cache assets locally.
+-   Script:
+    -   Lifecycle: install, activate
+    -   Intercept network requests: fetch
+    -   Receive push message: push
+    -   Receive data when idle: sync
+-   Service Worker has a lifecycle independently
+
+![sw](screenshots/sw.png)
 
 ### Lighthouse
 
@@ -177,6 +220,30 @@ For more information, see [AMP](#amp)
 ## AMP
 
 AMP, Accelerated Mobile Pages.
+
+## CORS
+
+Cross Origin Resource Sharing.
+
+-   Origin: A combination of scheme, host and port. E.g. "http://www.example.com" has scheme "http", port "80" and the host is "www.example.com".
+-   In the previous example, if you visit the website with "https", it is a different origin.
+-   CORS enables to fetch resources outside from your app's origin.
+-   Generally, you can load most resources from different origin, such as images, scripts, video/audio, embeds.
+-   You CANNOT load xml and JSON from different origin, unless you grant the permission.
+-   Here is the CORS implementation in the nutshell:
+    -   Add origin header on request
+    -   Server sends `access-control-allow-origin` if allowed
+    -   If server does not support CORS:
+
+```Javascript
+fetch('https://foo.com/data.json'), {
+  mode: 'no-cors' // 'cors' by default
+}.then(response => {
+  // ...
+}).catch(error => {
+  // ...
+})
+```
 
 ## Tooling and Useful Dependencies
 
