@@ -25,6 +25,7 @@ JS: Programming capabilities
 -   [Prototypal Inheritance](#prototypal-inheritance)
     -   [Extend the functionality of a built-in object](#extend-the-function-of-a-built-in-object)
 -   [FP and OOP](#fp-and-oop)
+-   [Constructor Function](#constructor-function)
 -   [Reference](#Reference)
 
 ## ESLint and Prettier
@@ -367,7 +368,34 @@ To make obj.whoAmI() print 'Bob', here are three solutions
 
 1. ES6 arrow function
 
-Arrow function is lexical scope
+Arrow function is lexically scoped whereas regular function is dynamically scoped.
+
+Example 1: Regular function vs. arrow function
+
+```Javascript
+var skill = 'fists of thunder';
+function DemonHunter() {
+    this.job = 'demon hunter';
+    this.skill = 'cluster arrow';
+}
+const eve = new DemonHunter();
+
+// regular function
+DemonHunter.prototype.attack = function() {
+    console.log(this.skill);
+}
+
+eve.attack(); // cluster arrow
+
+// arrow function
+DemonHunter.prototype.attack = () => {
+    console.log(this.skill);
+}
+
+eve.attack(); // fists of thunder
+```
+
+Example 2: Put an arrow function inside a regular function
 
 ```Javascript
 const obj = {
@@ -632,6 +660,33 @@ ohNo.launch(); // 💥
 
 ## Prototypal Inheritance
 
+-   `__proto__` points to `prototype`.
+-   Only functions have access to `prototype`
+
+Example 1
+
+```Javascript
+function Necromancer(name, weapon, skill) {
+    this.name = name;
+    this.weapon = weapon;
+    this.skill = skill;
+    this.job = 'necromancer';
+}
+Necromancer.prototype.attack = function () {
+    console.log(this.skill);
+}
+
+const necromancer1 = new Necromancer('Simon', 'corpse lance', 'devour');
+necromancer1.attack(); // devour
+
+necromancer1.__proto__.attack; // function () { console.log(this.skill); }
+Necromancer.prototype.attack // function () { console.log(this.skill); }
+necromancer1.prototype; // undefined -> Only functions have access to prototype
+Necromancer.prototype === necromancer1.__proto__; // true
+```
+
+Example 2
+
 ```Javascript
 const lizard = {
     name: 'lizard',
@@ -746,6 +801,33 @@ function createNecromancer(name, weapon, skill) {
 const necromancer1 = createNecromancer('Simon', 'corpse lance', 'devour');
 const necromancer2 = createNecromancer('Lucas', 'cauldron', 'frailty');
 ```
+
+## Constructor Function
+
+Instead of using `Object.create()`, we can use Constructor Function.  
+With `new` keyword, we are creating a new object.
+
+Two rules to implement a constructor function:
+
+1. add `new`
+2. function name starts with a capital letter. (coding style)
+
+```Javascript
+function Necromancer(name, weapon, skill) {
+    this.name = name;
+    this.weapon = weapon;
+    this.skill = skill;
+    this.job = 'necromancer';
+}
+Necromancer.prototype.attack = function () {
+    console.log(this.skill);
+}
+
+const necromancer1 = new Necromancer('Simon', 'corpse lance', 'devour');
+const necromancer2 = new Necromancer('Lucas', 'cauldron', 'frailty');
+```
+
+In the proceeding code snippet, `this` of Necromancer refers to `necromancer1` and `necromancer2` because of `new`.
 
 ## Reference
 
