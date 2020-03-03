@@ -27,7 +27,7 @@ export default {
     /*
      ** Plugins to load before mounting the App
      */
-    plugins: ['@/plugins/element-ui'],
+    plugins: ['@/plugins/element-ui', '@/plugins/api'],
     /*
      ** Nuxt.js dev-modules
      */
@@ -45,11 +45,6 @@ export default {
         // Doc: https://github.com/nuxt-community/dotenv-module
         '@nuxtjs/dotenv'
     ],
-    /*
-     ** Axios module configuration
-     ** See https://axios.nuxtjs.org/options
-     */
-    axios: {},
     /*
      ** Build configuration
      */
