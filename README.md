@@ -27,6 +27,9 @@
 -   [Tooling and Useful Dependencies](#tooling-and-useful-dependencies)
     -   [Storybook](#storybook)
     -   [Verdaccio](#verdaccio)
+-   [Testing](#testing)
+    -   [Unit Testing](#unit-testing)
+    -   [End-to-end Testing](#end-to-end-testing)
 -   [Deployment](#deployment)
     -   [Vue.js Deployment](#vuejs-deployment)
 
@@ -263,6 +266,16 @@ A tool to manage your UI components, make it easier to share components between 
 
 A lightweight private npm proxy registry to help you build your private npm registry.
 
+## Testing
+
+### Unit Testing
+
+-   Popular frameworks: Jest or Mocha
+
+### End-to-end Testing
+
+-   Popular frameworks: Cypress, Selenium
+
 ## Deployment
 
 ### Vue.js Deployment
@@ -273,9 +286,6 @@ To build a containerised web app with Nginx, you need to:
 
 ```JSON
 {
-    "name": "vue-deployment",
-    "version": "0.1.0",
-    "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
@@ -286,45 +296,11 @@ To build a containerised web app with Nginx, you need to:
 }
 ```
 
-2. Add webpack config in vue.config.js if you need (See [vue-pwa])
-3. Add nginx.conf, here is a template:
-
-```conf
-user  nginx;
-worker_processes  1;
-error_log  /var/log/nginx/error.log warn;
-pid        /var/run/nginx.pid;
-events {
-  worker_connections  1024;
-}
-http {
-  include       /etc/nginx/mime.types;
-  default_type  application/octet-stream;
-  log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-                    '$status $body_bytes_sent "$http_referer" '
-                    '"$http_user_agent" "$http_x_forwarded_for"';
-  access_log  /var/log/nginx/access.log  main;
-  sendfile        on;
-  keepalive_timeout  65;
-  server {
-    listen       80;
-    server_name  localhost;
-    location / {
-      root   /app;
-      index  index.html;
-      try_files $uri $uri/ /index.html;
-    }
-    error_page   500 502 503 504  /50x.html;
-    location = /50x.html {
-      root   /usr/share/nginx/html;
-    }
-  }
-}
-```
-
+2. Add webpack config in vue.config.js if you need
+3. Add nginx.conf
 4. Create Dockerfile and dockerignore
 
-Install Node.js -> install dependencies -> Run unit testing and linter -> Build node.js app -> Install Nginx -> Configure Nginx
+Install Node.js -> Install dependencies -> Run unit testing and linter -> Build node.js app -> Install Nginx -> Configure Nginx
 
 ```Dockerfile
 FROM node:latest as build-stage
@@ -350,7 +326,7 @@ dockerignore
 **/dist
 ```
 
-For more information, see [vue-pwa] or [vue-deployment]
+For more information, see [vue-pwa]
 
 [why rounding odd font sizes to even?]: https://ux.stackexchange.com/questions/129973/why-rounding-odd-font-sizes-to-even
 [the 8-point grid system]: https://builttoadapt.io/intro-to-the-8-point-grid-system-d2573cde8632
@@ -374,4 +350,3 @@ For more information, see [vue-pwa] or [vue-deployment]
 [google javascript style guide]: https://google.github.io/styleguide/jsguide.html
 [rwa gallery]: https://responsive-jp.com/
 [vue-pwa]: Vue/vue-pwa
-[vue-deployment]: Vue/vue-deployment

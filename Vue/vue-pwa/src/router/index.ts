@@ -25,15 +25,11 @@ const routes = [
 const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
-    scrollBehavior(to, from, savedPosition) {
-        if (to.meta.scrollTop) {
-            return { x: 0, y: 0 };
-        }
-    },
     routes
 });
 
-router.beforeEach((to, from, next) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+router.beforeEach((_to: any, _from: any, next: () => void) => {
     store.commit('setPageLoading', true);
     next();
 });

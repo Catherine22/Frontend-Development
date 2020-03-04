@@ -1,4 +1,5 @@
 /* eslint-disable indent */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const CompressionPlugin = require('compression-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 module.exports = {
@@ -16,7 +17,7 @@ module.exports = {
             .loader('url-loader')
             .tap(options => Object.assign(options, { publicPath: '/' }));
     },
-    configureWebpack: config => {
+    configureWebpack: () => {
         return process.env.NODE_ENV === 'production'
             ? {
                   plugins: [

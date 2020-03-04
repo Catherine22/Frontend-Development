@@ -18,7 +18,7 @@
 
 <script>
 import Vue from 'vue';
-import Navbar from '@/components/Navbar/index.vue';
+import Navbar from '@/components/navbar/index.vue';
 
 export default Vue.extend({
     name: 'App',
