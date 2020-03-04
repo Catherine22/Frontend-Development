@@ -19,7 +19,7 @@
             </div>
 
             <select v-model="blog.selectedAuthor">
-                <option disabled value="">Please select one</option>
+                <option disabled value="">Select one</option>
                 <option v-for="author in blog.authors" :key="author">{{ author }}</option>
             </select>
         </form>
