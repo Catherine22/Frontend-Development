@@ -26,6 +26,12 @@ import Logo from '~/components/Logo.vue';
 export default {
     components: {
         Logo
+    },
+
+    async asyncData(context) {
+        // server side http request example
+        const result = await context.app.$getFirstTodo();
+        console.log('asyncData', result.data);
     }
 };
 </script>

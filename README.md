@@ -267,14 +267,90 @@ A lightweight private npm proxy registry to help you build your private npm regi
 
 ### Vue.js Deployment
 
-To build a Docker image and deploy your web app, you need to:
+To build a containerised web app with Nginx, you need to:
 
-1. Add build scripts in package.json
-2. Add webpack config in vue.config.js
-3. Add nginx.conf
+1. Add build commands in package.json
+
+```JSON
+{
+    "name": "vue-deployment",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "test:unit": "vue-cli-service test:unit",
+        "test:e2e": "vue-cli-service test:e2e",
+        "lint": "vue-cli-service lint"
+    }
+}
+```
+
+2. Add webpack config in vue.config.js if you need (See [vue-pwa])
+3. Add nginx.conf, here is a template:
+
+```conf
+user  nginx;
+worker_processes  1;
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+events {
+  worker_connections  1024;
+}
+http {
+  include       /etc/nginx/mime.types;
+  default_type  application/octet-stream;
+  log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                    '$status $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent" "$http_x_forwarded_for"';
+  access_log  /var/log/nginx/access.log  main;
+  sendfile        on;
+  keepalive_timeout  65;
+  server {
+    listen       80;
+    server_name  localhost;
+    location / {
+      root   /app;
+      index  index.html;
+      try_files $uri $uri/ /index.html;
+    }
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+      root   /usr/share/nginx/html;
+    }
+  }
+}
+```
+
 4. Create Dockerfile and dockerignore
 
-For more information, see [vue-pwa]
+Install Node.js -> install dependencies -> Run unit testing and linter -> Build node.js app -> Install Nginx -> Configure Nginx
+
+```Dockerfile
+FROM node:latest as build-stage
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY ./ .
+
+RUN npm run test:unit
+RUN npm run lint
+RUN npm run build
+
+FROM nginx as production-stage
+RUN mkdir /app
+COPY --from=build-stage /app/dist /app
+COPY nginx.conf /etc/nginx/nginx.conf
+```
+
+dockerignore
+
+```
+**/node_modules
+**/dist
+```
+
+For more information, see [vue-pwa] or [vue-deployment]
 
 [why rounding odd font sizes to even?]: https://ux.stackexchange.com/questions/129973/why-rounding-odd-font-sizes-to-even
 [the 8-point grid system]: https://builttoadapt.io/intro-to-the-8-point-grid-system-d2573cde8632
@@ -298,3 +374,4 @@ For more information, see [vue-pwa]
 [google javascript style guide]: https://google.github.io/styleguide/jsguide.html
 [rwa gallery]: https://responsive-jp.com/
 [vue-pwa]: Vue/vue-pwa
+[vue-deployment]: Vue/vue-deployment
