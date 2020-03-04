@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Banner from '@/components/Banner/index.vue';
+import Banner from '@/components/banner/index.vue';
 
 export default Vue.extend({
     name: 'Albums',
