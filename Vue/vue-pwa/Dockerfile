@@ -9,6 +9,8 @@ RUN npm run lint
 RUN npm run build
 
 FROM nginx as production-stage
-RUN mkdir /app
-COPY --from=build-stage /app/dist /app
-COPY nginx.conf /etc/nginx/nginx.conf
+RUN apt-get update
+RUN apt-get install -y nginx-extras
+COPY --from=build-stage /app/dist /usr/share/nginx/html/
+ADD ./nginx/  /etc/nginx
+CMD ["nginx", "-g", "daemon off;"]
