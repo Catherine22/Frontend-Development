@@ -35,4 +35,4 @@ $ docker build -t 123987109832/vuejs-nuxtjs-web-app:latest .
 $ docker run -p 80:3000 123987109832/vuejs-nuxtjs-web-app:release-latest
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+[DockerHub](https://hub.docker.com/repository/docker/123987109832/vuejs-nuxtjs-web-app)
