@@ -26,13 +26,13 @@ $ npm run generate
 1. Containerization
 
 ```bash
-$ docker build -t 123987109832/vuejs-nuxtjs-web-app .
+$ docker build -t 123987109832/vuejs-nuxtjs-web-app:latest .
 ```
 
 2. Execution
 
 ```bash
-$ docker run 123987109832/vuejs-nuxtjs-web-app
+$ docker run -p 80:3000 123987109832/vuejs-nuxtjs-web-app:release-latest
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
