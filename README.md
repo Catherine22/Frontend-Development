@@ -263,6 +263,8 @@ fetch('https://foo.com/data.json'), {
 
 A tool to manage your UI components, make it easier to share components between web apps.
 
+[vue-storybook]
+
 ### Verdaccio
 
 A lightweight private npm proxy registry to help you build your private npm registry.
@@ -417,3 +419,4 @@ For more information, see [nuxt-fundamentals] and [dockerhub](https://hub.docker
 [google javascript style guide]: https://google.github.io/styleguide/jsguide.html
 [rwa gallery]: https://responsive-jp.com/
 [vue-pwa]: Vue/vue-pwa
+[vue-storybook]: Vue/vue-storybook
