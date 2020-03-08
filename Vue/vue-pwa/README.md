@@ -30,4 +30,4 @@ $docker run -d -p 80:80  123987109832/vue-pwa:release-latest
 
 3. Open `localhost` in your browser
 
-Docker Repo: https://hub.docker.com/repository/docker/123987109832/vue-pwa
+[DockerHub](https://hub.docker.com/repository/docker/123987109832/vue-pwa)

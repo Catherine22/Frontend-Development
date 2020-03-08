@@ -19,4 +19,20 @@ $ npm run start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## Deployment
+
+### Server-Side Rendered Deployment
+
+1. Containerization
+
+```bash
+$ docker build -t 123987109832/vuejs-nuxtjs-web-app:latest .
+```
+
+2. Execution
+
+```bash
+$ docker run -p 80:3000 123987109832/vuejs-nuxtjs-web-app:release-latest
+```
+
+[DockerHub](https://hub.docker.com/repository/docker/123987109832/vuejs-nuxtjs-web-app)
