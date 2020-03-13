@@ -19,6 +19,7 @@ JS: Programming capabilities
 -   [This](#this)
 -   [apply() and call()](#apply-and-call)
 -   [Function currying - bind()](#function-currying-bind)
+-   [Recap This](#recap-this)
 -   [Higher Order Functions](#higher-order-functions)
 -   [Closure](#Closure)
 -   [Encapsulation](#encapsulation)
@@ -97,7 +98,7 @@ As code runs, it pushes functions into the stack, and pup out after the executio
 
 **Javascript is a single-threaded programming language**. But sometimes Javascript can be 'asynchronous', and that's because browsers provide **Web APIs**, which is written in language like C++ to help Javascript to do a couple of operations. E.g. DOM, fetch.
 
-Being single-threaded means there is only one call stack while running, let's take a look at an example of call stack:
+Being single-threaded means there is only one call stack while running, take a look at an example of call stack:
 
 ```Javascript
 function a() {
@@ -151,7 +152,7 @@ The only Javascript time I know, as you might have heard, is Node.js. Node.js ma
 
 ## Hoisting
 
-Javascript engine allocates memory for variables and functions before we execute it. E.g.
+Javascript engine allocates memory for variables and functions before you execute it. E.g.
 
 ```Javascript
 console.log(teddy);
@@ -260,7 +261,7 @@ toGo();
 ## IIFE
 
 Aka Immediately-invoked Function Expression, a common Javascript design pattern.  
-It allows us to call functions immediately right after it is created. E.g.
+It lets you to call functions immediately right after it is created. E.g.
 
 Normally, you cannot
 
@@ -289,7 +290,7 @@ With IIFE, you can:
  // a is running...
 ```
 
-Eventually, we can have one global variable containing objects and functions. The advantage is that this code snippet only pollute the global execution context once, i.e. `script1` in next examples, we are scoping things into their own environments.
+Eventually, you can have one global variable containing objects and functions. The advantage is that this code snippet only pollute the global execution context once, i.e. `script1` in next examples, you are scoping things into their own environments.
 
 ```Javascript
 let script1 = (function () {
@@ -321,7 +322,7 @@ script2.a1(); // 12345
 
 ## This
 
-Before we dive into `this`, let's have a look at the code snippet
+Before you dive into `this`, have a look at the code snippet
 
 ```Javascript
 var name = 'Alice';
@@ -498,7 +499,7 @@ const trick = d.echo;
 trick(); // unknown
 ```
 
-To solve this issue, we have to bind `trick` to the lexical scope, i.e. link `this` to `d` object.
+To solve this issue, you have to bind `trick` to the lexical scope, i.e. link `this` to `d` object.
 
 ```Javascript
 const trick = d.echo.bind(d);
@@ -507,7 +508,7 @@ trick(); // d
 
 ## apply() and call()
 
-Before we explain what `apply()` and `call()` are, let's take a look at the code snippet at first
+Before you explain what `apply()` and `call()` are, take a look at the code snippet at first
 
 ```Javascript
 let wizard = {
@@ -523,7 +524,7 @@ wizard.heal();
 console.log(wizard); // {name: "Merlin", health: 100, heal: ƒ}
 ```
 
-Then we have another object, this Robin can't `heal` himself
+Then you have another object, this Robin can't `heal` himself
 
 ```Javascript
 let archer = {
@@ -532,7 +533,7 @@ let archer = {
 }
 ```
 
-To `heal` someone who do not know how to use magic, i.e. to call function from another object, we can used `apply()` or `call()`
+To `heal` someone who do not know how to use magic, i.e. to call function from another object, you can used `apply()` or `call()`
 
 ```Javascript
 // {name: "Robin Hood", health: 30}
@@ -593,7 +594,7 @@ function add(a, b) {
 add(1, 1); // 2
 ```
 
-Let's bind the `add()` and see what will happen
+Bind the `add()` and see what will happen
 
 ```Javascript
 const addTwo = add.bind(this, 2);
@@ -601,6 +602,51 @@ addTwo(1); // 3
 
 const addTen = add.bind(this, 10);
 addTen(1); // 11
+```
+
+## Recap This
+
+1. Implicit binding
+
+```Javascript
+const person = {
+    name: 'Karen',
+    showName() {
+        console.log(this.name);
+    }
+}
+
+person.showName(); // Karen
+```
+
+2. Explicit binding
+
+E.g. To bind `window` to this
+
+```Javascript
+const person = {
+    name: 'Karen',
+    browsingHistory: function() {
+        console.log(this.history.length);
+    }.bind(window)
+}
+
+person.browsingHistory(); // 1
+```
+
+3. Arrow function
+
+```Javascript
+const person = {
+    name: 'Karen',
+    showName: function() {
+        let sayMyName = () => {
+            // without arrow function, `this` will be `window`
+            console.log(this.name);
+        }
+        return sayMyName();
+    }
+}
 ```
 
 ## Higher Order Functions
@@ -780,7 +826,7 @@ const necromancer2 = createNecromancer('Lucas', 'cauldron', 'frailty');
 necromancer2.attack = necromancerFunctions.attack;
 ```
 
-Instead of attach `attack` manually, (it will be a nightmare if we have hundreds of necromancers). We can use `Object.create` to add the attack function at the beginning.
+Instead of attach `attack` manually, (it will be a nightmare if you have hundreds of necromancers). You can use `Object.create` to add the attack function at the beginning.
 
 ```Javascript
 const necromancerFunctions = {
@@ -804,8 +850,8 @@ const necromancer2 = createNecromancer('Lucas', 'cauldron', 'frailty');
 
 ## Constructor Function
 
-Instead of using `Object.create()`, we can use Constructor Function.  
-With `new` keyword, we are creating a new object.
+Instead of using `Object.create()`, you can use Constructor Function.  
+With `new` keyword, you are creating a new object.
 
 Two rules to implement a constructor function:
 
