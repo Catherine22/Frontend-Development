@@ -19,12 +19,14 @@ JS: Programming capabilities
 -   [This](#this)
 -   [apply() and call()](#apply-and-call)
 -   [Function currying - bind()](#function-currying-bind)
+-   [Recap This](#recap-this)
 -   [Higher Order Functions](#higher-order-functions)
 -   [Closure](#Closure)
 -   [Encapsulation](#encapsulation)
 -   [Prototypal Inheritance](#prototypal-inheritance)
     -   [Extend the functionality of a built-in object](#extend-the-function-of-a-built-in-object)
 -   [FP and OOP](#fp-and-oop)
+-   [Constructor Function](#constructor-function)
 -   [Reference](#Reference)
 
 ## ESLint and Prettier
@@ -288,7 +290,7 @@ With IIFE, you can:
  // a is running...
 ```
 
-Eventually, You can have one global variable containing objects and functions. The advantage is that this code snippet only pollute the global execution context once, i.e. `script1` in next examples, you are scoping things into their own environments.
+Eventually, you can have one global variable containing objects and functions. The advantage is that this code snippet only pollute the global execution context once, i.e. `script1` in next examples, you are scoping things into their own environments.
 
 ```Javascript
 let script1 = (function () {
@@ -367,7 +369,34 @@ To make obj.whoAmI() print 'Bob', here are three solutions
 
 1. ES6 arrow function
 
-Arrow function is lexical scope
+Arrow function is lexically scoped whereas regular function is dynamically scoped.
+
+Example 1: Regular function vs. arrow function
+
+```Javascript
+var skill = 'fists of thunder';
+function DemonHunter() {
+    this.job = 'demon hunter';
+    this.skill = 'cluster arrow';
+}
+const eve = new DemonHunter();
+
+// regular function
+DemonHunter.prototype.attack = function() {
+    console.log(this.skill);
+}
+
+eve.attack(); // cluster arrow
+
+// arrow function
+DemonHunter.prototype.attack = () => {
+    console.log(this.skill);
+}
+
+eve.attack(); // fists of thunder
+```
+
+Example 2: Put an arrow function inside a regular function
 
 ```Javascript
 const obj = {
@@ -504,7 +533,7 @@ let archer = {
 }
 ```
 
-To `heal` someone who do not know how to use magic, i.e. to call function from another object, you can use `apply()` or `call()`
+To `heal` someone who do not know how to use magic, i.e. To call function from another object, you can used `apply()` or `call()`
 
 ```Javascript
 // {name: "Robin Hood", health: 30}
@@ -575,6 +604,51 @@ const addTen = add.bind(this, 10);
 addTen(1); // 11
 ```
 
+## Recap This
+
+1. Implicit binding
+
+```Javascript
+const person = {
+    name: 'Karen',
+    showName() {
+        console.log(this.name);
+    }
+}
+
+person.showName(); // Karen
+```
+
+2. Explicit binding
+
+E.g. To bind `window` to this
+
+```Javascript
+const person = {
+    name: 'Karen',
+    browsingHistory: function() {
+        console.log(this.history.length);
+    }.bind(window)
+}
+
+person.browsingHistory(); // 1
+```
+
+3. Arrow function
+
+```Javascript
+const person = {
+    name: 'Karen',
+    showName: function() {
+        let sayMyName = () => {
+            // without arrow function, `this` will be `window`
+            console.log(this.name);
+        }
+        return sayMyName();
+    }
+}
+```
+
 ## Higher Order Functions
 
 Function returns function.
@@ -631,6 +705,33 @@ ohNo.launch(); // 💥
 ```
 
 ## Prototypal Inheritance
+
+-   `__proto__` points to `prototype`.
+-   Only functions have access to `prototype`
+
+Example 1
+
+```Javascript
+function Necromancer(name, weapon, skill) {
+    this.name = name;
+    this.weapon = weapon;
+    this.skill = skill;
+    this.job = 'necromancer';
+}
+Necromancer.prototype.attack = function () {
+    console.log(this.skill);
+}
+
+const necromancer1 = new Necromancer('Simon', 'corpse lance', 'devour');
+necromancer1.attack(); // devour
+
+necromancer1.__proto__.attack; // function () { console.log(this.skill); }
+Necromancer.prototype.attack // function () { console.log(this.skill); }
+necromancer1.prototype; // undefined -> Only functions have access to prototype
+Necromancer.prototype === necromancer1.__proto__; // true
+```
+
+Example 2
 
 ```Javascript
 const lizard = {
@@ -746,6 +847,33 @@ function createNecromancer(name, weapon, skill) {
 const necromancer1 = createNecromancer('Simon', 'corpse lance', 'devour');
 const necromancer2 = createNecromancer('Lucas', 'cauldron', 'frailty');
 ```
+
+## Constructor Function
+
+Instead of using `Object.create()`, you can use Constructor Function.  
+With `new` keyword, you are creating a new object.
+
+Two rules to implement a constructor function:
+
+1. add `new`
+2. function name starts with a capital letter. (coding style)
+
+```Javascript
+function Necromancer(name, weapon, skill) {
+    this.name = name;
+    this.weapon = weapon;
+    this.skill = skill;
+    this.job = 'necromancer';
+}
+Necromancer.prototype.attack = function () {
+    console.log(this.skill);
+}
+
+const necromancer1 = new Necromancer('Simon', 'corpse lance', 'devour');
+const necromancer2 = new Necromancer('Lucas', 'cauldron', 'frailty');
+```
+
+In the proceeding code snippet, `this` of Necromancer refers to `necromancer1` and `necromancer2` because of `new`.
 
 ## Reference
 
