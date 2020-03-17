@@ -1,4 +1,4 @@
-FROM node:alpine as staging-build
+FROM node:latest as staging-build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
