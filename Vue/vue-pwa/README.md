@@ -16,10 +16,10 @@ $yarn serve
 
 ## Deployment
 
-1. Build to an image
+1. Build to an image (using Dockerfile.prod for production and Dockerfile.staging for staging)
 
 ```shell
-$docker build . -t 123987109832/vue-pwa:release-latest
+$docker build -f Dockerfile.prod -t 123987109832/vue-pwa:release-latest .
 ```
 
 2. Run the image
