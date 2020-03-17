@@ -305,8 +305,10 @@ To build a containerised web app with Nginx, you need to:
 
 Install Node.js -> Install dependencies -> Run unit testing and linter -> Build node.js app -> Install Nginx -> Configure Nginx
 
+Dockerfile.prod
+
 ```Dockerfile
-FROM node:latest as build-stage
+FROM node:latest as prod-build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
@@ -316,10 +318,31 @@ RUN npm run test:unit
 RUN npm run lint
 RUN npm run build
 
-FROM nginx as production-stage
+FROM nginx
 RUN apt-get update
 RUN apt-get install -y nginx-extras
-COPY --from=build-stage /app/dist /usr/share/nginx/html/
+COPY --from=prod-build /app/dist /usr/share/nginx/html/
+ADD ./nginx/  /etc/nginx
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+Dockerfile.staging
+
+```Dockerfile
+FROM node:latest as staging-build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY ./ .
+
+RUN npm run test:unit
+RUN npm run lint
+RUN npm run dev-build
+
+FROM nginx
+RUN apt-get update
+RUN apt-get install -y nginx-extras
+COPY --from=staging-build /app/dist /usr/share/nginx/html/
 ADD ./nginx/  /etc/nginx
 CMD ["nginx", "-g", "daemon off;"]
 ```
