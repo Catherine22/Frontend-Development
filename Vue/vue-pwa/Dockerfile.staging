@@ -1,0 +1,16 @@
+FROM node:alpine as staging-build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY ./ .
+
+RUN npm run test:unit
+RUN npm run lint
+RUN npm run dev-build
+
+FROM nginx
+RUN apt-get update
+RUN apt-get install -y nginx-extras
+COPY --from=staging-build /app/dist /usr/share/nginx/html/
+ADD ./nginx/  /etc/nginx
+CMD ["nginx", "-g", "daemon off;"]
