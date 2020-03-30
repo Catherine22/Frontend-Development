@@ -27,6 +27,7 @@ JS: Programming capabilities
     -   [Extend the functionality of a built-in object](#extend-the-function-of-a-built-in-object)
 -   [FP and OOP](#fp-and-oop)
 -   [Constructor Function](#constructor-function)
+-   [Promises](#promises)
 -   [Reference](#Reference)
 
 ## ESLint and Prettier
@@ -148,7 +149,9 @@ To see how exactly call stack and Web APIs work, go to [loupe].
 
 ## Javascript Runtime
 
-The only Javascript time I know, as you might have heard, is Node.js. Node.js makes Javascript be able to run outside of browser. This 'program' uses V8 engine to interpret Javascript creates the entire environment to run Javascript code and offer additional APIs to do things like asynchronous jobs.
+As you might have heard, Node.js makes Javascript be able to run outside of browser. This 'program' uses V8 engine to interpret Javascript creates the entire environment to run Javascript code and offer additional APIs to do things like asynchronous jobs.
+
+On top of the engine, a browser has `Web APIs`. It offers things like `DOM`, `AJAX(XMLHttpRequest)` and `Timeout(setTimeout)`
 
 ## Hoisting
 
@@ -874,6 +877,31 @@ const necromancer2 = new Necromancer('Lucas', 'cauldron', 'frailty');
 ```
 
 In the proceeding code snippet, `this` of Necromancer refers to `necromancer1` and `necromancer2` because of `new`.
+
+## Promises
+
+A promise is an object that may produce a single value some time in the future. Either a resolved value, or a reason that it's not resolved (rejected)
+
+E.g.
+
+```Javascript
+const promise = new Promise((resolve, reject) => {
+    if (true) {
+        resolve('stuff worked');
+    } else {
+        reject('error, it broke');
+    }
+});
+
+promise.then(result => console.log(result)); // stuff worked
+```
+
+Promises chaining
+
+```Javascript
+promise.then(result => `result: ${result}`)
+    .then(result => console.log(result)); // result: stuff worked
+```
 
 ## Reference
 
