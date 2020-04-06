@@ -27,6 +27,8 @@
 -   [Tooling and Useful Dependencies](#tooling-and-useful-dependencies)
     -   [Storybook](#storybook)
     -   [Verdaccio](#verdaccio)
+-   [Security](#security)
+    -   [OWASP Top 10 Web Application Security Risks](#owasp-top-10-web-application-security-risks)
 -   [Testing](#testing)
     -   [Unit Testing](#unit-testing)
     -   [End-to-end Testing](#end-to-end-testing)
@@ -265,6 +267,21 @@ A tool to manage your UI components, make it easier to share components between 
 ### Verdaccio
 
 A lightweight private npm proxy registry to help you build your private npm registry.
+
+## Security
+
+## OWASP Top 10 Web Application Security Risks
+
+1. Injection
+2. Broken authentication
+3. Sensitive data exposure
+4. XML external entities
+5. Broken access control
+6. Security misconfiguration
+7. cross-site scripting XSS
+8. Insecure deserialization
+9. Known vulnerabilities
+10. Insufficient logging & monitoring
 
 ## Testing
 
