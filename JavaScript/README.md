@@ -28,6 +28,8 @@ JS: Programming capabilities
 -   [FP and OOP](#fp-and-oop)
 -   [Constructor Function](#constructor-function)
 -   [Promises](#promises)
+    -   [Promise Chaining](#promise-chaining)
+    -   [Promise.all](#promise-all)
 -   [Reference](#Reference)
 
 ## ESLint and Prettier
@@ -896,11 +898,74 @@ const promise = new Promise((resolve, reject) => {
 promise.then(result => console.log(result)); // stuff worked
 ```
 
-Promises chaining
+### Promises Chaining
 
 ```Javascript
 promise.then(result => `result: ${result}`)
-    .then(result => console.log(result)); // result: stuff worked
+    .then(result => `${result}?`)
+    .catch(err => console.log(err))
+    .then(result => console.log(`${result}!`)); // result: stuff worked?!
+```
+
+Because the `catch statement` is right before `then`, which means if any error happens in the last `then` code snippet, this `catch` cannot handle it.
+
+### Promise.all
+
+The `Promise.all()` will wait until all the promises are resolved and then log out the values.
+
+```Javascript
+const p1 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 100, '100ms');
+})
+
+const p2 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 1000, '1s');
+})
+
+const p3 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 3000, '3s');
+})
+
+Promise.all([p1, p2, p3]).then(value => {
+    console.log(value);
+    // After 3 seconds, you will get an array -- ["100ms", "1s", "3s"]
+})
+```
+
+More examples
+
+```Javascript
+const URLs = [
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/comments',
+    'https://jsonplaceholder.typicode.com/albums'
+];
+
+Promise.all(URLs.map(url => {
+    return fetch(url).then(response => response.json());
+})).then(results => {
+    console.log("Posts:", results[0]);
+    console.log("Comments:", results[1]);
+    console.log("Albums:", results[2]);
+});
+```
+
+If any of the URLs are wrong, you will get failed responses.
+
+```Javascript
+const URLs = [
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/comments',
+    '???'
+];
+
+Promise.all(URLs.map(url => {
+    return fetch(url).then(response => response.json());
+})).then(results => {
+    console.log("Posts:", results[0]);
+    console.log("Comments:", results[1]);
+    console.log("Albums:", results[2]);
+}).catch(() => console.log('failed to fetch data.'));
 ```
 
 ## Reference
@@ -908,3 +973,7 @@ promise.then(result => `result: ${result}`)
 -   [Advanced Javascript concepts](https://www.udemy.com/course/advanced-javascript-concepts/)
 
 [loupe]: http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
+
+```
+
+```
