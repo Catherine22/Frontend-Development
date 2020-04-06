@@ -34,6 +34,7 @@
     -   [End-to-end Testing](#end-to-end-testing)
 -   [Deployment](#deployment)
     -   [Vue.js Deployment](#vuejs-deployment)
+    -   [Nuxt.js Deployment](#nuxtjs-deployment)
 
 ## Basis
 
@@ -264,6 +265,8 @@ fetch('https://foo.com/data.json'), {
 
 A tool to manage your UI components, make it easier to share components between web apps.
 
+[vue-storybook]
+
 ### Verdaccio
 
 A lightweight private npm proxy registry to help you build your private npm registry.
@@ -331,19 +334,85 @@ RUN npm run lint
 RUN npm run build
 
 FROM nginx as production-stage
-RUN mkdir /app
-COPY --from=build-stage /app/dist /app
-COPY nginx.conf /etc/nginx/nginx.conf
+RUN apt-get update
+RUN apt-get install -y nginx-extras
+COPY --from=build-stage /app/dist /usr/share/nginx/html/
+ADD ./nginx/  /etc/nginx
+CMD ["nginx", "-g", "daemon off;"]
 ```
 
 dockerignore
 
 ```
-**/node_modules
-**/dist
+node_modules/
+dist/
 ```
 
-For more information, see [vue-pwa]
+For more information, see [vue-pwa] and [dockerhub](https://hub.docker.com/repository/docker/123987109832/vue-pwa)
+
+### Nuxt.js Deployment
+
+Deploy Nuxt.js web app in two different ways depending on what model you are using. Static Generated Deployment (Pre-rendered)
+and Single Page Application Deployment (SPA) are basically the same as the way you deploy a typical vue.js web app.
+
+Server-Side Rendered Deployment (Universal SSR) will be a bit different.
+
+1. Add build commands in package.json
+
+```JSON
+{
+    "scripts": {
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "build:dev": "cross-env NODE_ENV=development nuxt build",
+        "start": "cross-env NODE_ENV=production node server/index.js",
+        "start:dev": "cross-env NODE_ENV=development node server/index.js",
+        "generate": "nuxt generate",
+        "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+        "test": "jest"
+    }
+}
+```
+
+4. Create Dockerfile and dockerignore
+
+Install Node.js -> Install dependencies -> Run unit testing and linter -> Build node.js app -> Start npm
+
+```Dockerfile
+FROM node:latest as staging-build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY ./ .
+RUN npm run lint
+RUN npm run test
+RUN npm run build:dev
+ENV HOST 0.0.0.0
+EXPOSE 3000
+CMD ["npm", "run", "start:dev"]
+
+FROM node:latest as prod-build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY ./ .
+RUN npm run lint
+RUN npm run test
+RUN npm run build
+ENV HOST 0.0.0.0
+EXPOSE 3000
+CMD ["npm", "run", "start"]
+```
+
+dockerignore
+
+```
+node_modules/
+dist/
+./nuxt/
+```
+
+For more information, see [nuxt-fundamentals] and [dockerhub](https://hub.docker.com/repository/docker/123987109832/vuejs-nuxtjs-web-app)
 
 [why rounding odd font sizes to even?]: https://ux.stackexchange.com/questions/129973/why-rounding-odd-font-sizes-to-even
 [the 8-point grid system]: https://builttoadapt.io/intro-to-the-8-point-grid-system-d2573cde8632
@@ -367,3 +436,4 @@ For more information, see [vue-pwa]
 [google javascript style guide]: https://google.github.io/styleguide/jsguide.html
 [rwa gallery]: https://responsive-jp.com/
 [vue-pwa]: Vue/vue-pwa
+[vue-storybook]: Vue/vue-storybook
