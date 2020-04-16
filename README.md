@@ -39,47 +39,6 @@ Take a look before getting started: [Does URL Structure Affect SEO? Here’s Wha
 
 ### [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
 
-### ECMAScript
-
--   ES6
-
-[ES6 Overview](http://es6-features.org/#Constants)
-
--   ES2017
-
-`async`/`await` syntax
-
-E.g. React Native `fetch`
-
-```Javascript
-function getMoviesFromApiAsync() {
-  return fetch('https://facebook.github.io/react-native/movies.json')
-    .then((response) => response.json())
-    .then((responseJson) => {
-      return responseJson.movies;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
-```
-
-ES2017 style
-
-```Javascript
-async function getMoviesFromApi() {
-  try {
-    let response = await fetch(
-      'https://facebook.github.io/react-native/movies.json',
-    );
-    let responseJson = await response.json();
-    return responseJson.movies;
-  } catch (error) {
-    console.error(error);
-  }
-}
-```
-
 ## Popular frameworks
 
 Core elements to build a web app are HTML + CSS + Javascript, no matter whatever framework you are using.
