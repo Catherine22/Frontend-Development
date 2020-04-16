@@ -30,6 +30,7 @@ JS: Programming capabilities
 -   [Promises](#promises)
     -   [Promise Chaining](#promise-chaining)
     -   [Promise.all](#promise-all)
+-   [ECMAScript](#ecmascript)
 -   [Reference](#Reference)
 
 ## ESLint and Prettier
@@ -965,15 +966,99 @@ Promise.all(URLs.map(url => {
     console.log("Posts:", results[0]);
     console.log("Comments:", results[1]);
     console.log("Albums:", results[2]);
-}).catch(() => console.log('failed to fetch data.'));
+}).catch(() => console.log('Failed to fetch data.'));
+```
+
+## ECMAScript
+
+### ECMAScript
+
+-   ES6, ECMAScript 2015
+
+[ES6 Overview](http://es6-features.org/#Constants)
+
+-   ES8, ECMAScript 2017
+
+`async`/`await` syntax
+
+E.g. `fetch` in ES6 style
+
+```Javascript
+const callback = (res) => console.log('res', res);
+function getComments(callback) {
+  return fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
+    .then(response => response.json())
+    .then(responseJson => {
+        // Test error handling
+        // throw new Error('Test error!');
+      return callback(responseJson);
+    })
+    .catch(console.error);
+}
+
+getComments(callback);
+```
+
+`fetch` in ES8 style
+
+```Javascript
+async function getComments() {
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts/1/comments');
+    const responseJson = await response.json();
+    // Test error handling
+    // throw new Error('Test error!');
+    return responseJson;
+}
+
+try {
+    const res = await getComments();
+    console.log('res', res);
+} catch (error) {
+    console.error(error);
+}
+```
+
+Example 2, `Promise.all` in ES6 style
+
+```Javascript
+const URLs = [
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/comments',
+    'https://jsonplaceholder.typicode.com/albums'
+];
+
+Promise.all(URLs.map(url => {
+    return fetch(url).then(response => response.json());
+})).then(results => {
+    console.log("Posts:", results[0]);
+    console.log("Comments:", results[1]);
+    console.log("Albums:", results[2]);
+}).catch(() => console.log('Failed to fetch data.'));
+```
+
+`Promise.all` in ES8 style
+
+```Javascript
+const URLs = [
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/comments',
+    'https://jsonplaceholder.typicode.com/albums'
+];
+
+try {
+    const [posts, comments, albums] = await Promise.all(URLs.map(url => {
+    return fetch(url).then(response => response.json());
+}));
+    console.log("Posts:", posts);
+    console.log("Comments:", comments);
+    console.log("Albums:", albums);
+} catch (err) {
+    console.log('Failed to fetch data.');
+}
 ```
 
 ## Reference
 
 -   [Advanced Javascript concepts](https://www.udemy.com/course/advanced-javascript-concepts/)
 
-[loupe]: http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
-
-```
-
-```
+[loupe]: http://latentflip.com/loupe/
