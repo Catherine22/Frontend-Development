@@ -966,7 +966,7 @@ Promise.all(URLs.map(url => {
     console.log("Posts:", results[0]);
     console.log("Comments:", results[1]);
     console.log("Albums:", results[2]);
-}).catch(() => console.log('failed to fetch data.'));
+}).catch(() => console.log('Failed to fetch data.'));
 ```
 
 ## ECMAScript
@@ -981,7 +981,7 @@ Promise.all(URLs.map(url => {
 
 `async`/`await` syntax
 
-E.g. React Native `fetch` in ES6 style
+E.g. `fetch` in ES6 style
 
 ```Javascript
 const callback = (res) => console.log('res', res);
@@ -999,7 +999,7 @@ function getComments(callback) {
 getComments(callback);
 ```
 
-In ES8 style
+`fetch` in ES8 style
 
 ```Javascript
 async function getComments() {
@@ -1015,6 +1015,45 @@ try {
     console.log('res', res);
 } catch (error) {
     console.error(error);
+}
+```
+
+Example 2, `Promise.all` in ES6 style
+
+```Javascript
+const URLs = [
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/comments',
+    'https://jsonplaceholder.typicode.com/albums'
+];
+
+Promise.all(URLs.map(url => {
+    return fetch(url).then(response => response.json());
+})).then(results => {
+    console.log("Posts:", results[0]);
+    console.log("Comments:", results[1]);
+    console.log("Albums:", results[2]);
+}).catch(() => console.log('Failed to fetch data.'));
+```
+
+`Promise.all` in ES8 style
+
+```Javascript
+const URLs = [
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/comments',
+    'https://jsonplaceholder.typicode.com/albums'
+];
+
+try {
+    const [posts, comments, albums] = await Promise.all(URLs.map(url => {
+    return fetch(url).then(response => response.json());
+}));
+    console.log("Posts:", posts);
+    console.log("Comments:", comments);
+    console.log("Albums:", albums);
+} catch (err) {
+    console.log('Failed to fetch data.');
 }
 ```
 
