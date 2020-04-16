@@ -281,9 +281,9 @@ $ssh -i test.pem ec2-user@52.90.31.225
 2. Install and start up docker
 
 ```shell
-$ sudo yum update -y
-$ sudo yum install docker -y
-$ sudo service docker start
+$sudo yum update -y
+$sudo yum install docker -y
+$sudo service docker start
 ```
 
 3. Pull and run the verdaccio docker image (You can change the first 4873 to whatever port you want, like 80)
