@@ -31,6 +31,9 @@ JS: Programming capabilities
     -   [Promise Chaining](#promise-chaining)
     -   [Promise.all](#promise-all)
 -   [ECMAScript](#ecmascript)
+    -   [ES6](#es6)
+    -   [ES7](#es7)
+    -   [ES8](#es8)
 -   [Reference](#Reference)
 
 ## ESLint and Prettier
@@ -971,13 +974,32 @@ Promise.all(URLs.map(url => {
 
 ## ECMAScript
 
-### ECMAScript
+### ES6
 
--   ES6, ECMAScript 2015
+ES6, ECMAScript 2015
 
 [ES6 Overview](http://es6-features.org/#Constants)
 
--   ES8, ECMAScript 2017
+-   separate an array
+
+Let's say you have an function with four arguments available.
+
+```Javascript
+function sum (a, b, c, d) {
+    return a + b + c + d;
+}
+```
+
+You can stuff arguments from an array with retrieving each one.
+
+```Javascript
+const arr = [1, 2, 3, 4];
+sum(...arr); // 10
+```
+
+### ES8
+
+ES8, ECMAScript 2017
 
 `async`/`await` syntax
 
@@ -1057,8 +1079,84 @@ try {
 }
 ```
 
+### ES9
+
+ES9, ECMAScript 2018
+
+-   Object spread operator
+
+Let's say you have an object myGarage
+
+```Javascript
+const myGarage = {
+    sedan: 'Tesla',
+    suv: 'Land Rover',
+    sportsCar: 'Lamborghini'
+}
+```
+
+With object spread operator, you can separate the object effortlessly
+
+```Javascript
+const { sedan, ...rest } = myGarage;
+console.log(sedan); // 'Tesla'
+console.log(rest); // {suv: "Land Rover", sportsCar: "Lamborghini"}
+```
+
+-   For await of
+
+In ES8, you can have `Promise.all` like this:
+
+```Javascript
+const URLs = [
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/comments',
+    'https://jsonplaceholder.typicode.com/albums'
+];
+
+try {
+    const [posts, comments, albums] = await Promise.all(URLs.map(url => {
+    return fetch(url).then(response => response.json());
+}));
+    console.log("Posts:", posts);
+    console.log("Comments:", comments);
+    console.log("Albums:", albums);
+} catch (err) {
+    console.log('Failed to fetch data.');
+}
+```
+
+Here is what you can do in ES9,
+
+```Javascript
+const URLs = [
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/comments',
+    'https://jsonplaceholder.typicode.com/albums'
+];
+
+const arrayOfPromises = URLs.map(url => fetch(url));
+const responses = [];
+for await (let request of arrayOfPromises) {
+    const response = await request.json();
+    responses.push(response);
+}
+
+console.log("Posts:", responses[0]);
+console.log("Comments:", responses[1]);
+console.log("Albums:", responses[2]);
+```
+
 ## Reference
 
 -   [Advanced Javascript concepts](https://www.udemy.com/course/advanced-javascript-concepts/)
 
 [loupe]: http://latentflip.com/loupe/
+
+```
+
+```
+
+```
+
+```
