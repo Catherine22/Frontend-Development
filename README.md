@@ -27,6 +27,8 @@
 -   [Tooling and Useful Dependencies](#tooling-and-useful-dependencies)
     -   [Storybook](#storybook)
     -   [Verdaccio](#verdaccio)
+-   [Security](#security)
+    -   [OWASP Top 10 Web Application Security Risks](#owasp-top-10-web-application-security-risks)
 -   [Testing](#testing)
     -   [Unit Testing](#unit-testing)
     -   [End-to-end Testing](#end-to-end-testing)
