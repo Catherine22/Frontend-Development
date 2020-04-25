@@ -6,9 +6,15 @@
     -   [Environment and Tools](#environment-and-tools)
     -   [URL Structure](#url-structure)
     -   [SEO](#seo)
-    -   [UX](#ux)
     -   [Redirect](#redirect)
     -   [Reactive Web Applications](#reactive-web-applications)
+-   [UI/UX](#ui-ux)
+    -   [Responsive Web Design](#responsive-web-design)
+    -   [Adaptive Web Design](#adaptive-web-design)
+    -   [More resources](#more-resources)
+-   [HTML](#html)
+-   [CSS](#css)
+    -   [SASS and SCSS](#scss-and-scss)
 -   [JavaScript](#javaScript)
     -   [Style Guide](#style-guide)
     -   [ECMAScript](#ecmaScript)
@@ -43,7 +49,7 @@
 1. Chrome
 2. Node.js
 3. Visual Studio Code
-4. Visual Studio Code extensions (Eslint, HTML Snippets, Prettier, Copy Relative Path, TabNine, etc.)
+4. Visual Studio Code extensions (Eslint, Beautify, Prettier, Copy Relative Path, Code Spell Checker, Live Server, TabNine, etc.)
 
 ### URL Structure
 
@@ -52,14 +58,6 @@
 ### SEO
 
 [SEO Starter Guide]
-
-### UX
-
-1. [Why rounding odd font sizes to even?]
-2. [The 8-Point Grid System]
-3. Image size
-    - Your image size should not be larger than for example, 1200px, it depends on laptops and PCs' screen resolution.
-4. [HTML5 Semantic Elements]
 
 ### Redirect
 
@@ -70,6 +68,34 @@
 ### Reactive Web Applications
 
 [RWA Gallery]
+
+## UI/UX
+
+### Responsive Web Design
+
+### Adaptive Web Design
+
+### More Resources
+
+-   [Why rounding odd font sizes to even?]
+-   [The 8-Point Grid System]
+-   Image size
+    -   Your image size should not be larger than for example, 1200px, it depends on laptops and PCs' screen resolution.
+-   [HTML5 Semantic Elements]
+
+## HTML
+
+To see what HTML tags you need to know, see [index.html](index.html)
+
+Tips:
+
+-   With VS Code, instead of write your first HTML file line by line, type `!` and hit enter to create a default HTML code snippet.
+-   Install VS Code extension - Live Server, you can right click on your HTML file, and click "Open with Live Server" to exhibit your HTML in your browser.
+-   If you want to generate some dummy texts, you can type `lorem` and hit enter. And if you want to fill in 10 words for example, you can type `loren10` and hit enter
+
+## CSS
+
+### SASS and SCSS
 
 ## JavaScript
 
