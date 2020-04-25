@@ -4,6 +4,7 @@
     <!--Head is the information about your page, doesn't actually display in the browser-->
     <head>
         <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!--Description is what user sees when they google for the website-->
         <meta
@@ -22,6 +23,7 @@
     </head>
     <body>
         <!--Headings-->
+        <h2>Headings</h2>
         <!--It's good practice to have only one h1 per page-->
         <h1>(H1) Best quinceañera planner in Miami</h1>
         <!--The other headings, you can have as many as you want per page-->
@@ -39,6 +41,7 @@
             br: line break
             hr: horizontal line
         -->
+        <h2>Paragraphs</h2>
         <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam
             culpa enim tenetur repellendus nobis, vero cum accusantium aut eaque
@@ -47,6 +50,94 @@
             recusandae aperiam, <del>magni veritatis deserunt quo quas quaerat minus</del>
             excepturi molestiae eveniet dolore vel libero<br />repudiandae? <hr/>
         </p>
-        <!--Typography-->
+
+        <!--
+            Inline elements: The inline elements will be put in the same line by default.
+            Including: <a/>, <img/>
+        -->
+        <h2>Inline elements</h2>
+        <p>
+            <!--Internal link-->
+            <a href="https://www.bbc.com/news">BBC News</a>
+        </p>
+        <p>
+            <!--External link: Open in new tab-->
+            <a href="https://www.bbc.com/news" target="_blank">Open BBC News in new tab</a>
+        </p>
+
+        <p>
+            <!--Local image-->
+            <img src="/screenshots/cats.jpg" alt="cats" width="500"/>
+            <!--Remote image-->
+            <img src="https://source.unsplash.com/450x300/?building" alt="random image" width="500"/>
+        </p>
+
+        <h2>List & Table</h2>
+        <!--Unordered list-->
+        <ul>
+            <li>item 1</li>
+            <li>item 2</li>
+            <li>item 3</li>
+            <li>item 4</li>
+            <li>item 5</li>
+        </ul>
+
+        <!--Ordered list: You could add type (1, A, a, I, i)-->
+        <ol type="I">
+            <li>item 1</li>
+            <li>item 2</li>
+            <li>item 3</li>
+            <li>item 4</li>
+        </ol>
+
+        <!--Nested list-->
+        <ul>
+            <li>item 1</li>
+            <li>item 2</li>
+            <ul>
+                <li>child 1</li>
+                <li>child 2</li>
+                <li>child 3</li>
+            </ul>
+            <li>item 3</li>
+            <li>item 4</li>
+            <li>item 5</li>
+        </ul>
+
+        <!--Tables-->
+        <table>
+            <!--Table head-->
+            <thread>
+                <!--Table row-->
+                <tr>
+                    <!--Table head (head only)-->
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Emails</th>
+                </tr>
+            </thread>
+            <!--Table body-->
+            <tbody>
+                <!--Table row-->
+                <tr>
+                    <!--Table head (body only)-->
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>jdoe@gmail.com</td>
+                </tr>   
+                <tr>
+                    <!--Table head (body only)-->
+                    <td>Kate</td>
+                    <td>Smith</td>
+                    <td>kate@gmail.com</td>
+                </tr>   
+                <tr>
+                    <!--Table head (body only)-->
+                    <td>Jeff</td>
+                    <td>Wilson</td>
+                    <td>jeff@gmail.com</td>
+                </tr>                
+            </tbody>
+        </table>
     </body>
 </html>

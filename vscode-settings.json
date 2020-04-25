@@ -25,5 +25,22 @@
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
-    "cSpell.userWords": ["cognito"]
+    "cSpell.userWords": [
+        "analytics",
+        "cognito",
+        "failover",
+        "lifecycle",
+        "microservices",
+        "parallelize",
+        "parellelize",
+        "protobuf",
+        "prototypal",
+        "speakeasies",
+        "speakeasy",
+        "timeout",
+        "toolchain",
+        "tuple",
+        "versioning",
+        "webinar"
+    ]
 }

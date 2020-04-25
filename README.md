@@ -49,7 +49,11 @@
 1. Chrome
 2. Node.js
 3. Visual Studio Code
-4. Visual Studio Code extensions (Eslint, Beautify, Prettier, Copy Relative Path, Code Spell Checker, Live Server, TabNine, etc.)
+4. Useful VS Code tips:
+    - If you want to generate some dummy texts, you can type `lorem` and hit enter. And if you want to fill in 10 words for example, you can type `loren10` and hit enter
+    - To copy the whole line and paste right below, you can use `option` + `shift` + down arrow
+    - Useful extensions you might need: Eslint, Beautify, Prettier, Copy Relative Path, Code Spell Checker, Live Server, TabNine, etc.
+    - Create your own VS Code settings by hitting `command` + `shift` + `p` to open settings (JSON), and paste the content from [vscode-settings.json](vscode-settings.json)
 
 ### URL Structure
 
@@ -91,7 +95,6 @@ Tips:
 
 -   With VS Code, instead of write your first HTML file line by line, type `!` and hit enter to create a default HTML code snippet.
 -   Install VS Code extension - Live Server, you can right click on your HTML file, and click "Open with Live Server" to exhibit your HTML in your browser.
--   If you want to generate some dummy texts, you can type `lorem` and hit enter. And if you want to fill in 10 words for example, you can type `loren10` and hit enter
 
 ## CSS
 
@@ -214,7 +217,8 @@ fetch('https://foo.com/data.json'), {
 
 ### Storybook
 
-A tool to manage your UI components, make it easier to share components between web apps.
+A tool to manage your UI components, make it easier to share components between web apps.  
+You can stuff all your components in a storybook project, and publish each of them to npm (or if you prefer verdaccio).
 
 [vue-storybook]
 
