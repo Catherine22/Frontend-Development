@@ -27,6 +27,8 @@
 -   [Tooling and Useful Dependencies](#tooling-and-useful-dependencies)
     -   [Storybook](#storybook)
     -   [Verdaccio](#verdaccio)
+-   [Security](#security)
+    -   [OWASP Top 10 Web Application Security Risks](#owasp-top-10-web-application-security-risks)
 -   [Testing](#testing)
     -   [Unit Testing](#unit-testing)
     -   [End-to-end Testing](#end-to-end-testing)
@@ -76,32 +78,6 @@ For more information, see [JavaScript Tutorials]
 ### Style Guide
 
 For more information, see [Google JavaScript Style Guide]
-
-```Javascript
-window.addEventListener('load', (event: any) => {
-    event.waitUntil(navigator.serviceWorker.register('/service-worker.js')
-    .then(register => {
-      console.log('Registered!');
-    }).catch(error => {
-      console.warn(error);
-    })
-});
-```
-
-In ES2017 style
-
-```Javascript
-window.addEventListener('load', (event: any) => {
-    try {
-        const register = async () => {
-            await navigator.serviceWorker.register('/service-worker.js');
-        };
-        event.waitUntil(register());
-    } catch (error) {
-        console.warn(error);
-    }
-});
-```
 
 ## Popular JS Frameworks
 
@@ -219,6 +195,50 @@ A tool to manage your UI components, make it easier to share components between 
 ### Verdaccio
 
 A lightweight private npm proxy registry to help you build your private npm registry.
+
+#### Get started
+
+1. You will need an running EC2 instance, and ssh into it.
+
+```shell
+$chmod 0400 test.pem
+$ssh -i test.pem ec2-user@52.90.31.225
+```
+
+2. Install and start up docker
+
+```shell
+$sudo yum update -y
+$sudo yum install docker -y
+$sudo service docker start
+```
+
+3. Pull and run the verdaccio docker image (You can change the first 4873 to whatever port you want, like 80)
+
+```shell
+$sudo docker pull verdaccio/verdaccio
+$sudo docker run -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio
+```
+
+4. Back to your EC2 console, add 4873 port as inbound rule to the security group of the running instance. To access your private npm registry, type `http://YOUR_INSTANCE_PUBLIC_IP:VERDACCIO_PORT` (`http://52.90.31.225:4873/` in this case) in your browser.
+
+5. In your computer (where you development or publish dependencies), update your npm settings
+
+```shell
+$npm set registry http://52.90.31.225:4873
+```
+
+6. Create a new account
+
+```shell
+$npm adduser --registry http://52.90.31.225:4873
+```
+
+7. Back to `http://52.90.31.225:4873` to see if you could log in successfully.
+
+8. Publish your node dependency by executing `$npm publish --registry http://52.90.31.225:4873`
+
+9. Pull your own dependency by executing `$npm install YOUR_DEPENDENCY_NAME`
 
 ## Testing
 

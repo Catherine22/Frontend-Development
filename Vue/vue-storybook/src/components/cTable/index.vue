@@ -49,7 +49,7 @@
     </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue';
 export default Vue.extend({
     name: 'cTable',
@@ -90,10 +90,10 @@ export default Vue.extend({
         };
     },
     methods: {
-        onPageSizeChange(newSize: number) {
+        onPageSizeChange(newSize) {
             console.log(`${newSize} items per page`);
         },
-        goToPage(index: number) {
+        goToPage(index) {
             console.log(`current page: ${index}`);
         },
         getPageSize() {
@@ -116,11 +116,11 @@ export default Vue.extend({
             console.log('dataset', value);
         },
         selectAll(value) {
-            this.selectRows = this.selectRows.map((row: boolean) => value);
+            this.selectRows = this.selectRows.map(row => value);
         },
         selectRows(value) {
             let count = 0;
-            value.forEach((row: boolean) => {
+            value.forEach(row => {
                 row && count++;
             });
 

@@ -1,41 +1,17 @@
 # vue-storybook
 
-## Project setup
+## Publish components in your storybook
 
-```
-yarn install
-```
+1. Set up your private npm proxy with [Verdaccio](https://verdaccio.org/)
 
-### Compiles and hot-reloads for development
+2. Add your private npm proxy address to [modularize.js](#modularize.js)
 
-```
-yarn serve
+```Javascript
+const REGISTRY = 'https://xxx.xxx.xxx';
 ```
 
-### Compiles and minifies for production
+3. Switch to the directory of your component. E.g. src/components/cTable/
 
+```bash
+$npm publish cTable
 ```
-yarn build
-```
-
-### Run your unit tests
-
-```
-yarn test:unit
-```
-
-### Run your end-to-end tests
-
-```
-yarn test:e2e
-```
-
-### Lints and fixes files
-
-```
-yarn lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).

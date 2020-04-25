@@ -14,7 +14,7 @@
     </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue';
 import cTable from '@/components/cTable/index.vue';
 export default Vue.extend({
@@ -109,16 +109,16 @@ export default Vue.extend({
         };
     },
     methods: {
-        onItemClick(rowData: any, property: any) {
+        onItemClick(rowData, property) {
             alert(`${property.name}: ${rowData[property.key]}`);
         },
-        onCheckboxChanged(checkboxes: []) {
+        onCheckboxChanged(checkboxes) {
             console.log('onCheckboxChanged', checkboxes);
         },
-        onOffsetChanged(newOffset: Number) {
+        onOffsetChanged(newOffset) {
             console.log('onOffsetChanged', newOffset);
         },
-        onLimitChanged(newLimit: Number) {
+        onLimitChanged(newLimit) {
             console.log('onLimitChanged', newLimit);
         },
         onExport() {
