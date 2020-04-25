@@ -77,55 +77,6 @@ For more information, see [JavaScript Tutorials]
 
 For more information, see [Google JavaScript Style Guide]
 
-### ECMAScript
-
--   ES6
-
-[ES6 Overview](http://es6-features.org/#Constants)
-
--   ES2017
-
-Replace Promise chain to `async`/`await`
-
-E.g. `fetch` API
-
-```Javascript
-function getMoviesFromApiAsync() {
-  return fetch('https://facebook.github.io/react-native/movies.json')
-    .then((response) => {
-      // response.ok: status in the range 200-299
-      if (!response.ok) throw response.statueText;
-      return response.json();
-    })
-    .then((responseJson) => {
-      return responseJson.movies;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
-```
-
-`fetch` in ES2017 style
-
-```Javascript
-async function getMoviesFromApi() {
-  try {
-    let response = await fetch(
-      'https://facebook.github.io/react-native/movies.json',
-    );
-    if (!response.ok) throw response.statueText;
-
-    let responseJson = await response.json();
-    return responseJson.movies;
-  } catch (error) {
-    console.error(error);
-  }
-}
-```
-
-E.g. Add a event listener to window
-
 ```Javascript
 window.addEventListener('load', (event: any) => {
     event.waitUntil(navigator.serviceWorker.register('/service-worker.js')
