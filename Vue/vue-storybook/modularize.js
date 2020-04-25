@@ -108,9 +108,9 @@ exec(
             error => error && showError(chalk.red(ERR, error))
         );
         const versions = standardConf.version.split('.');
-        const minerVersion = versions[versions.length - 1];
+        const patchVersion = parseInt(versions[versions.length - 1]);
         const publishCmd =
-            minerVersion === '0'
+            patchVersion === 0
                 ? `npm publish --registry ${REGISTRY}`
                 : `npm version patch --no-git-tag-version && npm publish --registry ${REGISTRY}`;
         exec(publishCmd, { cwd: `${root}/dist/temp` }, error => {

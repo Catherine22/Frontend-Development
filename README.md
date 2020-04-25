@@ -95,6 +95,7 @@ Tips:
 
 -   With VS Code, instead of write your first HTML file line by line, type `!` and hit enter to create a default HTML code snippet.
 -   Install VS Code extension - Live Server, you can right click on your HTML file, and click "Open with Live Server" to exhibit your HTML in your browser.
+-   To create a `<button type=xxx/>`, you could type `button:xxx` and hit enter. E.g. You have types such as `submit`, `reset`, etc.
 
 ## CSS
 
