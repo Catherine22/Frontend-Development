@@ -54,6 +54,11 @@
     - To copy the whole line and paste right below, you can use `option` + `shift` + down arrow
     - Useful extensions you might need: Eslint, Beautify, Prettier, Copy Relative Path, Code Spell Checker, Live Server, TabNine, etc.
     - Create your own VS Code settings by hitting `command` + `shift` + `p` to open settings (JSON), and paste the content from [vscode-settings.json](vscode-settings.json)
+    - Move up/down the whole line by clicking `option` + up/down arrow
+5. Useful Mac keyboard shortcuts:
+    - Find and select the next same word: select what word you are looking for, e.g. radio, press `command` + `D`, it will select the next "radio" as well. Then you can modify them at the same time.
+    - Move to previous/next word: `option` + left/right arrow
+    - Move to the start/end of the sentence: `command` + left/right arrow
 
 ### URL Structure
 
@@ -92,7 +97,10 @@
 Examples:
 
 1. Go through the basis: [index.html](HTML/index.html)
-2. Basic index page with a little CSS: [navBar.html](HTML/navBar.html)
+2. Basic index page with a little CSS and HTML5 semantic tags: [collStuff.html](HTML/collStuff.html)
+
+![semantic tags](../screenshots/h5.png)
+The main semantic tags
 
 Tips:
 
