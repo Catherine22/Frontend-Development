@@ -8,13 +8,13 @@
     -   [SEO](#seo)
     -   [Redirect](#redirect)
     -   [Reactive Web Applications](#reactive-web-applications)
--   [UI/UX](#ui-ux)
+-   [UI/UX](#uiux)
     -   [Responsive Web Design](#responsive-web-design)
     -   [Adaptive Web Design](#adaptive-web-design)
     -   [More resources](#more-resources)
 -   [HTML](#html)
 -   [CSS](#css)
-    -   [SASS and SCSS](#scss-and-scss)
+    -   [SASS & SCSS](#sass-&-scss)
 -   [JavaScript](#javaScript)
     -   [Style Guide](#style-guide)
     -   [ECMAScript](#ecmaScript)
@@ -89,17 +89,18 @@
 
 ## HTML
 
-To see what HTML tags you need to know, see [index.html](index.html)
+To see what HTML tags you need to know, see [index.html](HTML/index.html)
 
 Tips:
 
 -   With VS Code, instead of write your first HTML file line by line, type `!` and hit enter to create a default HTML code snippet.
 -   Install VS Code extension - Live Server, you can right click on your HTML file, and click "Open with Live Server" to exhibit your HTML in your browser.
 -   To create a `<button type=xxx/>`, you could type `button:xxx` and hit enter. E.g. You have types such as `submit`, `reset`, etc.
+-   To create a HTML tag with id, you could type, for example, `h1#about` and hit enter, it will automatically generate a `<h1 id="about"></h1>`. A special case is `div`, which you only need to type `#your_id`
 
 ## CSS
 
-### SASS and SCSS
+### SASS & SCSS
 
 ## JavaScript
 
