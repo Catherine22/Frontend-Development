@@ -119,6 +119,9 @@ selector {
 }
 ```
 
+-   3 ways to implement CSS in your html file: [html](implementation/index.html), [css](implementation/style.css)
+-   Global CSS, id and class: [html](fundamentals/index.html), [css](fundamentals/style.css)
+
 ### SASS & SCSS
 
 ## JavaScript
