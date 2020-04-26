@@ -111,6 +111,14 @@ Tips:
 
 ## CSS
 
+CSS structure:
+
+```css
+selector {
+    property: value;
+}
+```
+
 ### SASS & SCSS
 
 ## JavaScript
