@@ -89,7 +89,10 @@
 
 ## HTML
 
-To see what HTML tags you need to know, see [index.html](HTML/index.html)
+Examples:
+
+1. Go through the basis: [index.html](HTML/index.html)
+2. Basic index page with a little CSS: [navBar.html](HTML/navBar.html)
 
 Tips:
 

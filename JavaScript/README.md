@@ -67,6 +67,7 @@ JS: Programming capabilities
     "prettier.jsxBracketSameLine": false,
     "prettier.jsxSingleQuote": false,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "html.format.wrapAttributes": "auto",
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     }
