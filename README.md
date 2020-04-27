@@ -80,6 +80,29 @@
 
 ## UI/UX
 
+### Fonts
+
+-   Using Web Safe Fonts or you will need to import extra font resources. [Link](https://www.w3schools.com/cssref/css_websafe_fonts.asp). E.g.
+    -   Serif font has edges
+    -   Sans serif font is flat, looks neater and more modern.
+-   You could embed fonts, for example, [google fonts](https://https://fonts.google.com/). E.g.
+    -   Roboto
+
+In your html file
+
+```html
+<link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+    rel="stylesheet"
+/>
+```
+
+In your css file
+
+```css
+font-family: 'Roboto', sans-serif;
+```
+
 ### Responsive Web Design
 
 ### Adaptive Web Design
@@ -120,7 +143,27 @@ selector {
 ```
 
 -   3 ways to implement CSS in your html file: [html](implementation/index.html), [css](implementation/style.css)
--   Global CSS, id and class: [html](fundamentals/index.html), [css](fundamentals/style.css)
+-   Decorate HTML by tag, id and class: [html](fundamentals/index.html), [css](fundamentals/style.css)
+-   Fonts: [html](fonts/index.html), [css](fonts/style.css)
+
+### CSS Units
+
+-   Absolute units:
+
+    -   cm: centimetres
+    -   mm: millimetres
+    -   in: inches
+    -   **px: pixels (1px = 1/96th of 1in)**
+    -   pt: points (1pt = 1/72 of 1in)
+    -   pc: picas picas (1pc = 12 pt)
+
+-   Relative units:
+
+    -   %: to percent element
+    -   em: to font size of parent element (E.g. your parent font size is 16, 1.2em = 16 \* 1.2)
+    -   **rem: to font size of root element**
+    -   vm: to 1% of viewport width
+    -   vh: to 1% of viewport height
 
 ### SASS & SCSS
 
