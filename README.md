@@ -145,6 +145,7 @@ selector {
 -   3 ways to implement CSS in your html file: [html](implementation/index.html), [css](implementation/style.css)
 -   Decorate HTML by tag, id and class: [html](fundamentals/index.html), [css](fundamentals/style.css)
 -   Fonts: [html](fonts/index.html), [css](fonts/style.css)
+-   Colours: [html](colours/index.html), [css](colours/style.css)
 
 ### CSS Units
 
