@@ -14,6 +14,7 @@
     -   [More resources](#more-resources)
 -   [HTML](#html)
 -   [CSS](#css)
+    -   [CSS Units](#css-units)
     -   [SASS & SCSS](#sass-&-scss)
 -   [JavaScript](#javaScript)
     -   [Style Guide](#style-guide)
@@ -120,9 +121,9 @@ font-family: 'Roboto', sans-serif;
 Examples:
 
 1. Go through the basis: [index.html](HTML/index.html)
-2. Basic index page with a little CSS and HTML5 semantic tags: [collStuff.html](HTML/collStuff.html)
+2. Basic index page with a little CSS and HTML5 semantic tags: [coolStuff.html](HTML/coolStuff.html)
 
-![semantic tags](../screenshots/h5.png)
+![semantic tags](screenshots/h5.png)
 The main semantic tags
 
 Tips:
@@ -142,10 +143,10 @@ selector {
 }
 ```
 
--   3 ways to implement CSS in your html file: [html](implementation/index.html), [css](implementation/style.css)
--   Decorate HTML by tag, id and class: [html](fundamentals/index.html), [css](fundamentals/style.css)
--   Fonts: [html](fonts/index.html), [css](fonts/style.css)
--   Colours: [html](colours/index.html), [css](colours/style.css)
+-   3 ways to implement CSS in your html file: [html](CSS/implementation/index.html), [css](iCSS/mplementation/style.css)
+-   Decorate HTML by tag, id and class: [html](CSS/fundamentals/index.html), [css](CSS/fundamentals/style.css)
+-   Fonts: [html](CSS/fonts/index.html), [css](CSS/fonts/style.css)
+-   Colours: [html](CSS/colours/index.html), [css](CSS/colours/style.css)
 
 ### CSS Units
 
