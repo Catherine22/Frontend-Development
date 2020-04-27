@@ -1,9 +1,38 @@
-* {
+body {
+    color: #4d3f5a;
     background-color: rgb(211, 210, 215);
 }
+section {
+    background-color: white;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+}
 h2 {
-    color: #4d3f5a;
+    color: grey;
 }
 span {
     color: #de585a;
+}
+p {
+    text-align: justify;
+}
+#banner {
+    background-image: url('https://source.unsplash.com/800x200/?buildings');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    /* All the above styles can be combined into a single style */
+    /* background: url('https://source.unsplash.com/800x200/?buildings') no-repeat
+        center top/cover; */
+    height: 400px;
+    margin: -8px;
+    margin-bottom: 40px;
+}
+#s2 {
+    background: url('woman_face.png') no-repeat;
+    background-attachment: fixed;
+}
+#s2 p {
+    color: white;
 }
