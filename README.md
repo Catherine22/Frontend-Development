@@ -29,6 +29,7 @@
     -   [CDD](#cdd)
 -   [Progressive Web App](#progressive-web-app)
     -   [Service Workers](#service-workers)
+    -   [Lifecycle Events](#lifecycle-events)
     -   [Lighthouse](#lighthouse)
 -   [AMP](#amp)
 -   [Tooling and Useful Dependencies](#tooling-and-useful-dependencies)
@@ -246,12 +247,32 @@ Demo: [pwa], [vue-pwa]
     1. Create a sw.js (your service worker) in root directory to allow html files to access it globally
     2. Register your sw.js with the browser (You will do this in your app.js file, not in sw.js)
     3. [install event] The browser installs your service worker and running on the service worker thread. This install event only runs once when the service worker is registered
-    4. [active event] If success, you get an active event
+    4. [activate event] If success, you get an activate event
     5. This service worker starts listening other events such as `fetch`
 -   Your service worker will not be installed if no changes of sw.js
 -   Service workers only work on HTTPS domains, but localhost is an exception to the rule.
+-   Service workers are likely the proxy between browser and servers. When your PWA fetch resources from any server, it catches the fetch event.
+-   It will be super helpful the have "update on reload" selected during development (In debugger tool -> application -> service)
+-   To make your Android emulator in `localhost`, In debugger tool -> three dots -> More tools -> Remote devices -> Port forwarding -> 5500, localhost:5500 and enabled port forwarding. If you meet all the "Add to Home Screen" criteria, you will see the prompt on your Android device.
 
-![sw](screenshots/sw.png)
+#### Lifecycle Events
+
+-   Install:
+    -   **If this install event does not be triggered, it may be because the service worker has been installed already**.
+    -   To install again, you must change this file or in debugger tool -> application -> service worker -> Unregister
+-   Activate:
+    -   If this activate event does not be triggered, it may be because the service worker has been installed already.
+    -   In debugger tool -> application -> service, you will see the service worker is waiting for activate
+    -   **Browser does not automatically re-activate installed service**. To solve this, there are two solutions:
+        -   Close the tab, and reopen it in another tab.
+        -   In debugger tool -> application -> service, click on "skipWaiting" or have "Update on reload" selected
+-   Fetch
+    -   This service worker is actually act as a proxy between browser and a server.
+    -   This event is triggered when your PWA fetch resources from your server
+
+### Add to Home Screen
+
+-   This works when you meet all the [criteria](https://web.dev/install-criteria/)
 
 ### Lighthouse
 

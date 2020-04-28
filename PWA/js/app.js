@@ -1,4 +1,5 @@
-/* Not every browser supports service worker
+/**
+ * Not every browser supports service worker
  * Can I use...: https://caniuse.com/#search=service%20workers
  */
 if ('serviceWorker' in navigator) {
