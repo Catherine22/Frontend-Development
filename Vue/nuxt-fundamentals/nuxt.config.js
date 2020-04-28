@@ -1,4 +1,5 @@
-export default {
+/* eslint-disable nuxt/no-cjs-in-config */
+module.exports = {
     mode: 'universal',
     /*
      ** Headers of the page
@@ -27,37 +28,20 @@ export default {
     /*
      ** Plugins to load before mounting the App
      */
-    plugins: ['@/plugins/element-ui'],
+    plugins: ['@/plugins/element-ui', '@/plugins/api'],
     /*
      ** Nuxt.js dev-modules
      */
-    buildModules: [
-        // Doc: https://github.com/nuxt-community/eslint-module
-        '@nuxtjs/eslint-module'
-    ],
+    buildModules: ['@nuxtjs/eslint-module'],
     /*
      ** Nuxt.js modules
      */
-    modules: [
-        // Doc: https://axios.nuxtjs.org/usage
-        '@nuxtjs/axios',
-        '@nuxtjs/pwa',
-        // Doc: https://github.com/nuxt-community/dotenv-module
-        '@nuxtjs/dotenv'
-    ],
-    /*
-     ** Axios module configuration
-     ** See https://axios.nuxtjs.org/options
-     */
-    axios: {},
+    modules: ['@nuxtjs/axios', '@nuxtjs/pwa', '@nuxtjs/dotenv'],
     /*
      ** Build configuration
      */
     build: {
         transpile: [/^element-ui/],
-        /*
-         ** You can extend webpack config here
-         */
         extend(config, ctx) {}
     }
 };

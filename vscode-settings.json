@@ -22,8 +22,26 @@
     "prettier.jsxBracketSameLine": false,
     "prettier.jsxSingleQuote": false,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "html.format.wrapAttributes": "auto",
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
-    "cSpell.userWords": ["cognito"]
+    "cSpell.userWords": [
+        "analytics",
+        "cognito",
+        "failover",
+        "lifecycle",
+        "microservices",
+        "parallelize",
+        "parellelize",
+        "protobuf",
+        "prototypal",
+        "speakeasies",
+        "speakeasy",
+        "timeout",
+        "toolchain",
+        "tuple",
+        "versioning",
+        "webinar"
+    ]
 }

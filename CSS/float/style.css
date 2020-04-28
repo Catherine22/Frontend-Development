@@ -1,0 +1,12 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+p {
+    line-height: 1.4em;
+}
+.container {
+    /* To centre an item horizontally: a fixed max-width + margin: auto */
+    /* The reason you should always use max-width rather than a simple width is that it will be horrible in responsive website design */
+    max-width: 960px;
+    margin: auto;
+}

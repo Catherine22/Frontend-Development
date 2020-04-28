@@ -1,0 +1,43 @@
+body {
+    background-color: #27292d;
+}
+* {
+    color: #e8e8e8;
+}
+nav {
+    position: absolute;
+    top: 32px;
+    right: 8px;
+    display: inline-block;
+}
+nav a {
+    margin-left: 16px;
+    line-height: 24px;
+}
+a {
+    color: #f8cd55;
+}
+p,
+li,
+div {
+    color: #919191;
+}
+.main_header {
+    height: 72px;
+}
+.main_header h1 {
+    position: absolute;
+    display: inline-block;
+}
+.main_header h1 span {
+    color: #919191;
+}
+.card {
+    border-top: 1px solid #383b40;
+    padding: 16px;
+    margin-bottom: 8px;
+    background-color: #1f2023;
+}
+.enhance {
+    color: #c7a1cb;
+}

@@ -1,0 +1,55 @@
+.el-pagination {
+    span:not([class*='suffix']) {
+        vertical-align: middle;
+        font-size: 14px;
+        color: #2b2e3e;
+    }
+    .el-pager li,
+    .btn-prev,
+    .btn-next {
+        padding: 0;
+        text-align: center;
+        margin: 0 2px;
+        min-width: inherit;
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        color: #2b2e3e;
+        font-weight: initial;
+        border: 1px solid #cccccc;
+        border-radius: 50%;
+        box-sizing: border-box;
+        vertical-align: middle;
+
+        &:hover {
+            color: #42b983;
+            border: 1px solid #42b983;
+        }
+
+        &:disabled {
+            background-color: #f4f4f4;
+            color: #c0c4cc;
+            &:hover {
+                color: #c0c4cc;
+                border: 1px solid #cccccc;
+            }
+        }
+    }
+    .el-pager li.active {
+        background-color: #42b983;
+        color: white;
+        border: 1px solid #42b983;
+    }
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}
+.el-checkbox__input.is-checked {
+    border-color: #42b983;
+    .el-checkbox__inner {
+        background-color: #42b983;
+    }
+}

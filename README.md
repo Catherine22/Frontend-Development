@@ -6,9 +6,16 @@
     -   [Environment and Tools](#environment-and-tools)
     -   [URL Structure](#url-structure)
     -   [SEO](#seo)
-    -   [UX](#ux)
     -   [Redirect](#redirect)
     -   [Reactive Web Applications](#reactive-web-applications)
+-   [UI/UX](#uiux)
+    -   [Responsive Web Design](#responsive-web-design)
+    -   [Adaptive Web Design](#adaptive-web-design)
+    -   [More resources](#more-resources)
+-   [HTML](#html)
+-   [CSS](#css)
+    -   [CSS Units](#css-units)
+    -   [SASS & SCSS](#sass-&-scss)
 -   [JavaScript](#javaScript)
     -   [Style Guide](#style-guide)
     -   [ECMAScript](#ecmaScript)
@@ -27,8 +34,14 @@
 -   [Tooling and Useful Dependencies](#tooling-and-useful-dependencies)
     -   [Storybook](#storybook)
     -   [Verdaccio](#verdaccio)
+-   [Security](#security)
+    -   [OWASP Top 10 Web Application Security Risks](#owasp-top-10-web-application-security-risks)
+-   [Testing](#testing)
+    -   [Unit Testing](#unit-testing)
+    -   [End-to-end Testing](#end-to-end-testing)
 -   [Deployment](#deployment)
     -   [Vue.js Deployment](#vuejs-deployment)
+    -   [Nuxt.js Deployment](#nuxtjs-deployment)
 
 ## Basis
 
@@ -37,7 +50,16 @@
 1. Chrome
 2. Node.js
 3. Visual Studio Code
-4. Visual Studio Code extensions (Eslint, HTML Snippets, Prettier, Copy Relative Path, TabNine, etc.)
+4. Useful VS Code tips:
+    - If you want to generate some dummy texts, you can type `lorem` and hit enter. And if you want to fill in 10 words for example, you can type `loren10` and hit enter
+    - To copy the whole line and paste right below, you can use `option` + `shift` + down arrow
+    - Useful extensions you might need: Eslint, Beautify, Prettier, Copy Relative Path, Code Spell Checker, Live Server, TabNine, etc.
+    - Create your own VS Code settings by hitting `command` + `shift` + `p` to open settings (JSON), and paste the content from [vscode-settings.json](vscode-settings.json)
+    - Move up/down the whole line by clicking `option` + up/down arrow
+5. Useful Mac keyboard shortcuts:
+    - Find and select the next same word: select what word you are looking for, e.g. radio, press `command` + `D`, it will select the next "radio" as well. Then you can modify them at the same time.
+    - Move to previous/next word: `option` + left/right arrow
+    - Move to the start/end of the sentence: `command` + left/right arrow
 
 ### URL Structure
 
@@ -46,14 +68,6 @@
 ### SEO
 
 [SEO Starter Guide]
-
-### UX
-
-1. [Why rounding odd font sizes to even?]
-2. [The 8-Point Grid System]
-3. Image size
-    - Your image size should not be larger than for example, 1200px, it depends on laptops and PCs' screen resolution.
-4. [HTML5 Semantic Elements]
 
 ### Redirect
 
@@ -65,6 +79,97 @@
 
 [RWA Gallery]
 
+## UI/UX
+
+### Fonts
+
+-   Using Web Safe Fonts or you will need to import extra font resources. [Link](https://www.w3schools.com/cssref/css_websafe_fonts.asp). E.g.
+    -   Serif font has edges
+    -   Sans serif font is flat, looks neater and more modern.
+-   You could embed fonts, for example, [google fonts](https://https://fonts.google.com/). E.g.
+    -   Roboto
+
+In your html file
+
+```html
+<link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+    rel="stylesheet"
+/>
+```
+
+In your css file
+
+```css
+font-family: 'Roboto', sans-serif;
+```
+
+### Responsive Web Design
+
+### Adaptive Web Design
+
+### More Resources
+
+-   [Why rounding odd font sizes to even?]
+-   [The 8-Point Grid System]
+-   Image size
+    -   Your image size should not be larger than for example, 1200px, it depends on laptops and PCs' screen resolution.
+-   [HTML5 Semantic Elements]
+
+## HTML
+
+Examples:
+
+1. Go through the basis: [index.html](HTML/index.html)
+2. Basic index page with a little CSS and HTML5 semantic tags: [coolStuff.html](HTML/coolStuff.html)
+
+![semantic tags](screenshots/h5.png)
+The main semantic tags
+
+Tips:
+
+-   With VS Code, instead of write your first HTML file line by line, type `!` and hit enter to create a default HTML code snippet.
+-   Install VS Code extension - Live Server, you can right click on your HTML file, and click "Open with Live Server" to exhibit your HTML in your browser.
+-   To create a `<button type=xxx/>`, you could type `button:xxx` and hit enter. E.g. You have types such as `submit`, `reset`, etc.
+-   To create a HTML tag with id, you could type, for example, `h1#about` and hit enter, it will automatically generate a `<h1 id="about"></h1>`. A special case is `div`, which you only need to type `#your_id`
+
+## CSS
+
+CSS structure:
+
+```css
+selector {
+    property: value;
+}
+```
+
+-   3 ways to implement CSS in your html file: [html](CSS/implementation/index.html), [css](iCSS/mplementation/style.css)
+-   Decorate HTML by tag, id and class: [html](CSS/fundamentals/index.html), [css](CSS/fundamentals/style.css)
+-   Fonts: [html](CSS/fonts/index.html), [css](CSS/fonts/style.css)
+-   Colours and backgrounds: [html](CSS/colours/index.html), [css](CSS/colours/style.css)
+-   Float and align: [html](CSS/float/index.html), [css](CSS/float/style.css)
+
+### CSS Units
+
+-   Absolute units:
+
+    -   cm: centimetres
+    -   mm: millimetres
+    -   in: inches
+    -   **px: pixels (1px = 1/96th of 1in)**
+    -   pt: points (1pt = 1/72 of 1in)
+    -   pc: picas picas (1pc = 12 pt)
+
+-   Relative units:
+
+    -   %: to percent element
+    -   em: to font size of parent element (E.g. your parent font size is 16, 1.2em = 16 \* 1.2)
+    -   **rem: to font size of root element**
+    -   vm: to 1% of viewport width
+    -   vh: to 1% of viewport height
+
+### SASS & SCSS
+
 ## JavaScript
 
 For more information, see [JavaScript Tutorials]
@@ -72,81 +177,6 @@ For more information, see [JavaScript Tutorials]
 ### Style Guide
 
 For more information, see [Google JavaScript Style Guide]
-
-### ECMAScript
-
--   ES6
-
-[ES6 Overview](http://es6-features.org/#Constants)
-
--   ES2017
-
-Replace Promise chain to `async`/`await`
-
-E.g. `fetch` API
-
-```Javascript
-function getMoviesFromApiAsync() {
-  return fetch('https://facebook.github.io/react-native/movies.json')
-    .then((response) => {
-      // response.ok: status in the range 200-299
-      if (!response.ok) throw response.statueText;
-      return response.json();
-    })
-    .then((responseJson) => {
-      return responseJson.movies;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
-```
-
-`fetch` in ES2017 style
-
-```Javascript
-async function getMoviesFromApi() {
-  try {
-    let response = await fetch(
-      'https://facebook.github.io/react-native/movies.json',
-    );
-    if (!response.ok) throw response.statueText;
-
-    let responseJson = await response.json();
-    return responseJson.movies;
-  } catch (error) {
-    console.error(error);
-  }
-}
-```
-
-E.g. Add a event listener to window
-
-```Javascript
-window.addEventListener('load', (event: any) => {
-    event.waitUntil(navigator.serviceWorker.register('/service-worker.js')
-    .then(register => {
-      console.log('Registered!');
-    }).catch(error => {
-      console.warn(error);
-    })
-});
-```
-
-In ES2017 style
-
-```Javascript
-window.addEventListener('load', (event: any) => {
-    try {
-        const register = async () => {
-            await navigator.serviceWorker.register('/service-worker.js');
-        };
-        event.waitUntil(register());
-    } catch (error) {
-        console.warn(error);
-    }
-});
-```
 
 ## Popular JS Frameworks
 
@@ -257,24 +287,209 @@ fetch('https://foo.com/data.json'), {
 
 ### Storybook
 
-A tool to manage your UI components, make it easier to share components between web apps.
+A tool to manage your UI components, make it easier to share components between web apps.  
+You can stuff all your components in a storybook project, and publish each of them to npm (or if you prefer verdaccio).
+
+[vue-storybook]
 
 ### Verdaccio
 
 A lightweight private npm proxy registry to help you build your private npm registry.
 
+#### Get started
+
+1. You will need an running EC2 instance, and ssh into it.
+
+```shell
+$chmod 0400 test.pem
+$ssh -i test.pem ec2-user@52.90.31.225
+```
+
+2. Install and start up docker
+
+```shell
+$sudo yum update -y
+$sudo yum install docker -y
+$sudo service docker start
+```
+
+3. Pull and run the verdaccio docker image (You can change the first 4873 to whatever port you want, like 80)
+
+```shell
+$sudo docker pull verdaccio/verdaccio
+$sudo docker run -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio
+```
+
+4. Back to your EC2 console, add 4873 port as inbound rule to the security group of the running instance. To access your private npm registry, type `http://YOUR_INSTANCE_PUBLIC_IP:VERDACCIO_PORT` (`http://52.90.31.225:4873/` in this case) in your browser.
+
+5. In your computer (where you development or publish dependencies), update your npm settings
+
+```shell
+$npm set registry http://52.90.31.225:4873
+```
+
+6. Create a new account
+
+```shell
+$npm adduser --registry http://52.90.31.225:4873
+```
+
+7. Back to `http://52.90.31.225:4873` to see if you could log in successfully.
+
+8. Publish your node dependency by executing `$npm publish --registry http://52.90.31.225:4873`
+
+9. Pull your own dependency by executing `$npm install YOUR_DEPENDENCY_NAME`
+
+## Testing
+
+### Unit Testing
+
+-   Popular frameworks: Jest or Mocha
+
+### End-to-end Testing
+
+-   Popular frameworks: Cypress, Selenium
+
 ## Deployment
 
 ### Vue.js Deployment
 
-To build a Docker image and deploy your web app, you need to:
+To build a containerised web app with Nginx, you need to:
 
-1. Add build scripts in package.json
-2. Add webpack config in vue.config.js
+1. Add build commands in package.json
+
+```JSON
+{
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "test:unit": "vue-cli-service test:unit",
+        "test:e2e": "vue-cli-service test:e2e",
+        "lint": "vue-cli-service lint"
+    }
+}
+```
+
+2. Add webpack config in vue.config.js if you need
 3. Add nginx.conf
 4. Create Dockerfile and dockerignore
 
-For more information, see [vue-pwa]
+Install Node.js -> Install dependencies -> Run unit testing and linter -> Build node.js app -> Install Nginx -> Configure Nginx
+
+Dockerfile.prod
+
+```Dockerfile
+FROM node:latest as prod-build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY ./ .
+
+RUN npm run test:unit
+RUN npm run lint
+RUN npm run build
+
+FROM nginx
+RUN apt-get update
+RUN apt-get install -y nginx-extras
+COPY --from=prod-build /app/dist /usr/share/nginx/html/
+ADD ./nginx/  /etc/nginx
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+Dockerfile.staging
+
+```Dockerfile
+FROM node:latest as staging-build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY ./ .
+
+RUN npm run test:unit
+RUN npm run lint
+RUN npm run dev-build
+
+FROM nginx
+RUN apt-get update
+RUN apt-get install -y nginx-extras
+COPY --from=staging-build /app/dist /usr/share/nginx/html/
+ADD ./nginx/  /etc/nginx
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+dockerignore
+
+```
+node_modules/
+dist/
+```
+
+For more information, see [vue-pwa] and [dockerhub](https://hub.docker.com/repository/docker/123987109832/vue-pwa)
+
+### Nuxt.js Deployment
+
+Deploy Nuxt.js web app in two different ways depending on what model you are using. Static Generated Deployment (Pre-rendered)
+and Single Page Application Deployment (SPA) are basically the same as the way you deploy a typical vue.js web app.
+
+Server-Side Rendered Deployment (Universal SSR) will be a bit different.
+
+1. Add build commands in package.json
+
+```JSON
+{
+    "scripts": {
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "build:dev": "cross-env NODE_ENV=development nuxt build",
+        "start": "cross-env NODE_ENV=production node server/index.js",
+        "start:dev": "cross-env NODE_ENV=development node server/index.js",
+        "generate": "nuxt generate",
+        "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+        "test": "jest"
+    }
+}
+```
+
+4. Create Dockerfile and dockerignore
+
+Install Node.js -> Install dependencies -> Run unit testing and linter -> Build node.js app -> Start npm
+
+```Dockerfile
+FROM node:latest as staging-build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY ./ .
+RUN npm run lint
+RUN npm run test
+RUN npm run build:dev
+ENV HOST 0.0.0.0
+EXPOSE 3000
+CMD ["npm", "run", "start:dev"]
+
+FROM node:latest as prod-build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY ./ .
+RUN npm run lint
+RUN npm run test
+RUN npm run build
+ENV HOST 0.0.0.0
+EXPOSE 3000
+CMD ["npm", "run", "start"]
+```
+
+dockerignore
+
+```
+node_modules/
+dist/
+./nuxt/
+```
+
+For more information, see [nuxt-fundamentals] and [dockerhub](https://hub.docker.com/repository/docker/123987109832/vuejs-nuxtjs-web-app)
 
 [why rounding odd font sizes to even?]: https://ux.stackexchange.com/questions/129973/why-rounding-odd-font-sizes-to-even
 [the 8-point grid system]: https://builttoadapt.io/intro-to-the-8-point-grid-system-d2573cde8632
@@ -298,3 +513,4 @@ For more information, see [vue-pwa]
 [google javascript style guide]: https://google.github.io/styleguide/jsguide.html
 [rwa gallery]: https://responsive-jp.com/
 [vue-pwa]: Vue/vue-pwa
+[vue-storybook]: Vue/vue-storybook

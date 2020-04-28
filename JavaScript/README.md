@@ -19,12 +19,21 @@ JS: Programming capabilities
 -   [This](#this)
 -   [apply() and call()](#apply-and-call)
 -   [Function currying - bind()](#function-currying-bind)
+-   [Recap This](#recap-this)
 -   [Higher Order Functions](#higher-order-functions)
 -   [Closure](#Closure)
 -   [Encapsulation](#encapsulation)
 -   [Prototypal Inheritance](#prototypal-inheritance)
     -   [Extend the functionality of a built-in object](#extend-the-function-of-a-built-in-object)
 -   [FP and OOP](#fp-and-oop)
+-   [Constructor Function](#constructor-function)
+-   [Promises](#promises)
+    -   [Promise Chaining](#promise-chaining)
+    -   [Promise.all](#promise-all)
+-   [ECMAScript](#ecmascript)
+    -   [ES6](#es6)
+    -   [ES7](#es7)
+    -   [ES8](#es8)
 -   [Reference](#Reference)
 
 ## ESLint and Prettier
@@ -58,6 +67,7 @@ JS: Programming capabilities
     "prettier.jsxBracketSameLine": false,
     "prettier.jsxSingleQuote": false,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "html.format.wrapAttributes": "auto",
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     }
@@ -146,7 +156,9 @@ To see how exactly call stack and Web APIs work, go to [loupe].
 
 ## Javascript Runtime
 
-The only Javascript time I know, as you might have heard, is Node.js. Node.js makes Javascript be able to run outside of browser. This 'program' uses V8 engine to interpret Javascript creates the entire environment to run Javascript code and offer additional APIs to do things like asynchronous jobs.
+As you might have heard, Node.js makes Javascript be able to run outside of browser. This 'program' uses V8 engine to interpret Javascript creates the entire environment to run Javascript code and offer additional APIs to do things like asynchronous jobs.
+
+On top of the engine, a browser has `Web APIs`. It offers things like `DOM`, `AJAX(XMLHttpRequest)` and `Timeout(setTimeout)`
 
 ## Hoisting
 
@@ -288,7 +300,7 @@ With IIFE, you can:
  // a is running...
 ```
 
-Eventually, You can have one global variable containing objects and functions. The advantage is that this code snippet only pollute the global execution context once, i.e. `script1` in next examples, you are scoping things into their own environments.
+Eventually, you can have one global variable containing objects and functions. The advantage is that this code snippet only pollute the global execution context once, i.e. `script1` in next examples, you are scoping things into their own environments.
 
 ```Javascript
 let script1 = (function () {
@@ -367,7 +379,34 @@ To make obj.whoAmI() print 'Bob', here are three solutions
 
 1. ES6 arrow function
 
-Arrow function is lexical scope
+Arrow function is lexically scoped whereas regular function is dynamically scoped.
+
+Example 1: Regular function vs. arrow function
+
+```Javascript
+var skill = 'fists of thunder';
+function DemonHunter() {
+    this.job = 'demon hunter';
+    this.skill = 'cluster arrow';
+}
+const eve = new DemonHunter();
+
+// regular function
+DemonHunter.prototype.attack = function() {
+    console.log(this.skill);
+}
+
+eve.attack(); // cluster arrow
+
+// arrow function
+DemonHunter.prototype.attack = () => {
+    console.log(this.skill);
+}
+
+eve.attack(); // fists of thunder
+```
+
+Example 2: Put an arrow function inside a regular function
 
 ```Javascript
 const obj = {
@@ -504,7 +543,7 @@ let archer = {
 }
 ```
 
-To `heal` someone who do not know how to use magic, i.e. to call function from another object, you can use `apply()` or `call()`
+To `heal` someone who do not know how to use magic, i.e. To call function from another object, you can used `apply()` or `call()`
 
 ```Javascript
 // {name: "Robin Hood", health: 30}
@@ -575,6 +614,51 @@ const addTen = add.bind(this, 10);
 addTen(1); // 11
 ```
 
+## Recap This
+
+1. Implicit binding
+
+```Javascript
+const person = {
+    name: 'Karen',
+    showName() {
+        console.log(this.name);
+    }
+}
+
+person.showName(); // Karen
+```
+
+2. Explicit binding
+
+E.g. To bind `window` to this
+
+```Javascript
+const person = {
+    name: 'Karen',
+    browsingHistory: function() {
+        console.log(this.history.length);
+    }.bind(window)
+}
+
+person.browsingHistory(); // 1
+```
+
+3. Arrow function
+
+```Javascript
+const person = {
+    name: 'Karen',
+    showName: function() {
+        let sayMyName = () => {
+            // without arrow function, `this` will be `window`
+            console.log(this.name);
+        }
+        return sayMyName();
+    }
+}
+```
+
 ## Higher Order Functions
 
 Function returns function.
@@ -631,6 +715,33 @@ ohNo.launch(); // 💥
 ```
 
 ## Prototypal Inheritance
+
+-   `__proto__` points to `prototype`.
+-   Only functions have access to `prototype`
+
+Example 1
+
+```Javascript
+function Necromancer(name, weapon, skill) {
+    this.name = name;
+    this.weapon = weapon;
+    this.skill = skill;
+    this.job = 'necromancer';
+}
+Necromancer.prototype.attack = function () {
+    console.log(this.skill);
+}
+
+const necromancer1 = new Necromancer('Simon', 'corpse lance', 'devour');
+necromancer1.attack(); // devour
+
+necromancer1.__proto__.attack; // function () { console.log(this.skill); }
+Necromancer.prototype.attack // function () { console.log(this.skill); }
+necromancer1.prototype; // undefined -> Only functions have access to prototype
+Necromancer.prototype === necromancer1.__proto__; // true
+```
+
+Example 2
 
 ```Javascript
 const lizard = {
@@ -747,8 +858,306 @@ const necromancer1 = createNecromancer('Simon', 'corpse lance', 'devour');
 const necromancer2 = createNecromancer('Lucas', 'cauldron', 'frailty');
 ```
 
+## Constructor Function
+
+Instead of using `Object.create()`, you can use Constructor Function.  
+With `new` keyword, you are creating a new object.
+
+Two rules to implement a constructor function:
+
+1. add `new`
+2. function name starts with a capital letter. (coding style)
+
+```Javascript
+function Necromancer(name, weapon, skill) {
+    this.name = name;
+    this.weapon = weapon;
+    this.skill = skill;
+    this.job = 'necromancer';
+}
+Necromancer.prototype.attack = function () {
+    console.log(this.skill);
+}
+
+const necromancer1 = new Necromancer('Simon', 'corpse lance', 'devour');
+const necromancer2 = new Necromancer('Lucas', 'cauldron', 'frailty');
+```
+
+In the proceeding code snippet, `this` of Necromancer refers to `necromancer1` and `necromancer2` because of `new`.
+
+## Promises
+
+A promise is an object that may produce a single value some time in the future. Either a resolved value, or a reason that it's not resolved (rejected)
+
+E.g.
+
+```Javascript
+const promise = new Promise((resolve, reject) => {
+    if (true) {
+        resolve('stuff worked');
+    } else {
+        reject('error, it broke');
+    }
+});
+
+promise.then(result => console.log(result)); // stuff worked
+```
+
+### Promises Chaining
+
+```Javascript
+promise.then(result => `result: ${result}`)
+    .then(result => `${result}?`)
+    .catch(err => console.log(err))
+    .then(result => console.log(`${result}!`)); // result: stuff worked?!
+```
+
+Because the `catch statement` is right before `then`, which means if any error happens in the last `then` code snippet, this `catch` cannot handle it.
+
+### Promise.all
+
+The `Promise.all()` will wait until all the promises are resolved and then log out the values.
+
+```Javascript
+const p1 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 100, '100ms');
+})
+
+const p2 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 1000, '1s');
+})
+
+const p3 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 3000, '3s');
+})
+
+Promise.all([p1, p2, p3]).then(value => {
+    console.log(value);
+    // After 3 seconds, you will get an array -- ["100ms", "1s", "3s"]
+})
+```
+
+More examples
+
+```Javascript
+const URLs = [
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/comments',
+    'https://jsonplaceholder.typicode.com/albums'
+];
+
+Promise.all(URLs.map(url => {
+    return fetch(url).then(response => response.json());
+})).then(results => {
+    console.log("Posts:", results[0]);
+    console.log("Comments:", results[1]);
+    console.log("Albums:", results[2]);
+});
+```
+
+If any of the URLs are wrong, you will get failed responses.
+
+```Javascript
+const URLs = [
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/comments',
+    '???'
+];
+
+Promise.all(URLs.map(url => {
+    return fetch(url).then(response => response.json());
+})).then(results => {
+    console.log("Posts:", results[0]);
+    console.log("Comments:", results[1]);
+    console.log("Albums:", results[2]);
+}).catch(() => console.log('Failed to fetch data.'));
+```
+
+## ECMAScript
+
+### ES6
+
+ES6, ECMAScript 2015
+
+[ES6 Overview](http://es6-features.org/#Constants)
+
+-   separate an array
+
+Let's say you have an function with four arguments available.
+
+```Javascript
+function sum (a, b, c, d) {
+    return a + b + c + d;
+}
+```
+
+You can stuff arguments from an array with retrieving each one.
+
+```Javascript
+const arr = [1, 2, 3, 4];
+sum(...arr); // 10
+```
+
+### ES8
+
+ES8, ECMAScript 2017
+
+`async`/`await` syntax
+
+E.g. `fetch` in ES6 style
+
+```Javascript
+const callback = (res) => console.log('res', res);
+function getComments(callback) {
+  return fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
+    .then(response => response.json())
+    .then(responseJson => {
+        // Test error handling
+        // throw new Error('Test error!');
+      return callback(responseJson);
+    })
+    .catch(console.error);
+}
+
+getComments(callback);
+```
+
+`fetch` in ES8 style
+
+```Javascript
+async function getComments() {
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts/1/comments');
+    const responseJson = await response.json();
+    // Test error handling
+    // throw new Error('Test error!');
+    return responseJson;
+}
+
+try {
+    const res = await getComments();
+    console.log('res', res);
+} catch (error) {
+    console.error(error);
+}
+```
+
+Example 2, `Promise.all` in ES6 style
+
+```Javascript
+const URLs = [
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/comments',
+    'https://jsonplaceholder.typicode.com/albums'
+];
+
+Promise.all(URLs.map(url => {
+    return fetch(url).then(response => response.json());
+})).then(results => {
+    console.log("Posts:", results[0]);
+    console.log("Comments:", results[1]);
+    console.log("Albums:", results[2]);
+}).catch(() => console.log('Failed to fetch data.'));
+```
+
+`Promise.all` in ES8 style
+
+```Javascript
+const URLs = [
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/comments',
+    'https://jsonplaceholder.typicode.com/albums'
+];
+
+try {
+    const [posts, comments, albums] = await Promise.all(URLs.map(url => {
+    return fetch(url).then(response => response.json());
+}));
+    console.log("Posts:", posts);
+    console.log("Comments:", comments);
+    console.log("Albums:", albums);
+} catch (err) {
+    console.log('Failed to fetch data.');
+}
+```
+
+### ES9
+
+ES9, ECMAScript 2018
+
+-   Object spread operator
+
+Let's say you have an object myGarage
+
+```Javascript
+const myGarage = {
+    sedan: 'Tesla',
+    suv: 'Land Rover',
+    sportsCar: 'Lamborghini'
+}
+```
+
+With object spread operator, you can separate the object effortlessly
+
+```Javascript
+const { sedan, ...rest } = myGarage;
+console.log(sedan); // 'Tesla'
+console.log(rest); // {suv: "Land Rover", sportsCar: "Lamborghini"}
+```
+
+-   For await of
+
+In ES8, you can have `Promise.all` like this:
+
+```Javascript
+const URLs = [
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/comments',
+    'https://jsonplaceholder.typicode.com/albums'
+];
+
+try {
+    const [posts, comments, albums] = await Promise.all(URLs.map(url => {
+    return fetch(url).then(response => response.json());
+}));
+    console.log("Posts:", posts);
+    console.log("Comments:", comments);
+    console.log("Albums:", albums);
+} catch (err) {
+    console.log('Failed to fetch data.');
+}
+```
+
+Here is what you can do in ES9,
+
+```Javascript
+const URLs = [
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/comments',
+    'https://jsonplaceholder.typicode.com/albums'
+];
+
+const arrayOfPromises = URLs.map(url => fetch(url));
+const responses = [];
+for await (let request of arrayOfPromises) {
+    const response = await request.json();
+    responses.push(response);
+}
+
+console.log("Posts:", responses[0]);
+console.log("Comments:", responses[1]);
+console.log("Albums:", responses[2]);
+```
+
 ## Reference
 
 -   [Advanced Javascript concepts](https://www.udemy.com/course/advanced-javascript-concepts/)
 
-[loupe]: http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
+[loupe]: http://latentflip.com/loupe/
+
+```
+
+```
+
+```
+
+```
