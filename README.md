@@ -29,6 +29,8 @@
     -   [CDD](#cdd)
 -   [Progressive Web App](#progressive-web-app)
     -   [Service Workers](#service-workers)
+    -   [Lifecycle Events](#lifecycle-events)
+    -   [Offline browsing](#offline-browsing)
     -   [Lighthouse](#lighthouse)
 -   [AMP](#amp)
 -   [Tooling and Useful Dependencies](#tooling-and-useful-dependencies)
@@ -234,20 +236,54 @@ Research says, 40% of users bounce from sites that take longer than **3 seconds*
 -   Precaching: Download and cache files when first run (then always use the cached files).
 -   To log if user goes with pwa, you can set up a specific `"start_url` in `public/manifest.json`
 
-Demo: [vue-pwa]
+Demo: [sw.js], [pwa], [vue-pwa]
 
 ### Service Workers
 
--   Client side proxy written in JavaScript between your web app and the outside.
--   Cache assets locally.
--   Script:
-    -   Lifecycle: install, activate
-    -   Intercept network requests: fetch
-    -   Receive push message: push
-    -   Receive data when idle: sync
--   Service Worker has a lifecycle independently
+-   Service workers are basically js files working on another threads which allow you to:
+    1. Load content offline
+    2. Use background sync
+    3. Push notifications
+-   Lifecycle:
+    1. Create a sw.js (your service worker) in root directory to allow html files to access it globally
+    2. Register your sw.js with the browser (You will do this in your app.js file, not in sw.js)
+    3. [install event] The browser installs your service worker and running on the service worker thread. This install event only runs once when the service worker is registered
+    4. [activate event] If success, you get an activate event
+    5. This service worker starts listening other events such as `fetch`
+-   Your service worker will not be installed if no changes of sw.js
+-   Service workers only work on HTTPS domains, but localhost is an exception to the rule.
+-   Service workers are likely the proxy between browser and servers. When your PWA fetch resources from any server, it catches the fetch event.
+-   It will be super helpful the have "update on reload" selected during development (In DevTool -> application -> service)
+-   To make your Android emulator in `localhost`, In DevTool -> three dots -> More tools -> Remote devices -> Port forwarding -> 5500, localhost:5500 and enabled port forwarding. If you meet all the "Add to Home Screen" criteria, you will see the prompt on your Android device.
 
-![sw](screenshots/sw.png)
+#### Lifecycle Events
+
+-   Install:
+    -   **If this install event does not be triggered, it may be because the service worker has been installed already**.
+    -   To install again, you must change this file or in DevTool -> application -> service worker -> Unregister
+-   Activate:
+    -   If this activate event does not be triggered, it may be because the service worker has been installed already.
+    -   In DevTool -> application -> service, you will see the service worker is waiting for activate
+    -   **Browser does not automatically re-activate installed service**. To solve this, there are two solutions:
+        -   Close the tab, and reopen it in another tab.
+        -   In DevTool -> application -> service, click on "skipWaiting" or have "Update on reload" selected
+-   Fetch
+    -   This service worker is actually act as a proxy between browser and a server.
+    -   This event is triggered when your PWA fetch resources from your server
+
+### Add to Home Screen
+
+-   This works when you meet all the [criteria](https://web.dev/install-criteria/)
+-   To make your Android emulator in `localhost`, In DevTool -> three dots -> More tools -> Remote devices -> Port forwarding -> 5500, localhost:5500 and enabled port forwarding. If you meet all the "Add to Home Screen" criteria, you will see the prompt on your Android device.
+
+### Offline Browsing
+
+![pwa](screenshots/pwa1.png)
+![pwa](screenshots/pwa2.png)
+
+-   Two caches you need to know:
+    -   Browser cache: A managed cache, you cannot change it. (In DevTool -> Network -> Disable cache)
+    -   Regular cache: This cache could be managed by service workers.
 
 ### Lighthouse
 
@@ -512,5 +548,7 @@ For more information, see [nuxt-fundamentals] and [dockerhub](https://hub.docker
 [javascript tutorials]: JavaScript/README.md
 [google javascript style guide]: https://google.github.io/styleguide/jsguide.html
 [rwa gallery]: https://responsive-jp.com/
+[pwa]: PWA
+[sw.js]: PWA/sw.js
 [vue-pwa]: Vue/vue-pwa
 [vue-storybook]: Vue/vue-storybook
