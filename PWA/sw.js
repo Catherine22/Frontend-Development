@@ -6,7 +6,7 @@ const ASSETS = [
     '/js/ui.js',
     '/js/materialize.min.js',
     '/css/styles.css',
-    '/materialize.min.css',
+    '/css/materialize.min.css',
     'https://fonts.googleapis.com/icon?family=Material+Icons' /* CDN assets */,
 ];
 
@@ -40,6 +40,16 @@ self.addEventListener('install', (event) => {
  */
 self.addEventListener('activate', (event) => {
     console.log('Service worker has been activated', event);
+    event.waitUntil(
+        caches.keys().then((keys) => {
+            // Delete all old caches if exist
+            return Promise.all(
+                keys
+                    .filter((key) => key !== STATIC_CACHE_NAME)
+                    .map((key) => caches.delete(key))
+            );
+        })
+    );
 });
 
 /**
@@ -48,7 +58,6 @@ self.addEventListener('activate', (event) => {
  * To meet the criteria to show a banner prompting user to "Add to Home Screen", fetch event handler is must-have.
  */
 self.addEventListener('fetch', (event) => {
-    // console.log('fetch event', event);
     // respond from the cache
     event.respondWith(
         caches.match(event.request).then((cacheRes) => {

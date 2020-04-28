@@ -40,6 +40,7 @@
 -   display: How do you present your PWA in mobile phone
     -   `standalone`: To make your PWA looks like a native app.
     -   `browser`: Open your PWA in browser
+-   theme_color:
 -   background_color:
 -   orientation: To launch the PWA in what screen orientation
 -   icons: Your desktop icons on Android devices
