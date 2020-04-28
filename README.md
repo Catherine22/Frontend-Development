@@ -234,18 +234,22 @@ Research says, 40% of users bounce from sites that take longer than **3 seconds*
 -   Precaching: Download and cache files when first run (then always use the cached files).
 -   To log if user goes with pwa, you can set up a specific `"start_url` in `public/manifest.json`
 
-Demo: [vue-pwa]
+Demo: [pwa], [vue-pwa]
 
 ### Service Workers
 
--   Client side proxy written in JavaScript between your web app and the outside.
--   Cache assets locally.
--   Script:
-    -   Lifecycle: install, activate
-    -   Intercept network requests: fetch
-    -   Receive push message: push
-    -   Receive data when idle: sync
--   Service Worker has a lifecycle independently
+-   Service workers are basically js files working on another threads which allow you to:
+    1. Load content offline
+    2. Use background sync
+    3. Push notifications
+-   Lifecycle:
+    1. Create a sw.js (your service worker) in root directory to allow html files to access it globally
+    2. Register your sw.js with the browser (You will do this in your app.js file, not in sw.js)
+    3. [install event] The browser installs your service worker and running on the service worker thread. This install event only runs once when the service worker is registered
+    4. [active event] If success, you get an active event
+    5. This service worker starts listening other events such as `fetch`
+-   Your service worker will not be installed if no changes of sw.js
+-   Service workers only work on HTTPS domains, but localhost is an exception to the rule.
 
 ![sw](screenshots/sw.png)
 
@@ -512,5 +516,6 @@ For more information, see [nuxt-fundamentals] and [dockerhub](https://hub.docker
 [javascript tutorials]: JavaScript/README.md
 [google javascript style guide]: https://google.github.io/styleguide/jsguide.html
 [rwa gallery]: https://responsive-jp.com/
+[pwa]: PWA
 [vue-pwa]: Vue/vue-pwa
 [vue-storybook]: Vue/vue-storybook
