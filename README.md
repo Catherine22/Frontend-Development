@@ -30,6 +30,7 @@
 -   [Progressive Web App](#progressive-web-app)
     -   [Service Workers](#service-workers)
     -   [Lifecycle Events](#lifecycle-events)
+    -   [Offline browsing](#offline-browsing)
     -   [Lighthouse](#lighthouse)
 -   [AMP](#amp)
 -   [Tooling and Useful Dependencies](#tooling-and-useful-dependencies)
@@ -235,7 +236,7 @@ Research says, 40% of users bounce from sites that take longer than **3 seconds*
 -   Precaching: Download and cache files when first run (then always use the cached files).
 -   To log if user goes with pwa, you can set up a specific `"start_url` in `public/manifest.json`
 
-Demo: [pwa], [vue-pwa]
+Demo: [sw.js], [pwa], [vue-pwa]
 
 ### Service Workers
 
@@ -252,20 +253,20 @@ Demo: [pwa], [vue-pwa]
 -   Your service worker will not be installed if no changes of sw.js
 -   Service workers only work on HTTPS domains, but localhost is an exception to the rule.
 -   Service workers are likely the proxy between browser and servers. When your PWA fetch resources from any server, it catches the fetch event.
--   It will be super helpful the have "update on reload" selected during development (In debugger tool -> application -> service)
--   To make your Android emulator in `localhost`, In debugger tool -> three dots -> More tools -> Remote devices -> Port forwarding -> 5500, localhost:5500 and enabled port forwarding. If you meet all the "Add to Home Screen" criteria, you will see the prompt on your Android device.
+-   It will be super helpful the have "update on reload" selected during development (In DevTool -> application -> service)
+-   To make your Android emulator in `localhost`, In DevTool -> three dots -> More tools -> Remote devices -> Port forwarding -> 5500, localhost:5500 and enabled port forwarding. If you meet all the "Add to Home Screen" criteria, you will see the prompt on your Android device.
 
 #### Lifecycle Events
 
 -   Install:
     -   **If this install event does not be triggered, it may be because the service worker has been installed already**.
-    -   To install again, you must change this file or in debugger tool -> application -> service worker -> Unregister
+    -   To install again, you must change this file or in DevTool -> application -> service worker -> Unregister
 -   Activate:
     -   If this activate event does not be triggered, it may be because the service worker has been installed already.
-    -   In debugger tool -> application -> service, you will see the service worker is waiting for activate
+    -   In DevTool -> application -> service, you will see the service worker is waiting for activate
     -   **Browser does not automatically re-activate installed service**. To solve this, there are two solutions:
         -   Close the tab, and reopen it in another tab.
-        -   In debugger tool -> application -> service, click on "skipWaiting" or have "Update on reload" selected
+        -   In DevTool -> application -> service, click on "skipWaiting" or have "Update on reload" selected
 -   Fetch
     -   This service worker is actually act as a proxy between browser and a server.
     -   This event is triggered when your PWA fetch resources from your server
@@ -273,6 +274,16 @@ Demo: [pwa], [vue-pwa]
 ### Add to Home Screen
 
 -   This works when you meet all the [criteria](https://web.dev/install-criteria/)
+-   To make your Android emulator in `localhost`, In DevTool -> three dots -> More tools -> Remote devices -> Port forwarding -> 5500, localhost:5500 and enabled port forwarding. If you meet all the "Add to Home Screen" criteria, you will see the prompt on your Android device.
+
+### Offline Browsing
+
+![pwa](screenshots/pwa1.png)
+![pwa](screenshots/pwa2.png)
+
+-   Two caches you need to know:
+    -   Browser cache: A managed cache, you cannot change it. (In DevTool -> Network -> Disable cache)
+    -   Regular cache: This cache could be managed by service workers.
 
 ### Lighthouse
 
@@ -538,5 +549,6 @@ For more information, see [nuxt-fundamentals] and [dockerhub](https://hub.docker
 [google javascript style guide]: https://google.github.io/styleguide/jsguide.html
 [rwa gallery]: https://responsive-jp.com/
 [pwa]: PWA
+[sw.js]: PWA/sw.js
 [vue-pwa]: Vue/vue-pwa
 [vue-storybook]: Vue/vue-storybook
