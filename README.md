@@ -30,6 +30,7 @@
 -   [Progressive Web App](#progressive-web-app)
     -   [Service Workers](#service-workers)
     -   [Lifecycle Events](#lifecycle-events)
+    -   [Add to Home Screen](#add-to-home-screen)
     -   [Offline browsing](#offline-browsing)
     -   [Lighthouse](#lighthouse)
 -   [AMP](#amp)
