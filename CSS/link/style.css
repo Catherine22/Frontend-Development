@@ -1,0 +1,32 @@
+* {
+    font-size: 14px;
+}
+a {
+    color: black;
+    padding: 8px 24px;
+}
+a:hover {
+    color: grey;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+/* Once the link has been clicked, this style will be applied forever even reloading the page*/
+/* a:visited {
+    color: red;
+} */
+a:active {
+    color: red;
+}
+
+button {
+    background-color: #ed6553;
+    border: none;
+    color: white;
+    padding: 8px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+button:hover {
+    background-color: black;
+}

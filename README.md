@@ -150,7 +150,7 @@ selector {
 -   Decorate HTML by tag, id and class: [html](CSS/fundamentals/index.html), [css](CSS/fundamentals/style.css)
 -   Fonts: [html](CSS/fonts/index.html), [css](CSS/fonts/style.css)
 -   Colours and backgrounds: [html](CSS/colours/index.html), [css](CSS/colours/style.css)
--   Float and align: [html](CSS/float/index.html), [css](CSS/float/style.css)
+-   Link and button: [html](CSS/link/index.html), [css](CSS/link/style.css)
 
 ### CSS Units
 
