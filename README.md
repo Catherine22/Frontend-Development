@@ -27,6 +27,8 @@
         -   [Nuxt.js](#nuxtjs)
 -   [Design Patterns](#design-patterns)
     -   [CDD](#cdd)
+-   [Webpack](#webpack)
+-   [Service Side Rerender](#service-side-rerender)
 -   [Progressive Web App](#progressive-web-app)
     -   [Service Workers](#service-workers)
     -   [Lifecycle Events](#lifecycle-events)
@@ -56,7 +58,7 @@
 4. Useful VS Code tips:
     - If you want to generate some dummy texts, you can type `lorem` and hit enter. And if you want to fill in 10 words for example, you can type `loren10` and hit enter
     - To copy the whole line and paste right below, you can use `option` + `shift` + down arrow
-    - Useful extensions you might need: Eslint, Beautify, Prettier, Copy Relative Path, Code Spell Checker, Live Server, TabNine, etc.
+    - Useful extensions you might need: Eslint, Prettier, HTML Snippets, Copy Relative Path, Code Spell Checker, Live Server, TabNine, etc.
     - Create your own VS Code settings by hitting `command` + `shift` + `p` to open settings (JSON), and paste the content from [vscode-settings.json](vscode-settings.json)
     - Move up/down the whole line by clicking `option` + up/down arrow
 5. Useful Mac keyboard shortcuts:
@@ -135,6 +137,7 @@ Tips:
 -   Install VS Code extension - Live Server, you can right click on your HTML file, and click "Open with Live Server" to exhibit your HTML in your browser.
 -   To create a `<button type=xxx/>`, you could type `button:xxx` and hit enter. E.g. You have types such as `submit`, `reset`, etc.
 -   To create a HTML tag with id, you could type, for example, `h1#about` and hit enter, it will automatically generate a `<h1 id="about"></h1>`. A special case is `div`, which you only need to type `#your_id`
+-   To create a HTML tag with class name, you could type, for example, `h1.about` and hit enter, it will automatically generate a `<h1 class="about"></h1>`. A special case is `div`, which you only need to type `#your_class_name`
 
 ## CSS
 
@@ -222,6 +225,10 @@ Demo: [nuxt-fundamentals]
 
 Aka Component-Driven Development.  
 A state-of-the-art design pattern for Vue.js
+
+## Webpack
+
+## Service Side Rerender
 
 ## Progressive Web App
 
