@@ -29,14 +29,6 @@ header .mobile_menu {
     height: 32px;
     display: none;
 }
-@media only screen and (max-width: 656px) {
-    header .mobile_menu {
-        display: flex;
-    }
-    header nav {
-        display: none;
-    }
-}
 nav {
     list-style-type: none;
     max-width: 480px;
@@ -63,8 +55,9 @@ aside {
     max-width: 200px;
     border-radius: 4px;
     float: right;
-    margin-top: 80px;
+    margin-top: 72px;
     margin-right: 16px;
+    margin-left: 16px;
     padding: 0 8px 8px 8px;
     background: #292929;
 }
@@ -89,4 +82,18 @@ aside a:hover {
         transparent no-repeat;
     background-size: 100% 2px;
     margin-bottom: 16px;
+}
+@media only screen and (max-width: 656px) {
+    header .mobile_menu {
+        display: flex;
+    }
+    header nav {
+        display: none;
+    }
+    aside {
+        margin-right: 8px;
+        margin-left: 8px;
+        max-width: calc(100% - 32px);
+        float: center;
+    }
 }
