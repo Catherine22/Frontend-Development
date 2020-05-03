@@ -3,6 +3,7 @@
     font-family: 'Lato', sans-serif;
     font-size: 1rem;
     line-height: 1.4rem;
+    transition: color 0.5s;
 }
 body {
     margin: 0;
@@ -49,7 +50,6 @@ nav a:hover {
     background: linear-gradient(to right, #eac159, #eac159) 0 100% transparent
         no-repeat;
     background-size: 100% 2px;
-    transition: color 0.3s;
 }
 aside {
     max-width: 200px;

@@ -1,0 +1,40 @@
+* {
+    font-size: 1rem;
+    line-height: 2rem;
+}
+ul {
+    padding: 0; /* reset default padding */
+}
+img {
+    padding: 8px;
+}
+code {
+    background-color: lightgrey;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.inline {
+    display: inline;
+}
+.inline a {
+    padding: 8px;
+}
+.inline_list :first-child {
+    padding-left: 16px;
+}
+.inline_list :last-child {
+    padding-left: 16px;
+}
+.center_hint {
+    width: 100%;
+    text-align: center;
+}
+.center_list {
+    width: 100%;
+    text-align: center;
+}
+.center_img {
+    display: block;
+    margin: auto;
+}

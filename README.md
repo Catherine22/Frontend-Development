@@ -154,6 +154,8 @@ selector {
 -   Fonts: [html](CSS/fonts/index.html), [css](CSS/fonts/style.css)
 -   Colours and backgrounds: [html](CSS/colours/index.html), [css](CSS/colours/style.css)
 -   Link and button: [html](CSS/link/index.html), [css](CSS/link/style.css)
+-   Navigation menu, side menu: [html](CSS/navigationMenu/index.html), [css](CSS/navigationMenu/style.css)
+-   Inline vs block and how to center elements horizontally: [html](CSS/display/index.html), [css](CSS/display/style.css)
 
 ### CSS Units
 

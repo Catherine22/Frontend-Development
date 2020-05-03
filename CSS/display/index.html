@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CSS Inline & Block</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <h2>Block level elements by default</h2>
+        <ul class="default_list"></ul>
+            <li><a href="#">Element 1</a></li>
+            <li><a href="#">Element 2</a></li>
+            <li><a href="#">Element 3</a></li>
+            <li><a href="#">Element 4</a></li>
+        </ul>
+        <h3>Display: inline</h3>
+        <div>NOTICE! You cannot do <code>margin: auto</code> to inline elements. It must be block-level.</div>
+        <ul class="inline_list">
+            <li class="inline"><a href="#">Element 1</a></li>
+            <li class="inline"><a href="#">Element 2</a></li>
+            <li class="inline"><a href="#">Element 3</a></li>
+            <li class="inline"><a href="#">Element 4</a></li>
+        </ul>
+        <h2>Inline level elements by default</h2>
+        <img src="https://source.unsplash.com/225x150/?building" alt="random image" width="225"/>
+        <img src="https://source.unsplash.com/225x150/?nature" alt="random image" width="225"/>
+        <h3>Center block-level elements horizontally</h3>
+        <div class="center_hint">With <code>width: 100%; text-align: center</code></div>
+        <ul class="center_list">
+            <li class="inline"><a href="#">Element 1</a></li>
+            <li class="inline"><a href="#">Element 2</a></li>
+            <li class="inline"><a href="#">Element 3</a></li>
+            <li class="inline"><a href="#">Element 4</a></li>
+        </ul>
+        <div class="center_hint">With <code>display: block; margin: auto</code></div>
+        <img class="center_img" src="https://source.unsplash.com/225x150/?people" alt="random image" width="225"/>
+    </body>
+</html>
