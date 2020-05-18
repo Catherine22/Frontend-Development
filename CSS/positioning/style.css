@@ -1,0 +1,38 @@
+body {
+    height: 4000px;
+}
+.container {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    background: lightgrey;
+}
+.box {
+    width: 100px;
+    height: 100px;
+}
+#box-1 {
+    position: static; /* default position */
+    background: red;
+}
+#box-2 {
+    position: relative; /* compare to its original position */
+    left: 100px;
+    top: 0;
+    background: yellow;
+}
+#box-3 {
+    position: absolute;
+    left: 200px;
+    top: 200px;
+    background: green;
+}
+#box-4 {
+    position: fixed; /* fixed position in the screen (used to put floating bottoms or bottom navigation bar */
+    background: blue;
+}
+#box-5 {
+    position: sticky; /* Good for menu or navigation bar, it sticks to the parent. */
+    top: 0;
+    background: orange;
+}

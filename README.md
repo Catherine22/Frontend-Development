@@ -156,6 +156,7 @@ selector {
 -   Link and button: [html](CSS/link/index.html), [css](CSS/link/style.css)
 -   Navigation menu, side menu: [html](CSS/navigationMenu/index.html), [css](CSS/navigationMenu/style.css)
 -   Inline vs block and how to center elements horizontally: [html](CSS/display/index.html), [css](CSS/display/style.css)
+-   Positioning: [html](CSS/positioning/index.html), [css](CSS/positioning/style.css)
 
 ### CSS Units
 
