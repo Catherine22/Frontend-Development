@@ -157,6 +157,7 @@ selector {
 -   Navigation menu, side menu: [html](CSS/navigationMenu/index.html), [css](CSS/navigationMenu/style.css)
 -   Inline vs block and how to center elements horizontally: [html](CSS/display/index.html), [css](CSS/display/style.css)
 -   Positioning: [html](CSS/positioning/index.html), [css](CSS/positioning/style.css)
+-   CSS priority: [html](CSS/priority/index.html), [css](CSS/priority/style.css)
 
 ### CSS Units
 

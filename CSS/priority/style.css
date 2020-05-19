@@ -1,0 +1,18 @@
+div {
+    color: grey;
+}
+i {
+    color: grey !important; /* !important means it doesn't matter if there is any class or id, I have the priority */
+}
+.red {
+    color: red;
+}
+.green {
+    color: green !important;
+}
+.orange {
+    color: orange !important;
+}
+#blue {
+    color: blue;
+}
