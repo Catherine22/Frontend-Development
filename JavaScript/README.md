@@ -30,6 +30,7 @@ JS: Programming capabilities
 -   [Promises](#promises)
     -   [Promise Chaining](#promise-chaining)
     -   [Promise.all](#promise-all)
+-   [Queue Priority](#queue-priority)
 -   [ECMAScript](#ecmascript)
     -   [ES6](#es6)
     -   [ES7](#es7)
@@ -973,6 +974,50 @@ Promise.all(URLs.map(url => {
 }).catch(() => console.log('Failed to fetch data.'));
 ```
 
+## Queue Priority
+
+In Javascript, there are three queues:
+
+1. Callback Queue (Task Queue)
+
+```Javascript
+setTimeout(() => {
+    console.log('hello from setTimeout');
+}, 0);
+```
+
+2. Job Queue (Microtask Queue)
+
+```Javascript
+Promise.resolve('hello from promise')
+    .then(data => console.log(data));
+```
+
+3. Others
+
+```Javascript
+console.log('hello from console.log')
+```
+
+Now, if you run those queues at a time, you will get:
+
+```Javascript
+setTimeout(() => {
+    console.log('hello from setTimeout');
+}, 0);
+
+Promise.resolve('hello from promise')
+    .then(data => console.log(data));
+
+console.log('hello from console.log');
+
+// hello from console.log
+// hello from promise
+// hello from setTimeout
+```
+
+Event loop checks Job queue first, make sure it's empty before it starts callback queue.
+
 ## ECMAScript
 
 ### ES6
@@ -1151,13 +1196,4 @@ console.log("Albums:", responses[2]);
 ## Reference
 
 -   [Advanced Javascript concepts](https://www.udemy.com/course/advanced-javascript-concepts/)
-
-[loupe]: http://latentflip.com/loupe/
-
-```
-
-```
-
-```
-
-```
+-   [loupe]: http://latentflip.com/loupe/
