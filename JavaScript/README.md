@@ -30,6 +30,7 @@ JS: Programming capabilities
 -   [Promises](#promises)
     -   [Promise Chaining](#promise-chaining)
     -   [Promise.all](#promise-all)
+    -   [Promise Race](#promise-race)
 -   [Queue Priority](#queue-priority)
 -   [ECMAScript](#ecmascript)
     -   [ES6](#es6)
@@ -121,7 +122,7 @@ function b() {
 a();
 ```
 
-The call stack will be:
+The call stack is:
 
 ```Javascript
 a();
@@ -138,7 +139,7 @@ b();
 a();
 ```
 
-Once all the functions is done, they will be popped up in order
+Once all the functions is done, they are popped up in order
 
 ```Javascript
 b();
@@ -208,7 +209,7 @@ var a = 20;
 console.log('#3, a=', a);
 ```
 
-Your will get: #1 = undefined, #2 = 10, #3 = 20
+You get: #1 = undefined, #2 = 10, #3 = 20
 
 ```Javascript
 console.log('#1, f()=', f());
@@ -224,7 +225,7 @@ return 1;
 console.log('#3, f()=', f());
 ```
 
-Your will get: #1 = 1, #2 = 1, #3 = 1
+You get: #1 = 1, #2 = 1, #3 = 1
 
 ```Javascript
 var favouriteFood = 'hot dog';
@@ -238,7 +239,7 @@ function toGo() {
 toGo();
 ```
 
-The result will be:
+The result is:
 
 ```
 'I'd like some undefined'
@@ -652,7 +653,7 @@ const person = {
     name: 'Karen',
     showName: function() {
         let sayMyName = () => {
-            // without arrow function, `this` will be `window`
+            // without arrow function, `this` should be `window`
             console.log(this.name);
         }
         return sayMyName();
@@ -813,7 +814,7 @@ const necromancer2 = {
 }
 ```
 
-In FP, it will be:
+In FP, it is
 
 ```Javascript
 function createNecromancer(name, weapon, skill) {
@@ -917,7 +918,7 @@ Because the `catch statement` is right before `then`, which means if any error h
 
 ### Promise.all
 
-The `Promise.all()` will wait until all the promises are resolved and then log out the values.
+The `Promise.all()` waits until all the promises are resolved and then log out the values.
 
 ```Javascript
 const p1 = new Promise((resolve, reject) => {
@@ -934,7 +935,7 @@ const p3 = new Promise((resolve, reject) => {
 
 Promise.all([p1, p2, p3]).then(value => {
     console.log(value);
-    // After 3 seconds, you will get an array -- ["100ms", "1s", "3s"]
+    // After 3 seconds, you get an array -- ["100ms", "1s", "3s"]
 })
 ```
 
@@ -956,7 +957,7 @@ Promise.all(URLs.map(url => {
 });
 ```
 
-If any of the URLs are wrong, you will get failed responses.
+If any of the URLs are wrong, you get failed responses.
 
 ```Javascript
 const URLs = [
@@ -972,6 +973,77 @@ Promise.all(URLs.map(url => {
     console.log("Comments:", results[1]);
     console.log("Albums:", results[2]);
 }).catch(() => console.log('Failed to fetch data.'));
+```
+
+### Promise Race
+
+You pick up the fastest resolve, and don't care about the others
+
+```Javascript
+const p1 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 100, '100ms');
+})
+
+const p2 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 1000, '1s');
+})
+
+const p3 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 3000, '3s');
+})
+
+Promise.race([p1, p2, p3]).then(value => {
+    console.log(value);
+    // After 100ms, you gets "100ms"
+})
+```
+
+### Conclusion - 3 ways to handle promises
+
+For example
+
+```Javascript
+const promisify = (item, delay) => new Promise((resolve, reject) => {
+  setTimeout(() => resolve(item), delay);
+});
+
+const p1 = promisify('a', 1000);
+const p2 = promisify('b', 3000);
+const p3 = promisify('c', 2000);
+```
+
+1. Execute 3 promises in parallel
+
+```Javascript
+async function parallel() {
+    const promises = [p1, p2, p3];
+    const [output1, output2, output3] = await Promise.all(promises);
+    return `Parallel is done: ${output1} ${output2} ${output3}`
+}
+parallel().then(console.log); // Parallel is done: a b c
+```
+
+2. Get the first result by leveraging `Promise.race` (In this case, you don't care all the other ones)
+
+```Javascript
+async function race() {
+    const promises = [p1, p2, p3];
+    const output = await Promise.race(promises);
+    return `Race is done: ${output}`
+}
+race().then(console.log); // Race is done: a
+```
+
+3. Sequence
+
+```Javascript
+async function sequence() {
+    const output1 = await p1;
+    const output2 = await p2;
+    const output3 = await p3;
+    return `Sequence is done: ${output1} ${output2} ${output3}`
+}
+sequence().then(console.log); // Sequence is done: a b c
 ```
 
 ## Queue Priority
@@ -999,7 +1071,7 @@ Promise.resolve('hello from promise')
 console.log('hello from console.log')
 ```
 
-Now, if you run those queues at a time, you will get:
+Now, if you run those queues at a time, you get:
 
 ```Javascript
 setTimeout(() => {

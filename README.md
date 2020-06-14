@@ -258,14 +258,14 @@ Demo: [sw.js], [pwa], [vue-pwa]
     3. Push notifications
 -   Lifecycle:
     1. Create a sw.js (your service worker) in root directory to allow html files to access it globally
-    2. Register your sw.js with the browser (You will do this in your app.js file, not in sw.js)
+    2. Register your sw.js with the browser (You should do this in your app.js file, not in sw.js)
     3. [install event] The browser installs your service worker and running on the service worker thread. This install event only runs once when the service worker is registered
     4. [activate event] If success, you get an activate event
     5. This service worker starts listening other events such as `fetch`
 -   Your service worker will not be installed if no changes of sw.js
 -   Service workers only work on HTTPS domains, but localhost is an exception to the rule.
 -   Service workers are likely the proxy between browser and servers. When your PWA fetch resources from any server, it catches the fetch event.
--   It will be super helpful the have "update on reload" selected during development (In DevTool -> application -> service)
+-   It would be super helpful the have "update on reload" selected during development (In DevTool -> application -> service)
 -   To make your Android emulator in `localhost`, In DevTool -> three dots -> More tools -> Remote devices -> Port forwarding -> 5500, localhost:5500 and enabled port forwarding. If you meet all the "Add to Home Screen" criteria, you will see the prompt on your Android device.
 
 #### Lifecycle Events
@@ -346,7 +346,7 @@ A lightweight private npm proxy registry to help you build your private npm regi
 
 #### Get started
 
-1. You will need an running EC2 instance, and ssh into it.
+1. You need an running EC2 instance, and ssh into it.
 
 ```shell
 $chmod 0400 test.pem
@@ -480,7 +480,7 @@ For more information, see [vue-pwa] and [dockerhub](https://hub.docker.com/repos
 Deploy Nuxt.js web app in two different ways depending on what model you are using. Static Generated Deployment (Pre-rendered)
 and Single Page Application Deployment (SPA) are basically the same as the way you deploy a typical vue.js web app.
 
-Server-Side Rendered Deployment (Universal SSR) will be a bit different.
+Server-Side Rendered Deployment (Universal SSR) is a bit different.
 
 1. Add build commands in package.json
 
