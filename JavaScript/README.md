@@ -32,10 +32,12 @@ JS: Programming capabilities
     -   [Promise.all](#promise-all)
     -   [Promise Race](#promise-race)
 -   [Queue Priority](#queue-priority)
--   [ECMAScript](#ecmascript)
-    -   [ES6](#es6)
-    -   [ES7](#es7)
-    -   [ES8](#es8)
+-   [Concurrency and Parallelism](#concurrency-and-parallelism)
+-   [Modules](#modules)
+    -   [ECMAScript](#ecmascript)
+        -   [ES6](#es6)
+        -   [ES7](#es7)
+        -   [ES8](#es8)
 -   [Reference](#Reference)
 
 ## ESLint and Prettier
@@ -1090,9 +1092,16 @@ console.log('hello from console.log');
 
 Event loop checks Job queue first, make sure it's empty before it starts callback queue.
 
-## ECMAScript
+## Concurrency and Parallelism
 
-### ES6
+-   Concurrency: single-core CPU, do task one by on
+-   Concurrency + Parallelism: Multi-core CPU, do tasks concurrently.
+
+## Modules
+
+### ECMAScript
+
+#### ES6
 
 ES6, ECMAScript 2015
 
@@ -1115,7 +1124,7 @@ const arr = [1, 2, 3, 4];
 sum(...arr); // 10
 ```
 
-### ES8
+#### ES8
 
 ES8, ECMAScript 2017
 
@@ -1197,7 +1206,7 @@ try {
 }
 ```
 
-### ES9
+#### ES9
 
 ES9, ECMAScript 2018
 
