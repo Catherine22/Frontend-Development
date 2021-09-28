@@ -7,38 +7,40 @@ JS: Programming capabilities
 
 ## Navigator
 
--   [ESLint and Prettier](#eslint-and-prettier)
--   [Javascript Engine](#javascript-engine)
-    -   [Problematic keywords](#problematic-keywords)
-    -   [Call stack vs. memory heap](#call-stack-vs-memory-heap)
-    -   [Threading](#threading)
--   [Javascript Runtime](#javascript-runtime)
--   [Hoisting](#hoisting)
-    -   [More Examples](#more-examples)
--   [IIFE](#iife)
--   [This](#this)
--   [apply() and call()](#apply-and-call)
--   [Function currying - bind()](#function-currying-bind)
--   [Recap This](#recap-this)
--   [Higher Order Functions](#higher-order-functions)
--   [Closure](#Closure)
--   [Encapsulation](#encapsulation)
--   [Prototypal Inheritance](#prototypal-inheritance)
-    -   [Extend the functionality of a built-in object](#extend-the-function-of-a-built-in-object)
--   [FP and OOP](#fp-and-oop)
--   [Constructor Function](#constructor-function)
--   [Promises](#promises)
-    -   [Promise Chaining](#promise-chaining)
-    -   [Promise.all](#promise-all)
-    -   [Promise Race](#promise-race)
--   [Queue Priority](#queue-priority)
--   [Concurrency and Parallelism](#concurrency-and-parallelism)
--   [Modules](#modules)
-    -   [ECMAScript](#ecmascript)
-        -   [ES6](#es6)
-        -   [ES7](#es7)
-        -   [ES8](#es8)
--   [Reference](#Reference)
+- [JavaScript](#javascript)
+  - [Navigator](#navigator)
+  - [ESLint and Prettier](#eslint-and-prettier)
+  - [Javascript Engine](#javascript-engine)
+    - [Problematic keywords](#problematic-keywords)
+    - [Call stack vs memory heap](#call-stack-vs-memory-heap)
+    - [Threading](#threading)
+  - [Javascript Runtime](#javascript-runtime)
+  - [Hoisting](#hoisting)
+    - [More Examples](#more-examples)
+  - [IIFE](#iife)
+  - [This](#this)
+  - [apply() and call()](#apply-and-call)
+  - [Function currying - bind()](#function-currying---bind)
+  - [Recap This](#recap-this)
+  - [Higher-Order Functions](#higher-order-functions)
+  - [Encapsulation](#encapsulation)
+  - [Prototypal Inheritance](#prototypal-inheritance)
+    - [Extend the functionality of a built-in object](#extend-the-functionality-of-a-built-in-object)
+  - [FP and OOP](#fp-and-oop)
+  - [Constructor Function](#constructor-function)
+  - [Promises](#promises)
+    - [Promises Chaining](#promises-chaining)
+    - [Promise.all](#promiseall)
+    - [Promise Race](#promise-race)
+    - [Conclusion - 3 ways to handle promises](#conclusion---3-ways-to-handle-promises)
+  - [Queue Priority](#queue-priority)
+  - [Concurrency and Parallelism](#concurrency-and-parallelism)
+  - [Modules](#modules)
+    - [ECMAScript](#ecmascript)
+      - [ES6](#es6)
+      - [ES8](#es8)
+      - [ES9](#es9)
+  - [Reference](#reference)
 
 ## ESLint and Prettier
 
@@ -46,7 +48,7 @@ JS: Programming capabilities
 2. Press `command` + `shift` + `p` and search 'settings.json'
 3. Add the following rules:
 
-```json
+```JSON
 {
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.formatOnPaste": true,
@@ -57,13 +59,6 @@ JS: Programming capabilities
     "window.zoomLevel": 0,
     "cSpell.language": "en-GB",
     "javascript.updateImportsOnFileMove.enabled": "always",
-    "vetur.validation.template": false,
-    "vetur.completion.scaffoldSnippetSources": {
-        "workspace": "💼",
-        "user": "(User)",
-        "vetur": ""
-    },
-    "eslint.enable": true,
     "eslint.alwaysShowStatus": true,
     "prettier.singleQuote": true,
     "prettier.arrowParens": "always",
@@ -74,11 +69,19 @@ JS: Programming capabilities
     "html.format.wrapAttributes": "auto",
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
-    }
+    },
+    "tabnine.experimentalAutoImports": true,
+    "json.schemas": [
+        {
+            "fileMatch": ["/myfile"],
+            "url": "schemaURL"
+        }
+    ],
+    "files.autoSave": "afterDelay"
 }
 ```
 
-The settings include vue.js (You need to install vuter as well) and react native formatting.
+The settings include vue.js (You need to install `vuter` as well) and react-native formatting.
 
 ## Javascript Engine
 
@@ -88,11 +91,11 @@ The settings include vue.js (You need to install vuter as well) and react native
 -   [AST explorer](https://astexplorer.net/)
 
 > So, is Javascript an interpreted language?
-> Ans: Not technically. Because it depends on how JS engine deals with it.
+> Ans: Not technically. Because it depends on how the JS engine deals with it.
 
 ### Problematic keywords
 
-JS engine cannot optimise code snippet properly with these keywords. I.e. These keywords is absolutely functional, but it would slower the execution a little bit.
+JS engine cannot optimise code snippets properly with these keywords. I.e. These keywords are functional, but it would slow the execution a little bit.
 
 -   eval()
 -   arguments
@@ -102,15 +105,15 @@ JS engine cannot optimise code snippet properly with these keywords. I.e. These 
 -   hidden classes
 -   inline caching
 
-### Call stack vs. memory heap
+### Call stack vs memory heap
 
-As code runs, it pushes functions into the stack, and pup out after the execution. Simple variables can be stored on the stack, whereas objects and complex data structures are stored in memory heaps.
+As code runs, it pushes functions into the stack and pup out after the execution. Simple variables can be stored on the stack, whereas objects and complex data structures are persistent in memory heaps.
 
 ### Threading
 
-**Javascript is a single-threaded programming language**. But sometimes Javascript can be 'asynchronous', and that's because browsers provide **Web APIs**, which is written in language like C++ to help Javascript to do a couple of operations. E.g. DOM, fetch.
+**Javascript is a single-threaded programming language**. But sometimes Javascript can be ''asynchronous, and that is because browsers provide **Web APIs**, which is written in languages like C++ to help Javascript do a couple of operations. E.g. DOM, fetch.
 
-Being single-threaded means there is only one call stack while running, take a look at an example of call stack:
+Being single-threaded means there is only one call stack while running. Take a look at an example of call stacks:
 
 ```Javascript
 function a() {
@@ -141,7 +144,7 @@ b();
 a();
 ```
 
-Once all the functions is done, they are popped up in order
+Once all the functions have been executed, they pop up in order.
 
 ```Javascript
 b();
@@ -160,7 +163,7 @@ To see how exactly call stack and Web APIs work, go to [loupe].
 
 ## Javascript Runtime
 
-As you might have heard, Node.js makes Javascript be able to run outside of browser. This 'program' uses V8 engine to interpret Javascript creates the entire environment to run Javascript code and offer additional APIs to do things like asynchronous jobs.
+As you might have heard, Node.js makes Javascript be able to run outside of the browser. This program uses a V8 engine to interpret Javascript, creates the entire environment to run Javascript code and offer additional APIs to do things like asynchronous jobs.
 
 On top of the engine, a browser has `Web APIs`. It offers things like `DOM`, `AJAX(XMLHttpRequest)` and `Timeout(setTimeout)`
 
@@ -181,8 +184,8 @@ function sing() {
 // 'Hello from the other side...'
 ```
 
-The reason why this code snippet doesn't crash is that Javascript engine hoist it before running `console.log(teddy);`, what it does is `var teddy = undefined;`. The function is moved to the top before being called as well.  
-Notice, hoisting is working when the code snippet starts from `var` and `function`, on the other hand, `const` and `let` do not be hoisted. A special case is **function expression**.
+This code snippet doesn't crash because the Javascript engine hoist it before running `console.log(teddy);`, what it does is `var teddy = undefined;`. The function is moved to the top before being called as well.  
+Notice, hoisting is working when the code snippet starts from `var` and `function`. On the other hand, `const` and `let` do not be hoisted. A particular case is **function expression**.
 
 ```Javascript
 console.log(teddy);
@@ -244,11 +247,11 @@ toGo();
 The result is:
 
 ```
-'I'd like some undefined'
+'I'd like some undefined.'
 'A pizza is just fine'
 ```
 
-With Javascript hoisting, this code is actually be executed as:
+With Javascript hoisting, this code is executed as:
 
 ```Javascript
 /*----------------------------------------*/
@@ -274,10 +277,10 @@ toGo();
 
 ## IIFE
 
-Aka Immediately-invoked Function Expression, a common Javascript design pattern.  
-It lets you to call functions immediately right after it is created. E.g.
+IIFE is known as Immediately-invoked Function Expression, a typical Javascript design pattern.  
+It lets you call functions immediately right after it is created. E.g.
 
-Normally, you cannot
+Typically, you cannot code as follows:
 
 ```Javascript
 function a() {
@@ -304,7 +307,7 @@ With IIFE, you can:
  // a is running...
 ```
 
-Eventually, you can have one global variable containing objects and functions. The advantage is that this code snippet only pollute the global execution context once, i.e. `script1` in next examples, you are scoping things into their own environments.
+Eventually, you can have one global variable containing objects and functions. The advantage is that this code snippet only pollutes the global execution context once, i.e. `script1`. In the following examples, you are scoping things into their environments.
 
 ```Javascript
 let script1 = (function () {
@@ -336,7 +339,7 @@ script2.a1(); // 12345
 
 ## This
 
-Before you dive into `this`, have a look at the code snippet
+Before we dive into `this`, have a look at the following code snippet.
 
 ```Javascript
 var name = 'Alice';
@@ -347,7 +350,7 @@ function whoAmI() {
 const obj = {
     name: 'Bob',
     whoAmI: function() {
-         console.log(this.name);
+        console.log(this.name);
     }
 }
 
@@ -355,7 +358,7 @@ whoAmI(); // Alice
 obj.whoAmI(); // Bob
 ```
 
-Let change it a little bit
+Let's change it a little bit.
 
 ```Javascript
 var name = 'Alice';
@@ -377,15 +380,15 @@ whoAmI(); // Alice
 obj.whoAmI(); // Alice
 ```
 
-**In JavaScript our lexical scope (available data + variables where the function was defined) determines our available variables. Not where the function is called (dynamic scope)**
+**In JavaScript, our lexical scope (available data + variables where the function was defined) determines our available variables, not where the function is called (dynamic scope)**
 
-To make obj.whoAmI() print 'Bob', here are three solutions
+To make `obj.whoAmI()` print `Bob`, here are three solutions:
 
 1. ES6 arrow function
 
-Arrow function is lexically scoped whereas regular function is dynamically scoped.
+Arrow functions are lexically scoped, whereas functions are dynamically scoped.
 
-Example 1: Regular function vs. arrow function
+Example 1: Regular function vs arrow function
 
 ```Javascript
 var skill = 'fists of thunder';
@@ -415,18 +418,18 @@ Example 2: Put an arrow function inside a regular function
 ```Javascript
 const obj = {
     name: 'Bob',
-    whoAmI: function() {
+    whoAmI: function () {
         var f = () => {
             console.log(this.name);
         };
         return f();
-    }
-}
+    },
+};
 
 obj.whoAmI(); // Bob
 ```
 
-2. binding this
+2. Using the `this` keyword to bind an object.
 
 ```Javascript
 const obj = {
@@ -442,7 +445,7 @@ const obj = {
 obj.whoAmI(); // Bob
 ```
 
-3. Point this to self
+3. Creating a variable and pointing to the object.
 
 ```Javascript
 const obj = {
@@ -496,7 +499,7 @@ b.echo()(); // unknown
 c.echo()(); // c
 ```
 
-Now, this one is tricky
+Now, this one is tricky.
 
 ```Javascript
 var name = 'unknown';
@@ -522,7 +525,7 @@ trick(); // d
 
 ## apply() and call()
 
-Before you learn what `apply()` and `call()` are, take a look at the code snippet at first
+We first go through the code snippet.
 
 ```Javascript
 let wizard = {
@@ -538,7 +541,7 @@ wizard.heal();
 console.log(wizard); // {name: "Merlin", health: 100, heal: ƒ}
 ```
 
-Then you have another object, this Robin can't `heal` himself
+Then you have another object. This Robin can't `heal` himself.
 
 ```Javascript
 let archer = {
@@ -547,7 +550,7 @@ let archer = {
 }
 ```
 
-To `heal` someone who do not know how to use magic, i.e. To call function from another object, you can used `apply()` or `call()`
+To `heal` someone who does not know how to use magic, i.e. To borrow a function from another object, you can use `apply()` or `call()`.
 
 ```Javascript
 // {name: "Robin Hood", health: 30}
@@ -635,7 +638,7 @@ person.showName(); // Karen
 
 2. Explicit binding
 
-E.g. To bind `window` to this
+E.g. To bind `window` to this.
 
 ```Javascript
 const person = {
@@ -663,7 +666,7 @@ const person = {
 }
 ```
 
-## Higher Order Functions
+## Higher-Order Functions
 
 Function returns function.
 
@@ -677,13 +680,13 @@ const multiplyBy = function(n1) {
 }
 ```
 
-Or written in ES6 style
+Or it can be written in ES6 style.
 
 ```Javascript
 const multiplyBy = (n1) => (n2) => n1 * n2;
 ```
 
-And you can call the function
+And you can call the function.
 
 ```Javascript
 const multiplyByTen = multiplyBy(10);
@@ -693,7 +696,7 @@ multiplyByTen(5); // 50
 
 ## Encapsulation
 
-What encapsulation does is to hide some information from the outside world.
+What encapsulation does is hide some information from the outside world.
 
 For example:
 
@@ -721,7 +724,7 @@ ohNo.launch(); // 💥
 ## Prototypal Inheritance
 
 -   `__proto__` points to `prototype`.
--   Only functions have access to `prototype`
+-   Only functions have access to `prototype`.
 
 Example 1
 
@@ -840,7 +843,7 @@ const necromancer2 = createNecromancer('Lucas', 'cauldron', 'frailty');
 necromancer2.attack = necromancerFunctions.attack;
 ```
 
-Instead of attach `attack` manually, (it will be a nightmare if you have hundreds of necromancers). You can use `Object.create` to add the attack function at the beginning.
+Instead of attaching `attack` manually (it will be a nightmare if you have hundreds of necromancers). You can use `Object.create` to add the attack function at the beginning.
 
 ```Javascript
 const necromancerFunctions = {
@@ -865,11 +868,11 @@ const necromancer2 = createNecromancer('Lucas', 'cauldron', 'frailty');
 ## Constructor Function
 
 Instead of using `Object.create()`, you can use Constructor Function.  
-With `new` keyword, you are creating a new object.
+With the `new` keyword, you are creating a new object.
 
 Two rules to implement a constructor function:
 
-1. add `new`
+1. add `new`.
 2. function name starts with a capital letter. (coding style)
 
 ```Javascript
@@ -891,7 +894,7 @@ In the proceeding code snippet, `this` of Necromancer refers to `necromancer1` a
 
 ## Promises
 
-A promise is an object that may produce a single value some time in the future. Either a resolved value, or a reason that it's not resolved (rejected)
+A promise is an object that may produce a single value sometime in the future. Either a resolved value or a reason that it's not resolved (rejected)
 
 E.g.
 
@@ -916,7 +919,7 @@ promise.then(result => `result: ${result}`)
     .then(result => console.log(`${result}!`)); // result: stuff worked?!
 ```
 
-Because the `catch statement` is right before `then`, which means if any error happens in the last `then` code snippet, this `catch` cannot handle it.
+Because the `catch statement` is before `then`, which means if any error happens in the last `then` code snippet, this `catch` cannot handle it.
 
 ### Promise.all
 
@@ -979,7 +982,7 @@ Promise.all(URLs.map(url => {
 
 ### Promise Race
 
-You pick up the fastest resolve, and don't care about the others
+You pick up the fastest resolve and don't care about the others.
 
 ```Javascript
 const p1 = new Promise((resolve, reject) => {
@@ -1014,7 +1017,7 @@ const p2 = promisify('b', 3000);
 const p3 = promisify('c', 2000);
 ```
 
-1. Execute 3 promises in parallel
+1. Execute three promises in parallel
 
 ```Javascript
 async function parallel() {
@@ -1025,7 +1028,7 @@ async function parallel() {
 parallel().then(console.log); // Parallel is done: a b c
 ```
 
-2. Get the first result by leveraging `Promise.race` (In this case, you don't care all the other ones)
+2. Get the first result by leveraging `Promise.race` (In this case, you don't care about all the other ones)
 
 ```Javascript
 async function race() {
@@ -1090,7 +1093,7 @@ console.log('hello from console.log');
 // hello from setTimeout
 ```
 
-Event loop checks Job queue first, make sure it's empty before it starts callback queue.
+Event loop checks Job queue first. Make sure it's empty before it starts the callback queue.
 
 ## Concurrency and Parallelism
 
@@ -1109,7 +1112,7 @@ ES6, ECMAScript 2015
 
 -   separate an array
 
-Let's say you have an function with four arguments available.
+Let's say you have a function with four arguments available.
 
 ```Javascript
 function sum (a, b, c, d) {
@@ -1117,7 +1120,7 @@ function sum (a, b, c, d) {
 }
 ```
 
-You can stuff arguments from an array with retrieving each one.
+You can stuff arguments from an array by retrieving each one.
 
 ```Javascript
 const arr = [1, 2, 3, 4];
@@ -1130,7 +1133,7 @@ ES8, ECMAScript 2017
 
 `async`/`await` syntax
 
-E.g. `fetch` in ES6 style
+E.g. `fetch` in ES6 style.
 
 ```Javascript
 const callback = (res) => console.log('res', res);
@@ -1148,7 +1151,7 @@ function getComments(callback) {
 getComments(callback);
 ```
 
-`fetch` in ES8 style
+`fetch` in ES8 style.
 
 ```Javascript
 async function getComments() {
@@ -1222,7 +1225,7 @@ const myGarage = {
 }
 ```
 
-With object spread operator, you can separate the object effortlessly
+With an object spread operator, you can separate the object effortlessly.
 
 ```Javascript
 const { sedan, ...rest } = myGarage;
@@ -1277,4 +1280,4 @@ console.log("Albums:", responses[2]);
 ## Reference
 
 -   [Advanced Javascript concepts](https://www.udemy.com/course/advanced-javascript-concepts/)
--   [loupe]: http://latentflip.com/loupe/
+-   [loupe](http://latentflip.com/loupe/)

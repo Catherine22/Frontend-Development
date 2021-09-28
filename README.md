@@ -2,51 +2,56 @@
 
 ## Navigation
 
--   [Basis](#basis)
-    -   [Environment and Tools](#environment-and-tools)
-    -   [URL Structure](#url-structure)
-    -   [SEO](#seo)
-    -   [Redirect](#redirect)
-    -   [Reactive Web Applications](#reactive-web-applications)
--   [UI/UX](#uiux)
-    -   [Responsive Web Design](#responsive-web-design)
-    -   [Adaptive Web Design](#adaptive-web-design)
-    -   [More resources](#more-resources)
--   [HTML](#html)
--   [CSS](#css)
-    -   [CSS Units](#css-units)
-    -   [SASS & SCSS](#sass-&-scss)
--   [JavaScript](#javaScript)
-    -   [Style Guide](#style-guide)
-    -   [ECMAScript](#ecmaScript)
--   [Popular Frontend Frameworks](#popular-frontend-framework)
-    -   [Angular](#angular)
-    -   [React](#react)
-    -   [Vue.js](#vuejs)
-        -   [Useful UI Dependencies](#useful-ui-dependencies)
-        -   [Nuxt.js](#nuxtjs)
--   [Design Patterns](#design-patterns)
-    -   [CDD](#cdd)
--   [Webpack](#webpack)
--   [Service Side Rerender](#service-side-rerender)
--   [Progressive Web App](#progressive-web-app)
-    -   [Service Workers](#service-workers)
-    -   [Lifecycle Events](#lifecycle-events)
-    -   [Add to Home Screen](#add-to-home-screen)
-    -   [Offline browsing](#offline-browsing)
-    -   [Lighthouse](#lighthouse)
--   [AMP](#amp)
--   [Tooling and Useful Dependencies](#tooling-and-useful-dependencies)
-    -   [Storybook](#storybook)
-    -   [Verdaccio](#verdaccio)
--   [Security](#security)
-    -   [OWASP Top 10 Web Application Security Risks](#owasp-top-10-web-application-security-risks)
--   [Testing](#testing)
-    -   [Unit Testing](#unit-testing)
-    -   [End-to-end Testing](#end-to-end-testing)
--   [Deployment](#deployment)
-    -   [Vue.js Deployment](#vuejs-deployment)
-    -   [Nuxt.js Deployment](#nuxtjs-deployment)
+- [The Web Developer Bootcamp](#the-web-developer-bootcamp)
+  - [Navigation](#navigation)
+  - [Basis](#basis)
+    - [Environment and Tools](#environment-and-tools)
+    - [URL Structure](#url-structure)
+    - [SEO](#seo)
+    - [Redirect](#redirect)
+    - [Reactive Web Applications](#reactive-web-applications)
+  - [UI/UX](#uiux)
+    - [Fonts](#fonts)
+    - [Responsive Web Design](#responsive-web-design)
+    - [Adaptive Web Design](#adaptive-web-design)
+    - [More Resources](#more-resources)
+  - [HTML](#html)
+  - [CSS](#css)
+    - [CSS Units](#css-units)
+    - [SASS & SCSS](#sass--scss)
+  - [JavaScript](#javascript)
+    - [Style Guide](#style-guide)
+  - [Popular JS Frameworks](#popular-js-frameworks)
+    - [Angular](#angular)
+    - [React](#react)
+    - [Vue.js](#vuejs)
+      - [Useful UI Dependencies](#useful-ui-dependencies)
+      - [Nuxt.js](#nuxtjs)
+  - [Design Patterns](#design-patterns)
+    - [CDD](#cdd)
+  - [Webpack](#webpack)
+  - [Service Side Rerender](#service-side-rerender)
+  - [Progressive Web App](#progressive-web-app)
+    - [Service Workers](#service-workers)
+      - [Lifecycle Events](#lifecycle-events)
+    - [Add to Home Screen](#add-to-home-screen)
+    - [Offline Browsing](#offline-browsing)
+    - [Lighthouse](#lighthouse)
+  - [AMP](#amp)
+  - [Sessions](#sessions)
+    - [Stateful, cookie-based authentication](#stateful-cookie-based-authentication)
+    - [Stateless, token-based authentication](#stateless-token-based-authentication)
+  - [CORS](#cors)
+  - [Tooling and Useful Dependencies](#tooling-and-useful-dependencies)
+    - [Storybook](#storybook)
+    - [Verdaccio](#verdaccio)
+      - [Get started](#get-started)
+  - [Testing](#testing)
+    - [Unit Testing](#unit-testing)
+    - [End-to-end Testing](#end-to-end-testing)
+  - [Deployment](#deployment)
+    - [Vue.js Deployment](#vuejs-deployment)
+    - [Nuxt.js Deployment](#nuxtjs-deployment)
 
 ## Basis
 
@@ -56,9 +61,9 @@
 2. Node.js
 3. Visual Studio Code
 4. Useful VS Code tips:
-    - If you want to generate some dummy texts, you can type `lorem` and hit enter. And if you want to fill in 10 words for example, you can type `loren10` and hit enter
+    - If you want to generate some dummy texts, you can type `loren` and hit tab. And if you want to fill in 10 words, for example, you can type `lorem10` and hit tab
     - To copy the whole line and paste right below, you can use `option` + `shift` + down arrow
-    - Useful extensions you might need: Eslint, Prettier, HTML Snippets, Copy Relative Path, Code Spell Checker, Live Server, TabNine, etc.
+    - Useful extensions you might need such as Eslint, Prettier, HTML Snippets, Copy Relative Path, Code Spell Checker, Live Server, TabNine.
     - Create your own VS Code settings by hitting `command` + `shift` + `p` to open settings (JSON), and paste the content from [vscode-settings.json](vscode-settings.json)
     - Move up/down the whole line by clicking `option` + up/down arrow
 5. Useful Mac keyboard shortcuts:
@@ -78,7 +83,7 @@
 
 [Is there an advantage to using rel="canonical" over a 301 redirect?]
 
-> If you have access to header modification, use 301, if you don't, then use rel=canonical.
+> If you have access to header modification, use 301. If you don't, then use rel=canonical.
 
 ### Reactive Web Applications
 
@@ -88,13 +93,13 @@
 
 ### Fonts
 
--   Using Web Safe Fonts or you will need to import extra font resources. [Link](https://www.w3schools.com/cssref/css_websafe_fonts.asp). E.g.
+-   Using web-safe fonts, or you will need to import extra font resources. [Link](https://www.w3schools.com/cssref/css_websafe_fonts.asp). E.g.
     -   Serif font has edges
     -   Sans serif font is flat, looks neater and more modern.
 -   You could embed fonts, for example, [google fonts](https://https://fonts.google.com/). E.g.
     -   Roboto
 
-In your html file
+In your HTML file
 
 ```html
 <link
@@ -103,7 +108,7 @@ In your html file
 />
 ```
 
-In your css file
+In your CSS file
 
 ```css
 font-family: 'Roboto', sans-serif;
@@ -118,7 +123,7 @@ font-family: 'Roboto', sans-serif;
 -   [Why rounding odd font sizes to even?]
 -   [The 8-Point Grid System]
 -   Image size
-    -   Your image size should not be larger than for example, 1200px, it depends on laptops and PCs' screen resolution.
+    -   Your image size should not be larger than, for example, 1200px. It depends on laptops and PCs' screen resolution.
 -   [HTML5 Semantic Elements]
 
 ## HTML
@@ -133,11 +138,11 @@ The main semantic tags
 
 Tips:
 
--   With VS Code, instead of write your first HTML file line by line, type `!` and hit enter to create a default HTML code snippet.
--   Install VS Code extension - Live Server, you can right click on your HTML file, and click "Open with Live Server" to exhibit your HTML in your browser.
--   To create a `<button type=xxx/>`, you could type `button:xxx` and hit enter. E.g. You have types such as `submit`, `reset`, etc.
--   To create a HTML tag with id, you could type, for example, `h1#about` and hit enter, it will automatically generate a `<h1 id="about"></h1>`. A special case is `div`, which you only need to type `#your_id`
--   To create a HTML tag with class name, you could type, for example, `h1.about` and hit enter, it will automatically generate a `<h1 class="about"></h1>`. A special case is `div`, which you only need to type `#your_class_name`
+-   With VS Code, instead of writing your first HTML file line by line, type `!` and hit enter to create a default HTML code snippet.
+-   Install VS Code extension - Live Server. You can right-click on your HTML file and click "Open with Live Server" to exhibit your HTML in your browser.
+-   To create a `<button type=xxx/>`, you could type `button:xxx` and hit enter. E.g. You have types such as `submit`, `reset`.
+-   To create a HTML tag with id, you could type, for example, `h1#about` and hit enter, it will automatically generate a `<h1 id="about"></h1>`. A special case is `div`, in which you only need to type `#your_id`
+-   To create a HTML tag with class name, you could type, for example, `h1.about` and hit enter, it will automatically generate a `<h1 class="about"></h1>`. A special case is `div`, where you only need to type `#your_class_name`.
 
 ## CSS
 
@@ -243,25 +248,25 @@ Research says, 40% of users bounce from sites that take longer than **3 seconds*
     2. Fast: Smooth animation, jank-free scrolling and seamless navigation.
     3. Engaging: Launch from the home screen and send push notifications.
 -   PWA speeds up website loading by leveraging service workers to cache assets, but it cannot handle the first visit (where there is no cache).
--   `self::addEventListener`: Inside the service worker, self refers to the service worker itself, otherwise, it refers to the window object.
+-   `self::addEventListener`: Inside the service worker, self refers to the service worker itself. Otherwise, it refers to the window object.
 -   Use AMP components to improve first visit performance.
 -   Precaching: Download and cache files when first run (then always use the cached files).
--   To log if user goes with pwa, you can set up a specific `"start_url` in `public/manifest.json`
+-   To log if the client goes with PWA, you can set up a specific `"start_url` in `public/manifest.json`.
 
 Demo: [sw.js], [pwa], [vue-pwa]
 
 ### Service Workers
 
--   Service workers are basically js files working on another threads which allow you to:
+-   Service workers are js files working on other threads which allow you to:
     1. Load content offline
     2. Use background sync
     3. Push notifications
 -   Lifecycle:
-    1. Create a sw.js (your service worker) in root directory to allow html files to access it globally
+    1. Create an sw.js (your service worker) in the root directory to allow HTML files to access it globally
     2. Register your sw.js with the browser (You should do this in your app.js file, not in sw.js)
     3. [install event] The browser installs your service worker and running on the service worker thread. This install event only runs once when the service worker is registered
-    4. [activate event] If success, you get an activate event
-    5. This service worker starts listening other events such as `fetch`
+    4. [activate event] If successful, you get an activate event
+    5. This service worker starts listening to other events such as `fetch`.
 -   Your service worker will not be installed if no changes of sw.js
 -   Service workers only work on HTTPS domains, but localhost is an exception to the rule.
 -   Service workers are likely the proxy between browser and servers. When your PWA fetch resources from any server, it catches the fetch event.
@@ -271,16 +276,16 @@ Demo: [sw.js], [pwa], [vue-pwa]
 #### Lifecycle Events
 
 -   Install:
-    -   **If this install event does not be triggered, it may be because the service worker has been installed already**.
+    -   **If this install event is not triggered, it may be because the service worker has been installed already**.
     -   To install again, you must change this file or in DevTool -> application -> service worker -> Unregister
 -   Activate:
-    -   If this activate event does not be triggered, it may be because the service worker has been installed already.
-    -   In DevTool -> application -> service, you will see the service worker is waiting for activate
-    -   **Browser does not automatically re-activate installed service**. To solve this, there are two solutions:
+    -   If this activating event is not triggered, it may be because the service worker has been installed already.
+    -   In DevTool -> application -> service, you will see the service worker is waiting to activate
+    -   **Browser does not automatically re-activate installed service**. Two solutions to address are shown below:
         -   Close the tab, and reopen it in another tab.
-        -   In DevTool -> application -> service, click on "skipWaiting" or have "Update on reload" selected
+        -   In DevTool -> application -> service, click on "skip waiting" or have "Update on reload" selected
 -   Fetch
-    -   This service worker is actually act as a proxy between browser and a server.
+    -   This service worker acts as a proxy between the browser and a server.
     -   This event is triggered when your PWA fetch resources from your server
 
 ### Add to Home Screen
@@ -294,32 +299,42 @@ Demo: [sw.js], [pwa], [vue-pwa]
 ![pwa](screenshots/pwa2.png)
 
 -   Two caches you need to know:
-    -   Browser cache: A managed cache, you cannot change it. (In DevTool -> Network -> Disable cache)
+    -   Browser cache: A managed cache. You cannot change it. (In DevTool -> Network -> Disable cache)
     -   Regular cache: This cache could be managed by service workers.
 
 ### Lighthouse
 
--   To trail PWA, there is a tool called Lighthouse built in Chrome dev tools.
--   Lighthouse reports how well your site or app is doing in terms of performance, accessibility, security, SEO and PWA features.
+-   To trail PWA, there is a tool called Lighthouse built-in Chrome dev tools.
+-   Lighthouse reports how well your site or app is doing in performance, accessibility, security, SEO and PWA features.
 -   Improve development cycle: Code and Test - Lighthouse - Debug - Lighthouse - Code and Test - ...
 
 ## AMP
 
 AMP, Accelerated Mobile Pages.
 
+## Sessions
+
+### Stateful, cookie-based authentication
+
+The client sends a user authenticates to the server, the server returns `set-cookie:session=sessionstring` within the header. The client then stores that cookie. It sends requests to the server with a new header `cookie:session=sessionstring`.
+
+### Stateless, token-based authentication
+
+The client sends a user authenticates to the server, the server returns a token in the form of JWT. The client then stores that token. It sends requests to the server with a header `authentication: bearer JWT`.
+
 ## CORS
 
-Cross Origin Resource Sharing.
+Cross-Origin Resource Sharing.
 
 -   Origin: A combination of scheme, host and port. E.g. "http://www.example.com" has scheme "http", port "80" and the host is "www.example.com".
 -   In the previous example, if you visit the website with "https", it is a different origin.
--   CORS enables to fetch resources outside from your app's origin.
--   Generally, you can load most resources from different origin, such as images, scripts, video/audio, embeds.
--   You CANNOT load xml and JSON from different origin, unless you grant the permission.
--   Here is the CORS implementation in the nutshell:
-    -   Add origin header on request
+-   CORS enables you to fetch resources outside of your app's origin.
+-   Generally, you can load most resources from a different origin, such as images, scripts, video/audio, embeds.
+-   You CANNOT load XML and JSON from a different origin unless you permit them.
+-   Here is the CORS implementation in a nutshell:
+    -   Add origin header on a request
     -   Server sends `access-control-allow-origin` if allowed
-    -   If server does not support CORS:
+    -   If a server does not support CORS:
 
 ```Javascript
 fetch('https://foo.com/data.json'), {
@@ -336,24 +351,24 @@ fetch('https://foo.com/data.json'), {
 ### Storybook
 
 A tool to manage your UI components, make it easier to share components between web apps.  
-You can stuff all your components in a storybook project, and publish each of them to npm (or if you prefer verdaccio).
+You can stuff all your components in a storybook project and publish each of them to npm (or, if you prefer verdaccio).
 
 [vue-storybook]
 
 ### Verdaccio
 
-A lightweight private npm proxy registry to help you build your private npm registry.
+Verdaccio is a lightweight private npm proxy registry that helps you build your private npm registry.
 
 #### Get started
 
-1. You need an running EC2 instance, and ssh into it.
+1. You need a running EC2 instance and ssh into it.
 
 ```shell
 $chmod 0400 test.pem
 $ssh -i test.pem ec2-user@52.90.31.225
 ```
 
-2. Install and start up docker
+2. Install and launch docker
 
 ```shell
 $sudo yum update -y
@@ -368,9 +383,9 @@ $sudo docker pull verdaccio/verdaccio
 $sudo docker run -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio
 ```
 
-4. Back to your EC2 console, add 4873 port as inbound rule to the security group of the running instance. To access your private npm registry, type `http://YOUR_INSTANCE_PUBLIC_IP:VERDACCIO_PORT` (`http://52.90.31.225:4873/` in this case) in your browser.
+4. Back to your EC2 console, add 4873 port as an inbound rule to the security group of the running instance. Then, type `http://YOUR_INSTANCE_PUBLIC_IP:VERDACCIO_PORT` (`http://52.90.31.225:4873/` in this case) in your browser to access your private npm registry.
 
-5. In your computer (where you development or publish dependencies), update your npm settings
+5. In your computer (where you develop or publish dependencies), update your npm settings
 
 ```shell
 $npm set registry http://52.90.31.225:4873
@@ -386,7 +401,7 @@ $npm adduser --registry http://52.90.31.225:4873
 
 8. Publish your node dependency by executing `$npm publish --registry http://52.90.31.225:4873`
 
-9. Pull your own dependency by executing `$npm install YOUR_DEPENDENCY_NAME`
+9. Pull your dependency by executing `$npm install YOUR_DEPENDENCY_NAME`.
 
 ## Testing
 
@@ -419,7 +434,7 @@ To build a containerised web app with Nginx, you need to:
 ```
 
 2. Add webpack config in vue.config.js if you need
-3. Add nginx.conf
+3. Add Nginx.conf
 4. Create Dockerfile and dockerignore
 
 Install Node.js -> Install dependencies -> Run unit testing and linter -> Build node.js app -> Install Nginx -> Configure Nginx
@@ -477,8 +492,8 @@ For more information, see [vue-pwa] and [dockerhub](https://hub.docker.com/repos
 
 ### Nuxt.js Deployment
 
-Deploy Nuxt.js web app in two different ways depending on what model you are using. Static Generated Deployment (Pre-rendered)
-and Single Page Application Deployment (SPA) are basically the same as the way you deploy a typical vue.js web app.
+Deploy the Nuxt.js web app in two different ways depending on what model you are using. Static Generated Deployment (Pre-rendered)
+and Single Page Application Deployment (SPA) is the same way you deploy a typical vue.js web app.
 
 Server-Side Rendered Deployment (Universal SSR) is a bit different.
 

@@ -1,219 +1,95 @@
-<!--To tell the browser what type of this document is-->
 <!DOCTYPE html>
 <html lang="en">
-    <!--Head is the information about your page, doesn't actually display in the browser-->
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!--Description is what user sees when they google for the website-->
-        <meta
-            name="description"
-            content="ABC Studio is a full-service Miami Quinceañera Planning Company &amp; Digital Agency providing web, mobile and marketing services that grow online businesses."
-        />
-        <!--
-            none: equivalent to noindex, nofollow. 
-            noindex: Do no show this page in search results. 
-            nofollow: Do not follow the links on this page
-            etc.
-        -->
-        <link rel="icon" href="favicon.png" />
-        <meta name="robots" content="none" />
-        <!--Title displays in the search results and tab of your browser-->
-        <title>Quinceañera Planner | ABC Studio</title>
+        <title>Document</title>
     </head>
     <body>
-        <!--Headings-->
-        <h2>Headings</h2>
-        <!--It's good practice to have only one h1 per page-->
-        <h1>(H1) Best quinceañera planner in Miami</h1>
-        <!--The other headings, you can have as many as you want per page-->
-        <h2>(H2) Best quinceañera planner in Miami</h2>
-        <h3>(H3) Best quinceañera planner in Miami</h3>
-        <h4>(H4) Best quinceañera planner in Miami</h4>
-        <h5>(H5) Best quinceañera planner in Miami</h5>
-        <h6>(H6) Best quinceañera planner in Miami</h6>
-
-        <!--Paragraphs-->
-        <!--
-            strong: to make some texts bold
-            em: emphasis, to make some texts italic
-            del: strike through
-            br: line break
-            hr: horizontal line
-        -->
-        <h2>Paragraphs</h2>
-        <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam
-            culpa enim tenetur repellendus nobis, vero cum accusantium aut eaque
-            odit quia ipsam <strong>strong strong strong strong strong</strong>,
-            praesentium laudantium! <em>italic italic italic italic</em>, vero
-            recusandae aperiam, <del>magni veritatis deserunt quo quas quaerat minus</del>
-            excepturi molestiae eveniet dolore vel libero<br />repudiandae? <hr/>
-        </p>
-
-        <!--
-            Inline elements: The inline elements will be put in the same line by default.
-            Including: <a/>, <img/>
-        -->
-        <h2>Inline elements</h2>
-        <p>
-            <!--Internal link-->
-            <a href="https://www.bbc.com/news">BBC News</a>
-        </p>
-        <p>
-            <!--External link: Open in new tab-->
-            <a href="https://www.bbc.com/news" target="_blank">Open BBC News in new tab</a>
-        </p>
-
-        <p>
-            <!--Local image-->
-            <img src="../screenshots/cats.jpg" alt="cats" width="500"/>
-            <!--Remote image-->
-            <img src="https://source.unsplash.com/450x300/?building" alt="random image" width="500"/>
-        </p>
-
-        <h2>List & Table</h2>
-        <!--Unordered list-->
-        <ul>
-            <li>item 1</li>
-            <li>item 2</li>
-            <li>item 3</li>
-            <li>item 4</li>
-            <li>item 5</li>
-        </ul>
-        <!--Ordered list: You could add type (1, A, a, I, i)-->
-        <ol type="I">
-            <li>item 1</li>
-            <li>item 2</li>
-            <li>item 3</li>
-            <li>item 4</li>
-        </ol>
-        <!--Nested list-->
-        <ul>
-            <li>item 1</li>
-            <li>item 2</li>
-            <ul>
-                <li>child 1</li>
-                <li>child 2</li>
-                <li>child 3</li>
-            </ul>
-            <li>item 3</li>
-            <li>item 4</li>
-            <li>item 5</li>
-        </ul>
-        <!--Tables-->
-        <table>
-            <!--Table head-->
-            <thread>
-                <!--Table row-->
-                <tr>
-                    <!--Table head (head only)-->
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Emails</th>
-                </tr>
-            </thread>
-            <!--Table body-->
-            <tbody>
-                <!--Table row-->
-                <tr>
-                    <!--Table head (body only)-->
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>jdoe@gmail.com</td>
-                </tr>   
-                <tr>
-                    <!--Table head (body only)-->
-                    <td>Kate</td>
-                    <td>Smith</td>
-                    <td>kate@gmail.com</td>
-                </tr>   
-                <tr>
-                    <!--Table head (body only)-->
-                    <td>Jeff</td>
-                    <td>Wilson</td>
-                    <td>jeff@gmail.com</td>
-                </tr>                
-            </tbody>
-        </table>
-
-        <h2>Form</h2>
-        <p>
-            <form action="process.php">
-                <div>
-                    <!--
-                        Tips:
-                        1. If you set `for` in <label/> and `id` in <input/>, 
-                        when you click on the label, the input will be focused as well.
-                        2. The `name` attribute of <input/> is for server side.
-                        3. `type` is a simple client-side validation
-                    -->
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Machine Gun Kelly">
-                </div>
-                <div>
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="mgk@gmail.com">
-                </div>
-                <div>
-                    <label for="sex">Sex</label>
-                    <select id="sex" name="sex">
-                        <option value="male" selected>Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="date">Birthday</label>
-                    <input type="date" id="date" name="date">
-                </div>
-                <div>
-                    <label for="age">Age</label>
-                    <input type="number" id="age" name="age" >
-                </div>
-                <div>
-                    <label for="membership">Membership</label>
-                    <input type="radio" id="membership" name="membership" value="standard" checked> Standard
-                    <input type="radio" id="membership" name="membership" value="premium"> Premium
-                    <input type="radio" id="membership" name="membership" value="super"> Super
-                </div>
-                <div>
-                    <label for="favourite">I like...</label>
-                    <input type="checkbox" id="favourite" name="favourite" value="diving"> Diving
-                    <input type="checkbox" id="favourite" name="favourite" value="motor_sports" checked> Motor sports
-                    <input type="checkbox" id="favourite" name="favourite" value="yachting"> Yachting
-                    <input type="checkbox" id="favourite" name="favourite" value="equestrianism"> Equestrianism
-                </div>
-                <div>
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" cols="20" rows="5"></textarea>
-                </div>
-                <!--Two ways to define a submit button-->
-                <input type="submit" value="submit">
-                <button type="submit"> Submit</button>
-                <!--Reset everything in your form-->
-                <button type="reset">Reset</button>
-            </form>
-        </p>
-
-        <h2>HTML Entities</h2>
-        <p>
-            <!--Non breaking space-->
-            <p>Non breaking space &nbsp; &nbsp; &nbsp; is here</p>
-            <!--Greater than and less than-->
-            <p>5 &gt; 2; 2 &lt; 5</p>
-            <!--Copyright-->
-            <p>Copyright &copy; 2020</p>
-            <p>&reg;</p>
-            <!--Currency-->
-            <p>&cent; &dollar; &pound; &euro;...</p>
-            <!--Suits-->
-            <p>&spades; &amp; &clubs; &amp; &hearts; &amp; &diams;</p>
-            <!--Code snippet-->
-            <code>&lt;div&gt;hello&lt;/div&gt;</code>
-            <!--Keyboard-->
-            <p>Jump to next word by pressing <kbd>option + right arrow</kbd></p>
-        </p>
+        <form>
+            <!-- Single-lined text -->
+            <div>
+                <label for="name">Name</label>
+                <!-- setting up "id" enables users to focus the input field by clicking on the label -->
+                <!-- the value of the "id" should be the same as the value of the "for" attribute in <label> -->
+                <input type="text" id="name" name="name" />
+            </div>
+            <!-- Email -->
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" />
+            </div>
+            <!-- Numbers -->
+            <div>
+                <label for="age">Age</label>
+                <input type="number" name="age" id="age" />
+            </div>
+            <!-- Date -->
+            <div>
+                <label for="birthday">Date of Birth</label>
+                <input type="date" name="birthday" id="birthday" />
+            </div>
+            <!-- Radio buttons -->
+            <div>
+                <label for="membership">Membership</label>
+                <input
+                    type="radio"
+                    name="membership"
+                    id="membership"
+                    value="standard"
+                    checked
+                />
+                Standard
+                <input
+                    type="radio"
+                    name="membership"
+                    id="membership"
+                    value="premium"
+                />
+                Premium
+            </div>
+            <!-- checkboxes -->
+            <div>
+                <label for="language">Language</label>
+                <input
+                    type="checkbox"
+                    name="language"
+                    id="language"
+                    value="en"
+                    checked
+                />
+                English
+                <input
+                    type="checkbox"
+                    name="language"
+                    id="language"
+                    value="fr"
+                />
+                French
+            </div>
+            <!-- Dropdown menu -->
+            <div>
+                <label for="sex">Sex</label>
+                <select id="sex" name="sex">
+                    <option value="male">Male</option>
+                    <option value="female" selected>Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <!-- Textarea -->
+            <div>
+                <label for="message">Message</label>
+                <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    placeholder="Say something..."
+                ></textarea>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
     </body>
 </html>

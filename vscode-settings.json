@@ -8,13 +8,6 @@
     "window.zoomLevel": 0,
     "cSpell.language": "en-GB",
     "javascript.updateImportsOnFileMove.enabled": "always",
-    "vetur.validation.template": false,
-    "vetur.completion.scaffoldSnippetSources": {
-        "workspace": "💼",
-        "user": "(User)",
-        "vetur": ""
-    },
-    "eslint.enable": true,
     "eslint.alwaysShowStatus": true,
     "prettier.singleQuote": true,
     "prettier.arrowParens": "always",
@@ -26,22 +19,12 @@
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
-    "cSpell.userWords": [
-        "analytics",
-        "cognito",
-        "failover",
-        "lifecycle",
-        "microservices",
-        "parallelize",
-        "parellelize",
-        "protobuf",
-        "prototypal",
-        "speakeasies",
-        "speakeasy",
-        "timeout",
-        "toolchain",
-        "tuple",
-        "versioning",
-        "webinar"
-    ]
+    "tabnine.experimentalAutoImports": true,
+    "json.schemas": [
+        {
+            "fileMatch": ["/myfile"],
+            "url": "schemaURL"
+        }
+    ],
+    "files.autoSave": "afterDelay"
 }
