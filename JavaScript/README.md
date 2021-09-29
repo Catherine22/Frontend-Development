@@ -21,7 +21,8 @@ JS: Programming capabilities
   - [This](#this)
   - [apply() and call()](#apply-and-call)
   - [Function currying - bind()](#function-currying---bind)
-  - [Recap This](#recap-this)
+  - [Recap `this`](#recap-this)
+  - [Types](#types)
   - [Higher-Order Functions](#higher-order-functions)
   - [Encapsulation](#encapsulation)
   - [Prototypal Inheritance](#prototypal-inheritance)
@@ -45,41 +46,7 @@ JS: Programming capabilities
 ## ESLint and Prettier
 
 1. Add eslint and prettier plugins for Visual Studio Code
-2. Press `command` + `shift` + `p` and search 'settings.json'
-3. Add the following rules:
-
-```JSON
-{
-    "editor.multiCursorModifier": "ctrlCmd",
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true,
-    "explorer.confirmDragAndDrop": false,
-    "window.zoomLevel": 0,
-    "cSpell.language": "en-GB",
-    "javascript.updateImportsOnFileMove.enabled": "always",
-    "eslint.alwaysShowStatus": true,
-    "prettier.singleQuote": true,
-    "prettier.arrowParens": "always",
-    "prettier.tabWidth": 4,
-    "prettier.jsxBracketSameLine": false,
-    "prettier.jsxSingleQuote": false,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "html.format.wrapAttributes": "auto",
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-    },
-    "tabnine.experimentalAutoImports": true,
-    "json.schemas": [
-        {
-            "fileMatch": ["/myfile"],
-            "url": "schemaURL"
-        }
-    ],
-    "files.autoSave": "afterDelay"
-}
-```
+2. Press `command` + `shift` + `p` and search 'settings.json'. See [vscode-settings.json]
 
 The settings include vue.js (You need to install `vuter` as well) and react-native formatting.
 
@@ -621,7 +588,7 @@ const addTen = add.bind(this, 10);
 addTen(1); // 11
 ```
 
-## Recap This
+## Recap `this`
 
 1. Implicit binding
 
@@ -665,6 +632,10 @@ const person = {
     }
 }
 ```
+
+## Types
+
+JavaScript has seven types: number, string, boolean, undefined, null, object, symbol. The symbol is a new type being added to ES6. `undefined` is an absence of a definition, whereas `null` is an absence of value. Underneath the hook, functions and arrays are objects. All the types above except objects are primitives. The value of those types matches the exact value stored in memory; there is no ambiguity. An object, on the other hand, contains references. It refers to somewhere in memory, not a value.
 
 ## Higher-Order Functions
 
@@ -1281,3 +1252,5 @@ console.log("Albums:", responses[2]);
 
 -   [Advanced Javascript concepts](https://www.udemy.com/course/advanced-javascript-concepts/)
 -   [loupe](http://latentflip.com/loupe/)
+
+[vscode-settings.json](../vscode-settings.json)

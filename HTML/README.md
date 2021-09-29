@@ -1,4 +1,4 @@
-# HTML & CSS
+# HTML
 
 HTML is the content of web pages, not a programming language. HTML has limited styling; that's why CSS comes in. CSS, known as Cascading Style Sheets, is a styling/stylesheet language decorating HTML files.
 
@@ -6,7 +6,7 @@ You can press `command` + `option` + `U` to view the HTML source code of web pag
 
 ## Table of Contents
 
-- [HTML & CSS](#html--css)
+- [HTML](#html)
   - [Table of Contents](#table-of-contents)
   - [HTML Tags](#html-tags)
     - [HTML boilerplate](#html-boilerplate)
@@ -17,7 +17,11 @@ You can press `command` + `option` + `U` to view the HTML source code of web pag
       - [Images](#images)
       - [Lists](#lists)
       - [Tables](#tables)
-    - [Forms](#forms)
+      - [Forms](#forms)
+    - [HTML elements](#html-elements)
+      - [id vs name](#id-vs-name)
+      - [HTML entities](#html-entities)
+      - [HTML semantic Tags](#html-semantic-tags)
 
 ## HTML Tags
 
@@ -193,7 +197,7 @@ In VS Code, you can type in `!` to quickly generate an HTML boilerplate.
 </table>
 ```
 
-### Forms
+#### Forms
 
 Single-lined text
 
@@ -324,3 +328,66 @@ Reset/submit your form
     <button type="submit">Submit</button>
 </form>
 ```
+
+### HTML elements
+
+HTML elements such as `<p>`, `<ul>` are block-level elements. A block-level element appears on the screen as if they have a line break after theme. Other elements such as `<strong>`, `code` appears within one line.
+
+#### id vs name
+
+There is no functional difference between id and class. It is always to have your id have a unique name. In practice, you can give your HTML elements a unique id and shared classes if you want to add CSS styling. E.g.,
+
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        ...
+        <style>
+            .card {
+                border: 1px solid #ccc;
+                background: #f4f4f4;
+                padding: 16px;
+                margin-bottom: 8px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="about" class="card">
+            <h3>About</h3>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+        </div>
+        <div id="contact" class="card">
+            <h3>Contact Me</h3>
+            <ul>
+                <li>Address: 50 Main Street, London</li>
+                <li>Phone: (+44) 123 123 123 123</li>
+                <li>Email: abc@example.com</li>
+            </ul>
+        </div>
+    </body>
+</html>
+
+```
+
+Useful Visual Studio Code shortcuts:
+
+-   `tag#id`: VS Code will generate a tag with the id you type in. E.g. Type in `div#about`, you will get `<div id=about></div>`
+-   `#id`: VS Code will generate a `<div>` tag with the designated id.
+
+#### HTML entities
+
+Reserved characters in HTML must be replaced with HTML entities. E.g., `£` must be replaced with `&pound;`.
+
+#### HTML semantic Tags
+
+![H5 tags](H5_semantic_tags.png)
+
+An example of HTML semantic tags:
+
+-   [H5_semantics.html]: A HTML file without H5 semantics.
+-   [H5_semantics_impl.html]: The optimised HTML file
+
+[H5_semantics.html](H5_semantics.html)
+[H5_semantics_impl.html](H5_semantics_impl.html)

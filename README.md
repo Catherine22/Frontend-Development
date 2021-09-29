@@ -46,11 +46,6 @@
     - [Storybook](#storybook)
     - [Verdaccio](#verdaccio)
       - [Get started](#get-started)
-  - [Testing](#testing)
-    - [Unit Testing](#unit-testing)
-    - [End-to-end Testing](#end-to-end-testing)
-  - [Deployment](#deployment)
-    - [Vue.js Deployment](#vuejs-deployment)
     - [Nuxt.js Deployment](#nuxtjs-deployment)
 
 ## Basis
@@ -73,7 +68,7 @@
 
 ### URL Structure
 
-[Does URL Structure Affect SEO? Here’s What Google Thinks]
+[Does URL Structure Affect SEO? Here's What Google Thinks]
 
 ### SEO
 
@@ -81,7 +76,7 @@
 
 ### Redirect
 
-[Is there an advantage to using rel="canonical" over a 301 redirect?]
+[Is there an advantage to using rel= "canonical" over a 301 redirect?]
 
 > If you have access to header modification, use 301. If you don't, then use rel=canonical.
 
@@ -128,21 +123,7 @@ font-family: 'Roboto', sans-serif;
 
 ## HTML
 
-Examples:
-
-1. Go through the basis: [index.html](HTML/index.html)
-2. Basic index page with a little CSS and HTML5 semantic tags: [coolStuff.html](HTML/coolStuff.html)
-
-![semantic tags](screenshots/h5.png)
-The main semantic tags
-
-Tips:
-
--   With VS Code, instead of writing your first HTML file line by line, type `!` and hit enter to create a default HTML code snippet.
--   Install VS Code extension - Live Server. You can right-click on your HTML file and click "Open with Live Server" to exhibit your HTML in your browser.
--   To create a `<button type=xxx/>`, you could type `button:xxx` and hit enter. E.g. You have types such as `submit`, `reset`.
--   To create a HTML tag with id, you could type, for example, `h1#about` and hit enter, it will automatically generate a `<h1 id="about"></h1>`. A special case is `div`, in which you only need to type `#your_id`
--   To create a HTML tag with class name, you could type, for example, `h1.about` and hit enter, it will automatically generate a `<h1 class="about"></h1>`. A special case is `div`, where you only need to type `#your_class_name`.
+[Introduction to HTML]
 
 ## CSS
 
@@ -326,8 +307,7 @@ The client sends a user authenticates to the server, the server returns a token 
 
 Cross-Origin Resource Sharing.
 
--   Origin: A combination of scheme, host and port. E.g. "http://www.example.com" has scheme "http", port "80" and the host is "www.example.com".
--   In the previous example, if you visit the website with "https", it is a different origin.
+-   Origin: A combination of scheme, host and port. E.g. "http://www.example.com" has scheme HTTP, port "80" and the host is "www.example.com". Any two websites of the same origin must have an identical scheme, host and port.
 -   CORS enables you to fetch resources outside of your app's origin.
 -   Generally, you can load most resources from a different origin, such as images, scripts, video/audio, embeds.
 -   You CANNOT load XML and JSON from a different origin unless you permit them.
@@ -351,8 +331,7 @@ fetch('https://foo.com/data.json'), {
 ### Storybook
 
 A tool to manage your UI components, make it easier to share components between web apps.  
-You can stuff all your components in a storybook project and publish each of them to npm (or, if you prefer verdaccio).
-
+You can stuff all your components in a storybook project and publish each of them to npm. Use verdaccio if you need a private npm repository.
 [vue-storybook]
 
 ### Verdaccio
@@ -370,32 +349,34 @@ $ssh -i test.pem ec2-user@52.90.31.225
 
 2. Install and launch docker
 
-```shell
+"`shell
 $sudo yum update -y
 $sudo yum install docker -y
 $sudo service docker start
-```
+
+````
 
 3. Pull and run the verdaccio docker image (You can change the first 4873 to whatever port you want, like 80)
 
 ```shell
 $sudo docker pull verdaccio/verdaccio
 $sudo docker run -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio
-```
+````
 
 4. Back to your EC2 console, add 4873 port as an inbound rule to the security group of the running instance. Then, type `http://YOUR_INSTANCE_PUBLIC_IP:VERDACCIO_PORT` (`http://52.90.31.225:4873/` in this case) in your browser to access your private npm registry.
 
 5. In your computer (where you develop or publish dependencies), update your npm settings
 
-```shell
+"`shell
 $npm set registry http://52.90.31.225:4873
-```
+
+````
 
 6. Create a new account
 
 ```shell
 $npm adduser --registry http://52.90.31.225:4873
-```
+````
 
 7. Back to `http://52.90.31.225:4873` to see if you could log in successfully.
 
@@ -421,17 +402,18 @@ To build a containerised web app with Nginx, you need to:
 
 1. Add build commands in package.json
 
-```JSON
+"`JSON
 {
-    "scripts": {
-        "serve": "vue-cli-service serve",
-        "build": "vue-cli-service build",
-        "test:unit": "vue-cli-service test:unit",
-        "test:e2e": "vue-cli-service test:e2e",
-        "lint": "vue-cli-service lint"
-    }
+"scripts": {
+"serve": "vue-cli-service serve",
+"build": "vue-cli-service build",
+"test:unit": "vue-cli-service test:unit",
+"test:e2e": "vue-cli-service test:e2e",
+"lint": "vue-cli-service lint"
 }
-```
+}
+
+````
 
 2. Add webpack config in vue.config.js if you need
 3. Add Nginx.conf
@@ -458,7 +440,7 @@ RUN apt-get install -y nginx-extras
 COPY --from=prod-build /app/dist /usr/share/nginx/html/
 ADD ./nginx/  /etc/nginx
 CMD ["nginx", "-g", "daemon off;"]
-```
+````
 
 Dockerfile.staging
 
@@ -499,20 +481,21 @@ Server-Side Rendered Deployment (Universal SSR) is a bit different.
 
 1. Add build commands in package.json
 
-```JSON
+"`JSON
 {
-    "scripts": {
-        "dev": "nuxt",
-        "build": "nuxt build",
-        "build:dev": "cross-env NODE_ENV=development nuxt build",
-        "start": "cross-env NODE_ENV=production node server/index.js",
-        "start:dev": "cross-env NODE_ENV=development node server/index.js",
-        "generate": "nuxt generate",
-        "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-        "test": "jest"
-    }
+"scripts": {
+"dev": "nuxt",
+"build": "nuxt build",
+"build:dev": "cross-env NODE_ENV=development nuxt build",
+"start": "cross-env NODE_ENV=production node server/index.js",
+"start:dev": "cross-env NODE_ENV=development node server/index.js",
+"generate": "nuxt generate",
+"lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+"test": "jest"
 }
-```
+}
+
+````
 
 4. Create Dockerfile and dockerignore
 
@@ -542,7 +525,7 @@ RUN npm run build
 ENV HOST 0.0.0.0
 EXPOSE 3000
 CMD ["npm", "run", "start"]
-```
+````
 
 dockerignore
 
@@ -557,9 +540,9 @@ For more information, see [nuxt-fundamentals] and [dockerhub](https://hub.docker
 [why rounding odd font sizes to even?]: https://ux.stackexchange.com/questions/129973/why-rounding-odd-font-sizes-to-even
 [the 8-point grid system]: https://builttoadapt.io/intro-to-the-8-point-grid-system-d2573cde8632
 [html5 semantic elements]: https://guide.freecodecamp.org/html/html5-semantic-elements/
-[does url structure affect seo? here’s what google thinks]: https://seopressor.com/blog/url-structure-affect-seo/
+[does url structure affect seo? here's what google thinks]: https://seopressor.com/blog/url-structure-affect-seo/
 [seo starter guide]: https://support.google.com/webmasters/answer/7451184?hl=en
-[is there an advantage to using rel="canonical" over a 301 redirect?]: https://www.youtube.com/watch?v=zW5UL3lzBOA
+[is there an advantage to using rel= "canonical" over a 301 redirect?]: https://www.youtube.com/watch?v=zW5UL3lzBOA
 [apexcharts.js]: https://apexcharts.com/
 [element ui]: https://element.eleme.io/#/en-US
 [js programming language]: JavaScript
@@ -579,3 +562,4 @@ For more information, see [nuxt-fundamentals] and [dockerhub](https://hub.docker
 [sw.js]: PWA/sw.js
 [vue-pwa]: Vue/vue-pwa
 [vue-storybook]: Vue/vue-storybook
+[introduction to html]: HTML/README.md
