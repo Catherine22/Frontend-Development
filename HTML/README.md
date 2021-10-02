@@ -22,6 +22,7 @@ You can press `command` + `option` + `U` to view the HTML source code of web pag
       - [id vs name](#id-vs-name)
       - [HTML entities](#html-entities)
       - [HTML semantic Tags](#html-semantic-tags)
+  - [References](#references)
 
 ## HTML Tags
 
@@ -389,5 +390,10 @@ An example of HTML semantic tags:
 -   [H5_semantics.html]: A HTML file without H5 semantics.
 -   [H5_semantics_impl.html]: The optimised HTML file
 
-[H5_semantics.html](H5_semantics.html)
-[H5_semantics_impl.html](H5_semantics_impl.html)
+## References
+
+[Modern HTML & CSS From The Beginning (Including Sass)]
+
+[h5_semantics.html]: H5_semantics.html
+[h5_semantics_impl.html]: H5_semantics_impl.html
+[modern html & css from the beginning (including sass)]: https://www.udemy.com/course/modern-html-css-from-the-beginning/

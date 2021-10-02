@@ -23,6 +23,7 @@ JS: Programming capabilities
   - [Function currying - bind()](#function-currying---bind)
   - [Recap `this`](#recap-this)
   - [Types](#types)
+  - [Invoking functions](#invoking-functions)
   - [Higher-Order Functions](#higher-order-functions)
   - [Encapsulation](#encapsulation)
   - [Prototypal Inheritance](#prototypal-inheritance)
@@ -82,7 +83,7 @@ As code runs, it pushes functions into the stack and pup out after the execution
 
 Being single-threaded means there is only one call stack while running. Take a look at an example of call stacks:
 
-```Javascript
+```JavaScript
 function a() {
     b();
 }
@@ -96,16 +97,16 @@ a();
 
 The call stack is:
 
-```Javascript
+```JavaScript
 a();
 ```
 
-```Javascript
+```JavaScript
 b();
 a();
 ```
 
-```Javascript
+```JavaScript
 console.log('done!');
 b();
 a();
@@ -113,16 +114,16 @@ a();
 
 Once all the functions have been executed, they pop up in order.
 
-```Javascript
+```JavaScript
 b();
 a();
 ```
 
-```Javascript
+```JavaScript
 a();
 ```
 
-```Javascript
+```JavaScript
 // empty
 ```
 
@@ -138,7 +139,7 @@ On top of the engine, a browser has `Web APIs`. It offers things like `DOM`, `AJ
 
 Javascript engine allocates memory for variables and functions before you execute it. E.g.
 
-```Javascript
+```JavaScript
 console.log(teddy);
 console.log(sing());
 
@@ -154,7 +155,7 @@ function sing() {
 This code snippet doesn't crash because the Javascript engine hoist it before running `console.log(teddy);`, what it does is `var teddy = undefined;`. The function is moved to the top before being called as well.  
 Notice, hoisting is working when the code snippet starts from `var` and `function`. On the other hand, `const` and `let` do not be hoisted. A particular case is **function expression**.
 
-```Javascript
+```JavaScript
 console.log(teddy);
 console.log(snoopy);
 sing();
@@ -173,7 +174,7 @@ var sing = function() {
 
 ### More Examples
 
-```Javascript
+```JavaScript
 console.log('#1, a=', a);
 var a = 10;
 console.log('#2, a=', a);
@@ -183,7 +184,7 @@ console.log('#3, a=', a);
 
 You get: #1 = undefined, #2 = 10, #3 = 20
 
-```Javascript
+```JavaScript
 console.log('#1, f()=', f());
 function f() {
 return 0;
@@ -199,7 +200,7 @@ console.log('#3, f()=', f());
 
 You get: #1 = 1, #2 = 1, #3 = 1
 
-```Javascript
+```JavaScript
 var favouriteFood = 'hot dog';
 function toGo() {
   console.log(`I\'d like some ${favouriteFood}`)
@@ -220,7 +221,7 @@ The result is:
 
 With Javascript hoisting, this code is executed as:
 
-```Javascript
+```JavaScript
 /*----------------------------------------*/
 /**************** Hoisting ****************/
 /*----------------------------------------*/
@@ -249,7 +250,7 @@ It lets you call functions immediately right after it is created. E.g.
 
 Typically, you cannot code as follows:
 
-```Javascript
+```JavaScript
 function a() {
     // do something
 }();
@@ -258,7 +259,7 @@ function a() {
 
 With IIFE, you can:
 
-```Javascript
+```JavaScript
 // style 1
 (function a() {
      console.log('a is running...');
@@ -276,7 +277,7 @@ With IIFE, you can:
 
 Eventually, you can have one global variable containing objects and functions. The advantage is that this code snippet only pollutes the global execution context once, i.e. `script1`. In the following examples, you are scoping things into their environments.
 
-```Javascript
+```JavaScript
 let script1 = (function () {
     function a1() {
         return 5;
@@ -291,7 +292,7 @@ script1.a1(); // 5
 
 You can access arguments if you need
 
-```Javascript
+```JavaScript
 let script2 = (function (num) {
     function a1() {
         return num;
@@ -308,7 +309,7 @@ script2.a1(); // 12345
 
 Before we dive into `this`, have a look at the following code snippet.
 
-```Javascript
+```JavaScript
 var name = 'Alice';
 function whoAmI() {
     console.log(this.name);
@@ -327,7 +328,7 @@ obj.whoAmI(); // Bob
 
 Let's change it a little bit.
 
-```Javascript
+```JavaScript
 var name = 'Alice';
 function whoAmI() {
     console.log(this.name);
@@ -357,7 +358,7 @@ Arrow functions are lexically scoped, whereas functions are dynamically scoped.
 
 Example 1: Regular function vs arrow function
 
-```Javascript
+```JavaScript
 var skill = 'fists of thunder';
 function DemonHunter() {
     this.job = 'demon hunter';
@@ -382,7 +383,7 @@ eve.attack(); // fists of thunder
 
 Example 2: Put an arrow function inside a regular function
 
-```Javascript
+```JavaScript
 const obj = {
     name: 'Bob',
     whoAmI: function () {
@@ -398,7 +399,7 @@ obj.whoAmI(); // Bob
 
 2. Using the `this` keyword to bind an object.
 
-```Javascript
+```JavaScript
 const obj = {
     name: 'Bob',
     whoAmI: function() {
@@ -414,7 +415,7 @@ obj.whoAmI(); // Bob
 
 3. Creating a variable and pointing to the object.
 
-```Javascript
+```JavaScript
 const obj = {
     name: 'Bob',
     whoAmI: function() {
@@ -431,7 +432,7 @@ obj.whoAmI(); // Bob
 
 More examples of how the `this` keyword works in Javascriptreact
 
-```Javascript
+```JavaScript
 var name = 'unknown';
 const a = {
     name: 'a',
@@ -468,7 +469,7 @@ c.echo()(); // c
 
 Now, this one is tricky.
 
-```Javascript
+```JavaScript
 var name = 'unknown';
 const d = {
     name: 'd',
@@ -485,7 +486,7 @@ trick(); // unknown
 
 To solve this issue, you have to bind `trick` to the lexical scope, i.e. link `this` to `d` object.
 
-```Javascript
+```JavaScript
 const trick = d.echo.bind(d);
 trick(); // d
 ```
@@ -494,7 +495,7 @@ trick(); // d
 
 We first go through the code snippet.
 
-```Javascript
+```JavaScript
 let wizard = {
     name: 'Merlin',
     health: 80,
@@ -510,7 +511,7 @@ console.log(wizard); // {name: "Merlin", health: 100, heal: ƒ}
 
 Then you have another object. This Robin can't `heal` himself.
 
-```Javascript
+```JavaScript
 let archer = {
     name: 'Robin Hood',
     health: 30
@@ -519,7 +520,7 @@ let archer = {
 
 To `heal` someone who does not know how to use magic, i.e. To borrow a function from another object, you can use `apply()` or `call()`.
 
-```Javascript
+```JavaScript
 // {name: "Robin Hood", health: 30}
 wizard.heal.call(archer);
 // {name: "Robin Hood", health: 100}
@@ -527,7 +528,7 @@ wizard.heal.call(archer);
 
 The only difference between `apply()` and `call()` is the way to access arguments.
 
-```Javascript
+```JavaScript
 let wizard = {
     name: 'Merlin',
     health: 80,
@@ -548,21 +549,21 @@ let archer = {
 }
 ```
 
-```Javascript
+```JavaScript
 wizard.fly.call(archer, 1, 3, 5);
 // {name: "Robin Hood", health: 21}
 ```
 
 Or
 
-```Javascript
+```JavaScript
 wizard.fly.apply(archer, [1, 3, 5]);
 // {name: "Robin Hood", health: 21}
 ```
 
 Another example: To find out the max number in a given array
 
-```Javascript
+```JavaScript
 function getMaxNumber(arr){
   return Math.max.apply(null, arr);
 }
@@ -570,7 +571,7 @@ function getMaxNumber(arr){
 
 ## Function currying - bind()
 
-```Javascript
+```JavaScript
 function add(a, b) {
     return (a + b);
 }
@@ -580,7 +581,7 @@ add(1, 1); // 2
 
 Bind the `add()` and see what will happen
 
-```Javascript
+```JavaScript
 const addTwo = add.bind(this, 2);
 addTwo(1); // 3
 
@@ -592,7 +593,7 @@ addTen(1); // 11
 
 1. Implicit binding
 
-```Javascript
+```JavaScript
 const person = {
     name: 'Karen',
     showName() {
@@ -607,7 +608,7 @@ person.showName(); // Karen
 
 E.g. To bind `window` to this.
 
-```Javascript
+```JavaScript
 const person = {
     name: 'Karen',
     browsingHistory: function() {
@@ -620,7 +621,7 @@ person.browsingHistory(); // 1
 
 3. Arrow function
 
-```Javascript
+```JavaScript
 const person = {
     name: 'Karen',
     showName: function() {
@@ -637,13 +638,40 @@ const person = {
 
 JavaScript has seven types: number, string, boolean, undefined, null, object, symbol. The symbol is a new type being added to ES6. `undefined` is an absence of a definition, whereas `null` is an absence of value. Underneath the hook, functions and arrays are objects. All the types above except objects are primitives. The value of those types matches the exact value stored in memory; there is no ambiguity. An object, on the other hand, contains references. It refers to somewhere in memory, not a value.
 
+## Invoking functions
+
+```JavaScript
+function f1() {
+    // do something
+}
+
+const obj = {
+    f2: function () {
+        // do something
+    },
+    // ES6 syntax
+    f3() {
+        // do something
+    },
+}
+
+const f4 = function () {
+    // do something
+};
+
+f1();
+obj.f2();
+obj.f3()
+f4();
+```
+
 ## Higher-Order Functions
 
 Function returns function.
 
 E.g. A HOF function
 
-```Javascript
+```JavaScript
 const multiplyBy = function(n1) {
     return function(n2) {
         return n1 * n2;
@@ -653,13 +681,13 @@ const multiplyBy = function(n1) {
 
 Or it can be written in ES6 style.
 
-```Javascript
+```JavaScript
 const multiplyBy = (n1) => (n2) => n1 * n2;
 ```
 
 And you can call the function.
 
-```Javascript
+```JavaScript
 const multiplyByTen = multiplyBy(10);
 multiplyByTen(2); // 20
 multiplyByTen(5); // 50
@@ -671,7 +699,7 @@ What encapsulation does is hide some information from the outside world.
 
 For example:
 
-```Javascript
+```JavaScript
 const makeNuclearButton = () => {
     let timeWithoutDestruction = 0;
     const passTime = () => timeWithoutDestruction++; // hide this method
@@ -694,12 +722,48 @@ ohNo.launch(); // 💥
 
 ## Prototypal Inheritance
 
+In JavaScript, there are no classes. Instead, we have what is called prototypal inheritance. Suppose we want `lizardmen` to invoke the sunbathe from the `lizard` object. The code is shown below.
+
+```JavaScript
+const lizard = {
+    name: 'lizard',
+    sunbathe: () => {
+        console.log('sunbathing...')
+    }
+}
+const lizardmen = {
+    name: 'lizardman',
+}
+```
+
+The best solution is to bind the `sunbathe` function the `lizardmen` object.
+
+```JavaScript
+const lizardmenSunbathe = lizard.sunbathe.bind(lizardmen);
+lizardmenSunbathe();
+```
+
+By using `__proto__`, we can inherit the `sunbathe` function. However, we should never do it this way. It is possible what we mess up new properties with default properties.
+
+```JavaScript
+lizardmen.__proto__ = lizard;
+lizardmen.sunbathe();
+```
+
+Lastly, we can create a prototype chain up to the `lizard` object.
+
+```JavaScript
+const lizardmen = Object.create(lizard);
+lizardmen.name = 'lizardmen';
+lizardmen.sunbathe();
+```
+
+Another concept is `prototype`.
+
 -   `__proto__` points to `prototype`.
--   Only functions have access to `prototype`.
+-   We use `prototype` when we have a constructor function. For example,
 
-Example 1
-
-```Javascript
+```JavaScript
 function Necromancer(name, weapon, skill) {
     this.name = name;
     this.weapon = weapon;
@@ -721,7 +785,7 @@ Necromancer.prototype === necromancer1.__proto__; // true
 
 Example 2
 
-```Javascript
+```JavaScript
 const lizard = {
     name: 'lizard',
     isVenomous: true
@@ -743,7 +807,7 @@ lizardman.hasOwnProperty('isVenomous'); // false
 
 E.g. Create a `format()` of `Date`
 
-```Javascript
+```JavaScript
 Date.prototype.format = function() {
     let formattedDate = '';
     const yyyy = this.getFullYear();
@@ -768,7 +832,7 @@ OOP, aka object-oriented programming
 
 An OOP example:
 
-```Javascript
+```JavaScript
 const necromancer1 = {
     name: 'Simon',
     job: 'necromancer',
@@ -792,7 +856,7 @@ const necromancer2 = {
 
 In FP, it is
 
-```Javascript
+```JavaScript
 function createNecromancer(name, weapon, skill) {
     return {
         name,
@@ -816,7 +880,7 @@ necromancer2.attack = necromancerFunctions.attack;
 
 Instead of attaching `attack` manually (it will be a nightmare if you have hundreds of necromancers). You can use `Object.create` to add the attack function at the beginning.
 
-```Javascript
+```JavaScript
 const necromancerFunctions = {
     attack() {
         console.log(this.skill);
@@ -846,7 +910,7 @@ Two rules to implement a constructor function:
 1. add `new`.
 2. function name starts with a capital letter. (coding style)
 
-```Javascript
+```JavaScript
 function Necromancer(name, weapon, skill) {
     this.name = name;
     this.weapon = weapon;
@@ -869,7 +933,7 @@ A promise is an object that may produce a single value sometime in the future. E
 
 E.g.
 
-```Javascript
+```JavaScript
 const promise = new Promise((resolve, reject) => {
     if (true) {
         resolve('stuff worked');
@@ -883,7 +947,7 @@ promise.then(result => console.log(result)); // stuff worked
 
 ### Promises Chaining
 
-```Javascript
+```JavaScript
 promise.then(result => `result: ${result}`)
     .then(result => `${result}?`)
     .catch(err => console.log(err))
@@ -896,7 +960,7 @@ Because the `catch statement` is before `then`, which means if any error happens
 
 The `Promise.all()` waits until all the promises are resolved and then log out the values.
 
-```Javascript
+```JavaScript
 const p1 = new Promise((resolve, reject) => {
     setTimeout(resolve, 100, '100ms');
 })
@@ -917,7 +981,7 @@ Promise.all([p1, p2, p3]).then(value => {
 
 More examples
 
-```Javascript
+```JavaScript
 const URLs = [
     'https://jsonplaceholder.typicode.com/posts',
     'https://jsonplaceholder.typicode.com/comments',
@@ -935,7 +999,7 @@ Promise.all(URLs.map(url => {
 
 If any of the URLs are wrong, you get failed responses.
 
-```Javascript
+```JavaScript
 const URLs = [
     'https://jsonplaceholder.typicode.com/posts',
     'https://jsonplaceholder.typicode.com/comments',
@@ -955,7 +1019,7 @@ Promise.all(URLs.map(url => {
 
 You pick up the fastest resolve and don't care about the others.
 
-```Javascript
+```JavaScript
 const p1 = new Promise((resolve, reject) => {
     setTimeout(resolve, 100, '100ms');
 })
@@ -978,7 +1042,7 @@ Promise.race([p1, p2, p3]).then(value => {
 
 For example
 
-```Javascript
+```JavaScript
 const promisify = (item, delay) => new Promise((resolve, reject) => {
   setTimeout(() => resolve(item), delay);
 });
@@ -990,7 +1054,7 @@ const p3 = promisify('c', 2000);
 
 1. Execute three promises in parallel
 
-```Javascript
+```JavaScript
 async function parallel() {
     const promises = [p1, p2, p3];
     const [output1, output2, output3] = await Promise.all(promises);
@@ -1001,7 +1065,7 @@ parallel().then(console.log); // Parallel is done: a b c
 
 2. Get the first result by leveraging `Promise.race` (In this case, you don't care about all the other ones)
 
-```Javascript
+```JavaScript
 async function race() {
     const promises = [p1, p2, p3];
     const output = await Promise.race(promises);
@@ -1012,7 +1076,7 @@ race().then(console.log); // Race is done: a
 
 3. Sequence
 
-```Javascript
+```JavaScript
 async function sequence() {
     const output1 = await p1;
     const output2 = await p2;
@@ -1028,7 +1092,7 @@ In Javascript, there are three queues:
 
 1. Callback Queue (Task Queue)
 
-```Javascript
+```JavaScript
 setTimeout(() => {
     console.log('hello from setTimeout');
 }, 0);
@@ -1036,20 +1100,20 @@ setTimeout(() => {
 
 2. Job Queue (Microtask Queue)
 
-```Javascript
+```JavaScript
 Promise.resolve('hello from promise')
     .then(data => console.log(data));
 ```
 
 3. Others
 
-```Javascript
+```JavaScript
 console.log('hello from console.log')
 ```
 
 Now, if you run those queues at a time, you get:
 
-```Javascript
+```JavaScript
 setTimeout(() => {
     console.log('hello from setTimeout');
 }, 0);
@@ -1085,7 +1149,7 @@ ES6, ECMAScript 2015
 
 Let's say you have a function with four arguments available.
 
-```Javascript
+```JavaScript
 function sum (a, b, c, d) {
     return a + b + c + d;
 }
@@ -1093,7 +1157,7 @@ function sum (a, b, c, d) {
 
 You can stuff arguments from an array by retrieving each one.
 
-```Javascript
+```JavaScript
 const arr = [1, 2, 3, 4];
 sum(...arr); // 10
 ```
@@ -1106,7 +1170,7 @@ ES8, ECMAScript 2017
 
 E.g. `fetch` in ES6 style.
 
-```Javascript
+```JavaScript
 const callback = (res) => console.log('res', res);
 function getComments(callback) {
   return fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
@@ -1124,7 +1188,7 @@ getComments(callback);
 
 `fetch` in ES8 style.
 
-```Javascript
+```JavaScript
 async function getComments() {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts/1/comments');
     const responseJson = await response.json();
@@ -1143,7 +1207,7 @@ try {
 
 Example 2, `Promise.all` in ES6 style
 
-```Javascript
+```JavaScript
 const URLs = [
     'https://jsonplaceholder.typicode.com/posts',
     'https://jsonplaceholder.typicode.com/comments',
@@ -1161,7 +1225,7 @@ Promise.all(URLs.map(url => {
 
 `Promise.all` in ES8 style
 
-```Javascript
+```JavaScript
 const URLs = [
     'https://jsonplaceholder.typicode.com/posts',
     'https://jsonplaceholder.typicode.com/comments',
@@ -1188,7 +1252,7 @@ ES9, ECMAScript 2018
 
 Let's say you have an object myGarage
 
-```Javascript
+```JavaScript
 const myGarage = {
     sedan: 'Tesla',
     suv: 'Land Rover',
@@ -1198,7 +1262,7 @@ const myGarage = {
 
 With an object spread operator, you can separate the object effortlessly.
 
-```Javascript
+```JavaScript
 const { sedan, ...rest } = myGarage;
 console.log(sedan); // 'Tesla'
 console.log(rest); // {suv: "Land Rover", sportsCar: "Lamborghini"}
@@ -1208,7 +1272,7 @@ console.log(rest); // {suv: "Land Rover", sportsCar: "Lamborghini"}
 
 In ES8, you can have `Promise.all` like this:
 
-```Javascript
+```JavaScript
 const URLs = [
     'https://jsonplaceholder.typicode.com/posts',
     'https://jsonplaceholder.typicode.com/comments',
@@ -1229,7 +1293,7 @@ try {
 
 Here is what you can do in ES9,
 
-```Javascript
+```JavaScript
 const URLs = [
     'https://jsonplaceholder.typicode.com/posts',
     'https://jsonplaceholder.typicode.com/comments',
