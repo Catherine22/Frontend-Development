@@ -1,0 +1,14 @@
+.border1 {
+    background-color: blanchedalmond;
+    border-width: 1px;
+    border-color: red;
+    border-style: dashed;
+    border-radius: 8px;
+}
+
+.border2 {
+    background-color: blanchedalmond;
+    border-width: 1px;
+    border: 1px dashed red;
+    border-radius: 8px;
+}

@@ -75,7 +75,11 @@ JS engine cannot optimise code snippets properly with these keywords. I.e. These
 
 ### Call stack vs memory heap
 
-As code runs, it pushes functions into the stack and pup out after the execution. Simple variables can be stored on the stack, whereas objects and complex data structures are persistent in memory heaps.
+In the JavaScript engine, we need memory heap and call stacks to store data and execute code.
+
+A memory heap is a place that holds data as a cabinet, which allocates and releases memory. It allows us to point to memory with variables, storing any arbitrary data. For example, the following code `const num = 1;` instructs the JavaScript engine to allocate memory for a number.
+
+Call stacks keep track of where we are in the code to run the code in order. Every time we invoke functions, we use call stacks. As we run the code, it pushes functions into the stack and pup out after the execution.
 
 ### Threading
 
@@ -136,6 +140,7 @@ As you might have heard, Node.js makes Javascript be able to run outside of the 
 On top of the engine, a browser has `Web APIs`. It offers things like `DOM`, `AJAX(XMLHttpRequest)` and `Timeout(setTimeout)`
 
 ## Hoisting
+When JavaScript engine sees a function, it will
 
 Javascript engine allocates memory for variables and functions before you execute it. E.g.
 
