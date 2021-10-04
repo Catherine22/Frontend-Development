@@ -13,6 +13,7 @@ JS: Programming capabilities
   - [Javascript Engine](#javascript-engine)
     - [Problematic keywords](#problematic-keywords)
     - [Call stack vs memory heap](#call-stack-vs-memory-heap)
+    - [Execution context](#execution-context)
     - [Threading](#threading)
   - [Javascript Runtime](#javascript-runtime)
   - [Hoisting](#hoisting)
@@ -81,6 +82,27 @@ A memory heap is a place that holds data as a cabinet, which allocates and relea
 
 Call stacks keep track of where we are in the code to run the code in order. Every time we invoke functions, we use call stacks. As we run the code, it pushes functions into the stack and pup out after the execution.
 
+### Execution context
+
+Here are steps of how JavaScript engine executes the function as follows:
+
+```JavaScript
+function func2() {
+	return true;
+}
+function func1() {
+	return func2();
+}
+func1();
+```
+
+1. JavaScript engine creates an execution context for `func1()`.
+2. JavaScript engine adds that execution context to the stack.
+3. The JavaScript engine creates another execution context for `func2()` and adds it to the stack.
+4. After the `func2()` has been executed, the JavaScript engine will remove its execution context from the stack as well as `func1()`.
+
+The very first execution context that the JavaScript engine creates is the global execution context, which generates global objects and `this` in the real world.
+
 ### Threading
 
 **Javascript is a single-threaded programming language**. But sometimes Javascript can be ''asynchronous, and that is because browsers provide **Web APIs**, which is written in languages like C++ to help Javascript do a couple of operations. E.g. DOM, fetch.
@@ -140,9 +162,8 @@ As you might have heard, Node.js makes Javascript be able to run outside of the 
 On top of the engine, a browser has `Web APIs`. It offers things like `DOM`, `AJAX(XMLHttpRequest)` and `Timeout(setTimeout)`
 
 ## Hoisting
-When JavaScript engine sees a function, it will
 
-Javascript engine allocates memory for variables and functions before you execute it. E.g.
+Javascript engine allocates memory for variables and functions during the creation phase. E.g.
 
 ```JavaScript
 console.log(teddy);
@@ -157,7 +178,8 @@ function sing() {
 // 'Hello from the other side...'
 ```
 
-This code snippet doesn't crash because the Javascript engine hoist it before running `console.log(teddy);`, what it does is `var teddy = undefined;`. The function is moved to the top before being called as well.  
+The above code snippet doesn't crash our apps because the Javascript engine hoists it before running `console.log(teddy);`, it executes `var teddy = undefined;`. That is called half hoisting. Functions are fully hoisting. They are moved to the top of the code, and therefore, we can invoke functions before they are declared.
+
 Notice, hoisting is working when the code snippet starts from `var` and `function`. On the other hand, `const` and `let` do not be hoisted. A particular case is **function expression**.
 
 ```JavaScript
@@ -312,7 +334,107 @@ script2.a1(); // 12345
 
 ## This
 
-Before we dive into `this`, have a look at the following code snippet.
+Example 1,
+
+```JavaScript
+function a() {
+	console.log('a', this);
+	function b() {
+		console.log('b', this);
+		const c = {
+			print: function() {
+				console.log('c', this);
+			}
+		}
+        c.print();
+	}
+    b();
+}
+a();
+
+```
+
+If you execute the above piece of code on the browser, you will get:
+
+-   a > the Window object
+-   b > the Window object
+-   c > {print: f}
+
+It does not matter where we write a piece of code. All that matters is how they get called during invocation.
+
+Example 2,
+
+```JavaScript
+const obj = {
+    f1() {
+        console.log('f1', this);
+        function f2() {
+            console.log('f2', this);
+        }
+        f2();
+    },
+};
+obj.f1();
+```
+
+-   f1 > {f1: f}
+-   f2 > the Window object
+
+Again, it does not matter where the code is written. All that matters is where the code is executed. `f1` is called inside the `obj`, and `f2` is called inside `f1`.
+
+**In JavaScript, our lexical scope (available data + variables where the function was defined) determines our available variables, not where the function is called (dynamic scope). Everything in JavaScript is lexically scoped EXCEPT FOR THE `this` KEYWORD.**
+
+To fix such an issue, we can either use arrow functions from ES6 or binding objects. We know that arrow functions are lexically bound.
+
+Now, we can change the above example so that the `this` can be bound to `f1` in `f2`. This approach is more recommended than the next one.
+
+```JavaScript
+const obj = {
+    f1() {
+        console.log('f1', this);
+        const f2 = () => {
+            console.log('f2', this);
+        };
+        f2();
+    },
+};
+obj.f1();
+```
+
+-   f1 > {f1: f}
+-   f2 > {f1: f}
+
+Another method to address such an issue is to bind the `this` to `f1`. This approach can be written in two ways.
+
+```JavaScript
+const obj = {
+    f1() {
+        console.log('f1', this);
+        function f2() {
+            console.log('f2', this);
+        }
+        return f2.bind(this);
+    },
+};
+obj.f1()();
+```
+
+```JavaScript
+const obj = {
+    f1() {
+        console.log('f1', this);
+        const self = this;
+        function f2() {
+            console.log('f2', self);
+        }
+        f2();
+    },
+};
+obj.f1();
+```
+
+-   f1 > {f1: f}
+-   f2 > {f1: f}
 
 ```JavaScript
 var name = 'Alice';
@@ -352,8 +474,6 @@ const obj = {
 whoAmI(); // Alice
 obj.whoAmI(); // Alice
 ```
-
-**In JavaScript, our lexical scope (available data + variables where the function was defined) determines our available variables, not where the function is called (dynamic scope)**
 
 To make `obj.whoAmI()` print `Bob`, here are three solutions:
 
