@@ -386,13 +386,17 @@ $npm adduser --registry http://52.90.31.225:4873
 
 ## Testing
 
-### Unit Testing
+Testing includes three main distinct types: unit tests, integration tests and automation tests. Unit tests test individual functions or classes. They are easier and cheapest to implement. Integration tests test how different pieces of code work together. E.g., databases working with a node.js app, a function works with another function. Automation tests, known as UI tests, make sure the expected behaviour on the web is correct.
 
--   Popular frameworks: Jest or Mocha
+### Unit testing
 
-### End-to-end Testing
+-   Testing libraries: A testing library provides functions or methods that allow developers to test their code. E.g., Jasmine, Jest, MOCHA
+-   Assertion libraries: An assertion library helps with assertion functions. They are a tool that tests a variable that contains an expected value. E.g., Jasmine, Jest, Chai.
+-   Tester runner: A test runner allows test scripts to be executed on the browser. E.g., Jasmine, Jest, MOCHA, Karma. Karma runs tests on the browser. In practice, we do not run all the tests through the browser except for the tests that require browser APIs. Ideally, when we run tests, it should be speedy. In general, we execute tests once developers save their code. Therefore, other options such as **Puppeteer** by Google, a headless browser. That runs your tests faster on regular browsers. **Jsdom**, as its name suggests, is an in-Javascript implementation of the DOM (DOM is a treelike structure that shows the nodes on webpages).
+-   Mock, spies and stub: **Spies** provide us information about functions such as how often they are called, in what cases and by whom. **Stubbing** replaces selected functions with a function to ensure that the expected behaviour happens. **Mock** fakes a function or behaviour to test different parts of the process. E.g., Jasmine, Jest, Sinon.js
+-   Code coverage: E.g., Jest, Istanbul
 
--   Popular frameworks: Cypress, Selenium
+Jasmine used to be very popular, but it has been taken over by Jest and Mocha combined with Chai and Sinon. Jest has everything in one place. All the above frameworks are behaviour-driven.
 
 ## Deployment
 

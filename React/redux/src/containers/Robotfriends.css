@@ -1,0 +1,44 @@
+nav {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    background: #f3f5f7;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 48px;
+}
+
+.header h1 {
+    font-size: 48px;
+}
+
+@media (max-width: 768px) {
+    .header {
+        display: block;
+    }
+
+    .header .sb {
+        width: 296px;
+        margin-top: 16px;
+    }
+}
+
+@media (max-width: 528px) {
+    .header {
+        padding: 8px;
+        width: 100%;
+    }
+
+    .header h1 {
+        text-align: center;
+    }
+
+    .header .sb {
+        margin: 16px auto;
+    }
+}

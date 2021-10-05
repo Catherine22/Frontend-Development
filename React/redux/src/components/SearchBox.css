@@ -1,0 +1,87 @@
+.sb form {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    transition: all 1s;
+    width: 50px;
+    height: 50px;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid white;
+    padding: 5px;
+}
+
+.sb form:hover {
+    width: 300px;
+    cursor: pointer;
+}
+
+.sb form:hover input {
+    display: block;
+}
+
+.sb form:hover .icon {
+    background: #07051a;
+    color: white;
+}
+
+/* 
+ * How to change the color of an svg element?
+ * https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element
+ */
+.sb form:hover .icon img {
+    filter: invert(100%) sepia(97%) saturate(0%) hue-rotate(213deg)
+        brightness(110%) contrast(101%);
+}
+
+.sb input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 42.5px;
+    line-height: 30px;
+    outline: 0;
+    border: 0;
+    display: none;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 0 20px;
+}
+
+.sb .icon {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 42.5px;
+    height: 42.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    color: #07051a;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 1s;
+}
+
+@media (max-width: 768px) {
+    .sb form {
+        width: 300px;
+        cursor: pointer;
+    }
+
+    .sb form input {
+        display: block;
+    }
+
+    .sb form .icon {
+        background: #07051a;
+        color: white;
+    }
+
+    .sb form .icon img {
+        filter: invert(100%) sepia(97%) saturate(0%) hue-rotate(213deg)
+            brightness(110%) contrast(101%);
+    }
+}
