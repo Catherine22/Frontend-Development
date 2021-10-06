@@ -10,6 +10,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - [Hooks and Classes](#hooks-and-classes)
     - [React Hooks](#react-hooks)
     - [Lifecycle](#lifecycle)
+  - [Redux](#redux)
+    - [Action](#action)
+    - [Reducer](#reducer)
+    - [Store](#store)
+    - [Middleware](#middleware)
 
 ## App structure
 
@@ -64,6 +69,22 @@ export default Ref;
 Whenever the value of the input field changes, the `onChange` method will be triggered. If you do not need such a feature, you can use `useRef` to get the current value. Forms are a good example for this hook, you only need to validate and access your data before submitting user inputs.
 
 ### Lifecycle
+
+## Redux
+
+### Action
+
+An action is an object that we create to represent users’ behaviours. We need dispatches to trigger an action.
+
+### Reducer
+
+A reducer is a function which receives actions and outputs what we called store in redux. When the store has been changed, redux makes changes to our view.
+
+### Store
+
+The store represents what our apps should look like. It is a big object that describes the state in our react app.
+
+### Middleware
 
 [react hooks example]: ./hooks/
 [react hooks course - all react hooks explained]: https://www.youtube.com/watch?v=LlvBzyy-558

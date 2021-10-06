@@ -41,6 +41,7 @@
   - [Sessions](#sessions)
     - [Stateful, cookie-based authentication](#stateful-cookie-based-authentication)
     - [Stateless, token-based authentication](#stateless-token-based-authentication)
+  - [CSR vs SSR](#csr-vs-ssr)
   - [CORS](#cors)
   - [Tooling and Useful Dependencies](#tooling-and-useful-dependencies)
     - [Storybook](#storybook)
@@ -303,6 +304,10 @@ The client sends a user authenticates to the server, the server returns `set-coo
 
 The client sends a user authenticates to the server, the server returns a token in the form of JWT. The client then stores that token. It sends requests to the server with a header `authentication: bearer JWT`.
 
+## CSR vs SSR
+
+The client-side rendering downloads HTML files. Before the HTML file gets download, there is a blank page on the browser. Then the browser download and execute the JavaScript files that the HTML file links to. Once all the above tasks have finished, the page becomes interactive and visible. With server-side rendering, once the HTML file has arrived, the browser shows the HTML page. That page is not interactive at that point.
+
 ## CORS
 
 Cross-Origin Resource Sharing.
@@ -390,13 +395,23 @@ Testing includes three main distinct types: unit tests, integration tests and au
 
 ### Unit testing
 
--   Testing libraries: A testing library provides functions or methods that allow developers to test their code. E.g., Jasmine, Jest, MOCHA
--   Assertion libraries: An assertion library helps with assertion functions. They are a tool that tests a variable that contains an expected value. E.g., Jasmine, Jest, Chai.
--   Tester runner: A test runner allows test scripts to be executed on the browser. E.g., Jasmine, Jest, MOCHA, Karma. Karma runs tests on the browser. In practice, we do not run all the tests through the browser except for the tests that require browser APIs. Ideally, when we run tests, it should be speedy. In general, we execute tests once developers save their code. Therefore, other options such as **Puppeteer** by Google, a headless browser. That runs your tests faster on regular browsers. **Jsdom**, as its name suggests, is an in-Javascript implementation of the DOM (DOM is a treelike structure that shows the nodes on webpages).
--   Mock, spies and stub: **Spies** provide us information about functions such as how often they are called, in what cases and by whom. **Stubbing** replaces selected functions with a function to ensure that the expected behaviour happens. **Mock** fakes a function or behaviour to test different parts of the process. E.g., Jasmine, Jest, Sinon.js
--   Code coverage: E.g., Jest, Istanbul
+Unit tests test pure functions, i.e., deterministic functions, not constructs, including connections between processes, databases, and even functions. Clean, functional components spilt features into small chunks that help with unit testing and lead to maintainable code in the long run.
+
+-   **Testing libraries**: A testing library provides functions or methods that allow developers to test their code. E.g., Jasmine, Jest, MOCHA
+-   **Assertion libraries**: An assertion library helps with asserting functions. They are a tool that tests a variable that contains an expected value. E.g., Jasmine, Jest, Chai.
+-   **Tester runner**: A test runner allows test scripts to be executed on the browser or a browser-like environment. E.g., Jasmine, Jest, MOCHA, Karma. Karma runs tests on the browser. In practice, we do not run all the tests through the browser except for the tests that require browser APIs. Ideally, when we run tests, it should be speedy. In general, we execute tests once developers save their code. Therefore, other options such as **_Puppeteer_** by Google, a headless browser. That runs your tests faster on regular browsers. **Jsdom**, as its name suggests, is an in-Javascript implementation of the DOM (DOM is a treelike structure that shows the nodes on webpages).
+-   **Mocks, spies and stubs**: **_Spies_** provide us information about functions such as how often they are called, in what cases and by whom. **_Stubbing_** replaces selected functions with a function to ensure that the expected behaviour happens. **_Mock_** fakes a function or behaviour to test different parts of the process. E.g., Jasmine, Jest, Sinon.js
+-   **Code coverage**: It estimates how many percentage of your code has been tested. E.g., Jest, Istanbul
 
 Jasmine used to be very popular, but it has been taken over by Jest and Mocha combined with Chai and Sinon. Jest has everything in one place. All the above frameworks are behaviour-driven.
+
+### Integration testing
+
+Integration tests are all about cross-communication between different units of code. Mock, spy and stub libraries are implemented in integration tests to expect side effects instead of asserting an output. Compared to unit testing, the downside of integration testing is that integration testing is more expensive and requires more time to write code. As a partition has been changed or broken, you will have to update test cases that depend on those chunks of code. The great cost of integration tests caused small or middle businesses not implementing them very often.
+
+### Automation testing
+
+Automation tests, known as UI tests, are run on the browser or a browser-like environment to simulate user behaviours—tools such as Nightwatch, WebdriverIO, cypress, TestCafé are popular. Many companies instead, hiring testers to do automation tests. UI tests take the longest time amongst the three types of testing we are discussing in this section. Companies might run unit tests and integration tests as long as developers save their work, but they only run UI tests when developers merge their work to the main branch before releasing it to the production.
 
 ## Deployment
 

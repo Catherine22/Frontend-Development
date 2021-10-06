@@ -36,7 +36,7 @@ const Robotfriends = (props) => {
         searchField,
         isPending,
     } = props;
-    useEffect(() => onRequestRobots(), []);
+    useEffect(onRequestRobots, []);
     return (
         <div>
             <nav className="header">
