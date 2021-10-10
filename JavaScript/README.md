@@ -1,6 +1,6 @@
 # JavaScript
 
-Javascript is one of the core roles in web development (Javascript + CSS + HTML)  
+JavaScript is one of the core roles in web development (JavaScript + CSS + HTML)  
 HTML: The content of web pages  
 CSS: Styling web pages  
 JS: Programming capabilities
@@ -10,12 +10,12 @@ JS: Programming capabilities
 - [JavaScript](#javascript)
   - [Navigator](#navigator)
   - [ESLint and Prettier](#eslint-and-prettier)
-  - [Javascript Engine](#javascript-engine)
+  - [JavaScript Engine](#javascript-engine)
     - [Problematic keywords](#problematic-keywords)
     - [Call stack vs memory heap](#call-stack-vs-memory-heap)
     - [Execution context](#execution-context)
     - [Threading](#threading)
-  - [Javascript Runtime](#javascript-runtime)
+  - [JavaScript Runtime](#javascript-runtime)
   - [Hoisting](#hoisting)
     - [More Examples](#more-examples)
   - [IIFE](#iife)
@@ -26,7 +26,8 @@ JS: Programming capabilities
   - [Types](#types)
   - [Invoking functions](#invoking-functions)
   - [Higher-Order Functions](#higher-order-functions)
-  - [Encapsulation](#encapsulation)
+    - [Closures](#closures)
+    - [Encapsulation](#encapsulation)
   - [Prototypal Inheritance](#prototypal-inheritance)
     - [Extend the functionality of a built-in object](#extend-the-functionality-of-a-built-in-object)
   - [FP and OOP](#fp-and-oop)
@@ -52,14 +53,14 @@ JS: Programming capabilities
 
 The settings include vue.js (You need to install `vuter` as well) and react-native formatting.
 
-## Javascript Engine
+## JavaScript Engine
 
 ![JS engine's pipeline](https://miro.medium.com/max/2038/1*ZIH_wjqDfZn6NRKsDi9mvA.png)
 [reference](https://medium.com/dailyjs/understanding-v8s-bytecode-317d46c94775)
 
 -   [AST explorer](https://astexplorer.net/)
 
-> So, is Javascript an interpreted language?
+> So, is JavaScript an interpreted language?
 > Ans: Not technically. Because it depends on how the JS engine deals with it.
 
 ### Problematic keywords
@@ -105,7 +106,7 @@ The very first execution context that the JavaScript engine creates is the globa
 
 ### Threading
 
-**Javascript is a single-threaded programming language**. But sometimes Javascript can be ''asynchronous, and that is because browsers provide **Web APIs**, which is written in languages like C++ to help Javascript do a couple of operations. E.g. DOM, fetch.
+**JavaScript is a single-threaded programming language**. But sometimes JavaScript can be ''asynchronous, and that is because browsers provide **Web APIs**, which is written in languages like C++ to help JavaScript deal with asynchronous tasks. E.g. DOM, fetch.
 
 Being single-threaded means there is only one call stack while running. Take a look at an example of call stacks:
 
@@ -155,15 +156,15 @@ a();
 
 To see how exactly call stack and Web APIs work, go to [loupe].
 
-## Javascript Runtime
+## JavaScript Runtime
 
-As you might have heard, Node.js makes Javascript be able to run outside of the browser. This program uses a V8 engine to interpret Javascript, creates the entire environment to run Javascript code and offer additional APIs to do things like asynchronous jobs.
+As you might have heard, Node.js makes JavaScript be able to run outside of the browser. This program uses a V8 engine to interpret JavaScript, creating the entire environment to run JavaScript code and offer additional APIs such as the global object.
 
-On top of the engine, a browser has `Web APIs`. It offers things like `DOM`, `AJAX(XMLHttpRequest)` and `Timeout(setTimeout)`
+On top of the engine, a browser has `Web APIs`. It offers things like `DOM`, web APIs, e.g., `Timeout(setTimeout)`.
 
 ## Hoisting
 
-Javascript engine allocates memory for variables and functions during the creation phase. E.g.
+JavaScript engine allocates memory for variables and functions during the creation phase. E.g.,
 
 ```JavaScript
 console.log(teddy);
@@ -178,9 +179,9 @@ function sing() {
 // 'Hello from the other side...'
 ```
 
-The above code snippet doesn't crash our apps because the Javascript engine hoists it before running `console.log(teddy);`, it executes `var teddy = undefined;`. That is called half hoisting. Functions are fully hoisting. They are moved to the top of the code, and therefore, we can invoke functions before they are declared.
+The above code snippet is not going to crash our apps because the JavaScript engine hoists it before running `console.log(teddy);`, it executes `var teddy = undefined;`, called half hoisting Functions. JavaScript engine gives variables declared with the `var` keyword an `undefined` value before actually running. On the other hand, functions are fully hoisting. They are moved to the top of the code, and therefore, we can invoke functions before they are declared.
 
-Notice, hoisting is working when the code snippet starts from `var` and `function`. On the other hand, `const` and `let` do not be hoisted. A particular case is **function expression**.
+Notice, hoisting works with the `var` and `function` keywords. `const` and `let` are not hoisted. A follow-up question is, what if we create a function using **function expression**? Is it half hosting or fully hoisting?
 
 ```JavaScript
 console.log(teddy);
@@ -246,7 +247,7 @@ The result is:
 'A pizza is just fine'
 ```
 
-With Javascript hoisting, this code is executed as:
+With JavaScript hoisting, this code is executed as:
 
 ```JavaScript
 /*----------------------------------------*/
@@ -272,7 +273,7 @@ toGo();
 
 ## IIFE
 
-IIFE is known as Immediately-invoked Function Expression, a typical Javascript design pattern.  
+IIFE is known as Immediately-invoked Function Expression, a typical JavaScript design pattern.  
 It lets you call functions immediately right after it is created. E.g.
 
 Typically, you cannot code as follows:
@@ -555,7 +556,7 @@ const obj = {
 obj.whoAmI(); // Bob
 ```
 
-More examples of how the `this` keyword works in Javascriptreact
+More examples of how the `this` keyword works in JavaScriptreact
 
 ```JavaScript
 var name = 'unknown';
@@ -818,7 +819,19 @@ multiplyByTen(2); // 20
 multiplyByTen(5); // 50
 ```
 
-## Encapsulation
+### Closures
+
+Closures are also called lexical scope. Suppose we want to keep a variable inside of a function. A HOF can help with it.
+
+```JavaScript
+const foo = (a) => (b) => (c) => console.log(a, b, c);
+let fa = foo('a');
+
+// executed lots of time-consuming tasks...
+fa('b')('c'); // a, b, c
+```
+
+### Encapsulation
 
 What encapsulation does is hide some information from the outside world.
 
@@ -1213,7 +1226,7 @@ sequence().then(console.log); // Sequence is done: a b c
 
 ## Queue Priority
 
-In Javascript, there are three queues:
+In JavaScript, there are three queues:
 
 1. Callback Queue (Task Queue)
 
@@ -1439,7 +1452,10 @@ console.log("Albums:", responses[2]);
 
 ## Reference
 
--   [Advanced Javascript concepts](https://www.udemy.com/course/advanced-javascript-concepts/)
--   [loupe](http://latentflip.com/loupe/)
+-   [Advanced JavaScript concepts]
+-   [loupe]
+-   [vscode-settings.json](../vscode-settings.json)
 
-[vscode-settings.json](../vscode-settings.json)
+[advanced javascript concepts]: https://www.udemy.com/course/advanced-JavaScript-concepts/
+[loupe]: http://latentflip.com/loupe/
+[vscode-settings.json]: ../vscode-settings.json

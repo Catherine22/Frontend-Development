@@ -42,7 +42,14 @@
     - [Stateful, cookie-based authentication](#stateful-cookie-based-authentication)
     - [Stateless, token-based authentication](#stateless-token-based-authentication)
   - [CSR vs SSR](#csr-vs-ssr)
-  - [CORS](#cors)
+    - [CSR](#csr)
+    - [SSR](#ssr)
+    - [Pros and cons](#pros-and-cons)
+  - [WevSockets](#wevsockets)
+    - [Polling and long polling](#polling-and-long-polling)
+    - [WebSocket clients](#websocket-clients)
+  - [Web Security](#web-security)
+    - [CORS](#cors)
   - [Tooling and Useful Dependencies](#tooling-and-useful-dependencies)
     - [Storybook](#storybook)
     - [Verdaccio](#verdaccio)
@@ -308,7 +315,63 @@ The client sends a user authenticates to the server, the server returns a token 
 
 The client-side rendering downloads HTML files. Before the HTML file gets download, there is a blank page on the browser. Then the browser download and execute the JavaScript files that the HTML file links to. Once all the above tasks have finished, the page becomes interactive and visible. With server-side rendering, once the HTML file has arrived, the browser shows the HTML page. That page is not interactive at that point.
 
-## CORS
+### CSR
+
+CSR, client-side rendering means rending content in the browser using JavaScript. A use case is SPA (single page application). Instead of getting all the content from HTML, SPA has small tiny HTML file with JavaScript renders all the rest of the site, such that, webpages can have rich interactions.
+
+### SSR
+
+An example that shows how SSR works in a react app is as follows:
+
+1. Create the app server using frameworks such as `express`.
+2. Load the public folder
+3. Use express to render the entire look of the index page and convert it to string. You might pass default props to your index without fetching APIs.
+
+Under the hood, SSR first renders the page on the server and send it down as text. Once the page has been rendered on the front-end side, it `hydrate` the webpage, allowing it to be interactive.
+
+### Pros and cons
+
+With CSR, websites have rich interactions and can load parts of the page. The server responds faster than SSR as it does not require extra work, such as converting the page to String. The browser only needs to load a tiny HTML file. After the initial load, it loads fast.
+
+However, CSR has lower SEO potential. While search engine reaches a CSR website, it only finds HTML entities such as <div> and knows nothing about the website's content. Google bots wait a few seconds to take snapshots of each page to index them for SEO. How SEO works on the browser varies from search engine to search engine. Another disadvantage of using CSR is a long initial load. Although CSR gets faster responses from the server than SSR, it has JavaScript that needs to render.
+
+SSR is good at SEO because it is rendered on the server. The time it arrives on the browser has rendered content, which makes SSR exceptional at loading static sites, i.e., websites with a lot of text-based information such as documentation. As SSR sites are rendered on the server to the user, websites are loaded faster most of the time.
+
+SSR must request a new page from the server; the so-called full page reloads, even though most pages look the same. SSR also has slower page rendering as the CPU must perform synchronous jobs such as converting HTML to text. The server is not able to process any request until this has been done. Although webpages appear faster on the browser, users still need to wait for the page to be interactive.
+
+## WevSockets
+
+WebSocket depends on TCP is located at layer 7 (the application layer) in the OSI model. HTTP, SSL, IMAP, POP, etc., are at the same level as well. WebSocket is an HTTP upgrade using TCP connection over `ws://` or `wss://`. It allows the client and server have full-duplex and bi-directional communication. The client and the server communicate in real-time without having to make requests continuously. After the client sends the first HTTP request, the server upgrades the connection to a WebSocket connection. Both parties send data back and forth without the overhead that the HTTP requests may cause.
+
+### Polling and long polling
+
+Polling and long polling are alternatives to WebSockets. Polling is to send an AJAX request every N amount of seconds for new data. Long polling sends requests to the server and keeps the connection open until new data comes in.
+
+### WebSocket clients
+
+```JavaScript
+import { io } from 'socket.io-client';
+
+// initialise a socket connection
+const socket = io('http://127.0.0.1:5000');
+
+// The socket has an onopen event. Once the protocol has been swapped,
+// i.e., upgraded to WebSocket, this function gets invoked.
+socket.on('connect', () => {
+    socket.emit('client_hello', 'Hello from the client');
+});
+
+socket.on('custom_event', (data) => {
+    console.log(`received the '${data}' message from the server `);
+});
+
+```
+
+Read more: [A beginner's guide to WebSockets]
+
+## Web Security
+
+### CORS
 
 Cross-Origin Resource Sharing.
 
@@ -413,6 +476,10 @@ Integration tests are all about cross-communication between different units of c
 
 Automation tests, known as UI tests, are run on the browser or a browser-like environment to simulate user behaviours—tools such as Nightwatch, WebdriverIO, cypress, TestCafé are popular. Many companies instead, hiring testers to do automation tests. UI tests take the longest time amongst the three types of testing we are discussing in this section. Companies might run unit tests and integration tests as long as developers save their work, but they only run UI tests when developers merge their work to the main branch before releasing it to the production.
 
+## Virtualisation and containers
+
+A virtual machine provides a sandbox environment to execute guest operating systems and applications running on top of a host operating system. Similarly, Docker provides containers that allow apps and system libraries to execute distinctly on an OS. Docker guarantees that apps can be executed just like we run the apps on a virtual machine. Imagining containers are a lightweight alternative for machines to virtualise.
+
 ## Deployment
 
 ### Vue.js Deployment
@@ -421,7 +488,7 @@ To build a containerised web app with Nginx, you need to:
 
 1. Add build commands in package.json
 
-"`JSON
+```JSON
 {
 "scripts": {
 "serve": "vue-cli-service serve",
@@ -432,7 +499,7 @@ To build a containerised web app with Nginx, you need to:
 }
 }
 
-````
+```
 
 2. Add webpack config in vue.config.js if you need
 3. Add Nginx.conf
@@ -459,7 +526,7 @@ RUN apt-get install -y nginx-extras
 COPY --from=prod-build /app/dist /usr/share/nginx/html/
 ADD ./nginx/  /etc/nginx
 CMD ["nginx", "-g", "daemon off;"]
-````
+```
 
 Dockerfile.staging
 
@@ -500,7 +567,7 @@ Server-Side Rendered Deployment (Universal SSR) is a bit different.
 
 1. Add build commands in package.json
 
-"`JSON
+```JSON
 {
 "scripts": {
 "dev": "nuxt",
@@ -514,7 +581,7 @@ Server-Side Rendered Deployment (Universal SSR) is a bit different.
 }
 }
 
-````
+```
 
 4. Create Dockerfile and dockerignore
 
@@ -544,7 +611,7 @@ RUN npm run build
 ENV HOST 0.0.0.0
 EXPOSE 3000
 CMD ["npm", "run", "start"]
-````
+```
 
 dockerignore
 
@@ -582,3 +649,4 @@ For more information, see [nuxt-fundamentals] and [dockerhub](https://hub.docker
 [vue-pwa]: Vue/vue-pwa
 [vue-storybook]: Vue/vue-storybook
 [introduction to html]: HTML/README.md
+[a beginner's guide to websockets]: https://www.youtube.com/watch?v=8ARodQ4Wlf4

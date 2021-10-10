@@ -1,0 +1,32 @@
+* {
+    font-size: 1rem;
+    line-height: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+    list-style-position: inside;
+    padding: 0;
+}
+
+.s1 {
+    display: inline;
+    text-align: center;
+}
+
+.s2 {
+    display: block;
+    text-align: center;
+}
+
+.s3 {
+    background: #c3c3c3;
+    display: block;
+    padding: 32px 0;
+}
+
+.s4 {
+    background: #c3c3c3;
+    text-align: center;
+    padding: 32px 0;
+}
