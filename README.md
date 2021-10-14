@@ -50,6 +50,8 @@
     - [WebSocket clients](#websocket-clients)
   - [Web Security](#web-security)
     - [CORS](#cors)
+  - [Micro frontend](#micro-frontend)
+    - [Pros and cons](#pros-and-cons-1)
   - [Tooling and Useful Dependencies](#tooling-and-useful-dependencies)
     - [Storybook](#storybook)
     - [Verdaccio](#verdaccio)
@@ -393,6 +395,14 @@ fetch('https://foo.com/data.json'), {
   // ...
 })
 ```
+
+## Micro frontend
+
+There are three key pieces of micro frontend architecture: **micro frontends**, an **micro frontend framework** and **host pages**.
+
+### Pros and cons
+
+With the micro frontend, we have better team scalability. We chop up a web app into small micro-apps. Functional teams develop small chunks of code and deploy them independently. That allows the web app to be updated continuously. Moreover, development teams only focus on specific features. In practice, development teams have to dockerise each micro app, making the web app more complex. The pitfall of the micro frontend is that there are no dominant implementations of micro frontend architecture. Moreover, in micro frontend architecture, a host page loads components from various micro-apps. As JavaScript is a single-threaded language, the app would likely encounter runtime issues if some teams mess up their code.
 
 ## Tooling and Useful Dependencies
 
