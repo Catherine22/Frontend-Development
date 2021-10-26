@@ -1,19 +1,22 @@
 * {
-    width: 100vw;
     font-family: 'Lato', sans-serif;
     font-size: 1rem;
     line-height: 1.4rem;
     transition: color 0.5s;
+    box-sizing: border-box;
 }
 body {
     margin: 0;
     padding: 0;
     border: 0;
     background: #121212;
+    width: 100vw;
 }
 header {
     display: flex;
-    position: absolute;
+    position: fixed;
+    top: 0;
+    width: 100%;
     background: #292929;
     height: 64px;
 }
@@ -52,14 +55,11 @@ nav a:hover {
     background-size: 100% 2px;
 }
 aside {
-    max-width: 200px;
     border-radius: 4px;
     float: right;
-    margin-top: 80px;
-    margin-right: 16px;
-    margin-left: 16px;
     padding: 0 8px 8px 8px;
     background: #292929;
+    width: 20%;
 }
 aside a {
     color: #8f8f8f;
@@ -70,7 +70,16 @@ aside a:hover {
     color: #eac159;
     transition: color 0.3s;
 }
-
+main {
+    float: left;
+    width: 80%;
+}
+article {
+    text-align: justify;
+    color: lightgrey;
+    padding: 16px;
+    border: 1px solid lightgrey;
+}
 .category {
     color: #eac159;
     font-weight: bold;
@@ -91,10 +100,11 @@ aside a:hover {
         display: none;
     }
     aside {
-        margin-top: 72px;
-        margin-right: 8px;
-        margin-left: 8px;
-        max-width: calc(100% - 32px);
+        width: 100%;
+        float: center;
+    }
+    main {
+        width: 100%;
         float: center;
     }
 }

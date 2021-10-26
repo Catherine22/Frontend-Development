@@ -15,6 +15,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     - [Reducer](#reducer)
     - [Store](#store)
     - [Middleware](#middleware)
+  - [Virtual DOM](#virtual-dom)
 
 ## App structure
 
@@ -85,6 +86,14 @@ A reducer is a function which receives actions and outputs what we called store 
 The store represents what our apps should look like. It is a big object that describes the state in our react app.
 
 ### Middleware
+
+## Virtual DOM
+
+DOM (Document Object Model) represents the content of XML and HTML documents as tree structure in memory. DOM provides APIs such as `getElementById()` to allow JavaScript to manipulate contents of documents.
+
+Virtual DOM is more of a pattern or concept than a specific technology. Such a concept is implemented in react app as middleware between DOM and documents. In react world, the `render()` function creates a tree-like structure of React elements. When `props` or `state` updates, the `render()` function will return a different tree of elements. However, the state of the art algorithm requires O(N^3) time complexity.
+
+Now we know it is expensive to create a tree of React elements. To address it, React improves the diffing algorithm to reduce the amount of UI rendering.
 
 [react hooks example]: ./hooks/
 [react hooks course - all react hooks explained]: https://www.youtube.com/watch?v=LlvBzyy-558

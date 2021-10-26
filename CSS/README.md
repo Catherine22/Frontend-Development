@@ -11,6 +11,7 @@
   - [Fonts](#fonts)
     - [Font units](#font-units)
   - [Colours](#colours)
+  - [px vs em vs rem](#px-vs-em-vs-rem)
 
 ## Implementing CSS
 
@@ -223,4 +224,9 @@ h1 {
 }
 ```
 
+## px vs em vs rem
+
+Check out [Sizing in CSS: px vs em vs rem]
+
 [web-safe fonts]: https://www.w3schools.com/cssref/css_websafe_fonts.asp
+[sizing in css: px vs em vs rem]: https://chiamakaikeanyi.dev/sizing-in-css-px-vs-em-vs-rem/
