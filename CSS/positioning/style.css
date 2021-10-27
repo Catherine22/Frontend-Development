@@ -1,38 +1,44 @@
+* {
+    box-sizing: border-box;
+}
 body {
-    height: 4000px;
+    line-height: 1.2em;
+    margin: 0;
+    height: 200vh;
 }
 .container {
-    width: 500px;
-    height: 500px;
-    position: relative;
+    border: 1px solid black;
     background: lightgrey;
+    width: 600px;
 }
 .box {
     width: 100px;
     height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-#box-1 {
-    position: static; /* default position */
+.box-1 {
     background: red;
+    position: static; /* by default */
 }
-#box-2 {
-    position: relative; /* compare to its original position */
-    left: 100px;
-    top: 0;
+.box-2 {
     background: yellow;
+    position: relative; /* move based on its position */
+    left: 100px;
 }
-#box-3 {
-    position: absolute;
-    left: 200px;
-    top: 200px;
+.box-3 {
     background: green;
+    position: absolute;
+    top: 100px;
+    left: 200px;
 }
-#box-4 {
-    position: fixed; /* fixed position in the screen (used to put floating bottoms or bottom navigation bar */
+.box-4 {
     background: blue;
+    position: fixed;
 }
-#box-5 {
-    position: sticky; /* Good for menu or navigation bar, it sticks to the parent. */
+.box-5 {
+    background: purple;
+    position: sticky;
     top: 0;
-    background: orange;
 }

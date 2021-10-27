@@ -1,101 +1,30 @@
 * {
-    font-size: 1rem;
-    line-height: 2rem;
-    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
 }
-p {
-    line-height: 1.4em;
+body {
+    line-height: 1.2em;
 }
-section {
-    margin: 8px;
-    padding: 16px;
-    border-radius: 4px;
-    box-shadow: 0 7px 20px 1px rgba(77, 18, 12, 0.2);
-    background-color: #fff;
+.box {
+    border: 1px solid black;
+    background: lightgrey;
+    padding: 0 16px;
+    margin: auto;
+    margin-bottom: 16px;
 }
-ul {
-    padding: 0; /* reset default padding */
+.box p {
+    text-align: justify;
 }
-img {
-    padding: 8px;
+.inline-block {
+    width: 30%;
+    display: inline-block;
 }
-code {
-    background-color: lightgrey;
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
 .inline {
     display: inline;
 }
-.inline a {
-    padding: 8px;
-}
-.inline_list :first-child {
-    padding-left: 16px;
-}
-.inline_list :last-child {
-    padding-left: 16px;
+.block {
+    width: 30%;
+    display: block;
 }
 .none {
-    width: 50px;
-    height: 50px;
     display: none;
-}
-.hidden {
-    width: 50px;
-    height: 50px;
-    visibility: hidden;
-}
-
-.center_hint {
-    width: 100%;
-    text-align: center;
-    font-weight: bold;
-}
-.center_list {
-    width: 100%;
-    text-align: center;
-}
-.center_img {
-    display: block;
-    margin: auto;
-}
-
-.vertical {
-    /* The reason you should always use max-width rather than a simple width is that it will be horrible in responsive website design */
-    max-width: 960px;
-    margin: auto;
-}
-.horizontal {
-    text-align: center;
-}
-.horizontal section {
-    width: 30%;
-    display: inline-block;
-    box-sizing: border-box;
-}
-.container .session_num {
-    color: #f0a79d;
-    text-align: center;
-    font-size: 1.8rem;
-    line-height: 1.6;
-    font-style: italic;
-    font-weight: bold;
-}
-.container h2 {
-    text-align: center;
-    font-size: 1.8rem;
-    line-height: 1.6;
-}
-.container p {
-    margin: 24px 0 0;
-    padding: 0 14%;
-
-    /* Limit and truncate text to maximum 3 lines */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* number of lines to show */
-    -webkit-box-orient: vertical;
 }
