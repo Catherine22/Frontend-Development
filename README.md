@@ -38,6 +38,7 @@
     - [Offline Browsing](#offline-browsing)
     - [Lighthouse](#lighthouse)
   - [AMP](#amp)
+  - [Storage](#storage)
   - [Sessions](#sessions)
     - [Stateful, cookie-based authentication](#stateful-cookie-based-authentication)
     - [Stateless, token-based authentication](#stateless-token-based-authentication)
@@ -48,8 +49,7 @@
   - [WevSockets](#wevsockets)
     - [Polling and long polling](#polling-and-long-polling)
     - [WebSocket clients](#websocket-clients)
-  - [Web Security](#web-security)
-    - [CORS](#cors)
+  - [Security Practice](#security-practice)
   - [Micro frontend](#micro-frontend)
     - [Pros and cons](#pros-and-cons-1)
   - [Tooling and Useful Dependencies](#tooling-and-useful-dependencies)
@@ -301,13 +301,25 @@ Demo: [sw.js], [pwa], [vue-pwa]
 
 ## AMP
 
-AMP, Accelerated Mobile Pages.
+AMP, Accelerated Mobile Pages. You might use AMP when you need to cache your web app at CDN level.
+
+## Storage
+
+Notice, `http:mywebsite.com`, `https:mywebsite.com` and `http:mywebsite.com:8080` refer to different session/local storage.
 
 ## Sessions
 
 ### Stateful, cookie-based authentication
 
-The client sends a user authenticates to the server, the server returns `set-cookie:session=sessionstring` within the header. The client then stores that cookie. It sends requests to the server with a new header `cookie:session=sessionstring`.
+1. The client sends a user authenticates to the server.
+2. The server verifies the credentials.
+3. The server creates a temporary user session.
+4. The server issues a cookie with a session ID and returns `set-cookie:session=sessionstring` within the header.
+5. The client sends the cookie with each request. I.e., sending requests with the header `cookie:session=sessionstring`.
+6. The server validates it against the session store & grants access.
+7. When the user signs out, the server clears its session and cookie.
+
+For servers, each session has to be stored in server side, each user is identified by a session ID.
 
 ### Stateless, token-based authentication
 
@@ -371,30 +383,9 @@ socket.on('custom_event', (data) => {
 
 Read more: [A beginner's guide to WebSockets]
 
-## Web Security
+## Security Practice
 
-### CORS
-
-Cross-Origin Resource Sharing.
-
--   Origin: A combination of scheme, host and port. E.g. "http://www.example.com" has scheme HTTP, port "80" and the host is "www.example.com". Any two websites of the same origin must have an identical scheme, host and port.
--   CORS enables you to fetch resources outside of your app's origin.
--   Generally, you can load most resources from a different origin, such as images, scripts, video/audio, embeds.
--   You CANNOT load XML and JSON from a different origin unless you permit them.
--   Here is the CORS implementation in a nutshell:
-    -   Add origin header on a request
-    -   Server sends `access-control-allow-origin` if allowed
-    -   If a server does not support CORS:
-
-```Javascript
-fetch('https://foo.com/data.json'), {
-  mode: 'no-cors' // 'cors' by default
-}.then(response => {
-  // ...
-}).catch(error => {
-  // ...
-})
-```
+[OWASP Secure Headers Project]
 
 ## Micro frontend
 
@@ -500,13 +491,13 @@ To build a containerised web app with Nginx, you need to:
 
 ```JSON
 {
-"scripts": {
-"serve": "vue-cli-service serve",
-"build": "vue-cli-service build",
-"test:unit": "vue-cli-service test:unit",
-"test:e2e": "vue-cli-service test:e2e",
-"lint": "vue-cli-service lint"
-}
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "test:unit": "vue-cli-service test:unit",
+        "test:e2e": "vue-cli-service test:e2e",
+        "lint": "vue-cli-service lint"
+    }
 }
 
 ```
@@ -579,16 +570,16 @@ Server-Side Rendered Deployment (Universal SSR) is a bit different.
 
 ```JSON
 {
-"scripts": {
-"dev": "nuxt",
-"build": "nuxt build",
-"build:dev": "cross-env NODE_ENV=development nuxt build",
-"start": "cross-env NODE_ENV=production node server/index.js",
-"start:dev": "cross-env NODE_ENV=development node server/index.js",
-"generate": "nuxt generate",
-"lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-"test": "jest"
-}
+    "scripts": {
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "build:dev": "cross-env NODE_ENV=development nuxt build",
+        "start": "cross-env NODE_ENV=production node server/index.js",
+        "start:dev": "cross-env NODE_ENV=development node server/index.js",
+       "generate": "nuxt generate",
+        "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+        "test": "jest"
+    }
 }
 
 ```
@@ -660,3 +651,4 @@ For more information, see [nuxt-fundamentals] and [dockerhub](https://hub.docker
 [vue-storybook]: Vue/vue-storybook
 [introduction to html]: HTML/README.md
 [a beginner's guide to websockets]: https://www.youtube.com/watch?v=8ARodQ4Wlf4
+[owasp secure headers project]: https://wiki.owasp.org/index.php/OWASP_Secure_Headers_Project#tab=Headers

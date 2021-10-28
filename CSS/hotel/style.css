@@ -222,3 +222,41 @@ nav ul li .current {
     border-radius: 8px;
     margin: 16px 0;
 }
+
+.contact-us {
+    margin-top: 56px;
+}
+
+.form-wrap {
+    border: 1px solid #444;
+    width: 50%;
+    display: block;
+    margin: 32px auto;
+    padding: 16px;
+}
+
+.form-wrap .form-group {
+    display: block;
+    margin: auto;
+    max-width: 240px;
+}
+
+.form-wrap .form-group label {
+    display: block;
+    line-height: 1em;
+}
+
+.form-wrap .form-group input,
+.form-wrap .form-group textarea {
+    display: block;
+    line-height: 1.5em;
+    margin: 8px 0 16px 0;
+    width: 100%;
+}
+
+.form-wrap .submit {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    line-height: 1.5em;
+}
