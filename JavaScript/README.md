@@ -197,7 +197,7 @@ var sing = function() {
 
 // Uncaught ReferenceError: Cannot access 'teddy' before initialization
 // Uncaught ReferenceError: Cannot access 'snoopy' before initialization
-// Uncaught TypeError: sing is not a function
+// Uncaught TypeError: sing is not a function (Because 'sing' is undefined)
 ```
 
 ### More Examples
@@ -215,12 +215,12 @@ You get: #1 = undefined, #2 = 10, #3 = 20
 ```JavaScript
 console.log('#1, f()=', f());
 function f() {
-return 0;
+    return 0;
 }
 
 console.log('#2, f()=', f());
 function f() {
-return 1;
+    return 1;
 }
 
 console.log('#3, f()=', f());

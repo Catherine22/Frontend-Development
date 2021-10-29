@@ -7,7 +7,7 @@ if ('serviceWorker' in navigator) {
 
     // 1. Register your service worker (asynchronous task)
     navigator.serviceWorker
-        .register('/sw.js')
-        .then((reg) => console.log('Service worker registered', reg))
-        .catch((err) => console.warn('Service worker NOT registered', err));
+        .register('sw.js')
+        .then((reg) => console.log('Service worker has registered', reg))
+        .catch((err) => console.warn('Service worker has NOT registered', err));
 }

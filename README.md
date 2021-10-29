@@ -39,6 +39,8 @@
     - [Lighthouse](#lighthouse)
   - [AMP](#amp)
   - [Storage](#storage)
+    - [Cookie Storage vs Session Storage vs Local Storage](#cookie-storage-vs-session-storage-vs-local-storage)
+    - [IndexedDB](#indexeddb)
   - [Sessions](#sessions)
     - [Stateful, cookie-based authentication](#stateful-cookie-based-authentication)
     - [Stateless, token-based authentication](#stateless-token-based-authentication)
@@ -235,29 +237,32 @@ A state-of-the-art design pattern for Vue.js
 Research says, 40% of users bounce from sites that take longer than **3 seconds** to load.
 
 -   PWA provides:
-    1. Reliable: Fast loading, work offline and on flaky networks.
+    1. Reliable performance: Fast loading, work offline and on flaky networks.
     2. Fast: Smooth animation, jank-free scrolling and seamless navigation.
     3. Engaging: Launch from the home screen and send push notifications.
+    4. Push notifications
+    5. Homescreen icon metadata
 -   PWA speeds up website loading by leveraging service workers to cache assets, but it cannot handle the first visit (where there is no cache).
 -   `self::addEventListener`: Inside the service worker, self refers to the service worker itself. Otherwise, it refers to the window object.
--   Use AMP components to improve first visit performance.
+-   Use AMP components to improve first visit performance. (AMP allows CDN to cache websites)
 -   Precaching: Download and cache files when first run (then always use the cached files).
 -   To log if the client goes with PWA, you can set up a specific `"start_url` in `public/manifest.json`.
 
-Demo: [sw.js], [pwa], [vue-pwa]
+Go to [PWA] to see how exactly PWA works.
 
 ### Service Workers
 
--   Service workers are js files working on other threads which allow you to:
+-   A service worker is a programmable proxy between a web app and the outside, working on other threads which allow a web app to:
     1. Load content offline
     2. Use background sync
     3. Push notifications
 -   Lifecycle:
-    1. Create an sw.js (your service worker) in the root directory to allow HTML files to access it globally
-    2. Register your sw.js with the browser (You should do this in your app.js file, not in sw.js)
-    3. [install event] The browser installs your service worker and running on the service worker thread. This install event only runs once when the service worker is registered
-    4. [activate event] If successful, you get an activate event
-    5. This service worker starts listening to other events such as `fetch`.
+    1. A service worker has lifecycle events independent of the web app.
+    2. Create an sw.js (your service worker) in the root directory to allow HTML files to access it globally
+    3. Register your sw.js with the browser (You should do this in your app.js file, not in sw.js)
+    4. [install event] The browser installs your service worker and running on the service worker thread. This install event only runs once when the service worker is registered
+    5. [activate event] If successful, you get an activate event
+    6. This service worker starts listening to other events such as `fetch`.
 -   Your service worker will not be installed if no changes of sw.js
 -   Service workers only work on HTTPS domains, but localhost is an exception to the rule.
 -   Service workers are likely the proxy between browser and servers. When your PWA fetch resources from any server, it catches the fetch event.
@@ -305,7 +310,44 @@ AMP, Accelerated Mobile Pages. You might use AMP when you need to cache your web
 
 ## Storage
 
+### Cookie Storage vs Session Storage vs Local Storage
+
+|     Storage     | size |   due date   | accessible from |
+| :-------------: | :--: | :----------: | --------------- |
+| Cookie storage  | 4KB  | Manually set | Any window      |
+| Session storage | 5MB  | On tab close | Same tab        |
+|  Local storage  | 10MB |    Never     | Any window      |
+
 Notice, `http:mywebsite.com`, `https:mywebsite.com` and `http:mywebsite.com:8080` refer to different session/local storage.
+
+Below are CRUD operations for local storage.
+
+```JavaScript
+localStorage.setItem('key', 'value');
+localStorage.setItem('key', 'new value');
+localStorage.removeItem('key');
+localStorage.getItem('key'); // null
+```
+
+The APIs of session storage works exactly the same as local storage.
+
+```JavaScript
+sessionStorage.setItem('key', 'value');
+sessionStorage.setItem('key', 'new value');
+sessionStorage.removeItem('key');
+sessionStorage.getItem('key'); // null
+```
+
+The only way to get cookies is to invoke `document.cookie` and retrieve all the cookies. To remove a cookie, we will need to expire the cookie.
+
+```JavaScript
+document.cookie = 'key1=value1; expires=' + new Date(2021, 9, 30).toUTCString();
+document.cookie = 'key2=value2; expires=' + new Date(2021, 9, 30).toUTCString();
+console.log(document.cookie); // key1=value2; key2=value2
+document.cookie = 'key2=value2; expires=' + new Date(2000, 9, 30).toUTCString(); // remove key2
+```
+
+### IndexedDB
 
 ## Sessions
 
@@ -328,6 +370,8 @@ The client sends a user authenticates to the server, the server returns a token 
 ## CSR vs SSR
 
 The client-side rendering downloads HTML files. Before the HTML file gets download, there is a blank page on the browser. Then the browser download and execute the JavaScript files that the HTML file links to. Once all the above tasks have finished, the page becomes interactive and visible. With server-side rendering, once the HTML file has arrived, the browser shows the HTML page. That page is not interactive at that point.
+
+Read more: [A Closer Look at Client-Side & Server-Side Rendering]
 
 ### CSR
 
@@ -652,3 +696,4 @@ For more information, see [nuxt-fundamentals] and [dockerhub](https://hub.docker
 [introduction to html]: HTML/README.md
 [a beginner's guide to websockets]: https://www.youtube.com/watch?v=8ARodQ4Wlf4
 [owasp secure headers project]: https://wiki.owasp.org/index.php/OWASP_Secure_Headers_Project#tab=Headers
+[a closer look at client-side & server-side rendering]: https://www.growth-rocket.com/blog/a-closer-look-at-client-side-server-side-rendering/
