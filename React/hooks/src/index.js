@@ -8,6 +8,7 @@ import Ref from './Ref';
 import Context from './Context';
 import Memo from './Memo';
 import Callback from './Callback';
+import MyHook from './MyHook';
 
 ReactDOM.render(
     <React.StrictMode>
@@ -73,6 +74,15 @@ ReactDOM.render(
                     </pre>
                 </h2>
                 <Callback />
+                <hr></hr>
+            </section>
+            <section>
+                <h2>
+                    <pre>
+                        <code>My hook: usePrev</code>
+                    </pre>
+                </h2>
+                <MyHook />
                 <hr></hr>
             </section>
         </div>

@@ -1306,19 +1306,22 @@ ES8, ECMAScript 2017
 
 `async`/`await` syntax
 
-E.g. `fetch` in ES6 style.
+E.g., `fetch` in ES6 style.
 
 ```JavaScript
 const callback = (res) => console.log('res', res);
 function getComments(callback) {
-  return fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
-    .then(response => response.json())
-    .then(responseJson => {
-        // Test error handling
-        // throw new Error('Test error!');
-      return callback(responseJson);
-    })
-    .catch(console.error);
+    return fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
+        .then((response) => {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            return response.json();
+        })
+        .then((json) => {
+            return callback(json);
+        })
+        .catch(console.error);
 }
 
 getComments(callback);
@@ -1327,20 +1330,23 @@ getComments(callback);
 `fetch` in ES8 style.
 
 ```JavaScript
-async function getComments() {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts/1/comments');
-    const responseJson = await response.json();
-    // Test error handling
-    // throw new Error('Test error!');
-    return responseJson;
-}
 
-try {
-    const res = await getComments();
-    console.log('res', res);
-} catch (error) {
-    console.error(error);
-}
+const getComments = async () => {
+    try {
+        const response = await fetch(
+            'https://jsonplaceholder.typicode.com/posts/1/comments'
+        );
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        const json = await response.json();
+        return json;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+getComments().then((res) => console.log('res', res));
 ```
 
 Example 2, `Promise.all` in ES6 style

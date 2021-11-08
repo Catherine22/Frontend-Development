@@ -2,6 +2,16 @@
 
 Open a new window for the PWA folder and start the live server.
 
+## Navigation
+
+- [PWA Sample App](#pwa-sample-app)
+  - [Navigation](#navigation)
+  - [Configuration](#configuration)
+  - [Workbox](#workbox)
+  - [Cache Strategies](#cache-strategies)
+    - [When to store resources](#when-to-store-resources)
+  - [Reference](#reference)
+
 ## Configuration
 
 1. In your main js file, you will need to register the service worker.
@@ -121,6 +131,30 @@ self.addEventListener('beforeinstallprompt', (event) => {
     });
 });
 ```
+
+## Workbox
+
+Workbox is the service worker that Google provides. Below are what it is capable of.
+
+1. Locate files on disk.
+2. Detect file changes (automatic cache updates).
+3. Support multiple caches.
+4. Support multiple access strategies.
+
+## Cache Strategies
+
+| Type                                                 | Changes                       | Strategy             |
+| ---------------------------------------------------- | ----------------------------- | -------------------- |
+| Needed at launch (index.html, script.js, styles.css) | Rarely                        | cacheOnly (default)  |
+| Cached when used (images, media)                     | Sometimes                     | cacheFirst           |
+| Time-sensitive (news, weather)                       | Frequently                    | networkFirst         |
+| User avatars, etc.                                   | Rarely, but important to user | staleWhileRevalidate |
+
+### When to store resources
+
+-   On install: Keep static components of the current version of the site such as CSS files, scripts, index.html, etc.
+-   On activate: This event is ideal for cleanup tasks.
+-   On user interaction: Store resources like videos or articles in this phrase when users are allowed to manually select content that is supposed to be available offline.
 
 ## Reference
 

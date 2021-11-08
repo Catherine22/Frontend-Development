@@ -17,8 +17,6 @@
     - [More Resources](#more-resources)
   - [HTML](#html)
   - [CSS](#css)
-    - [CSS Units](#css-units)
-    - [SASS & SCSS](#sass--scss)
   - [JavaScript](#javascript)
     - [Style Guide](#style-guide)
   - [Popular JS Frameworks](#popular-js-frameworks)
@@ -103,8 +101,7 @@
 -   Using web-safe fonts, or you will need to import extra font resources. [Link](https://www.w3schools.com/cssref/css_websafe_fonts.asp). E.g.
     -   Serif font has edges
     -   Sans serif font is flat, looks neater and more modern.
--   You could embed fonts, for example, [google fonts](https://https://fonts.google.com/). E.g.
-    -   Roboto
+-   You could embed fonts, for example, [google fonts](https://https://fonts.google.com/).
 
 In your HTML file
 
@@ -139,44 +136,7 @@ font-family: 'Roboto', sans-serif;
 
 ## CSS
 
-CSS structure:
-
-```css
-selector {
-    property: value;
-}
-```
-
--   3 ways to implement CSS in your html file: [html](CSS/implementation/index.html), [css](iCSS/mplementation/style.css)
--   Decorate HTML by tag, id and class: [html](CSS/fundamentals/index.html), [css](CSS/fundamentals/style.css)
--   Fonts: [html](CSS/fonts/index.html), [css](CSS/fonts/style.css)
--   Colours and backgrounds: [html](CSS/colours/index.html), [css](CSS/colours/style.css)
--   Link and button: [html](CSS/link/index.html), [css](CSS/link/style.css)
--   Navigation menu, side menu: [html](CSS/navigationMenu/index.html), [css](CSS/navigationMenu/style.css)
--   Inline vs block and how to center elements horizontally: [html](CSS/display/index.html), [css](CSS/display/style.css)
--   Positioning: [html](CSS/positioning/index.html), [css](CSS/positioning/style.css)
--   CSS priority: [html](CSS/priority/index.html), [css](CSS/priority/style.css)
-
-### CSS Units
-
--   Absolute units:
-
-    -   cm: centimetres
-    -   mm: millimetres
-    -   in: inches
-    -   **px: pixels (1px = 1/96th of 1in)**
-    -   pt: points (1pt = 1/72 of 1in)
-    -   pc: picas picas (1pc = 12 pt)
-
--   Relative units:
-
-    -   %: to percent element
-    -   em: to font size of parent element (E.g. your parent font size is 16, 1.2em = 16 \* 1.2)
-    -   **rem: to font size of root element**
-    -   vm: to 1% of viewport width
-    -   vh: to 1% of viewport height
-
-### SASS & SCSS
+[Introduction to CSS]
 
 ## JavaScript
 
@@ -283,6 +243,17 @@ Go to [PWA] to see how exactly PWA works.
 -   Fetch
     -   This service worker acts as a proxy between the browser and a server.
     -   This event is triggered when your PWA fetch resources from your server
+    -   Below is a well-structured fetch request:
+
+```JavaScript
+function fetchJSON() {
+  fetch('examples/animals.json') // 1
+  .then(validateResponse) // 2
+  .then(readResponseAsJSON) // 3
+  .then(logResult) // 4
+  .catch(logError);
+}
+```
 
 ### Add to Home Screen
 
@@ -348,6 +319,8 @@ document.cookie = 'key2=value2; expires=' + new Date(2000, 9, 30).toUTCString();
 ```
 
 ### IndexedDB
+
+IndexedDB provides an object store in the browser. It is a non-rational database that stores JS objects, files, blob, etc.
 
 ## Sessions
 
@@ -694,6 +667,7 @@ For more information, see [nuxt-fundamentals] and [dockerhub](https://hub.docker
 [vue-pwa]: Vue/vue-pwa
 [vue-storybook]: Vue/vue-storybook
 [introduction to html]: HTML/README.md
+[introduction to css]: CSS.md
 [a beginner's guide to websockets]: https://www.youtube.com/watch?v=8ARodQ4Wlf4
 [owasp secure headers project]: https://wiki.owasp.org/index.php/OWASP_Secure_Headers_Project#tab=Headers
 [a closer look at client-side & server-side rendering]: https://www.growth-rocket.com/blog/a-closer-look-at-client-side-server-side-rendering/
