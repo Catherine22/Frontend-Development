@@ -222,8 +222,8 @@ By using extrinsic sizing, there is a limit of how much child content can add be
 
 ```CSS
 .parent {
-	width: 400px;
-	height: 400px;
+  width: 400px;
+  height: 400px;
 }
 ```
 
@@ -231,8 +231,8 @@ Adding `width: min-content` to the parent tells the box only to be as wide as th
 
 ```CSS
 .parent {
-	  width: min-content;
-	  height: min-content;
+  width: min-content;
+  height: min-content;
 }
 ```
 

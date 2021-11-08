@@ -1,20 +1,10 @@
 # The Web Developer Bootcamp
 
-## Navigation
+## Table of Contents
 
 - [The Web Developer Bootcamp](#the-web-developer-bootcamp)
-  - [Navigation](#navigation)
-  - [Basis](#basis)
-    - [Environment and Tools](#environment-and-tools)
-    - [URL Structure](#url-structure)
-    - [SEO](#seo)
-    - [Redirect](#redirect)
-    - [Reactive Web Applications](#reactive-web-applications)
-  - [UI/UX](#uiux)
-    - [Fonts](#fonts)
-    - [Responsive Web Design](#responsive-web-design)
-    - [Adaptive Web Design](#adaptive-web-design)
-    - [More Resources](#more-resources)
+  - [Table of Contents](#table-of-contents)
+  - [Environment and Tools](#environment-and-tools)
   - [HTML](#html)
   - [CSS](#css)
   - [JavaScript](#javascript)
@@ -25,10 +15,6 @@
     - [Vue.js](#vuejs)
       - [Useful UI Dependencies](#useful-ui-dependencies)
       - [Nuxt.js](#nuxtjs)
-  - [Design Patterns](#design-patterns)
-    - [CDD](#cdd)
-  - [Webpack](#webpack)
-  - [Service Side Rerender](#service-side-rerender)
   - [Progressive Web App](#progressive-web-app)
     - [Service Workers](#service-workers)
       - [Lifecycle Events](#lifecycle-events)
@@ -56,11 +42,16 @@
     - [Storybook](#storybook)
     - [Verdaccio](#verdaccio)
       - [Get started](#get-started)
+  - [Testing](#testing)
+    - [Unit testing](#unit-testing)
+    - [Integration testing](#integration-testing)
+    - [Automation testing](#automation-testing)
+  - [Virtualisation and containers](#virtualisation-and-containers)
+  - [Deployment](#deployment)
+    - [Vue.js Deployment](#vuejs-deployment)
     - [Nuxt.js Deployment](#nuxtjs-deployment)
 
-## Basis
-
-### Environment and Tools
+## Environment and Tools
 
 1. Chrome
 2. Node.js
@@ -75,60 +66,6 @@
     - Find and select the next same word: select what word you are looking for, e.g. radio, press `command` + `D`, it will select the next "radio" as well. Then you can modify them at the same time.
     - Move to previous/next word: `option` + left/right arrow
     - Move to the start/end of the sentence: `command` + left/right arrow
-
-### URL Structure
-
-[Does URL Structure Affect SEO? Here's What Google Thinks]
-
-### SEO
-
-[SEO Starter Guide]
-
-### Redirect
-
-[Is there an advantage to using rel= "canonical" over a 301 redirect?]
-
-> If you have access to header modification, use 301. If you don't, then use rel=canonical.
-
-### Reactive Web Applications
-
-[RWA Gallery]
-
-## UI/UX
-
-### Fonts
-
--   Using web-safe fonts, or you will need to import extra font resources. [Link](https://www.w3schools.com/cssref/css_websafe_fonts.asp). E.g.
-    -   Serif font has edges
-    -   Sans serif font is flat, looks neater and more modern.
--   You could embed fonts, for example, [google fonts](https://https://fonts.google.com/).
-
-In your HTML file
-
-```html
-<link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
-    rel="stylesheet"
-/>
-```
-
-In your CSS file
-
-```css
-font-family: 'Roboto', sans-serif;
-```
-
-### Responsive Web Design
-
-### Adaptive Web Design
-
-### More Resources
-
--   [Why rounding odd font sizes to even?]
--   [The 8-Point Grid System]
--   Image size
-    -   Your image size should not be larger than, for example, 1200px. It depends on laptops and PCs' screen resolution.
--   [HTML5 Semantic Elements]
 
 ## HTML
 
@@ -171,26 +108,9 @@ Vue.js demos:
 
 #### Nuxt.js
 
-A Vue.js framework
-
-1. Server side rerendering
-2. Pre-rerendering
-3. Better performance
-4. SEO friendly
-5. Code splitting
+Nuxt is a Vue.js-based SSR framework.
 
 Demo: [nuxt-fundamentals]
-
-## Design Patterns
-
-### CDD
-
-Aka Component-Driven Development.  
-A state-of-the-art design pattern for Vue.js
-
-## Webpack
-
-## Service Side Rerender
 
 ## Progressive Web App
 
@@ -435,34 +355,34 @@ $ssh -i test.pem ec2-user@52.90.31.225
 
 2. Install and launch docker
 
-"`shell
+```shell
 $sudo yum update -y
 $sudo yum install docker -y
 $sudo service docker start
 
-````
+```
 
 3. Pull and run the verdaccio docker image (You can change the first 4873 to whatever port you want, like 80)
 
 ```shell
 $sudo docker pull verdaccio/verdaccio
 $sudo docker run -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio
-````
+```
 
 4. Back to your EC2 console, add 4873 port as an inbound rule to the security group of the running instance. Then, type `http://YOUR_INSTANCE_PUBLIC_IP:VERDACCIO_PORT` (`http://52.90.31.225:4873/` in this case) in your browser to access your private npm registry.
 
 5. In your computer (where you develop or publish dependencies), update your npm settings
 
-"`shell
+```shell
 $npm set registry http://52.90.31.225:4873
 
-````
+```
 
 6. Create a new account
 
 ```shell
 $npm adduser --registry http://52.90.31.225:4873
-````
+```
 
 7. Back to `http://52.90.31.225:4873` to see if you could log in successfully.
 
