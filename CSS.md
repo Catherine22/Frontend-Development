@@ -33,6 +33,8 @@ CSS exercises following the [Learn CSS] module.
     - [The `!important` keyword: 10, 000 Points](#the-important-keyword-10-000-points)
     - [Combination of Selectors](#combination-of-selectors)
     - [Readings](#readings-3)
+  - [Inheritance](#inheritance)
+    - [Readings](#readings-4)
   - [References](#references)
 
 ## Selectors
@@ -264,7 +266,7 @@ Read [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)
 
 -   [How do min-content and max-content work?]
 -   [Box Model](https://web.dev/learn/css/box-model/)
--   [CodePen](https://codepen.io/catherine22-the-reactor/pen/dyzeorr?editors=0010)
+-   [CodePen](https://codepen.io/catherine22-the-reactor/pen/dyzeorr)
 
 ## Cascade
 
@@ -512,7 +514,7 @@ a.my-class.another-class[href]:hover {
 }
 ```
 
-The specificity of each quiz are:
+The specificity of each quiz is listed below:
 
 -   Q1: 1 (1 type selector)
 -   Q2: 11 (1 type selector + 1 class selector)
@@ -524,6 +526,14 @@ The specificity of each quiz are:
 
 -   [CSS Specificity](https://web.dev/learn/css/specificity/)
 
+## Inheritance
+
+With the `inherit` keyword, the child inherit CSS from its parent. Not all CSS properties are inheritable, check out [Inheritable CSS Properties] to review all inheritable CSS Properties.
+
+### Readings
+
+-   [CodePen](https://codepen.io/catherine22-the-reactor/pen/oNedKWL)
+
 ## References
 
 -   [Learn CSS]
@@ -533,6 +543,7 @@ The specificity of each quiz are:
 [learn css]: https://web.dev/learn/css/
 [how do min-content and max-content work?]: https://stackoverflow.com/questions/51285308/how-do-min-content-and-max-content-work
 [a modern css reset]: ./reset.css
+[inheritable css properties]: https://web.dev/learn/css/inheritance/#which-properties-are-inheritable
 [\[1\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/max-content
 [\[2\]]: https://stackoverflow.com/questions/46923610/css-resetting-margin-and-padding
 [\[3\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator
