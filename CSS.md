@@ -19,6 +19,20 @@ CSS exercises following the [Learn CSS] module.
     - [Extrinsic Sizing vs Intrinsic Sizing](#extrinsic-sizing-vs-intrinsic-sizing)
     - [Areas of Box Model](#areas-of-box-model)
     - [Readings](#readings-1)
+  - [Cascade](#cascade)
+    - [Rule 1: Position and Order of Appearance](#rule-1-position-and-order-of-appearance)
+    - [Rule 2: Specificity](#rule-2-specificity)
+    - [Rule 3: Origins](#rule-3-origins)
+    - [Readings](#readings-2)
+  - [Specificity](#specificity)
+    - [Universal Selector: 0 Points](#universal-selector-0-points)
+    - [Type Selector, Pseudo-element Selector: 1 point](#type-selector-pseudo-element-selector-1-point)
+    - [Class Selector, Pseudo-class Selector, Attribute Selector: 10 Points](#class-selector-pseudo-class-selector-attribute-selector-10-points)
+    - [ID Selector: 100 Points](#id-selector-100-points)
+    - [Inline Style Attribute: 1,000 Points](#inline-style-attribute-1000-points)
+    - [The `!important` keyword: 10, 000 Points](#the-important-keyword-10-000-points)
+    - [Combination of Selectors](#combination-of-selectors)
+    - [Readings](#readings-3)
   - [References](#references)
 
 ## Selectors
@@ -252,6 +266,264 @@ Read [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)
 -   [Box Model](https://web.dev/learn/css/box-model/)
 -   [CodePen](https://codepen.io/catherine22-the-reactor/pen/dyzeorr?editors=0010)
 
+## Cascade
+
+**_Cascade_** is an algorithm that solves conflicts where multiple CSS rules apply to an HTML element. The algorithm is split into four distinct stages: [\[4\]]
+
+1. Position and order of appearance
+2. Specificity
+3. Origin
+4. Importance
+
+### Rule 1: Position and Order of Appearance
+
+The colour of the button is blue in all cases below.
+
+1. Scenario 1: Two attributes in one selector.
+
+```CSS
+button {
+  color: red;
+  color: blue;
+}
+```
+
+2. Scenario 2: Two selectors in order.
+
+```CSS
+button {
+  color: red;
+}
+
+button {
+  color: blue;
+}
+```
+
+3. Scenario 3: Two links in order.
+
+In your HTML file, you add two links.
+
+```HTML
+<link rel="stylesheet" href="https://codepen.io/my-awesome-css/pen/button1.css" />
+<link rel="stylesheet" href="https://codepen.io/my-awesome-css/pen/button2.css" />
+```
+
+In button1.css, you we have
+
+```CSS
+button {
+  color: red;
+}
+```
+
+In button2.css, you we have
+
+```CSS
+button {
+  color: blue;
+}
+```
+
+4. Scenario 4: One link and one CSS selector
+
+```HTML
+<link rel="stylesheet" href="./style.css" />
+<link rel="stylesheet" href="https://codepen.io/my-awesome-css/pen/button2.css" />
+```
+
+In style.css, we have
+
+```CSS
+button {
+  color: red;
+}
+```
+
+In button2.css, we have
+
+```CSS
+button {
+  color: blue;
+}
+```
+
+### Rule 2: Specificity
+
+```HTML
+<h1 id="my-id" class="my-element" data-type="heading">Heading</h1>
+```
+
+```CSS
+* {
+    color: yellow;
+}
+#my-id {
+    color: blue;
+}
+
+.my-element {
+    color: red;
+}
+
+[data-type='heading'] {
+    color: green;
+}
+
+h1 {
+    color: black;
+}
+```
+
+The colour of the heading is blue, because the priority of CSS selectors are **ID selector > class selector > type selector > attribute selector > universal selector**.
+
+Go to the [Specificity](#specificity) section to learn more.
+
+### Rule 3: Origins
+
+![cascade](./screenshots/cascade.png)[\[5\]]
+
+User agent styles are the browser's default styles. Local user styles are OS-level styles like font size or browser extensions that allow users to customise CSS for the current website. Authored CSS is a website's CSS.
+
+### Readings
+
+-   [CSS Cascade](https://web.dev/learn/css/the-cascade/)
+-   [CSS Specificity](https://web.dev/learn/css/specificity/)
+
+## Specificity
+
+### Universal Selector: 0 Points
+
+A universal selector has no specificity.
+
+```CSS
+* {
+  color: red;
+}
+```
+
+### Type Selector, Pseudo-element Selector: 1 point
+
+```CSS
+div {
+  color: red;
+}
+```
+
+```CSS
+::selection {
+  color: red;
+}
+```
+
+### Class Selector, Pseudo-class Selector, Attribute Selector: 10 Points
+
+```CSS
+.my-class {
+  color: red;
+}
+```
+
+```CSS
+:hover {
+  color: red;
+}
+```
+
+```CSS
+[href='#'] {
+  color: red;
+}
+```
+
+### ID Selector: 100 Points
+
+```CSS
+#myID {
+  color: red;
+}
+
+```
+
+### Inline Style Attribute: 1,000 Points
+
+```CSS
+<div style="color: red"></div>
+```
+
+### The `!important` keyword: 10, 000 Points
+
+```CSS
+.my-class {
+  color: red !important; /* 10,000 points */
+  background: white; /* 10 points */
+}
+```
+
+### Combination of Selectors
+
+The type selector `div` gets 1 point and the pseudo-class selector `not` gets 10 points. Hence, this sample has 11 points of specificity.
+
+```CSS
+div:not(.my-class) {
+  color: red;
+}
+```
+
+11 Points of specificity.
+
+```CSS
+a[href="#"] {
+  color: red;
+}
+```
+
+Given a HTML:
+
+```HTML
+<a class="my-class another-class" href="#">A link</a>
+```
+
+```CSS
+
+/* Q1 */
+a {
+  color: red;
+}
+
+/* Q2 */
+a.my-class {
+  color: green;
+}
+
+/* Q3 */
+a.my-class.another-class {
+  color: rebeccapurple;
+}
+
+/* Q4 */
+a.my-class.another-class[href] {
+  color: goldenrod;
+}
+
+/* Q5 */
+a.my-class.another-class[href]:hover {
+  color: lightgrey;
+}
+```
+
+The specificity of each quiz are:
+
+-   Q1: 1 (1 type selector)
+-   Q2: 11 (1 type selector + 1 class selector)
+-   Q3: 21 (1 type selector + 2 class selectors)
+-   Q4: 31 (1 type selector + 2 class selectors + 1 attribute selector)
+-   Q5: 41 (1 type selector + 2 class selectors + 1 attribute selector + 1 pseudo-class selector)
+
+### Readings
+
+-   [CSS Specificity](https://web.dev/learn/css/specificity/)
+
 ## References
 
 -   [Learn CSS]
@@ -264,3 +536,5 @@ Read [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)
 [\[1\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/max-content
 [\[2\]]: https://stackoverflow.com/questions/46923610/css-resetting-margin-and-padding
 [\[3\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator
+[\[4\]]: https://web.dev/learn/css/the-cascade/
+[\[5\]]: https://web.dev/learn/css/the-cascade/#origin
