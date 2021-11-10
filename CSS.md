@@ -35,6 +35,8 @@ CSS exercises following the [Learn CSS] module.
     - [Readings](#readings-3)
   - [Inheritance](#inheritance)
     - [Readings](#readings-4)
+  - [Sizing Units](#sizing-units)
+    - [Readings](#readings-5)
   - [References](#references)
 
 ## Selectors
@@ -534,6 +536,17 @@ With the `inherit` keyword, the child inherit CSS from its parent. Not all CSS p
 
 -   [CodePen](https://codepen.io/catherine22-the-reactor/pen/oNedKWL)
 
+## Sizing Units
+
+![font units](./screenshots/font_units.png) [\[6\]]
+
+Go to [Font-size-relative units](https://web.dev/learn/css/sizing/#font-size-relative-units) and [Viewport-relative units ](https://web.dev/learn/css/sizing/#viewport-relative-units) to see all available relative font-size units and view-size units, respectively.
+
+### Readings
+
+-   [Sizing Units]
+-   [CodePen](https://codepen.io/catherine22-the-reactor/pen/BadVOOr)
+
 ## References
 
 -   [Learn CSS]
@@ -544,8 +557,10 @@ With the `inherit` keyword, the child inherit CSS from its parent. Not all CSS p
 [how do min-content and max-content work?]: https://stackoverflow.com/questions/51285308/how-do-min-content-and-max-content-work
 [a modern css reset]: ./reset.css
 [inheritable css properties]: https://web.dev/learn/css/inheritance/#which-properties-are-inheritable
+[sizing units]: https://web.dev/learn/css/sizing/
 [\[1\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/max-content
 [\[2\]]: https://stackoverflow.com/questions/46923610/css-resetting-margin-and-padding
 [\[3\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator
 [\[4\]]: https://web.dev/learn/css/the-cascade/
 [\[5\]]: https://web.dev/learn/css/the-cascade/#origin
+[\[6\]]: https://web.dev/learn/css/sizing/#font-size-relative-units
