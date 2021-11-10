@@ -37,6 +37,17 @@ CSS exercises following the [Learn CSS] module.
     - [Readings](#readings-4)
   - [Sizing Units](#sizing-units)
     - [Readings](#readings-5)
+  - [Layout](#layout)
+    - [Inline](#inline)
+    - [Block](#block)
+    - [Flexbox](#flexbox)
+    - [Main Axis and Cross Axis](#main-axis-and-cross-axis)
+    - [Wrapping flex items](#wrapping-flex-items)
+    - [The `flex-flow` Property](#the-flex-flow-property)
+    - [The `flex` Property](#the-flex-property)
+    - [Ordering flex items](#ordering-flex-items)
+    - [Alignment](#alignment)
+    - [Readings](#readings-6)
   - [References](#references)
 
 ## Selectors
@@ -547,6 +558,171 @@ Go to [Font-size-relative units](https://web.dev/learn/css/sizing/#font-size-rel
 -   [Sizing Units]
 -   [CodePen](https://codepen.io/catherine22-the-reactor/pen/BadVOOr)
 
+## Layout
+
+### Inline
+
+Inline elements behave like words in a sentence. They sit next to each other in the inline direction.
+
+You can't set an explicit width and height on inline elements. Any block level margin and padding will be ignored by the surrounding elements [\[7\]].
+
+### Block
+
+Block elements don't sit alongside each other. They create a new line for themselves [\[7\]].
+
+### Flexbox
+
+**_Flexbox_** is a layout mechanism designed for laying out groups of items in one dimension [\[8\]].
+
+Given a parent component and three children as follows:
+
+```HTML
+<div class="content">
+  <p>Paragraph A</p>
+  <p>Paragraph B</p>
+  <p>Paragraph C</p>
+</div>
+```
+
+```CSS
+.content {
+  display: flex;
+}
+```
+
+The three paragraphs are arranged in a horizontal row.
+
+```CSS
+| Paragraph A | Paragraph B | Paragraph C |
+```
+
+### Main Axis and Cross Axis
+
+Children components can be arranged in a vertical column by setting the `flex-direction` property as `column`.
+
+```CSS
+.content {
+  display: flex;
+  flex-direction: column;
+}
+```
+
+```CSS
+| Paragraph A |
+| Paragraph B |
+| Paragraph C |
+```
+
+The main axis is the direction set by the flex-direction property. The cross axis runs in the other direction to the main axis. For example, if the main axis is `column`, the cross axis runs along the `row`.
+
+### Wrapping flex items
+
+By default, the flex direction of flexbox is `nowrap`. If there is not enough space in the container, the items will overflow.
+
+```CSS
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+```
+
+Flex items can be squeezed to the new line to next line depending on the flex direction and the space of its container.
+
+```CSS
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+```
+
+### The `flex-flow` Property
+
+The shorthand `flex-flow` is a combination of `flex-direction` and `flex-wrap`. For example, the following two piece of CSS are equivalent.
+
+```CSS
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+```
+
+```CSS
+.container {
+  display: flex;
+  flex-flow: column wrap;
+}
+```
+
+### The `flex` Property
+
+Use the `flex` or `flex-` properties to control the space inside flex items. For example,
+
+```CSS
+.container {
+  display: flex;
+  gap: 1em;
+}
+
+.item:first-child {
+  flex: 3;
+}
+
+.item:nth-child(2) {
+  flex: 1;
+}
+
+.item:nth-child(3) {
+  flex: 2;
+}
+```
+
+![flexbox](./screenshots/flexbox.png)
+
+Go to [Controlling space inside flex items](https://web.dev/learn/css/flexbox/#controlling-space-inside-flex-items) to read more properties with the `flex-` prefix.
+
+### Ordering flex items
+
+You can order flex items by adding the `order` property. Notice, no need to add `order: 1`.
+
+```CSS
+.container {
+  display: flex;
+  gap: 1em;
+}
+
+.item:first-child {
+  order: 3;
+}
+
+.item:nth-child(2) {
+  /* no order: 1; */
+}
+
+.item:nth-child(3) {
+  order: 2;
+}
+```
+
+You will get
+
+```
+item 2 | item 3 | item 1
+```
+
+### Alignment
+
+-   `justify-content`: space distribution on the main axis (the value of your flex-direction).
+-   `align-content`: space distribution on the cross axis.
+-   `place-content`: a shorthand for setting both of the above properties.
+
+Go to [Flexbox alignment overview](https://web.dev/learn/css/flexbox/#flexbox-alignment-overview) to read more.
+
+### Readings
+
+-   [Flexbox]
+-   [CodePen](https://codepen.io/catherine22-the-reactor/pen/LYjrgqm)
+
 ## References
 
 -   [Learn CSS]
@@ -558,9 +734,12 @@ Go to [Font-size-relative units](https://web.dev/learn/css/sizing/#font-size-rel
 [a modern css reset]: ./reset.css
 [inheritable css properties]: https://web.dev/learn/css/inheritance/#which-properties-are-inheritable
 [sizing units]: https://web.dev/learn/css/sizing/
+[flexbox]: https://web.dev/learn/css/flexbox/
 [\[1\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/max-content
 [\[2\]]: https://stackoverflow.com/questions/46923610/css-resetting-margin-and-padding
 [\[3\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator
 [\[4\]]: https://web.dev/learn/css/the-cascade/
 [\[5\]]: https://web.dev/learn/css/the-cascade/#origin
 [\[6\]]: https://web.dev/learn/css/sizing/#font-size-relative-units
+[\[7\]]: https://web.dev/learn/css/layout/
+[\[8\]]: https://web.dev/learn/css/flexbox/
