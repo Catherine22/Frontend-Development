@@ -48,6 +48,10 @@ CSS exercises following the [Learn CSS] module.
     - [Ordering flex items](#ordering-flex-items)
     - [Alignment](#alignment)
     - [Readings](#readings-6)
+  - [Grid](#grid)
+    - [Terminology](#terminology)
+    - [Examples](#examples)
+    - [Readings](#readings-7)
   - [References](#references)
 
 ## Selectors
@@ -147,7 +151,7 @@ For example, the HTML elements can have descendent combinators `.top div p div p
     <p>1 level deep</p>
     <div>
       <p>2 levels deep</p>
-      <div>
+<div>
         <p>3 levels deep</p>
       </div>
     </div>
@@ -223,7 +227,7 @@ A general sibling combinator selects siblings that come anywhere after a given e
     <div>
       <h1>A heading</h1>
       <p>I am a red paragraph.</p>
-      <div>I am a div</div>
+<div>I am a div</div>
       <p>I am another red paragraph.</p>
     </div>
     <p>A normal paragraph</p>
@@ -723,6 +727,121 @@ Go to [Flexbox alignment overview](https://web.dev/learn/css/flexbox/#flexbox-al
 -   [Flexbox]
 -   [CodePen](https://codepen.io/catherine22-the-reactor/pen/LYjrgqm)
 
+## Grid
+
+### Terminology
+
+Go to [Grid terminology] to learn what lines, tracks, cells, areas and gaps are.
+
+### Examples
+
+There are five use cases for the grid. Each example provides the most significant part of the code. Source code is available at [CodePen](https://codepen.io/catherine22-the-reactor/pen/MWvBOLr).
+
+1. Draw a grid with 3-column tracks and 2-row tracks. Each cell has a different size.
+
+![Grid 1](./screenshots/simple_grid.png)[\[9\]]
+
+```HTML
+<div class="container simple-grid">
+  <div class="box">5em * 120px</div>
+  <div class="box">120px * 120px</div>
+  <div class="box">30% * 120px</div>
+  <div class="box">5em * auto</div>
+  <div class="box">120px * auto</div>
+</div>
+```
+
+```CSS
+.container {
+  display: grid;
+}
+
+.simple-grid {
+  grid-template-columns: 5em 120px 30%;
+  grid-template-rows: 120px auto;
+  gap: 8px;
+}
+```
+
+2. Draw an intrinsic sizing grid with 3-column tracks and 2-row tracks, and make sure its track content will not overflow.
+    1. The `fit-content(size)` property fits the content and place child items evenly. You will need `fit-content(size)`.
+    2. The `auto` property stretches items automatically to fit the content.
+    3. `min-content` and `max-content` properties ensure the child item has a minimum size and enough space without squeeze content, respectively, even though the items may overflow.
+
+```HTML
+<div class="container intrinsic-sizing">
+  <div class="box">Box</div>
+  <div class="box">Box</div>
+  <div class="box">Box</div>
+  <div class="box">Box</div>
+  <div class="box">Box</div>
+</div>
+```
+
+```CSS
+.intrinsic-sizing {
+  grid-template-columns: repeat(3, min-content);
+  grid-template-rows: 120px auto;
+  gap: 8px;
+}
+
+/*
+Other available intrinsic sizing options:
+
+grid-template-columns: repeat(3, min-content);
+grid-template-columns: repeat(3, max-content);
+grid-template-columns: repeat(3, fit-content(5em));
+grid-template-columns: repeat(3, auto);
+*/
+```
+
+3. Draw a grid with 3-column tracks and 2-row tracks. The width ratio of items in a row should be 1:3:2.
+
+```CSS
+.fr {
+  grid-template-columns: 1fr 3fr 2fr;
+  grid-template-rows: 120px auto;
+  gap: 8px;
+}
+```
+
+`fr` is a special unit used in gird.
+
+4. Draw a grid with 3-column tracks and 2-row tracks. The last item in a row has the maximum size `2fr`. With the `minmax()`, the item can be stretched automatically while there is enough space.
+
+```CSS
+.min-max {
+  grid-template-columns: 1fr 2fr minmax(auto, 2fr);
+  grid-template-rows: 120px auto;
+  gap: 8px;
+}
+```
+
+5. Draw a grid with 5-column tracks and 3-row tracks. Each child item has the same size.
+
+```HTML
+<div class="container repeat">
+  <div class="box">Box</div>
+  <div class="box">Box</div>
+  <div class="box">Box</div>
+  <div class="box">Box</div>
+  <div class="box">Box</div>
+  <div class="box">Box</div>
+  <div class="box">Box</div>
+  <div class="box">Box</div>
+  <div class="box">Box</div>
+  <div class="box">Box</div>
+  <div class="box">Box</div>
+</div>
+```
+
+6. Add fixed size tracks and fill with items as many as possible without overflowing the container.
+
+### Readings
+
+-   [Grid]
+-   [CodePen](https://codepen.io/catherine22-the-reactor/pen/MWvBOLr)
+
 ## References
 
 -   [Learn CSS]
@@ -735,6 +854,8 @@ Go to [Flexbox alignment overview](https://web.dev/learn/css/flexbox/#flexbox-al
 [inheritable css properties]: https://web.dev/learn/css/inheritance/#which-properties-are-inheritable
 [sizing units]: https://web.dev/learn/css/sizing/
 [flexbox]: https://web.dev/learn/css/flexbox/
+[grid terminology]: https://web.dev/learn/css/grid/#grid-terminology
+[grid]: https://web.dev/learn/css/grid/
 [\[1\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/max-content
 [\[2\]]: https://stackoverflow.com/questions/46923610/css-resetting-margin-and-padding
 [\[3\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator
@@ -743,3 +864,5 @@ Go to [Flexbox alignment overview](https://web.dev/learn/css/flexbox/#flexbox-al
 [\[6\]]: https://web.dev/learn/css/sizing/#font-size-relative-units
 [\[7\]]: https://web.dev/learn/css/layout/
 [\[8\]]: https://web.dev/learn/css/flexbox/
+[\[9\]]: https://web.dev/learn/css/grid/
+
