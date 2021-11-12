@@ -754,12 +754,12 @@ There are five use cases for the grid. Each example provides the most significan
 ```CSS
 .container {
   display: grid;
+  gap: 8px;
 }
 
 .simple-grid {
   grid-template-columns: 5em 120px 30%;
   grid-template-rows: 120px auto;
-  gap: 8px;
 }
 ```
 
@@ -782,7 +782,6 @@ There are five use cases for the grid. Each example provides the most significan
 .intrinsic-sizing {
   grid-template-columns: repeat(3, min-content);
   grid-template-rows: 120px auto;
-  gap: 8px;
 }
 
 /*
@@ -801,7 +800,6 @@ grid-template-columns: repeat(3, auto);
 .fr {
   grid-template-columns: 1fr 3fr 2fr;
   grid-template-rows: 120px auto;
-  gap: 8px;
 }
 ```
 
@@ -813,7 +811,6 @@ grid-template-columns: repeat(3, auto);
 .min-max {
   grid-template-columns: 1fr 2fr minmax(auto, 2fr);
   grid-template-rows: 120px auto;
-  gap: 8px;
 }
 ```
 
@@ -835,7 +832,92 @@ grid-template-columns: repeat(3, auto);
 </div>
 ```
 
-6. Add fixed size tracks and fill with items as many as possible without overflowing the container.
+6. Given a fixed-width grid, try to adjust the items automatically. There are two scenarios:
+    1. Add items in a row as many as possible, even there is space.
+       ![auto-fill](./screenshots/auto-fill.png)
+    2. Stretch items and fit the content. There will be no space.
+       ![auto-fit](./screenshots/auto-fit.png)
+
+```CSS
+.auto-fill {
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  grid-template-rows: 120px 80px;
+}
+
+.auto-fit {
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  grid-template-rows: 120px 80px;
+}
+```
+
+7. Instead of placing items along the rows, drawing a grid layout places items into columns.
+
+```CSS
+.column-flow {
+  grid-auto-flow: column;
+  grid-template-columns: 120px 80px;
+  grid-template-rows: repeat(3, 1fr);
+  writing-mode: horizontal-tb;
+}
+```
+
+The writing mode is the direction a row runs. There is a multitude of options listed on [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode#values).
+
+8. Merge items horizontally and/or vertically.
+
+For example, we create a 4 \* 5 grid.
+
+![index.html](./screenshots/grid-index.png)
+
+```HTML
+<div class="container fixed-cells">
+  <div class="box heading">Box1</div>
+  <div class="box menu">Box2</div>
+  <div class="box sidemenu">Box3</div>
+  <div class="box main">Box4</div>
+  <div class="box footer">Box5</div>
+</div>
+```
+
+```CSS
+.fixed-cells {
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(5, 80px);
+}
+
+.heading {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.menu {
+  grid-column-start: 4;
+  grid-column-end: 5;
+}
+
+.sidemenu {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 5;
+}
+
+.main {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 5;
+}
+
+.footer {
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
+```
+
+Notice, grid columns start from index 1. The property `grid-column-start` and `grid-column-end` can be merged into `grid-column: ? / ?`.
 
 ### Readings
 
@@ -865,4 +947,3 @@ grid-template-columns: repeat(3, auto);
 [\[7\]]: https://web.dev/learn/css/layout/
 [\[8\]]: https://web.dev/learn/css/flexbox/
 [\[9\]]: https://web.dev/learn/css/grid/
-
