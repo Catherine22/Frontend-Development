@@ -892,7 +892,7 @@ The writing mode is the direction a row runs. There is a multitude of options li
 
 `margin-top` is applied to the physical top of the element, i.e., `margin-top` has nothing to do with the `writing-mode`. `margin-block-end`, on the other hand, rests on the direction of the writing mode. So if the item is placed right to left vertically, the `margin-block-end` works on the right-hand side of the item physically. It affects the left-hand side when the item is placed left to right.
 
-![flow relative](./screenshots/flow_relative.png)
+![flow relative](./screenshots/flow_relative.png) [\10\]]
 
 8. Merge items horizontally and/or vertically.
 
@@ -978,3 +978,4 @@ Notice, grid columns start from index 1. The property `grid-column-start` and `g
 [\[7\]]: https://web.dev/learn/css/layout/
 [\[8\]]: https://web.dev/learn/css/flexbox/
 [\[9\]]: https://web.dev/learn/css/grid/
+[\10\]]: https://web.dev/learn/css/logical-properties/
