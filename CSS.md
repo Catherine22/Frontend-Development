@@ -52,6 +52,7 @@ CSS exercises following the [Learn CSS] module.
     - [Terminology](#terminology)
     - [Examples](#examples)
     - [Readings](#readings-7)
+  - [Logical Properties](#logical-properties)
   - [References](#references)
 
 ## Selectors
@@ -863,7 +864,35 @@ grid-template-columns: repeat(3, auto);
 }
 ```
 
-The writing mode is the direction a row runs. There is a multitude of options listed on [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode#values).
+The writing mode is the direction a row runs. There is a multitude of options listed on [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode#values). Some CSS properties come with vertical written mode relative to the direction of their sides. For example,
+
+![v-rl](./screenshots/v-rl.png)
+
+```HTML
+<div class="wrapper">
+  <article class="container">
+    <div class="box rotate">box</div>
+</div>
+```
+
+```CSS
+.container {
+  border: 1px solid blue;
+  width: max-content;
+}
+
+.rotate {
+  writing-mode: vertical-rl;
+  margin-top: 1em; /* absolute position */
+  margin-block-end: 1em; /* relative position */
+  min-block-size: 100px; /* width */
+  min-inline-size: 150px;
+}
+```
+
+`margin-top` is applied to the physical top of the element, i.e., `margin-top` has nothing to do with the `writing-mode`. `margin-block-end`, on the other hand, rests on the direction of the writing mode. So if the item is placed right to left vertically, the `margin-block-end` works on the right-hand side of the item physically. It affects the left-hand side when the item is placed left to right.
+
+![flow relative](./screenshots/flow_relative.png)
 
 8. Merge items horizontally and/or vertically.
 
@@ -923,6 +952,8 @@ Notice, grid columns start from index 1. The property `grid-column-start` and `g
 
 -   [Grid]
 -   [CodePen](https://codepen.io/catherine22-the-reactor/pen/MWvBOLr)
+
+## Logical Properties
 
 ## References
 
