@@ -1040,7 +1040,7 @@ const necromancer2 = createNecromancer('Lucas', 'cauldron', 'frailty');
 
 ## Constructor Function
 
-Instead of using `Object.create()`, you can use Constructor Function.  
+Instead of using `Object.create()`, you can use **_constructor functions_**.  
 With the `new` keyword, you are creating a new object.
 
 Two rules to implement a constructor function:

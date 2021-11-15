@@ -8,6 +8,10 @@ CSS exercises following the [Learn CSS] module.
   - [Table of Contents](#table-of-contents)
   - [Selectors](#selectors)
     - [Pseudo-classes](#pseudo-classes)
+      - [Interactive States](#interactive-states)
+      - [Historic States](#historic-states)
+      - [Form States](#form-states)
+      - [Selecting elements by their index, order and occurrence](#selecting-elements-by-their-index-order-and-occurrence)
     - [Pseudo-elements](#pseudo-elements)
     - [Complex Selectors](#complex-selectors)
       - [Descendent Combinators](#descendent-combinators)
@@ -58,6 +62,7 @@ CSS exercises following the [Learn CSS] module.
     - [Margin Collapses](#margin-collapses)
     - [Box Sizing](#box-sizing)
     - [Readings](#readings-8)
+    - [Readings](#readings-9)
   - [References](#references)
 
 ## Selectors
@@ -143,7 +148,59 @@ Any element that has an `id` attribute must have a unique value for it. The best
 
 ### Pseudo-classes
 
+Pseudo-classes applies CSS based on state changes, which means that the design can react to user input such as an invalid email address [\[11\]]. Other than `valid` and `invalid`, an HTML element has a multitude of states. Check out [MDN HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) to see more.
+
+#### Interactive States
+
+Below shows some examples of interactive states.
+
+| State            | Required interaction                                                                                                                                                                                                                                                       |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `:hover`         | Move the mouse pointer to the element.                                                                                                                                                                                                                                     |
+| `:active`        | Click and hold on the `<button>` or `<a>` element.                                                                                                                                                                                                                         |
+| `:focus`         | Click on a `<button>` while it is not focused.                                                                                                                                                                                                                             |
+| `:focus-within`  | Any of its descendants is focused.                                                                                                                                                                                                                                         |
+| `:focus-visible` | The element receives focus via the keyboard (the tab key).                                                                                                                                                                                                                 |
+| `:target`        | Select an element that has an `id` matching a URL fragment. For example, given a link`<a href="#sec2>Section 2</a>`, while the user click on the link, it jumps to the HTML element with `id=sec2`. The CSS style `id:target{}` works when the URL becomes `xxx.com#sec2`. |
+
+#### Historic States
+
+| State      | Required interaction |
+| ---------- | -------------------- |
+| `:link`    | Work on `<a>`.       |
+| `:visited` | The `<a>` is clicked |
+
+#### Form States
+
+| State            | Element                                 | Criteria                                                         |
+| ---------------- | --------------------------------------- | ---------------------------------------------------------------- |
+| `:enabled`       | `<button>`                              | (1) By default, a `<button>` is enabled. (2) `<button enabled>`  |
+| `:disabled`      | `<button>`                              | `<button disabled>`                                              |
+| `:checked`       | `<input type="checkbox">`               | (1) User ticks a checkbox. (2) `<input type="checkbox" checked>` |
+| `:indeterminate` | `<input type="checkbox">`               | `<input type="checkbox" indeterminate>`                          |
+| `:valid`         | `<input type="email\|number\|...">`     | The input matches its type.                                      |
+| `:invalid`       | `<input type="email\|number\|...">`     | The input does not match its type.                               |
+| `:in-range`      | `<input type="number" min="x" max="y">` | The input is large equal than x and less equal than y.           |
+| `:required`      | `<input required>`                      | The`<input>` with the `required` attribute.                      |
+| `:optional`      | `<input>`                               | (1) By default, a `<input>` is optional. (2) `<input optional>`  |
+
+#### Selecting elements by their index, order and occurrence
+
 ### Pseudo-elements
+
+A pseudo-element starts with double colons following with a selector, for example, `p::first-line` and `my-class::before`. Pseudo-elements add or target an extra element without having to add more HTML. All the pseudo-elements are listed below:
+
+-   `::before`
+-   `::after`
+-   `::first-letter`
+-   `::first-line`
+-   `::marker`
+-   `::selection`
+-   `::placeholder`
+-   `::backdrop`
+-   `::cue`
+
+Go to [CodePen](https://codepen.io/catherine22-the-reactor/pen/eYEPwpm) to how those pseudo-elements work.
 
 ### Complex Selectors
 
@@ -248,10 +305,14 @@ h1 ~ p {
 
 ### Readings
 
--   [Selectors](https://web.dev/learn/css/selectors/)
+-   [Selectors]
+-   [Pseudo-elements]
+-   [Pseudo-classes]
 -   [CodePen: basic selectors](https://codepen.io/catherine22-the-reactor/pen/KKvRzyM)
 -   [CodePen: child combinators](https://codepen.io/catherine22-the-reactor/pen/yLojJLz)
 -   [CodePen: sibling combinators](https://codepen.io/catherine22-the-reactor/pen/BadxLRV)
+-   [CodePen: pseudo-elements](https://codepen.io/catherine22-the-reactor/pen/eYEPwpm)
+-   [CodePen: pseudo-classes](https://codepen.io/catherine22-the-reactor/pen/PoKxYpm)
 
 ## Box Model
 
@@ -983,7 +1044,7 @@ The actual margin between the following items is 32px, not 48px, because of marg
 
 ### Box Sizing
 
-Use `padding` to create space inside a box. Use `margin` to create space outside a box. Lastly, use `gap` to create space between boxes inside of a grid or flexbox container. The `box-sizing` property determines how the total width and hight of an element is calculated. Check out [MDN box sizing] to read more.
+Use `padding` to create space inside a box. Use `margin` to create space outside a box. Lastly, use `gap` to create space between boxes inside of a grid or flexbox container. The `box-sizing` property determines how the total width and height of an element is calculated. Check out [MDN box sizing] to read more.
 
 ### Readings
 
@@ -991,6 +1052,8 @@ Use `padding` to create space inside a box. Use `margin` to create space outside
 -   [MDN box sizing]
 -   [Spacing]
 -   [CodePen](https://codepen.io/catherine22-the-reactor/pen/OJjBqJw)
+
+### Readings
 
 ## References
 
@@ -1010,6 +1073,9 @@ Use `padding` to create space inside a box. Use `margin` to create space outside
 [mdn writing mode]: https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode
 [spacing]: https://web.dev/learn/css/spacing/
 [mdn box sizing]: https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing
+[selectors]: https://web.dev/learn/css/selectors/
+[pseudo-elements]: https://web.dev/learn/css/pseudo-elements/
+[pseudo-classes]: https://web.dev/learn/css/pseudo-classes/
 [\[1\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/max-content
 [\[2\]]: https://stackoverflow.com/questions/46923610/css-resetting-margin-and-padding
 [\[3\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator
@@ -1020,3 +1086,4 @@ Use `padding` to create space inside a box. Use `margin` to create space outside
 [\[8\]]: https://web.dev/learn/css/flexbox/
 [\[9\]]: https://web.dev/learn/css/grid/
 [\[10\]]: https://web.dev/learn/css/logical-properties/
+[\[11\]]: https://web.dev/learn/css/pseudo-classes/
