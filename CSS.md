@@ -52,7 +52,12 @@ CSS exercises following the [Learn CSS] module.
     - [Terminology](#terminology)
     - [Examples](#examples)
     - [Readings](#readings-7)
-  - [Logical Properties](#logical-properties)
+  - [Spacing](#spacing)
+    - [Percentages with `margin`](#percentages-with-margin)
+    - [Relative Positions](#relative-positions)
+    - [Margin Collapses](#margin-collapses)
+    - [Box Sizing](#box-sizing)
+    - [Readings](#readings-8)
   - [References](#references)
 
 ## Selectors
@@ -948,14 +953,44 @@ For example, we create a 4 \* 5 grid.
 }
 ```
 
-Notice, grid columns start from index 1. The property `grid-column-start` and `grid-column-end` can be merged into `grid-column: ? / ?`.
+Notice, grid columns start from index 1. The property `grid-column-start: 2` and `grid-column-end: 3` can be merged into `grid-column: 2 / 3`.
 
 ### Readings
 
 -   [Grid]
--   [CodePen](https://codepen.io/catherine22-the-reactor/pen/MWvBOLr)
+-   [Logical Properties]
+-   [MDN writing mode]
+-   [CodePen - grid](https://codepen.io/catherine22-the-reactor/pen/MWvBOLr)
+-   [CodePen - logical properties](https://codepen.io/catherine22-the-reactor/pen/dyzqNVq)
 
-## Logical Properties
+## Spacing
+
+### Percentages with `margin`
+
+The `margin` property can be a percentage based on the width of the element's containing block. For example, a 240px \* 300px container contains an element with `margin: 10%`, the margin of of that element is 30px (The width of the container is 300px).
+
+### Relative Positions
+
+`inline-margin` and `inline-size` work in the relatively-horizontal direction. `block-margin` and `block-size` affect the relatively-vertical direction—their direction changes along with the `writing-mode`.
+
+### Margin Collapses
+
+The actual margin between the following items is 32px, not 48px, because of margin collapses. Only block margins collapse, not inline (horizontal) margins.
+
+![margin collapses](./screenshots/margin_collapses1.png)
+
+![margin collapses](./screenshots/margin_collapses2.png)
+
+### Box Sizing
+
+Use `padding` to create space inside a box. Use `margin` to create space outside a box. Lastly, use `gap` to create space between boxes inside of a grid or flexbox container. The `box-sizing` property determines how the total width and hight of an element is calculated. Check out [MDN box sizing] to read more.
+
+### Readings
+
+-   [MDN writing mode]
+-   [MDN box sizing]
+-   [Spacing]
+-   [CodePen](https://codepen.io/catherine22-the-reactor/pen/OJjBqJw)
 
 ## References
 
@@ -971,6 +1006,10 @@ Notice, grid columns start from index 1. The property `grid-column-start` and `g
 [flexbox]: https://web.dev/learn/css/flexbox/
 [grid terminology]: https://web.dev/learn/css/grid/#grid-terminology
 [grid]: https://web.dev/learn/css/grid/
+[logical properties]: https://web.dev/learn/css/logical-properties/
+[mdn writing mode]: https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode
+[spacing]: https://web.dev/learn/css/spacing/
+[mdn box sizing]: https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing
 [\[1\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/max-content
 [\[2\]]: https://stackoverflow.com/questions/46923610/css-resetting-margin-and-padding
 [\[3\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator
