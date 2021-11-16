@@ -12,6 +12,7 @@ CSS exercises following the [Learn CSS] module.
       - [Historic States](#historic-states)
       - [Form States](#form-states)
       - [Selecting elements by their index, order and occurrence](#selecting-elements-by-their-index-order-and-occurrence)
+      - [Empty, multiple and excluded elements](#empty-multiple-and-excluded-elements)
     - [Pseudo-elements](#pseudo-elements)
     - [Complex Selectors](#complex-selectors)
       - [Descendent Combinators](#descendent-combinators)
@@ -181,10 +182,113 @@ Below shows some examples of interactive states.
 | `:valid`         | `<input type="email\|number\|...">`     | The input matches its type.                                      |
 | `:invalid`       | `<input type="email\|number\|...">`     | The input does not match its type.                               |
 | `:in-range`      | `<input type="number" min="x" max="y">` | The input is large equal than x and less equal than y.           |
-| `:required`      | `<input required>`                      | The`<input>` with the `required` attribute.                      |
-| `:optional`      | `<input>`                               | (1) By default, a `<input>` is optional. (2) `<input optional>`  |
+| `:required`      | `<input required>`                      | The `<input>` with the `required` attribute.                     |
+| `:optional`      | `<input>`                               | (1) By default, an `<input>` is optional. (2) `<input optional>` |
 
 #### Selecting elements by their index, order and occurrence
+
+-   `:first-child`, `:nth-child(n)` and `:last-child` find the nth of child element. These selectors must follow the child element, not the parent.
+
+<p align="center">
+    <img src="./screenshots/nth-child.png" alt="nth-child" width="50%"/>
+</p>
+
+```CSS
+.container p:first-child {
+  color: red;
+}
+
+.container p:nth-child(3) {
+  color: green;
+}
+
+.container p:last-child {
+  color: blue;
+}
+```
+
+-   `:first-of-type`, `:nth-of-type(n)` and `:last-of-type` points to the nth element of a specific type. These selectors must follow the child element, not the parent.
+
+<p align="center">
+    <img src="./screenshots/nth-of-type.png" alt="nth-of-type" width="50%"/>
+</p>
+
+```CSS
+.container p:first-of-type {
+  color: red;
+}
+
+.container p:nth-of-type(3) {
+  color: green;
+}
+
+.container p:last-of-type {
+  color: blue;
+}
+```
+
+**The above n can be `even` to create a striped table. Alternatively, it can apply the An+B microsyntax[\[12\]] to find child elements at regularly spaced intervals.**
+
+#### Empty, multiple and excluded elements
+
+<p align="center">
+    <img src="./screenshots/nmore_pseudo-class_selectors.png" alt="pseudo-class selectors" width="50%"/>
+</p>
+
+```HTML
+<article>
+  <div>I amd a div</div>
+  <div></div>
+  <h2></h2>
+  <div></div>
+  <p>I am a paragraph</p>
+  <h3>I am a heading 3</h3>
+  <div></div>
+  <p></p>
+  <div>I amd a div</div>
+</article>
+```
+
+```CSS
+article {
+  line-hight: 1em;
+}
+
+article  > * + * {
+  margin-top: 0.5em;
+}
+```
+
+-   `:empty` finds empty elements. Noticeably, an empty element has no blank.
+
+```CSS
+article :empty {
+  display: none;
+}
+```
+
+-   `:is([classes])` is an elegant way to update specific classes, replacing the above CSS:
+
+```CSS
+article p,
+article div {
+  color: green;
+}
+```
+
+```CSS
+article :is(p, div) {
+  color: green;
+}
+```
+
+-   `:not([classes])` excludes classes.
+
+```CSS
+article :not(div) {
+  text-decoration: underline;
+}
+```
 
 ### Pseudo-elements
 
@@ -308,6 +412,7 @@ h1 ~ p {
 -   [Selectors]
 -   [Pseudo-elements]
 -   [Pseudo-classes]
+-   [The An+B microsyntax]
 -   [CodePen: basic selectors](https://codepen.io/catherine22-the-reactor/pen/KKvRzyM)
 -   [CodePen: child combinators](https://codepen.io/catherine22-the-reactor/pen/yLojJLz)
 -   [CodePen: sibling combinators](https://codepen.io/catherine22-the-reactor/pen/BadxLRV)
@@ -932,7 +1037,9 @@ grid-template-columns: repeat(3, auto);
 
 The writing mode is the direction a row runs. There is a multitude of options listed on [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode#values). Some CSS properties come with vertical written mode relative to the direction of their sides. For example,
 
-![v-rl](./screenshots/v-rl.png)
+<p align="center">
+    <img src="./screenshots/v-rl.png" alt="v-rl" width="50%"/>
+</p>
 
 ```HTML
 <div class="wrapper">
@@ -962,7 +1069,7 @@ The writing mode is the direction a row runs. There is a multitude of options li
 
 [CodePen](https://codepen.io/catherine22-the-reactor/pen/dyzqNVq)
 
-8. Merge items horizontally and/or vertically.
+1. Merge items horizontally and/or vertically.
 
 For example, we create a 4 \* 5 grid.
 
@@ -1076,6 +1183,7 @@ Use `padding` to create space inside a box. Use `margin` to create space outside
 [selectors]: https://web.dev/learn/css/selectors/
 [pseudo-elements]: https://web.dev/learn/css/pseudo-elements/
 [pseudo-classes]: https://web.dev/learn/css/pseudo-classes/
+[the an+b microsyntax]: https://www.w3.org/TR/css-syntax-3/#anb-microsyntax
 [\[1\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/max-content
 [\[2\]]: https://stackoverflow.com/questions/46923610/css-resetting-margin-and-padding
 [\[3\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator
@@ -1087,3 +1195,4 @@ Use `padding` to create space inside a box. Use `margin` to create space outside
 [\[9\]]: https://web.dev/learn/css/grid/
 [\[10\]]: https://web.dev/learn/css/logical-properties/
 [\[11\]]: https://web.dev/learn/css/pseudo-classes/
+[\[12\]]: https://www.w3.org/TR/css-syntax-3/#anb-microsyntax
