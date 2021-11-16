@@ -63,7 +63,10 @@ CSS exercises following the [Learn CSS] module.
     - [Margin Collapses](#margin-collapses)
     - [Box Sizing](#box-sizing)
     - [Readings](#readings-8)
+  - [Border](#border)
     - [Readings](#readings-9)
+  - [Shadows](#shadows)
+    - [Readings](#readings-10)
   - [References](#references)
 
 ## Selectors
@@ -190,7 +193,7 @@ Below shows some examples of interactive states.
 -   `:first-child`, `:nth-child(n)` and `:last-child` find the nth of child element. These selectors must follow the child element, not the parent.
 
 <p align="center">
-    <img src="./screenshots/nth-child.png" alt="nth-child" width="50%"/>
+    <img src="./screenshots/nth-child.png" alt="nth-child" width="40%"/>
 </p>
 
 ```CSS
@@ -210,7 +213,7 @@ Below shows some examples of interactive states.
 -   `:first-of-type`, `:nth-of-type(n)` and `:last-of-type` points to the nth element of a specific type. These selectors must follow the child element, not the parent.
 
 <p align="center">
-    <img src="./screenshots/nth-of-type.png" alt="nth-of-type" width="50%"/>
+    <img src="./screenshots/nth-of-type.png" alt="nth-of-type" width="40%"/>
 </p>
 
 ```CSS
@@ -232,7 +235,7 @@ Below shows some examples of interactive states.
 #### Empty, multiple and excluded elements
 
 <p align="center">
-    <img src="./screenshots/nmore_pseudo-class_selectors.png" alt="pseudo-class selectors" width="50%"/>
+    <img src="./screenshots/more_pseudo-class_selectors.png" alt="pseudo-class selectors" width="40%"/>
 </p>
 
 ```HTML
@@ -1038,7 +1041,7 @@ grid-template-columns: repeat(3, auto);
 The writing mode is the direction a row runs. There is a multitude of options listed on [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode#values). Some CSS properties come with vertical written mode relative to the direction of their sides. For example,
 
 <p align="center">
-    <img src="./screenshots/v-rl.png" alt="v-rl" width="50%"/>
+    <img src="./screenshots/v-rl.png" alt="v-rl" width="30%"/>
 </p>
 
 ```HTML
@@ -1160,7 +1163,22 @@ Use `padding` to create space inside a box. Use `margin` to create space outside
 -   [Spacing]
 -   [CodePen](https://codepen.io/catherine22-the-reactor/pen/OJjBqJw)
 
+## Border
+
 ### Readings
+
+-   [FANCY-BORDER-RADIUS]
+-   [Borders]
+-   [CodePen](https://codepen.io/catherine22-the-reactor/pen/yLoQjJV)
+
+## Shadows
+
+### Readings
+
+-   [Beautiful CSS box-shadow examples]
+-   [20 CSS Text Shadow Effects]
+-   [Shadows]
+-   [CodePen](https://codepen.io/catherine22-the-reactor/pen/QWMJZRV)
 
 ## References
 
@@ -1184,6 +1202,11 @@ Use `padding` to create space inside a box. Use `margin` to create space outside
 [pseudo-elements]: https://web.dev/learn/css/pseudo-elements/
 [pseudo-classes]: https://web.dev/learn/css/pseudo-classes/
 [the an+b microsyntax]: https://www.w3.org/TR/css-syntax-3/#anb-microsyntax
+[fancy-border-radius]: https://9elements.github.io/fancy-border-radius/
+[borders]: https://web.dev/learn/css/borders/
+[shadows]: https://web.dev/learn/css/shadows/
+[beautiful css box-shadow examples]: https://getcssscan.com/css-box-shadow-examples
+[20 css text shadow effects]: https://freefrontend.com/css-text-shadow-effects/
 [\[1\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/max-content
 [\[2\]]: https://stackoverflow.com/questions/46923610/css-resetting-margin-and-padding
 [\[3\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator
