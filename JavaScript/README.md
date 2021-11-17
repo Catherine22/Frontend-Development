@@ -1,14 +1,9 @@
 # JavaScript
 
-JavaScript is one of the core roles in web development (JavaScript + CSS + HTML)  
-HTML: The content of web pages  
-CSS: Styling web pages  
-JS: Programming capabilities
-
-## Navigator
+## Table of Contents
 
 - [JavaScript](#javascript)
-  - [Navigator](#navigator)
+  - [Table of Contents](#table-of-contents)
   - [ESLint and Prettier](#eslint-and-prettier)
   - [JavaScript Engine](#javascript-engine)
     - [Problematic keywords](#problematic-keywords)
@@ -44,7 +39,8 @@ JS: Programming capabilities
       - [ES6](#es6)
       - [ES8](#es8)
       - [ES9](#es9)
-  - [Reference](#reference)
+  - [Design Patterns](#design-patterns)
+  - [References](#references)
 
 ## ESLint and Prettier
 
@@ -1456,7 +1452,11 @@ console.log("Comments:", responses[1]);
 console.log("Albums:", responses[2]);
 ```
 
-## Reference
+## Design Patterns
+
+Check out my [Design-Patterns](https://github.com/Catherine22/Design-Patterns) repo.
+
+## References
 
 -   [Advanced JavaScript concepts]
 -   [loupe]

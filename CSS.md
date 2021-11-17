@@ -1,6 +1,6 @@
 # CSS
 
-CSS exercises following the [Learn CSS] module.
+CSS exercises following the [Learn CSS] module. Code is available on my [CodePen collection](https://codepen.io/collection/mrPRmj).
 
 ## Table of Contents
 
@@ -67,6 +67,10 @@ CSS exercises following the [Learn CSS] module.
     - [Readings](#readings-9)
   - [Shadows](#shadows)
     - [Readings](#readings-10)
+  - [Z-index](#z-index)
+      - [Readings](#readings-11)
+    - [Functions](#functions)
+      - [Readings](#readings-12)
   - [References](#references)
 
 ## Selectors
@@ -1180,6 +1184,32 @@ Use `padding` to create space inside a box. Use `margin` to create space outside
 -   [Shadows]
 -   [CodePen](https://codepen.io/catherine22-the-reactor/pen/QWMJZRV)
 
+## Z-index
+
+Z-index works with a `position` property other than `static`.
+
+#### Readings
+
+-   [Z-index]
+-   [CodePen](https://codepen.io/catherine22-the-reactor/pen/bGrOWrW)
+
+### Functions
+
+A CSS function is a pure function. CSS functions can be categorised into a few groups.
+
+1. `var(variable, default)` allows properties to read user-defined variables. The default value is optional.
+2. `calc(expression)` makes mathematical calculation and returns a number.
+3. `min(size1, size2)`, `max(size1, size2)`, `clamp(min, ideal size, max)` return a number depending on the condition. For example, `width: min(50px, 10%);` sets the width of an element to 50px when the minimum width of its container is greater than 50px. Otherwise, the width will be 10% of the width of the container.
+4. Shapes: Functions like `circle()`, `ellipse()`, `inset()` and `polygon()` are used to clip a box or provide a shape for content to flow around. For example, [CSS clip-path maker] is a great tool to clip a shape.
+   ![bennettfeely](./screenshots/bennettfeely.png)
+5. Transforms: Transform functions, which skew, resize and even change the depth of an element.
+
+#### Readings
+
+-   [Functions]
+-   [css clip-path maker]
+-   [CodePen](https://codepen.io/catherine22-the-reactor/pen/GRvPEvy)
+
 ## References
 
 -   [Learn CSS]
@@ -1207,6 +1237,9 @@ Use `padding` to create space inside a box. Use `margin` to create space outside
 [shadows]: https://web.dev/learn/css/shadows/
 [beautiful css box-shadow examples]: https://getcssscan.com/css-box-shadow-examples
 [20 css text shadow effects]: https://freefrontend.com/css-text-shadow-effects/
+[z-index]: https://web.dev/learn/css/z-index/
+[functions]: https://web.dev/learn/css/functions/
+[css clip-path maker]: https://bennettfeely.com/clippy/
 [\[1\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/max-content
 [\[2\]]: https://stackoverflow.com/questions/46923610/css-resetting-margin-and-padding
 [\[3\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator
