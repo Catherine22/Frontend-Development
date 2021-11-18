@@ -71,6 +71,11 @@ CSS exercises following the [Learn CSS] module. Code is available on my [CodePen
       - [Readings](#readings-11)
     - [Functions](#functions)
       - [Readings](#readings-12)
+    - [Gradients](#gradients)
+      - [Readings](#readings-13)
+    - [Animations](#animations)
+      - [Keyframe](#keyframe)
+      - [Readings](#readings-14)
   - [References](#references)
 
 ## Selectors
@@ -1210,6 +1215,59 @@ A CSS function is a pure function. CSS functions can be categorised into a few g
 -   [css clip-path maker]
 -   [CodePen](https://codepen.io/catherine22-the-reactor/pen/GRvPEvy)
 
+### Gradients
+
+#### Readings
+
+-   [Gradients]
+-   [CodePen](https://codepen.io/catherine22-the-reactor/pen/mdMaqzx)
+
+### Animations
+
+#### Keyframe
+
+Keyframes are the mechanism that you use to assign animation states to timestamps, along a timeline [\[13\]]. Below is how keyframe is implemented:
+
+```CSS
+@keyframes custom-ident {
+  timeline-before {
+		/* do something */
+	}
+	timeline-after {
+		/* do something */
+	}
+}
+```
+
+The **custom-ident** is the name of a keyframe. That identifier is case-sensitive. The `timeline-before` and `timeline-after` represent the start and end of an animation, respectively. They could be a `from` and `to` pair or a percentage pair like `0%` and `100%`.
+
+With the animation (keyframe), we can create an animation with other properties such as
+
+-   `animation-duration`: defines how long the keyframe timeline should be.
+-   `animation-timing-function`: calculates the speed of the animation at each point.
+-   `animation-iteration-count`: defines how many times the @keyframes timeline should run.
+-   `animation-direction`: defines which direction the timeline runs over your keyframes.
+-   `animation-delay`: defines how long to wait before starting the animation.
+-   `animation-play-state`: The default value is `running`. This property can pause an animation by setting up `animation-play-state: paused`.
+-   `animation-fill-mode`
+
+The shorthand of the animation CSS is `animation: name duration timing-function delay iterator-count direction fill-mode play-state.
+
+Users can define in their operating system that they prefer to reduce motion experienced when interacting with applications and websites.
+
+```CSS
+@media (prefers-reduced-motion) {
+  .my-autoplaying-animation {
+    animation-play-state: paused;
+  }
+}
+```
+
+#### Readings
+
+-   [Animations]
+-   [CodePen](https://codepen.io/catherine22-the-reactor/pen/ZEJwONY)
+
 ## References
 
 -   [Learn CSS]
@@ -1240,6 +1298,8 @@ A CSS function is a pure function. CSS functions can be categorised into a few g
 [z-index]: https://web.dev/learn/css/z-index/
 [functions]: https://web.dev/learn/css/functions/
 [css clip-path maker]: https://bennettfeely.com/clippy/
+[gradients]: https://web.dev/learn/css/gradients/
+[animations]: https://web.dev/learn/css/animations/
 [\[1\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/max-content
 [\[2\]]: https://stackoverflow.com/questions/46923610/css-resetting-margin-and-padding
 [\[3\]]: https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator
@@ -1252,3 +1312,4 @@ A CSS function is a pure function. CSS functions can be categorised into a few g
 [\[10\]]: https://web.dev/learn/css/logical-properties/
 [\[11\]]: https://web.dev/learn/css/pseudo-classes/
 [\[12\]]: https://www.w3.org/TR/css-syntax-3/#anb-microsyntax
+[\[13\]]: https://web.dev/learn/css/animations/#what-is-a-keyframe
