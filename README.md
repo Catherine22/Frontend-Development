@@ -494,6 +494,22 @@ node_modules/
 dist/
 ```
 
+Notice, a better way to execute the npm install command is when the package.json file changes. Therefore, instead of copying and pasting the whole app, we first copy and paste the package.json file. Because Docker will execute the `RUN npm install` if we make changes above that line of code.
+
+Instead of doing 
+```Dockerfile
+COPY ./ .
+RUN npm install
+```
+  
+We do
+
+```Dockerfile
+COPY package*.json ./
+RUN npm install
+COPY ./ .
+```
+  
 For more information, see [vue-pwa] and [dockerhub](https://hub.docker.com/repository/docker/123987109832/vue-pwa)
 
 ### Nuxt.js Deployment
