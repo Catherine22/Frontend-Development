@@ -50,6 +50,7 @@
   - [Deployment](#deployment)
     - [Vue.js Deployment](#vuejs-deployment)
     - [Nuxt.js Deployment](#nuxtjs-deployment)
+    - [React app Deployment](#react-app-deployment)
 
 ## Environment and Tools
 
@@ -560,6 +561,10 @@ dist/
 ```
 
 For more information, see [nuxt-fundamentals] and [dockerhub](https://hub.docker.com/repository/docker/123987109832/vuejs-nuxtjs-web-app)
+
+### React app Deployment
+
+Check out my [docker react repo](React/docker-react) to read more.
 
 [why rounding odd font sizes to even?]: https://ux.stackexchange.com/questions/129973/why-rounding-odd-font-sizes-to-even
 [the 8-point grid system]: https://builttoadapt.io/intro-to-the-8-point-grid-system-d2573cde8632

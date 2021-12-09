@@ -1,0 +1,23 @@
+# docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app 123987109832/react-app:latest
+version: '3'
+services:
+    # The first container is responsible for hosting our development server.
+    react-app:
+        image: 123987109832/react-app:latest
+        build:
+            context: . # refers to current working directory
+            dockerfile: Dockerfile.dev
+        ports:
+            - '3000:3000'
+        volumes:
+            - /app/node_modules
+            - .:/app # . refers to current working directory
+    # The second container is solely responsible for running tests.
+    tests:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes:
+            - /app/node_modules
+            - .:/app
+        command: ['npm', 'run', 'test'] # overrides the starting command
